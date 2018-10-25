@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "机器学习-总览篇(1) 概念"
-subtitle: "机器学习的概念"
+title: "机器学习-总览篇(1)"
+subtitle: "概念: 什么是机器学习"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4

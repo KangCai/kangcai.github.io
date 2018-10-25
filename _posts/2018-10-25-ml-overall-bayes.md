@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "机器学习-总览篇(2) 统计推断"
-subtitle: "统计推断中的频率学派和贝叶斯学派"
+title: "机器学习-总览篇(2)"
+subtitle: "统计推断: 频率学派和贝叶斯学派"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
