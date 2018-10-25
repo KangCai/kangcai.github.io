@@ -32,16 +32,12 @@ tags:
 * 似然函数: 在字典中，似然（likelihood）和概率（probability）是差不多的意思，但在统计学里，似然函数和概率函数的含义却不同，对于形式为<a href="http://www.codecogs.com/eqnedit.php?latex=P(x|\theta)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?P(x|\theta)" title="P(x|\theta)" /></a>的函数，如果θ是已知的，x是变量，这个函数叫做概率函数（probability function），描述的是不同的样本x出现的概率是多少; 如果x是已知的，θ是变量，这个函数叫做似然函数（likelihood function），描述的是不同的模型参数下，出现x这个样本的概率是多少。多个样本的离散型x的似然函数可表示为<img src="http://latex.codecogs.com/gif.latex?L(\theta)&space;=&space;\sum_{i=1}^{n}P(x|\theta)" title="L(\theta) = \sum_{i=1}^{n}P(x|\theta)" />。举个抛硬币的简单例子，我们先假设硬币均匀，硬币出现朝上概率p=0.5，那么出现两次朝上的概率是0.25，这个0.25是似然函数值，如果之前我们假设的是硬币不均匀，朝上概率p=0.6，那么出现两次朝上概率就成了0.36，似然函数值越大能**表征**θ成立的概率越大，**但一定要注意似然函数值并不等于出现样本x时θ成立的概率**，即更关注值的大小关系，而非值本身。
 * 最大似然估计（MLE）: 其实前面抛两次硬币的例子中就进行了似然估计，其曲线可如图1表示，当p=0.5时，似然估计值为0.25；p=0.6时，似然估计值为0.36；在p=1.0时能取到最大似然估计值1.0。
 
-<div align=center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/2018-10-26-ml-overall-bayes-1.png"/>
-</div>
 <center>图1 抛两次硬币实验的似然函数</center>
 
 * 最大后验估计（MAP）: 最大后验估计会加入先验知识，通过贝叶斯公式<img src="http://latex.codecogs.com/gif.latex?P(\theta|x_0)=\frac{P(x_0|\theta)P(\theta)}{P(x_0)}" title="P(\theta|x_0)=\frac{P(x_0|\theta)P(\theta)}{P(x_0)}" />来得到硬币朝上概率的概率分布。同样是两抛次硬币的例子，最大似然估计方法通过抛两次硬币的样本得出是硬币朝上概率最可能是1.0的结论，我会觉得这个结论不可信，因为就我以前对硬币的认知，通常情况下硬币是接近均匀的，朝上的概率一般是0.5，最大后验估计就是在推断的过程中，通过贝叶斯定理将上述的这个先验知识考虑进去。对于投硬币的例子来看，我们认为（先验地知道）θ取0.5的概率很大，取其它值相对较小，用一个高斯分布来具体描述我们掌握关于θ的这个先验知识，比如假设<img src="http://latex.codecogs.com/gif.latex?\theta&space;$\sim$&space;N(0.5,0.1^2)" title="\theta $\sim$ N(0.5,0.1^2)" />，即θ服从均值0.5，方差0.1的正态分布，函数如图2中Prior Distribution曲线所示，则最后后验估计函数为<img src="http://latex.codecogs.com/gif.latex?P(\theta|x)=\frac{\theta^2e^{-\frac{(\theta-\mu)^2}{2\sigma^2}}}{F\sqrt{2\pi}\sigma},\mu=0.5,\sigma=0.1" title="P(\theta|x)=\frac{\theta^2e^{-\frac{(\theta-\mu)^2}{2\sigma^2}}}{F\sqrt{2\pi}\sigma},\mu=0.5,\sigma=0.1" />，其中F为积分常数，函数如图2中Posterior Distribution曲线所示。其实回头看最大似然估计，当我们的先验假设是<img src="http://latex.codecogs.com/gif.latex?\theta$\sim$U(0,1)" title="\theta$\sim$U(0,1)" />，即θ服从均匀分布时，最大后验估计的目标函数和最大似然目标函数是同样形式的（当然这并非说明最大似然估计是最大后验估计的特例，前者的出发点就不一样）。
 
-<div align=center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/2018-10-26-ml-overall-bayes-2.png"/>
-</div>
 <center>图2 抛两次硬币实验的先验分布和后验分布</center>
 
 参考文献
