@@ -46,7 +46,7 @@ plt.plot(x_, y_, label='K=2 Posterior Distribution')
 plt.plot(x_, y2_, label='K=100 Posterior Distribution')
 
 # 设置x坐标轴刻度,
-plt.xticks(np.arange(0,1.001,0.1))
+plt.xticks(np.arange(0,1.000001,0.1))
 # 设置y坐标轴刻度及标签, $$是设置字体
 #plt.yticks(np.linspace(0, 0.12, 7), np.linspace(0, 12, 7))
 # 获取当前的坐标轴, gca = get current axis

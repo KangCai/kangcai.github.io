@@ -7,6 +7,7 @@ header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
 tags:
   - 机器学习
+  - 机器学习总览
 ---
 
 > 统计推断作为重要的机器学习基础，对它的了解十分必要，否则我们做机器学习只是在黑盒操作，对其原理和结果难以解释。文章首发于[我的博客](https://kangcai.github.io/2018/10/25/ml-overall-bayes/)，转载请保留链接 ;)
@@ -44,7 +45,7 @@ tags:
 <img src="https://kangcai.github.io/img/in-post/post-ml/2018-10-26-ml-overall-bayes-1.png"/>
 <center>图1 抛两次硬币两次正面朝上的似然函数</center>
 
-* 最大后验估计（MAP）: 最大后验估计会加入先验知识，通过贝叶斯公式<img src="http://latex.codecogs.com/gif.latex?P(\theta|x_0)=\frac{P(x_0|\theta)P(\theta)}{P(x_0)}" title="P(\theta|x_0)=\frac{P(x_0|\theta)P(\theta)}{P(x_0)}" />来得到硬币朝上概率的概率分布。同样是两抛次硬币的例子，最大似然估计方法通过抛两次硬币的样本得出是硬币朝上概率最可能是1.0的结论，我会觉得这个结论不可信，因为就我以前对硬币的认知，通常情况下硬币是接近均匀的，朝上的概率一般是0.5，最大后验估计就是在推断的过程中，通过贝叶斯定理将上述的这个先验知识考虑进去。对于投硬币的例子来看，我们认为（先验地知道）θ取0.5的概率很大，取其它值相对较小，用一个高斯分布来具体描述我们掌握关于θ的这个先验知识，比如假设<img src="http://latex.codecogs.com/gif.latex?\theta&space;$\sim$&space;N(0.5,0.1^2)" title="\theta $\sim$ N(0.5,0.1^2)" />，即θ服从均值0.5，方差0.1的正态分布，函数如图2中"K=2 Prior Distribution"曲线所示，则最后后验估计函数为<img src="http://latex.codecogs.com/gif.latex?P(\theta|x)=\frac{\theta^2e^{-\frac{(\theta-\mu)^2}{2\sigma^2}}}{F\sqrt{2\pi}\sigma},\mu=0.5,\sigma=0.1" title="P(\theta|x)=\frac{\theta^2e^{-\frac{(\theta-\mu)^2}{2\sigma^2}}}{F\sqrt{2\pi}\sigma},\mu=0.5,\sigma=0.1" />，其中F为积分常数，函数如图2中Posterior Distribution曲线所示。另外,当抛硬币的次数达到了100次,后验估计函数如图2中"K=100 Prior Distribution"所示（为了视觉友好，函数曲线在Y轴上压缩到了1/10），可以看到θ的值越来越靠近1；事实上如果抛无穷大次硬币，都是正面朝上，那么无论先验假设是什么，后验分布都是1分布，即只在θ=1上概率不等于0。
+* 最大后验估计（MAP）: 最大后验估计会加入先验知识，通过贝叶斯公式<img src="http://latex.codecogs.com/gif.latex?P(\theta|x_0)=\frac{P(x_0|\theta)P(\theta)}{P(x_0)}" title="P(\theta|x_0)=\frac{P(x_0|\theta)P(\theta)}{P(x_0)}" />来得到硬币朝上概率的概率分布。同样是两抛次硬币的例子，最大似然估计方法通过抛两次硬币的样本得出是硬币朝上概率最可能是1.0的结论，我会觉得这个结论不可信，因为就我以前对硬币的认知，通常情况下硬币是接近均匀的，朝上的概率一般是0.5，最大后验估计就是在推断的过程中，通过贝叶斯定理将上述的这个先验知识考虑进去。对于投硬币的例子来看，我们认为（先验地知道）θ取0.5的概率很大，取其它值相对较小，用一个高斯分布来具体描述我们掌握关于θ的这个先验知识，比如假设<img src="http://latex.codecogs.com/gif.latex?\theta&space;$\sim$&space;N(0.5,0.1^2)" title="\theta $\sim$ N(0.5,0.1^2)" />，即θ服从均值0.5，方差0.1的正态分布，函数如图2中"K=2 Prior Distribution"曲线所示，则最后后验估计函数为<img src="http://latex.codecogs.com/gif.latex?P(\theta|x)=\frac{\theta^2e^{-\frac{(\theta-\mu)^2}{2\sigma^2}}}{F\sqrt{2\pi}\sigma},\mu=0.5,\sigma=0.1" title="P(\theta|x)=\frac{\theta^2e^{-\frac{(\theta-\mu)^2}{2\sigma^2}}}{F\sqrt{2\pi}\sigma},\mu=0.5,\sigma=0.1" />，其中F为函数从0到1的定积分，函数如图2中Posterior Distribution曲线所示。另外,当抛硬币的次数达到了100次,后验估计函数如图2中"K=100 Prior Distribution"所示（为了视觉友好，函数曲线在Y轴上压缩到了原值的0.1倍），可以看到θ的值越来越靠近1；事实上如果抛无穷大次硬币，都是正面朝上，那么无论先验假设是什么，后验分布都是1分布，即只在θ=1上概率不等于0。
 
 <img src="https://kangcai.github.io/img/in-post/post-ml/2018-10-26-ml-overall-bayes-2.png"/>
 <center>图2 抛硬币的先验分布和抛K次硬币K次正面朝上的后验分布</center>
@@ -58,8 +59,9 @@ tags:
 3. [WIKI: 皮尔逊][3]
 4. [WIKI: 内曼][4]
 5. [丁以华.贝叶斯方法的发展及其存在问题[J].质量与可靠性,1986(01):29-31.][5]
-7. [知乎: 如何理解 95% 置信区间？][7]
-8. [知乎: 贝叶斯学派与频率学派有何不同？][8]
+6. [知乎: 如何理解 95% 置信区间？][6]
+7. [知乎: 贝叶斯学派与频率学派有何不同？][7]
+8. [量子位公众号: 频率学派还是贝叶斯学派？聊一聊机器学习中的MLE和MAP][8]
 9. [CSDN博客: 详解最大似然估计（MLE）、最大后验概率估计（MAP），以及贝叶斯公式的理解][9]
 
 [1]: (https://zh.wikipedia.org/wiki/%E6%89%98%E9%A9%AC%E6%96%AF%C2%B7%E8%B4%9D%E5%8F%B6%E6%96%AF)
@@ -67,6 +69,7 @@ tags:
 [3]: (https://zh.wikipedia.org/wiki/%E5%8D%A1%E5%B0%94%C2%B7%E7%9A%AE%E5%B0%94%E9%80%8A)
 [4]: (https://zh.wikipedia.org/wiki/%E8%80%B6%E6%97%A5%C2%B7%E5%86%85%E6%9B%BC)
 [5]: (http://xueshu.baidu.com/s?wd=paperuri%3A%287eefad3052335afda45d48e995abcd8c%29&filter=sc_long_sign&tn=SE_xueshusource_2kduw22v&sc_vurl=http%3A%2F%2Fkns.cnki.net%2FKCMS%2Fdetail%2Fdetail.aspx%3Ffilename%3DZNYZ198601014%26dbname%3DCJFD%26dbcode%3DCJFQ&ie=utf-8&sc_us=1462943048446069877)
-[7]: (https://www.zhihu.com/question/26419030/answer/274472266)
-[8]: (https://www.zhihu.com/question/20587681)
+[6]: (https://www.zhihu.com/question/26419030/answer/274472266)
+[7]: (https://www.zhihu.com/question/20587681)
+[8]: (http://www.sohu.com/a/215176689_610300)
 [9]: (ttps://blog.csdn.net/u011508640/article/details/72815981)
