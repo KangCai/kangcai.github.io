@@ -6,3 +6,7 @@ npm-debug.log
 */*/.DS_Store
 *.sh
 .vscode
+
+.idea/workspace.xml
+
+.idea/inspectionProfiles/Project_Default.xml
