@@ -63,11 +63,14 @@ tags:
 
 ### 非概率模型
 
-属于判别模型，但相对于概率判别模型，它的判别功能更纯，换句话说，它只有判别功能，当然它可以有分类置信度的衡量指标，但该指标非后验概率罢了。如下为判别模型的分类示意图，
+属于判别模型，但相对于概率判别模型，它给不出后验概率，只有判别功能。当然它可以有分类置信度的衡量指标，但该指标非后验概率罢了。如下为判别模型的分类示意图，
 
+<div align=center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/data_visual-dm.png"/>
+</div>
+<center>图1 判别模型分类示意图</center>
 
-如图所示，判别模型的训练可以理解成给数据划线区分。以SVM为例，
+如图所示，分类任务中，判别模型的训练可以理解成给数据划线。以线性SVM和感知机（单层神经网络）为例，解决线性可分数据集的分类问题，通常以
 
 
 
@@ -78,7 +81,10 @@ tags:
 
 ### 生成模型
 
-<img src="https://kangcai.github.io/img/in-post/post-ml/data_visual-dm.png"/>
+<div align=center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/data_visual-gm.png"/>
+</div>
+<center>图1 生成模型分类示意图</center>
 
 1. [《统计学习方法》 李航][1]
 3. [Stanford CS 229 ― Machine Learning][3]
