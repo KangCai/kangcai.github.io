@@ -24,7 +24,12 @@ tags:
 
 * 分类方法二：概率模型 和 非概率模型
 
-其实以上两种分类方法相当于把模型分成了三类，
+其实以上两种分类方法相当于把模型分成了三类，如图X所示，
+
+<div align=center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/Model classification.png"/>
+</div>
+<center>图1 模型分类示意图</center>
 
 1. 非概率模型：直接对输入空间到输出空间的映射y=h(x)建模；直接完成目标且只能解决目标任务。实例：感知机（单层神经网络）、多层感知机、SVM、KNN
 
