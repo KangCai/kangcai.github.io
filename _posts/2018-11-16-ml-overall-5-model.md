@@ -28,13 +28,13 @@ tags:
 
 具体说一下图1，从左到右分别是非概率模型（Non-probabilistic Model）、概率判别模型（Probalilistic Discriminative Model）、生成模型（Generative Model）。非概率模型和概率判别模型同属于判别模型（Discriminative Model），概率判别模型和生成模型同属于生成模型（Generative Model）。分析三种模型，
 
-I. **非概率模型（Non-probabilistic Model）**，直接对输入空间到输出空间的映射y=h(x)建模。实例：感知机（单层神经网络，Perceptron）、多层感知机（MLP）、支持向量机（SVM）、K近邻（KNN）
+**I. 非概率模型（Non-probabilistic Model）**，直接对输入空间到输出空间的映射y=h(x)建模。实例：感知机（单层神经网络，Perceptron）、多层感知机（MLP）、支持向量机（SVM）、K近邻（KNN）
 
-II. **概率判别模型（Probalilistic Discriminative Model）**：直接对后验概率P(y\|x)建模，然后实现分类。实例：逻辑回归（LR）、最大熵模型（ME）、条件随机场（CRF）
+**II. 概率判别模型（Probalilistic Discriminative Model）**：直接对后验概率P(y\|x)建模，然后实现分类。实例：逻辑回归（LR）、最大熵模型（ME）、条件随机场（CRF）
 
-III. **生成模型（Generative Model）**：对联合概率P(x,y)建模。如果是在聚类任务中，到这一步就结束了；但如果在分类任务中，再根据贝叶斯公式算出条件概率P(y\|x)，最后实现分类。实例：高斯判别分析（GDA）、朴素贝叶斯（NB）、受限玻尔兹曼机（RBM）、隐马尔科夫模型（HMM）
+**III. 生成模型（Generative Model）**：对联合概率P(x,y)建模。如果是在聚类任务中，到这一步就结束了；但如果在分类任务中，再根据贝叶斯公式算出条件概率P(y\|x)，最后实现分类。实例：高斯判别分析（GDA）、朴素贝叶斯（NB）、受限玻尔兹曼机（RBM）、隐马尔科夫模型（HMM）
 
-**1.1 非概率模型(I)和概率判别模型(II)**
+**1.1 非概率模型（I）和概率判别模型（II）**
 
 两者共同点是都是判别模型，如图2表示，
 
@@ -50,7 +50,7 @@ III. **生成模型（Generative Model）**：对联合概率P(x,y)建模。如�
 1. **非概率模型的判别标准是一个超平面，超平面分割数据起到判别作用；**
 2. **概率判别模型的判别标准是一个由条件概率表示的判别函数，根据条件概率的值大小比较起到判别作用。**
 
-**1.2 生成模型(III)**
+**1.2 生成模型（III）**
 
 生成模型与上述两种模型（判别模型）的差别是**生成模型在类内对联合概率分布的建模，以此为基础再做分类**，如图3所示，
 
