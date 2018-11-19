@@ -26,7 +26,7 @@ tags:
 </center>
 <center>图1 模型分类示意图</center>
 
-具体说一下图1，从左到右分别是非概率模型（Non-probabilistic Model）、概率判别模型（Probalilistic Discriminative Model）、生成模型（Generative Model）。非概率模型和概率判别模型同属于判别模型（Discriminative Model），概率判别模型和生成模型同属于生成模型（Generative Model）。分析三种模型，
+具体说一下图1，从左到右分别是非概率模型（Non-probabilistic Model）、概率判别模型（Probalilistic Discriminative Model）、生成模型（Generative Model）。**非概率模型和概率判别模型同属于判别模型（Discriminative Model），概率判别模型和生成模型同属于概率模型（Probalilistic Model）**。分析三种模型，
 
 **I. 非概率模型（Non-probabilistic Model）**，直接对输入空间到输出空间的映射y=h(x)建模。实例：感知机（单层神经网络，Perceptron）、多层感知机（MLP）、支持向量机（SVM）、K近邻（KNN）
 
