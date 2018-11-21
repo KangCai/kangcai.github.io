@@ -61,12 +61,16 @@ tags:
 
 |  | 应用模型 | 函数形式 | 
 | :-----------:| :----------: | :----------: |
-| mean squared loss | OLS |  d |
-| mean absolute loss | MAE R  |  d |
-| Huber loss | Robust R with Huber loss| 
-| ϵ−insensitive loss | SVR | 
+| squared loss | OLS |  <img src="https://latex.codecogs.com/gif.latex?a^2" /> |
+| absolute loss |   |  <img src="https://latex.codecogs.com/gif.latex?abs(a)" /> |
+| log-cosh loss | XGBoost | <img src="https://latex.codecogs.com/gif.latex?log(cosh(\hat{y},y))"/> |
+| Huber loss | | <img src="https://latex.codecogs.com/gif.latex?L_\delta(a)=\left&space;\{&space;\begin{array}{ll}&space;\frac12a^2,&\textrm{if&space;}&space;abs(a)\leq\delta,\\&space;\delta\cdot(abs(a)-\frac12\delta),&\textrm{otherwise.}&space;\end{array}&space;\right."  /> |
+| ϵ−insensitive loss | SVR | <img src="https://latex.codecogs.com/gif.latex?L_\varepsilon(a)=\begin{cases}0,&\text{if&space;}abs(a)\leq\varepsilon\text;\\abs(a)-\varepsilon,&\text{otherwise.}\end{cases}" /> |
+| Quantile loss |  |<img src="https://latex.codecogs.com/gif.latex?L_\gamma(a)=\begin{cases}(1-\gamma)\cdot&space;abs(a)&space;&\text{if&space;}a<0;&space;\\&space;\gamma&space;\cdot&space;abs(a)&space;&&space;\text{otherwise.}\end{cases}" /> |
 
-表格中R表示Regression。OLS（最小二乘法）用的是squre loss（平方损失函数），
+表格中R表示Regression，abs(a)表示a的绝对值（由于latex的绝对值符号与markdown格式的表格冲突了，只能用abs来表示一下）。OLS（最小二乘法）用的是squre loss（平方损失函数），XGBoost一般用的是log-cosh loss，SVR用的是ϵ−insensitive loss，对于神经网络或者直接回归，很多不同的损失函数互相替换都可以work，只有表现效果上的差别。
+
+
 
 ### 三、正则化
 
