@@ -47,7 +47,11 @@ tags:
 
 ### 二、损失函数
 
-损失函数，即Loss Function，如上文所说，是对经验误差的惩罚。下面我们将比较全面地介绍各种损失函数，为了方便理解，可以将分类问题和回归问题的损失函数分开考虑。分类问题的损失函数按函数形式分有以下常见类别：
+损失函数，即Loss Function，如上文所说，是对经验误差的惩罚。下面我们将比较全面地介绍各种损失函数，为了方便理解，可以将分类问题和回归问题的损失函数分开考虑。
+
+##### 2.1 分类模型的损失函数
+
+分类模型的损失函数按函数形式分有以下常见类别：
 
 |  | 应用模型 | 函数形式 | 
 | :-----------:| :----------: | :----------: |
@@ -57,7 +61,9 @@ tags:
 | exponential loss | Boosting | <img src="https://latex.codecogs.com/gif.latex?exp\left&space;(&space;-m&space;\right&space;)" /> |
 | perceptron loss | Perceptron | <img src="https://latex.codecogs.com/gif.latex?max\left&space;(&space;0,\;&space;-m&space;\right&space;)" />|
 
-0-1 loss也称Goal Standard，非凸函数，而且非凸得很厉害，一般不会直接用，通常在实际的使用中将0-1损失函数作为一个标准，选择它的代理函数作为损失函数，不同的机器学习模型对应的损失函数通常比较固定，有一一对应的关系，比如：SVM用的是Hinge loss，LR用的是log loss（对数损失函数），Adaboost用的是exp loss（指数损失函数）。
+0-1 loss也称Goal Standard，非凸函数，而且非凸得很厉害，一般不会直接用，通常在实际的使用中将0-1损失函数作为一个标准，选择它的代理函数作为损失函数，不同的机器学习模型对应的损失函数通常比较固定，有一一对应的关系，比如：SVM用的是Hinge loss，LR用的是log loss，Adaboost用的是exp loss，感知器用的是perceptron loss。
+
+##### 2.2 回归模型的损失函数
 
 |  | 应用模型 | 函数形式 | 
 | :-----------:| :----------: | :----------: |
@@ -68,7 +74,7 @@ tags:
 | ϵ−insensitive loss | SVR | <img src="https://latex.codecogs.com/gif.latex?L_\varepsilon(a)=\begin{cases}0,&\text{if&space;}abs(a)\leq\varepsilon\text;\\abs(a)-\varepsilon,&\text{otherwise.}\end{cases}" /> |
 | Quantile loss |  |<img src="https://latex.codecogs.com/gif.latex?L_\gamma(a)=\begin{cases}(1-\gamma)\cdot&space;abs(a)&space;&\text{if&space;}a<0;&space;\\&space;\gamma&space;\cdot&space;abs(a)&space;&&space;\text{otherwise.}\end{cases}" /> |
 
-表格中R表示Regression，abs(a)表示a的绝对值（由于latex的绝对值符号与markdown格式的表格冲突了，只能用abs来表示一下）。OLS（最小二乘法）用的是squre loss（平方损失函数），XGBoost一般用的是log-cosh loss，SVR用的是ϵ−insensitive loss，对于神经网络或者直接回归，很多不同的损失函数互相替换都可以work，只有表现效果上的差别。
+表格中R表示Regression，abs(a)表示a的绝对值（由于latex的绝对值符号与markdown格式的表格冲突了，只能用abs来表示一下）。OLS（最小二乘法）用的是squre loss，XGBoost一般用的是log-cosh loss，SVR用的是ϵ−insensitive loss，对于神经网络或者直接回归，很多不同的损失函数互相替换都可以work，只有表现效果上的差别。
 
 
 
