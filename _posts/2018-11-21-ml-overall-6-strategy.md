@@ -61,7 +61,11 @@ tags:
 | exponential loss | Boosting | <img src="https://latex.codecogs.com/gif.latex?exp\left&space;(&space;-m&space;\right&space;)" /> |
 | perceptron loss | Perceptron | <img src="https://latex.codecogs.com/gif.latex?max\left&space;(&space;0,\;&space;-m&space;\right&space;)" />|
 
-0-1 loss也称Goal Standard，非凸函数，而且非凸得很厉害，一般不会直接用，通常在实际的使用中将0-1损失函数作为一个标准，选择它的代理函数作为损失函数，不同的机器学习模型对应的损失函数通常比较固定，有一一对应的关系，比如：SVM用的是Hinge loss，LR用的是log loss，Adaboost用的是exp loss，感知器用的是perceptron loss。
+0-1 loss也称Goal Standard，非凸函数，一般不会直接用，通常在实际的使用中将0-1损失函数作为一个标准，选择它的代理函数作为损失函数，不同的机器学习模型对应的损失函数通常比较固定，有一一对应的关系，比如：SVM用的是Hinge loss，LR用的是log loss，Adaboost用的是exp loss，感知器用的是perceptron loss。
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/loss function decision.png"/>
+</center>
 
 ##### 2.2 回归模型的损失函数
 
@@ -69,14 +73,16 @@ tags:
 | :-----------:| :----------: | :----------: |
 | squared loss | OLS |  <img src="https://latex.codecogs.com/gif.latex?a^2" /> |
 | absolute loss |   |  <img src="https://latex.codecogs.com/gif.latex?abs(a)" /> |
-| log-cosh loss | XGBoost | <img src="https://latex.codecogs.com/gif.latex?log(cosh(\hat{y},y))"/> |
+| log-cosh loss | XGBoost | <img src="https://latex.codecogs.com/gif.latex?log(cosh(a))"/> |
 | Huber loss | | <img src="https://latex.codecogs.com/gif.latex?L_\delta(a)=\left&space;\{&space;\begin{array}{ll}&space;\frac12a^2,&\textrm{if&space;}&space;abs(a)\leq\delta,\\&space;\delta\cdot(abs(a)-\frac12\delta),&\textrm{otherwise.}&space;\end{array}&space;\right."  /> |
 | ϵ−insensitive loss | SVR | <img src="https://latex.codecogs.com/gif.latex?L_\varepsilon(a)=\begin{cases}0,&\text{if&space;}abs(a)\leq\varepsilon\text;\\abs(a)-\varepsilon,&\text{otherwise.}\end{cases}" /> |
 | Quantile loss |  |<img src="https://latex.codecogs.com/gif.latex?L_\gamma(a)=\begin{cases}(1-\gamma)\cdot&space;abs(a)&space;&\text{if&space;}a<0;&space;\\&space;\gamma&space;\cdot&space;abs(a)&space;&&space;\text{otherwise.}\end{cases}" /> |
 
 表格中R表示Regression，abs(a)表示a的绝对值（由于latex的绝对值符号与markdown格式的表格冲突了，只能用abs来表示一下）。OLS（最小二乘法）用的是squre loss，XGBoost一般用的是log-cosh loss，SVR用的是ϵ−insensitive loss，对于神经网络或者直接回归，很多不同的损失函数互相替换都可以work，只有表现效果上的差别。
 
-
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/loss function regression.png"/>
+</center>
 
 ### 三、正则化
 
