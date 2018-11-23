@@ -17,11 +17,7 @@ tags:
 在模型部分，机器学习的学习目标是获得假设空间（模型）的一个最优解，那么接下来如何评判解是优还是不优？比如对于一个回归任务，
 
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/regression.png"/>
-</center>
-
-<center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/classification.png"/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/r&c.png"/>
 </center>
 
 **策略部分就是评判“最优模型”（最优参数的模型）的准则和方法**。图1能很好地表示策略是如何做到评判最优的，
@@ -42,13 +38,13 @@ tags:
 其中Bias是模型真实预测结果的期望与理论误差下界模型预测结果的偏差，Variance是指相同大小、不同训练集训练出来的模型的预测结果与模型预测期望的方差，Irreducible error是理论误差下界模型的泛化误差，它刻画了问题本身的难度。关于Bias和Variance更形象的表示如图2所示，
 
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/bias and variance 1.png"/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/bias and variance 1.png" width=50%/>
 </center>
 
 其中的一个点表示一个模型的预测效果，低Bias能让模型的预测期望就在靶心，低Variance能让模型预测表现地更稳定。经验风险会直接影响Bias，结构风险会直接影响Variance，在统计与机器学习领域权衡 Bias 与 Variance 是一项重要的任务，因为它可以使得用有限训练数据训练得到的模型更好地范化到更多的数据集上，如图3所示，
 
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/bias and variance 2.png"/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/bias and variance 2.png" width=60%/>
 </center>
 
 从图3中可以看到，Bias和Viriance虽然不能两全，但通过好的权衡，达到总体来说好地效果，如图3中的Total Error黑色曲线的最低点。同理，对于目标函数来说，代价函数和正则化项本身不在同一个度量衡上，所以通常会在正则化函数前面加一个大于0的正则化系数 λ ：λ 过小意味着正则化约束弱，对模型的复杂度惩罚过小，会导致过拟合和高Virance；λ 过小意味着代价函数约束弱，对模型的复杂度惩罚过大，会导致欠拟合和高Bias。选取合适的 λ 是一门“艺术”，跟下一篇文章确定学习率（learning rate）类似有很多种方法，当然也有办法自动选择正则化参数 λ，具体选取方法可参考[[4]][4]和[[5]][5]两篇文章。
