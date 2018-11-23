@@ -151,7 +151,7 @@ plt.legend()
 plt.show()
 '''
 
-#'''
+'''
 # paint regression loss function curve
 def func1(xl):
     y = []
@@ -224,4 +224,41 @@ plt.ylim(0, 4)
 plt.legend()
 
 plt.show()
-#'''
+'''
+
+def func1(xl):
+    y = []
+    for x in xl:
+        y.append(x**2)
+    return y
+
+def func2(xl):
+    y = []
+    for x in xl:
+        y.append(math.fabs(x))
+    return y
+
+x_ = np.arange(-1,1,0.001)
+y_ = func1(x_)
+y1_ = func2(x_)
+plt.figure(figsize=(8, 4))
+
+plt.xlabel('w')
+plt.ylabel('L')
+plt.plot(x_, y1_, label='L1 (Lasso)')
+plt.plot(x_, y_, label='L2 (Ridge)')
+# 设置x坐标轴刻度,
+plt.xticks(np.linspace(-1, 1, 5))
+# 设置y坐标轴刻度及标签, $$是设置字体
+#plt.yticks(np.linspace(0, 0.12, 7), np.linspace(0, 12, 7))
+# 获取当前的坐标轴, gca = get current axis
+ax = plt.gca()
+# 设置x坐标轴为下边框
+ax.xaxis.set_ticks_position('bottom')
+# 设置y坐标轴为左边框
+ax.yaxis.set_ticks_position('left')
+plt.xlim(-1, 1)
+plt.ylim(0, 1)
+plt.legend()
+
+plt.show()

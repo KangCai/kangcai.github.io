@@ -14,13 +14,13 @@ tags:
 
 ### 一、三要素之策略
 
-在模型部分，机器学习的学习目标是获得假设空间（模型）的一个最优解，那么接下来如何评判解是优还是不优？比如对于一个回归任务，
+在模型部分，机器学习的学习目标是获得假设空间（模型）的一个最优解，那么接下来如何评判解是优还是不优？
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/r&c.png"/>
 </center>
 
-**策略部分就是评判“最优模型”（最优参数的模型）的准则和方法**。图1能很好地表示策略是如何做到评判最优的，
+如左子图所示是一个回归（Regression）任务，随意画一条拟合线性函数曲线，拟合效果看起来还不错，但定量的来看，到底有多不错？如右子图所示是一个分类（Classification）任务，随意画一条判别线性函数曲线，分割效果看起来也还行，但定量的来看，到底有多还行？这就引出了文本要介绍的内容-三要素之策略。**策略部分就是评判“最优模型”（最优参数的模型）的准则和方法**。图1能很好地表示策略是如何做到评判最优的，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/object function.jpg"/>
@@ -38,13 +38,13 @@ tags:
 其中Bias是模型真实预测结果的期望与理论误差下界模型预测结果的偏差，Variance是指相同大小、不同训练集训练出来的模型的预测结果与模型预测期望的方差，Irreducible error是理论误差下界模型的泛化误差，它刻画了问题本身的难度。关于Bias和Variance更形象的表示如图2所示，
 
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/bias and variance 1.png" width=50%/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/bias and variance 1.png"/>
 </center>
 
 其中的一个点表示一个模型的预测效果，低Bias能让模型的预测期望就在靶心，低Variance能让模型预测表现地更稳定。经验风险会直接影响Bias，结构风险会直接影响Variance，在统计与机器学习领域权衡 Bias 与 Variance 是一项重要的任务，因为它可以使得用有限训练数据训练得到的模型更好地范化到更多的数据集上，如图3所示，
 
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/bias and variance 2.png" width=60%/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/bias and variance 2.png"/>
 </center>
 
 从图3中可以看到，Bias和Viriance虽然不能两全，但通过好的权衡，达到总体来说好地效果，如图3中的Total Error黑色曲线的最低点。同理，对于目标函数来说，代价函数和正则化项本身不在同一个度量衡上，所以通常会在正则化函数前面加一个大于0的正则化系数 λ ：λ 过小意味着正则化约束弱，对模型的复杂度惩罚过小，会导致过拟合和高Virance；λ 过小意味着代价函数约束弱，对模型的复杂度惩罚过大，会导致欠拟合和高Bias。选取合适的 λ 是一门“艺术”，跟下一篇文章确定学习率（learning rate）类似有很多种方法，当然也有办法自动选择正则化参数 λ，具体选取方法可参考[[4]][4]和[[5]][5]两篇文章。
@@ -75,6 +75,9 @@ tags:
 <img src="https://kangcai.github.io/img/in-post/post-ml/loss function decision.png"/>
 </center>
 
+1. 从左子图可以看到，无论是哪种损失函数，本质上都是希望成为0-1 loss的代理，尽可能地继承0-1 loss的完美判别属性的同时，又能有凸函数的性质。可以看到无论是Hinge loss，log loss，exponential loss还是perceptron loss，它们在横轴0点的某一侧（事实上整体都是）都是凸函数，凸函数对于函数求解可是重大利好，所以这一点十分重要。
+2. 如右子图所示，有一个一飞冲天的loss，即的exponential loss，由于它在离0点较远处惩罚值相当大，所以对训练样本的离群点反应强烈，鲁棒性不好，这个问题也成了使用exponential los的boosting算法的天然缺陷。
+
 ##### 2.2 回归模型的损失函数
 
 |  | 应用模型 | 函数形式 | 
@@ -92,14 +95,14 @@ tags:
 <img src="https://kangcai.github.io/img/in-post/post-ml/loss function regression.png"/>
 </center>
 
-### 三、正则化
+可以从图X中看到，
+1. 其实除了SVR用的ϵ−insensitive loss有点特殊外
+2. 除了ϵ−insensitive loss之外，其它loss可以分成两大类，一类是0点处可导，一类是0处不可导，不可导的性质在求函数最优解的时候处理麻烦，所以在实际应用中通常是采用0点处可导的loss；
+3. 这里又要点名批评一下一飞冲天的loss，对于回归任务来说，这个loss是squared loss，也是我们常说的MSE（mean squared error），虽然它在0处可导，但存在与分类任务中的exponential loss类似的问题：由于它在离0点较远处惩罚值相当大，对离群点鲁棒性不好。
 
-正则化，即Regularization
+小结：一个好的损失函数是。损失函数很多，总有一款适合你。
 
-正则化是对wx+b中参数w的约束，通常按照惯例是不管b的，但如果在实际应用时在正则化函数里将b也加上的话，影响不大，效果基本没差别。
-
-
-[3][3]
+由于在这一篇文章中还介绍正则化，内容有点多和杂了，所以在下一篇文章详细介绍。
 
 1. [blog: Understanding the Bias-Variance Tradeoff][1]
 2. [cnblogs: 理解 Bias 与 Variance 之间的权衡][2]
