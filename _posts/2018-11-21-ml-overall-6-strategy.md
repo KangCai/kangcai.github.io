@@ -14,7 +14,17 @@ tags:
 
 ### 一、三要素之策略
 
-在模型部分，机器学习的学习目标是获得假设空间（模型）的一个最优解，那么接下来如何评判解是优还是不优？**策略部分就是评判“最优模型”（最优参数的模型）的准则和方法**。图1能很好地表示策略是如何做到评判最优的，
+在模型部分，机器学习的学习目标是获得假设空间（模型）的一个最优解，那么接下来如何评判解是优还是不优？比如对于一个回归任务，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/regression.png"/>
+</center>
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/classification.png"/>
+</center>
+
+**策略部分就是评判“最优模型”（最优参数的模型）的准则和方法**。图1能很好地表示策略是如何做到评判最优的，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/object function.jpg"/>
