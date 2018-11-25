@@ -22,7 +22,7 @@ tags:
 如图1所示，图中左子图是一个回归（Regression）任务，随意画一条拟合线性函数曲线，拟合效果看起来还不错，但定量的来看，到底有多不错？如右子图所示是一个分类（Classification）任务，随意画一条判别线性函数曲线，分割效果看起来也还行，但定量的来看，到底有多还行？这就引出了文本要介绍的内容-三要素之策略。**策略部分就是评判“最优模型”（最优参数的模型）的准则和方法**。图2能很好地表示策略是如何做到评判最优的，
 
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/object function.jpg"/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/object function 1.jpg"/>
 </center>
 <center>图2 目标函数示意图</center>
 
