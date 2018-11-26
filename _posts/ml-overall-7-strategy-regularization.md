@@ -13,16 +13,10 @@ tags:
 > 算法。文章首发于[我的博客](https://kangcai.github.io/2018/10/25/ml-overall-bayes/)，转载请保留链接 ;)
 
 
-在模型部分，机器学习的学习目标是获得假设空间（模型）的一个最优解，那么接下来如何评判解是优还是不优？
+在上一篇文章中提到过，**策略部分就是评判“最优模型”（最优参数的模型）的准则和方法**，图1是目标函数的函数形式，
 
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/r&c.png"/>
-</center>
-
-如上一篇文章所说的，**策略部分就是评判“最优模型”（最优参数的模型）的准则和方法**。图1是目标函数的函数形式，
-
-<center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/object function.jpg"/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/object function 1.png"/>
 </center>
 
 如图1所示，目标函数包含了表征经验风险的代价函数和表征结构风险的正则化项，上一偏已经介绍**损失函数**，代价函数是样本集的损失函数之和；正则化是对wx+b中参数w的约束，下文将主要介绍**正则化**。
