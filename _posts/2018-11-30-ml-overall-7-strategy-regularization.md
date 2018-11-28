@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "机器学习·总览篇 VI"
-subtitle: "三要素之策略-损失函数"
+title: "机器学习·总览篇 VII"
+subtitle: "三要素之策略-正则化"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
