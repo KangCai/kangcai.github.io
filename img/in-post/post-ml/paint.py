@@ -245,7 +245,7 @@ plt.figure(figsize=(8, 4))
 
 plt.xlabel('w')
 plt.ylabel('L')
-plt.plot(x_, y1_, label='L1 (Lasso)')
+#plt.plot(x_, y1_, label='L1 (Lasso)')
 plt.plot(x_, y_, label='L2 (Ridge)')
 # 设置x坐标轴刻度,
 plt.xticks(np.linspace(-1, 1, 5))
