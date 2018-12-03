@@ -194,6 +194,8 @@ L2范数是向量中各个元素的平方和，也叫“岭回归”（Ridge Reg
 | L1 | <img src="https://kangcai.github.io/img/in-post/post-ml/L1 latex.gif"/> | 拉普拉斯分布 | 1.产生一个稀疏模型，因此可以用于特征选择 <br> 2. 一定程度上可以防止过拟合（overfitting）|
 | L2 | <img src="https://kangcai.github.io/img/in-post/post-ml/L2 latex.gif"/> | 高斯分布 | 主要作用是防止模型过拟合
 
+三要素之策略，为模型的好与坏定下了评判的标准，正则化作为评判标准的一部分，主要起到防止模拟过拟合或产生稀疏模型的作用，在实际应用中正则化使用得相当广泛和频繁，在一定程度上是机器学习模型不可或缺的一部分。
+
 1. [wiki: Regularization (mathematics)](https://en.wikipedia.org/wiki/Regularization_(mathematics))
 2. [cnblogs: 机器学习之正则化](https://www.cnblogs.com/jianxinzhou/p/4083921.html])
 3. [cnblogs: 机器学习中的范数规则化之（一）L0、L1与L2范数](https://www.cnblogs.com/weizc/p/5778678.html)
