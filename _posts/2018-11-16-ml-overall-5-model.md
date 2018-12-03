@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "机器学习·总览篇 V"
+title: "机器学习 · 总览篇 V"
 subtitle: "三要素之模型"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "机器学习·总览篇 VII"
+title: "机器学习 · 总览篇 VII"
 subtitle: "三要素之策略-正则化"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
@@ -202,4 +202,4 @@ L2范数是向量中各个元素的平方和，也叫“岭回归”（Ridge Reg
 2. [cnblogs: 机器学习之正则化](https://www.cnblogs.com/jianxinzhou/p/4083921.html])
 3. [cnblogs: 机器学习中的范数规则化之（一）L0、L1与L2范数](https://www.cnblogs.com/weizc/p/5778678.html)
 4. [jianshu: L0、L1、L2范数在机器学习中的应用](https://www.jianshu.com/p/4bad38fe07e6)
-5. [jianshu: https://www.jianshu.com/p/c9bb6f89cfcc](https://www.jianshu.com/p/c9bb6f89cfcc)
+5. [jianshu: L1、L2正则化知识详解](https://www.jianshu.com/p/c9bb6f89cfcc)
