@@ -150,15 +150,15 @@ L2范数是向量中各个元素的平方和，也叫“岭回归”（Ridge Reg
 
 假设有m个样本，频率学派上来就是用极大似然估计去估计最优参数，如下所示
 
-<cetner><img src="https://latex.codecogs.com/gif.latex?P(S|\theta)=\prod_{i=1}^{m}p(y_i|x_i;\theta)=\prod_{i=1}^{m}p(\epsilon_i=y_i-x_i^T\theta)"/></center>
+<center><img src="https://latex.codecogs.com/gif.latex?P(S|\theta)=\prod_{i=1}^{m}p(y_i|x_i;\theta)=\prod_{i=1}^{m}p(\epsilon_i=y_i-x_i^T\theta)"/></center>
 
 上式就是最大似然函数，这种方法求出θ有，
 
-<center><img src="https://latex.codecogs.com/gif.latex?\theta_{MLE}=\arg\max_{\theta}&space;\prod_{i=1}^{m}p(\epsilon_i=y_i-x_i^T\theta)"  /></center>
+<center><img src="https://latex.codecogs.com/gif.latex?\theta_{MLE}=\arg\max_{\theta}&space;\prod_{i=1}^{m}p(\epsilon_i=y_i-x_i^T\theta)" /></center>
 
 贝叶斯学派觉得频率学派做法不妥，他们认为以上做法没有考虑θ的先验分布，也相当于P(θ)=Constant，θ的先验概率是一个常数；然而事实上，如果对P(θ)加上先验知识，式子应该变成下面的模样，
 
-<cetner><img src="https://latex.codecogs.com/gif.latex?\begin{aligned}P(\theta|S)&=\frac{P(S|\theta)P(\theta)}{P(S)}\\&space;&=\frac{(\prod_{i=1}^{m}p(y_i|x_i;\theta))P(\theta)}{\text{Consts}}\\&space;&=\frac{(\prod_{i=1}^{m}p(\epsilon_i=y_i-x_i^T\theta))P(\theta)}{\text{Consts}}&space;\end{aligned}" /></center>
+<center><img src="https://latex.codecogs.com/gif.latex?\begin{aligned}P(\theta|S)&=\frac{P(S|\theta)P(\theta)}{P(S)}\\&space;&=\frac{(\prod_{i=1}^{m}p(y_i|x_i;\theta))P(\theta)}{\text{Consts}}\\&space;&=\frac{(\prod_{i=1}^{m}p(\epsilon_i=y_i-x_i^T\theta))P(\theta)}{\text{Consts}}&space;\end{aligned}" /></center>
 
 最大后验概率求出θ为
 
