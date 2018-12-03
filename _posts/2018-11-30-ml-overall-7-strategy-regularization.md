@@ -119,19 +119,19 @@ L2范数是向量中各个元素的平方和，也叫“岭回归”（Ridge Reg
 
 ##### 1.5 目标函数和KKT条件
 
-在优化理论中，KKT（Karush-Kuhn-Tucher）条件是非线性规划（nonlinear programming)最佳解的必要条件。以下是KKT条件的定义，
-
-<center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/KKT.png"/>
-</center>
-
-下面根据KKT条件，具体分析本文的目标函数，对于本文的目标函数的原始形式在上文提到，
+在上一节即1.4的分析中提到，本文的目标函数的原始形式如下所示，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?min\text{&space;}\frac{1}{N}\sum_{i=1}^{N}L(y_i,f(x_i))&space;\\&space;s.t.\text{&space;}g(f)\leq0,\text{&space;}g(f)=J(f)-\alpha"/>
 </center>
 
-而本文介绍的L1范数和L2范数满足KKT条件的1-4条件，如下所示，假设 f0 是目标函数局部极小值对应的判别函数或回归函数，f也可以理解成函数的特征参数θ，
+这个目标函数有一个不等式约束，它是怎么转换成本文开头图1所示方便求解的形式的呢？这就用到了下面的知识。在优化理论中，KKT（Karush-Kuhn-Tucher）条件是非线性规划（nonlinear programming)最佳解的必要条件。以下是KKT条件的定义，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/KKT.png"/>
+</center>
+
+下面根据KKT条件，具体分析本文的目标函数，L1范数和L2范数满足KKT条件的1-4条件，如下所示，假设 f0 是目标函数局部极小值对应的判别函数或回归函数，f也可以理解成函数的特征参数θ，
 
 1. 本身范数的定义是**g(f0)<=0（满足条件4）**；
 2. 由于最优解在范数内部时，范数等同于无约束，此时λ=0；最优解在范数的边界时理所当然范数g(f)=0。结合以上，故满足条件**λg(f0)=0（满足条件3）**；
@@ -152,7 +152,7 @@ L2范数是向量中各个元素的平方和，也叫“岭回归”（Ridge Reg
 
 <cetner><img src="https://latex.codecogs.com/gif.latex?P(S|\theta)=\prod_{i=1}^{m}p(y_i|x_i;\theta)=\prod_{i=1}^{m}p(\epsilon_i=y_i-x_i^T\theta)"/></center>
 
-上式就是最大似然函数，这种方法求出θ为
+上式就是最大似然函数，这种方法求出θ有，
 
 <center><img src="https://latex.codecogs.com/gif.latex?\theta_{MLE}=\arg\max_{\theta}&space;\prod_{i=1}^{m}p(\epsilon_i=y_i-x_i^T\theta)"  /></center>
 
@@ -168,7 +168,7 @@ L2范数是向量中各个元素的平方和，也叫“岭回归”（Ridge Reg
 
 <center><img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;L(\theta)&=(\prod_{i=1}^{m}p(\epsilon_i=y_i-x_i^T\theta))P(\theta)&space;\\&space;ln(L(\theta))&=\sum_{i=1}^{m}ln[p(\epsilon_i=y_i-x_i^T\theta)])&plus;ln[P(\theta)]&space;\\&space;&=\sum_{i=1}^{m}ln[p(\epsilon_i=y_i-x_i^T\theta)])&plus;\sum_{i=1}^{n}ln[p(\theta_i)]&space;\end{aligned}" /></center>
 
-对特征参数向量θ的每一维，假设服从拉普拉斯分布（laplace distribution）或假设服从高斯分布（Gaussian distribution），上述表达式变成下面的样子
+对特征参数向量θ的每一维，假设服从拉普拉斯分布（laplace distribution）或假设服从高斯分布（Gaussian distribution），上述表达式变成下面的样子，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/laplace and gaussian.gif"/>
@@ -183,12 +183,12 @@ L2范数是向量中各个元素的平方和，也叫“岭回归”（Ridge Reg
 可以看到XX，然后我们会发现调整拉普拉斯分布的β值或高斯分布的σ值，相当于是在调整正则化系数。为了获取更具体的目标函数，我们对**y假设服从高斯分布**，则有
 
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/equation-lasso r & ridge r.png"/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/equation-lasso r & ridge r.gif"/>
 </center>
 
 可以看到，第一个式子就是OLS（最小二乘法）的Lasso Regression，第二个式子就是OLS的Ridge Regression。除此之外，当**y假设服从伯努利分布假设**，相当于加正则化的逻辑回归；同理，当**y假设服从拉普拉斯分布假设**，相当于加正则化的最小一乘法。
 
-### 小结
+### 三、小结
 
 用表格小结比较直观一些，
 
@@ -197,8 +197,8 @@ L2范数是向量中各个元素的平方和，也叫“岭回归”（Ridge Reg
 | L1 | <img src="https://kangcai.github.io/img/in-post/post-ml/L1 latex.gif"/> | 拉普拉斯分布 | 1.产生一个稀疏模型，因此可以用于特征选择 <br> 2. 一定程度上可以防止过拟合（overfitting）|
 | L2 | <img src="https://kangcai.github.io/img/in-post/post-ml/L2 latex.gif"/> | 高斯分布 | 主要作用是防止模型过拟合
 
-[wiki: Regularization (mathematics)](https://en.wikipedia.org/wiki/Regularization_(mathematics))
-[cnblogs: 机器学习之正则化](https://www.cnblogs.com/jianxinzhou/p/4083921.html])
-[cnblogs: 机器学习中的范数规则化之（一）L0、L1与L2范数](https://www.cnblogs.com/weizc/p/5778678.html)
-
-[jianshu: L0、L1、L2范数在机器学习中的应用](https://www.jianshu.com/p/4bad38fe07e6)
+1. [wiki: Regularization (mathematics)](https://en.wikipedia.org/wiki/Regularization_(mathematics))
+2. [cnblogs: 机器学习之正则化](https://www.cnblogs.com/jianxinzhou/p/4083921.html])
+3. [cnblogs: 机器学习中的范数规则化之（一）L0、L1与L2范数](https://www.cnblogs.com/weizc/p/5778678.html)
+4. [jianshu: L0、L1、L2范数在机器学习中的应用](https://www.jianshu.com/p/4bad38fe07e6)
+5. [jianshu: https://www.jianshu.com/p/c9bb6f89cfcc](https://www.jianshu.com/p/c9bb6f89cfcc)
