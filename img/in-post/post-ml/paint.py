@@ -3,6 +3,66 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math
 
+# Laplace and gaussian
+def func1(xl):
+    y = []
+    beta = 1.0
+    for x in xl:
+        y.append(math.pow(math.e, - math.fabs(x) / beta) / (2  * beta))
+    return y
+
+def func2(xl):
+    y = []
+    beta = 2.0
+    for x in xl:
+        y.append(math.pow(math.e, - math.fabs(x) / beta) / (2 * beta))
+    return y
+
+def func3(xl):
+    y = []
+    sigma = 1.0
+    for x in xl:
+        y.append(math.pow(math.e, - x * x / (2 * sigma * sigma)) / (math.sqrt(2 * math.pi) * sigma))
+    return y
+
+def func4(xl):
+    y = []
+    sigma = 2.0
+    for x in xl:
+        y.append(math.pow(math.e, - x * x / (2 * sigma * sigma)) / (math.sqrt(2 * math.pi) * sigma))
+    return y
+
+plt.figure(figsize=(8, 4))
+plt.xlabel('x')
+plt.ylabel('p(x)')
+x_ = np.arange(-5,5.000001,0.1)
+
+y_ = func1(x_)
+y1_ = func2(x_)
+y2_ = func3(x_)
+y3_ = func4(x_)
+
+plt.plot(x_, y1_, label='X ~ La(0,1)')
+plt.plot(x_, y_, label='X ~ La(0,2)')
+plt.plot(x_, y2_, label='X ~ N(0,1)')
+plt.plot(x_, y3_, label='X ~ N(0,2)')
+
+# 设置x坐标轴刻度,
+plt.xticks(np.arange(-5,5.000001,1))
+# 设置y坐标轴刻度及标签, $$是设置字体
+#plt.yticks(np.linspace(0, 0.12, 7), np.linspace(0, 12, 7))
+# 获取当前的坐标轴, gca = get current axis
+ax = plt.gca()
+# 设置x坐标轴为下边框
+ax.xaxis.set_ticks_position('bottom')
+# 设置y坐标轴为左边框
+ax.yaxis.set_ticks_position('left')
+plt.xlim(-4, 4)
+plt.ylim(0, 0.6)
+plt.grid(True)
+plt.legend()
+plt.show()
+
 '''
 # paint 2018-10-26-ml-overall-bayes-x.png
 def func1(xl):
@@ -226,6 +286,8 @@ plt.legend()
 plt.show()
 '''
 
+# Lasso and Ridge
+'''
 def func1(xl):
     y = []
     for x in xl:
@@ -262,3 +324,4 @@ plt.ylim(0, 1)
 plt.legend()
 
 plt.show()
+'''

@@ -117,7 +117,7 @@ L2范数是向量中各个元素的平方和，也叫“岭回归”（Ridge Reg
 
 **虽然上述结论是在 L(y,f(x)) 梯度在各个维度是均匀的情况下得到的，但实际情况确实是加L1范数的最优解大多数维度值是0，加L2范数的最优解没有这个特性。**
 
-**KKT条件**
+##### 1.5 目标函数和KKT条件
 
 在优化理论中，KKT（Karush-Kuhn-Tucher）条件是非线性规划（nonlinear programming)最佳解的必要条件。以下是KKT条件的定义，
 
@@ -131,7 +131,7 @@ L2范数是向量中各个元素的平方和，也叫“岭回归”（Ridge Reg
 <img src="https://latex.codecogs.com/gif.latex?min\text{&space;}\frac{1}{N}\sum_{i=1}^{N}L(y_i,f(x_i))&space;\\&space;s.t.\text{&space;}g(f)\leq0,\text{&space;}g(f)=J(f)-\alpha"/>
 </center>
 
-而本文介绍的L1范数和L2范数满足KKT条件的1-4条件，如下所示，假设 f0 是目标函数局部极小值
+而本文介绍的L1范数和L2范数满足KKT条件的1-4条件，如下所示，假设 f0 是目标函数局部极小值对应的判别函数或回归函数，f也可以理解成函数的特征参数θ，
 
 1. 本身范数的定义是**g(f0)<=0（满足条件4）**；
 2. 由于最优解在范数内部时，范数等同于无约束，此时λ=0；最优解在范数的边界时理所当然范数g(f)=0。结合以上，故满足条件**λg(f0)=0（满足条件3）**；
@@ -148,6 +148,45 @@ L2范数是向量中各个元素的平方和，也叫“岭回归”（Ridge Reg
 
 ### 二、贝叶斯学派眼中的L1范数和L2范数
 
+假设有m个样本，频率学派上来就是用极大似然估计去估计最优参数，如下所示
+
+<cetner><img src="https://latex.codecogs.com/gif.latex?P(S|\theta)=\prod_{i=1}^{m}p(y_i|x_i;\theta)=\prod_{i=1}^{m}p(\epsilon_i=y_i-x_i^T\theta)"/></center>
+
+上式就是最大似然函数，这种方法求出θ为
+
+<center><img src="https://latex.codecogs.com/gif.latex?\theta_{MLE}=\arg\max_{\theta}&space;\prod_{i=1}^{m}p(\epsilon_i=y_i-x_i^T\theta)"  /></center>
+
+贝叶斯学派觉得频率学派做法不妥，他们认为以上做法没有考虑θ的先验分布，也相当于P(θ)=Constant，θ的先验概率是一个常数；然而事实上，如果对P(θ)加上先验知识，式子应该变成下面的模样，
+
+<cetner><img src="https://latex.codecogs.com/gif.latex?\begin{aligned}P(\theta|S)&=\frac{P(S|\theta)P(\theta)}{P(S)}\\&space;&=\frac{(\prod_{i=1}^{m}p(y_i|x_i;\theta))P(\theta)}{\text{Consts}}\\&space;&=\frac{(\prod_{i=1}^{m}p(\epsilon_i=y_i-x_i^T\theta))P(\theta)}{\text{Consts}}&space;\end{aligned}" /></center>
+
+最大后验概率求出θ为
+
+<center><img src="https://latex.codecogs.com/gif.latex?\theta_{MLE}=\arg\max_{\theta}&space;(\prod_{i=1}^{m}p(\epsilon_i=y_i-x_i^T\theta))P(\theta)"  /></center>
+
+比极大似然估计求的θ就多乘了一项P(θ)。以θ为自变量的函数L(θ)，
+
+<center><img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;L(\theta)&=(\prod_{i=1}^{m}p(\epsilon_i=y_i-x_i^T\theta))P(\theta)&space;\\&space;ln(L(\theta))&=\sum_{i=1}^{m}ln[p(\epsilon_i=y_i-x_i^T\theta)])&plus;ln[P(\theta)]&space;\\&space;&=\sum_{i=1}^{m}ln[p(\epsilon_i=y_i-x_i^T\theta)])&plus;\sum_{i=1}^{n}ln[p(\theta_i)]&space;\end{aligned}" /></center>
+
+对特征参数向量θ的每一维，假设服从拉普拉斯分布（laplace distribution）或假设服从高斯分布（Gaussian distribution），上述表达式变成下面的样子
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/laplace and gaussian.gif"/>
+</center>
+
+上式接近成目标函数的形式了。**L1范数相当于对特征参数θ每维假设服从拉普拉斯分布，L2范数相当于对特征参数θ每维假设服从高斯分布**。拉普拉斯分布和高斯分布如下图X所示，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/laplace & gaussian curve.png"/>
+</center>
+
+可以看到XX，然后我们会发现调整拉普拉斯分布的β值或高斯分布的σ值，相当于是在调整正则化系数。为了获取更具体的目标函数，我们对**y假设服从高斯分布**，则有
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/equation-lasso r & ridge r.png"/>
+</center>
+
+可以看到，第一个式子就是OLS（最小二乘法）的Lasso Regression，第二个式子就是OLS的Ridge Regression。除此之外，当**y假设服从伯努利分布假设**，相当于加正则化的逻辑回归；同理，当**y假设服从拉普拉斯分布假设**，相当于加正则化的最小一乘法。
 
 ### 小结
 
@@ -155,8 +194,8 @@ L2范数是向量中各个元素的平方和，也叫“岭回归”（Ridge Reg
 
 | 范数 | 表达式 | 先验知识 | 作用 | 
 | :-----------:| :----------: | :----------: |:----------: |
-| L1 | X |  | 1.产生稀疏参数矩阵，即产生一个稀疏模型，因此可以用于特征选择 <br> 2. 一定程度上，L1也可以防止过拟合|
-| L2 | X |  | 主要作用是防止模型过拟合（overfitting）
+| L1 | <img src="https://kangcai.github.io/img/in-post/post-ml/L1 latex.gif"/> | 拉普拉斯分布 | 1.产生一个稀疏模型，因此可以用于特征选择 <br> 2. 一定程度上可以防止过拟合（overfitting）|
+| L2 | <img src="https://kangcai.github.io/img/in-post/post-ml/L2 latex.gif"/> | 高斯分布 | 主要作用是防止模型过拟合
 
 [wiki: Regularization (mathematics)](https://en.wikipedia.org/wiki/Regularization_(mathematics))
 [cnblogs: 机器学习之正则化](https://www.cnblogs.com/jianxinzhou/p/4083921.html])
