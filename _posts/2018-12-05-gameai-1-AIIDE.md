@@ -15,9 +15,9 @@ tags:
 
 AIIDE 星际争霸 AI 竞赛由加州大学圣克鲁斯分校 Expressive Intelligence Studio的 Ben Weber 在2010 年首次举办，作为 AIIDE（人工智能和互动数字娱乐，Artificial Intelligence and Interactive Digital Entertainment）大会的一部分。AIIDE为什么使用星际1，而不使用星际2作为比赛平台，原因很简单，星际2的官方违规条款很严格：不允许对星际2代码做任何修改，不允许使用自动化软件和第三方插件辅助工具，不允许修改任何游戏文件。图1是AIIDE 2018星际AI比赛冠军SAIDA vs 亚军CherryPi的比赛录像一段。
 
-<div align=center>
+<center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/SC SAIDA vs CherryPi.jpg"/>
-</div>
+</center>
 <center>图1 AIIDE 2018星际AI比赛冠军SAIDA vs 亚军CherryPi</center>
 
 ### AIIDE 2017
