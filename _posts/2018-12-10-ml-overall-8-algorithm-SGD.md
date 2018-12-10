@@ -166,7 +166,13 @@ http://www.docin.com/p-611887237.html
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\Delta\theta&=-\alpha&space;L'(\theta_{n-1}),&space;\alpha>0&space;\\&space;\text{&space;s.t.&space;}&space;L(\theta_n)&=L(\theta_{n-1})-\alpha&space;L^{'}(\theta_{n-1})^2&space;\\&space;&\leq&space;L(\theta_{n-1})&space;\end{aligned}"/>
 
-**Adagrad**
+以
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/keras optimizers.png"/>
+</center>
+
+**Adagrad** [《Adaptive subgradient methods for online learning and stochastic optimization》 2011](http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)
 
 即adaptive gradient，自适应梯度法。它通过记录每次迭代过程中的前进方向和距离，从而使得针对不同问题，有一套自适应调整学习率的方法
 
@@ -175,17 +181,10 @@ http://www.docin.com/p-611887237.html
 优点：解决了SGD中学习率不能自适应调整的问题 
 缺点：学习率单调递减，在迭代后期可能导致学习率变得特别小而导致收敛及其缓慢。同样的，我们还需要手动设置初始α
 
-
-**Adadelta**
-
-
-<a href="https://www.codecogs.com/eqnedit.php?latex=\alpha=\frac{1}{\vert&space;diag(H_n)\vert}*\frac{(\sum_{i=n-t}^{n-1}g_{i})^2}{\sum_{i=n-t}^{n-1}g^{2}_{i}}\alpha_0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{1}{\vert&space;diag(H_n)\vert}*\frac{(\sum_{i=n-t}^{n-1}g_{i})^2}{\sum_{i=n-t}^{n-1}g^{2}_{i}}\alpha_0" title="\alpha=\frac{1}{\vert diag(H_n)\vert}*\frac{(\sum_{i=n-t}^{n-1}g_{i})^2}{\sum_{i=n-t}^{n-1}g^{2}_{i}}\alpha_0" /></a>
+**Adadelta** [《ADADELTA: An Adaptive Learning Rate Method 》 2012](https://arxiv.org/pdf/1212.5701.pdf)
 
 
-**Adadelta**
-
-
-Adadelta在《ADADELTA: An Adaptive Learning Rate Method 》一文中提出，它解决了Adagrad所面临的问题。
+它解决了Adagrad面临的问题。
 
 <img src="https://latex.codecogs.com/gif.latex?RMS[g]_{n}=\sqrt{E[g^2]_n&plus;\epsilon}"  />
 
@@ -194,17 +193,19 @@ Adadelta在《ADADELTA: An Adaptive Learning Rate Method 》一文中提出，�
 <img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{RMS[\Delta\theta]_{n-1}}{RMS[g]_n}\alpha_0"  />
 
 
-这里ρρ为小于1的正数，随着迭代次数的增加，同一个会因为累乘一个小于1的数而逐渐减小，即使用了一种自适应的方式，让距离当前越远的梯度的缩减学习率的比重越小。分子是为了单位的统一性，其实上述的算法中，左右的单位是不一致的，为了构造一致的单位，我们可以模拟牛顿法（一阶导\二阶导），它的单位是一致的，而分子就是最终推导出的结果，具体参考上面那篇文章。这样，也解决了Adagrad初始学习率需要人为设定的问题。
+这里ρ为小于1的正数，随着迭代次数的增加，同一个会因为累乘一个小于1的数而逐渐减小，即使用了一种自适应的方式，让距离当前越远的梯度的缩减学习率的比重越小。分子是为了单位的统一性，其实上述的算法中，左右的单位是不一致的，为了构造一致的单位，我们可以模拟牛顿法（一阶导\二阶导），它的单位是一致的，而分子就是最终推导出的结果，具体参考上面那篇文章。这样，也解决了Adagrad初始学习率需要人为设定的问题。
 
+**RMSprop** [《Overview of Mini-batch Gradient Descent》 2012](https://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)
 
-**RMSprop**
+大佬Hinton提出来的，其实它基本是Adadelta，这里的RMS就是Adadelta中定义的RMS。有意思的是Adadelta的提出者Zeiler就是Hinton的弟子，他不知道自己的老师已经给这种方法命了名字。下面是Hinton的演说PPT里的定义，
 
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/RMSprop-lecture-Hinton.png"/>
+</center>
 
-其实它就是Adadelta，这里的RMS就是Adadelta中定义的RMS，也有人说它是一个特例，ρ=0.5的Adadelta。
+Adadelta与RMSprop核心思想是一样的，不过在提出的时候还是有一点小差别，Adadelta去掉了全局学习率，而RMSprop还是使用了全局学习率作为基准，。
 
-
-**Adam**
-
+**Adam** [《Adam: A Method for Stochastic Optimization》 2014](https://arxiv.org/pdf/1412.6980.pdf)
 
 Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
 
@@ -219,14 +220,12 @@ Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
 <img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{\bar{E[g]_n}}{\sqrt{\bar{E[g^2]_n}}&plus;\epsilon}\alpha_0"/>
 
 
-
-
 它利用误差函数的一阶矩估计和二阶矩估计来约束全局学习率。 
 优点：结合Momentum和Adaprop，稳定性好，同时相比于Adagrad，不用存储全局所有的梯度，适合处理大规模数据 
 一说，adam是世界上最好的优化算法，不知道用啥时，用它就对了。
 《Adam: A Method for Stochastic Optimization》
 
-**Adamax**
+**Adamax** [《Adam: A Method for Stochastic Optimization》 2014 Section.7](https://arxiv.org/pdf/1412.6980.pdf)
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?E[g^2]_n=\max(\vert&space;g_n\vert,\rho&space;E[g^2]_{n-1})"  />
@@ -235,6 +234,16 @@ Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{\bar{E[g]_n}}{E[g^2]_n+\epsilon} \alpha_0"/>
 </center>
+
+**Nadam** [《Incorporating Nesterov Momentum into Adam》 2016](http://cs229.stanford.edu/proj2015/054_report.pdf)
+
+小结
+
+除此之外，指的一提的几个点：
+
+1. 2.2中对GD迭代方向的改进和2.3中对GD学习率的改进并不冲突，意味着两者可以各种组合，比如常见的有在
+
+2. 从实际应用上来看，AdaDelta在训练初期和中期，具有非常不错的加速效果。但是到训练后期，进入局部最小值雷区之后，AdaDelta就会反复在局部最小值附近抖动，而手动调整学习的动量SGD在这种情况下效果更好。这是因为人工对学习率进行调整时通常在量级上降低，给训练造成一个巨大的抖动，从一个局部最小值抖动到了另一个局部最小值，而AdaDelta的二阶近似计算，或者说所有二阶方法，则不会产生这么大的抖动，所以很难从局部最小值中抖出来。这给追求state of art的结果带来灾难，因为只要你一直用AdaDelta，肯定是与state of art无缘的。基本上state of art的结果，最后都是SGD垂死挣扎抖出来的，这也是SGD为什么至今在state of art的论文中没有废除的原因。
 
 [Convex Optimization, by S. Boyd and L. Vandenberghe]()
 [jianshu: 运筹学(最优化理论)主要概念区分](https://www.jianshu.com/p/c8f5e1631b29)
