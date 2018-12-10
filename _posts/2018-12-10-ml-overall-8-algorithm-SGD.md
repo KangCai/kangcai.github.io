@@ -212,11 +212,6 @@ Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=E[g]_n=\phi&space;E[g]_{n-1}&plus;(1-\phi)g_n^2" target="_blank"><img src="https://latex.codecogs.com/gif.latex?E[g]_n=\phi&space;E[g]_{n-1}&plus;(1-\phi)g_n^2" title="E[g]_n=\phi E[g]_{n-1}+(1-\phi)g_n^2" /></a>
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\bar{E[g^2]_n}=\frac{E[g^2]_n}{1-\rho^n}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\bar{E[g^2]_n}=\frac{E[g^2]_n}{1-\rho^n}" title="\bar{E[g^2]_n}=\frac{E[g^2]_n}{1-\rho^n}" /></a>
-
-<a href="https://www.codecogs.com/eqnedit.php?latex=\bar{E[g]_n}=\frac{E[g]_n}{1-\phi^n}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\bar{E[g]_n}=\frac{E[g]_n}{1-\phi^n}" title="\bar{E[g]_n}=\frac{E[g]_n}{1-\phi^n}" /></a>
-
-<img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{\bar{E[g]_n}}{\sqrt{\bar{E[g^2]_n}}&plus;\epsilon}\alpha_0"/>
 
 
 
