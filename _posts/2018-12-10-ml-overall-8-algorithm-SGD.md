@@ -233,11 +233,8 @@ Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
 </center>
 
 <center>
-<img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{\bar{E[g]_n}}{{E[g^2]_n}&plus;\epsilon }\alpha_0" />
+<img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{\bar{E[g]_n}}{{E[g^2]_n}+\epsilon}\alpha_0"/>
 </center>
-
-
-
 
 [Convex Optimization, by S. Boyd and L. Vandenberghe]()
 [jianshu: 运筹学(最优化理论)主要概念区分](https://www.jianshu.com/p/c8f5e1631b29)
