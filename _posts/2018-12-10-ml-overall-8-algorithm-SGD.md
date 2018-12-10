@@ -84,30 +84,55 @@ http://blog.sina.com.cn/s/blog_1442877660102wru5.html
 
 ##### 2.1 梯度下降法（Gradient Descent, GD）
 
-想象你在一个山峰上，在不考虑其他因素的情况下，你要如何行走才能最快的下到山脚？当然是选择最陡峭的地方，这也是梯度下降法的核心思想：它通过每次在当前梯度方向（最陡峭的方向）向前“迈”一步，来逐渐逼近函数的最小值。假设在第n次迭代中，参数
+想象你在一个山峰上，在不考虑其他因素的情况下，你要如何行走才能最快的下到山脚？当然是选择最陡峭的地方，这也是梯度下降法的核心思想：它通过每次在当前梯度方向（最陡峭的方向）向前迈一步，来逐渐逼近函数的最小值。假设在第n次迭代中，参数
 
-<center><img src="https://latex.codecogs.com/gif.latex?\theta_n&space;=&space;\theta_{n-1}&plus;\Delta&space;\theta"/></center>
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\theta_n&space;=&space;\theta_{n-1}&plus;\Delta&space;\theta"/>
+</center>
 
 我们将损失函数在 θn-1 处进行一阶泰勒展开：
 
-<center><img src="https://latex.codecogs.com/gif.latex?L(\theta_n)=L(\theta_{n-1}&plus;\Delta\theta)\approx&space;L(\theta_{n-1})&plus;L^{'}(\theta_{n-1})\Delta\theta" /></center>
+<center>
+<img src="https://latex.codecogs.com/gif.latex?L(\theta_n)=L(\theta_{n-1}&plus;\Delta\theta)\approx&space;L(\theta_{n-1})&plus;L^{'}(\theta_{n-1})\Delta\theta" />
+</center>
 
-为了使
+为了使L(θ)迭代后趋于更小的值，可以假定以下所示第一行条件，
 
+<center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\Delta\theta&=-\alpha&space;L'(\theta_{n-1}),&space;\alpha>0&space;\\&space;\text{&space;s.t.&space;}&space;L(\theta_n)&=L(\theta_{n-1})-\alpha&space;L^{'}(\theta_{n-1})^2&space;\\&space;&\leq&space;L(\theta_{n-1})&space;\end{aligned}"/>
+</center>
 
-梯度下降法根据每次求解损失函数LL带入的样本数，可以分为：全量梯度下降（计算所有样本的损失），批量梯度下降（每次计算一个batch样本的损失）和随机梯度下降（每次随机选取一个样本计算损失）。现在所说的SGD（随机梯度下降）多指Mini-batch-Gradient-Descent（批量梯度下降），后文用gn来代替L′(θn)。
+故迭代方式可以用如下公式表示，
 
-**优点：**求一阶导，操作简单，计算量小，在损失函数是凸函数的情况下能够保证收敛到一个较好的全局最优解。 
-**缺点：**α是个定值（在最原始的版本），它的选取直接决定了解的好坏，过小会导致收敛太慢，过大会导致震荡而无法收敛到最优解。对于非凸问题，只能收敛到局部最优，并且没有任何摆脱局部最优的能力（一旦梯度为0就不会再有任何变化）。
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\theta_n=\theta_{n-1}-\alpha&space;L'(\theta_{n-1})"  />
+</center>
+
+目标函数关于模型参数的一阶导L′(θn)在不同的方法中都会使用到，为了方便起见，后文用gn来代替L′(θn)，如下所示，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\theta_n=\theta_{n-1}-\alpha&space;g_{n-1}"/>
+</center>
+
+梯度下降法根据每次求解损失函数L带入的样本数，可以分为：全量梯度下降（计算所有样本的损失），批量梯度下降（每次计算一个batch样本的损失）和随机梯度下降（每次随机选取一个样本计算损失）。现在所说的SGD（Stochastic Gradient Descent，随机梯度下降）多指Mini-batch Gradient Descent（批量梯度下降）。
+
+**优点：求一阶导，操作简单，计算量小**，在损失函数是凸函数的情况下能够保证收敛到一个较好的全局最优解。
+ 
+**缺点：α是个定值（在最原始的版本），收敛的好坏受它的直接影响**，过小会导致收敛太慢，过大会导致震荡而无法收敛到最优解。对于非凸问题，只能收敛到局部最优，并且没有任何摆脱局部最优的能力（一旦梯度为0就不会再有任何变化）。
 
 ##### 2.2 GD迭代方向的改进
 
-<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\Delta\theta&=-\alpha&space;L'(\theta_{n-1}),&space;\alpha>0&space;\\&space;\text{&space;s.t.&space;}&space;L(\theta_n)&=L(\theta_{n-1})-\alpha&space;L^{'}(\theta_{n-1})^2&space;\\&space;&\leq&space;L(\theta_{n-1})&space;\end{aligned}"/>
+GD的迭代公式如下所示，
 
-**2.2.1 Momentum**
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\theta_n=\theta_{n-1}-\alpha&space;g_{n-1}"/>
+</center>
 
-SGD具有收敛不稳定：在SGD中，参数 θ 的迭代变化量都只是与当前梯度正相关，这会导致在迭代过程中，θ在最优解附近以较大幅度震荡无法收敛。 Momentum能在一定程度上缓解SGD收敛不稳定的问题，它的思想就是模拟物体运动的惯性：当我们跑步时转弯，我们最终的前进方向是由我们之前的方向和转弯的方向共同决定的。Momentum在每次更新时，保留一部分上次的更新方向： 
+一类常见的变种是对迭代方向 g 进行改进，比如下面三种，
+
+**Momentum**
+
+SGD具有收敛不稳定：在SGD中，参数 θ 的迭代变化量都只是与当前梯度正相关，这会导致在迭代过程中，θ在最优解附近以较大幅度震荡无法收敛。Momentum能在一定程度上缓解SGD收敛不稳定的问题，它的思想就是模拟物体运动的惯性：当我们跑步时转弯，我们最终的前进方向是由我们之前的方向和转弯的方向共同决定的。**Momentum在每次更新时，保留一部分上次的更新方向**： 
 
 （公式）
 
@@ -117,7 +142,7 @@ SGD具有收敛不稳定：在SGD中，参数 θ 的迭代变化量都只是与�
 
 **缺点：**这里又多了另外一个超参数 ρ 需要我们设置，它的选取同样会影响到结果。
 
-**2.2.2 Nesterov Momentum**
+**Nesterov Momentum**
 
 Nesterov Momentum又叫做Nesterov Accelerated Gradient（NAG），是基于Momentum的加速算法。 Momentum的 θ 迭代向量的计算其实是把上一次迭代向量作为本次预期迭代向量，在此基础上叠加上本次梯度。NAG认为这样的迭代不合理，迭代速度也不够快，NAG认为：既然都把上一次迭代向量作为本次预期向量了，就应该预期到底，应该将当前梯度替换成预期梯度，即当前θ加上上一次迭代向量之后的新θ所在点的函数梯度，
 
@@ -130,7 +155,7 @@ Nesterov Momentum又叫做Nesterov Accelerated Gradient（NAG），是基于Mome
 
 分析上式，其实可以看到它实际使用到了二阶导数的信息，二阶导数>0即一阶导单调递增，也即g′n−1>g′n−2，因此可以加快收敛，从这里可以看到这种做法的内在理论：如果这次的梯度比上次大，那么我们有理由认为梯度还会继续变大，所以当前迈的步子可以更大一些。
 
-**2.2.3 共轭梯度法（Conjugate Gradient）**
+**共轭梯度法（Conjugate Gradient）**
 
 http://www.docin.com/p-611887237.html
 
@@ -142,24 +167,24 @@ http://www.docin.com/p-611887237.html
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\Delta\theta&=-\alpha&space;L'(\theta_{n-1}),&space;\alpha>0&space;\\&space;\text{&space;s.t.&space;}&space;L(\theta_n)&=L(\theta_{n-1})-\alpha&space;L^{'}(\theta_{n-1})^2&space;\\&space;&\leq&space;L(\theta_{n-1})&space;\end{aligned}"/>
 
-**2.3.1 Adagrad**
+**Adagrad**
 
 即adaptive gradient，自适应梯度法。它通过记录每次迭代过程中的前进方向和距离，从而使得针对不同问题，有一套自适应调整学习率的方法
 
 优点：解决了SGD中学习率不能自适应调整的问题 
 缺点：学习率单调递减，在迭代后期可能导致学习率变得特别小而导致收敛及其缓慢。同样的，我们还需要手动设置初始α
 
-##### Adadelta
+**Adadelta**
 
 Adadelta在《ADADELTA: An Adaptive Learning Rate Method 》一文中提出，它解决了Adagrad所面临的问题。
 
 这里ρρ为小于1的正数，随着迭代次数的增加，同一个E[g2]iE[g2]i会因为累乘一个小于1的数而逐渐减小，即使用了一种自适应的方式，让距离当前越远的梯度的缩减学习率的比重越小。分子是为了单位的统一性，其实上述的算法中，左右的单位是不一致的，为了构造一致的单位，我们可以模拟牛顿法（一阶导\二阶导），它的单位是一致的，而分子就是最终推导出的结果，具体参考上面那篇文章。这样，也解决了Adagrad初始学习率需要人为设定的问题。
 
-##### RMSprop
+**RMSprop**
 
 其实它就是Adadelta，这里的RMS就是Adadelta中定义的RMS，也有人说它是一个特例，ρ=0.5的Adadelta，且分子α，即仍然依赖于全局学习率。
 
-##### Adam
+**Adam**
 
 Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
 
