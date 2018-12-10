@@ -45,7 +45,7 @@ tags:
 
 （图）凸优化定义
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/convex set.png"/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/convex set1.png"/>
 </center>
 
 <center>
