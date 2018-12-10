@@ -229,6 +229,10 @@ Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
 **Adamax**
 
 
+<a href="https://www.codecogs.com/eqnedit.php?latex=E[g^2]_n=\max(\vert&space;g_n\vert,\rho&space;E[g^2]_{n-1})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?E[g^2]_n=\max(\vert&space;g_n\vert,\rho&space;E[g^2]_{n-1})" title="E[g^2]_n=\max(\vert g_n\vert,\rho E[g^2]_{n-1})" /></a>
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\alpha=\frac{\bar{E[g]_n}}{{E[g^2]_n}&plus;\epsilon}\alpha_0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{\bar{E[g]_n}}{{E[g^2]_n}&plus;\epsilon}\alpha_0" title="\alpha=\frac{\bar{E[g]_n}}{{E[g^2]_n}+\epsilon}\alpha_0" /></a>
+
 
 
 
