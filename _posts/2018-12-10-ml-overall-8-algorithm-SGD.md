@@ -208,10 +208,15 @@ Adadelta在《ADADELTA: An Adaptive Learning Rate Method 》一文中提出，�
 
 Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=E[g^2]_n=\rho&space;E[g^2]_{n-1}&plus;(1-\rho)g_n^2" target="_blank"><img src="https://latex.codecogs.com/gif.latex?E[g^2]_n=\rho&space;E[g^2]_{n-1}&plus;(1-\rho)g_n^2" title="E[g^2]_n=\rho E[g^2]_{n-1}+(1-\rho)g_n^2" /></a>
+<img src="https://latex.codecogs.com/gif.latex?E[g^2]_n=\rho&space;E[g^2]_{n-1}&plus;(1-\rho)g_n^2" />
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=E[g]_n=\phi&space;E[g]_{n-1}&plus;(1-\phi)g_n^2" target="_blank"><img src="https://latex.codecogs.com/gif.latex?E[g]_n=\phi&space;E[g]_{n-1}&plus;(1-\phi)g_n^2" title="E[g]_n=\phi E[g]_{n-1}+(1-\phi)g_n^2" /></a>
+<img src="https://latex.codecogs.com/gif.latex?E[g]_n=\phi&space;E[g]_{n-1}&plus;(1-\phi)g_n^2" />
 
+<img src="https://latex.codecogs.com/gif.latex?\bar{E[g^2]_n}=\frac{E[g^2]_n}{1-\rho^n}"  />
+
+<img src="https://latex.codecogs.com/gif.latex?\bar{E[g]_n}=\frac{E[g]_n}{1-\phi^n}" />
+
+<img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{\bar{E[g]_n}}{\sqrt{\bar{E[g^2]_n}}&plus;\epsilon}\alpha_0"/>
 
 
 
