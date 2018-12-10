@@ -216,7 +216,6 @@ Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\bar{E[g]_n}=\frac{E[g]_n}{1-\phi^n}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\bar{E[g]_n}=\frac{E[g]_n}{1-\phi^n}" title="\bar{E[g]_n}=\frac{E[g]_n}{1-\phi^n}" /></a>
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\alpha=\frac{\bar{E[g]_n}}{\sqrt{\bar{E[g^2]_n}}&plus;\epsilon}\alpha_0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{\bar{E[g]_n}}{\sqrt{\bar{E[g^2]_n}}&plus;\epsilon}\alpha_0" title="\alpha=\frac{\bar{E[g]_n}}{\sqrt{\bar{E[g^2]_n}}+\epsilon}\alpha_0" /></a>
 
 
 它利用误差函数的一阶矩估计和二阶矩估计来约束全局学习率。 
