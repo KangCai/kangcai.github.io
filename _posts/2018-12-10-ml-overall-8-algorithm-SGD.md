@@ -194,7 +194,7 @@ Adadelta在《ADADELTA: An Adaptive Learning Rate Method 》一文中提出，�
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\alpha=\frac{RMS[\Delta\theta]_{n-1}}{RMS[g]_n}\alpha_0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{RMS[\Delta\theta]_{n-1}}{RMS[g]_n}\alpha_0" title="\alpha=\frac{RMS[\Delta\theta]_{n-1}}{RMS[g]_n}\alpha_0" /></a>
 
-这里ρρ为小于1的正数，随着迭代次数的增加，同一个E[g2]iE[g2]i会因为累乘一个小于1的数而逐渐减小，即使用了一种自适应的方式，让距离当前越远的梯度的缩减学习率的比重越小。分子是为了单位的统一性，其实上述的算法中，左右的单位是不一致的，为了构造一致的单位，我们可以模拟牛顿法（一阶导\二阶导），它的单位是一致的，而分子就是最终推导出的结果，具体参考上面那篇文章。这样，也解决了Adagrad初始学习率需要人为设定的问题。
+这里ρρ为小于1的正数，随着迭代次数的增加，同一个会因为累乘一个小于1的数而逐渐减小，即使用了一种自适应的方式，让距离当前越远的梯度的缩减学习率的比重越小。分子是为了单位的统一性，其实上述的算法中，左右的单位是不一致的，为了构造一致的单位，我们可以模拟牛顿法（一阶导\二阶导），它的单位是一致的，而分子就是最终推导出的结果，具体参考上面那篇文章。这样，也解决了Adagrad初始学习率需要人为设定的问题。
 
 
 **RMSprop**
@@ -216,6 +216,7 @@ Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\bar{E[g]_n}=\frac{E[g]_n}{1-\phi^n}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\bar{E[g]_n}=\frac{E[g]_n}{1-\phi^n}" title="\bar{E[g]_n}=\frac{E[g]_n}{1-\phi^n}" /></a>
 
+<img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{\bar{E[g]_n}}{\sqrt{\bar{E[g^2]_n}}&plus;\epsilon}\alpha_0"/>
 
 
 它利用误差函数的一阶矩估计和二阶矩估计来约束全局学习率。 
