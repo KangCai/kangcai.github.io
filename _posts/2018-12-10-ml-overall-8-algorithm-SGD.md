@@ -237,11 +237,13 @@ Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
 
 **Nadam** [《Incorporating Nesterov Momentum into Adam》 2016](http://cs229.stanford.edu/proj2015/054_report.pdf)
 
-小结
+如提出Nadam的文章标题所述，Nadam就是将Nesterov Momentum应用到Adam。
 
-除此之外，指的一提的几个点：
+### 2.4 小结
 
-1. 2.2中对GD迭代方向的改进和2.3中对GD学习率的改进并不冲突，意味着两者可以各种组合，比如常见的有在
+上文提到的迭代方法是梯度下降法一族，它们是机器学习中求目标函数最优解中最常用的方法，还有一些其它方法，但也是在常用方法的基础上做的小调整或者方法组合。除此之外，还有下面两个值得一提的点，
+
+1. 2.2中对GD迭代方向的改进和2.3中对GD学习率的改进并不冲突，意味着两者可以各种组合，比如将Nesterov Momentum应用到Adam的Nadam就是一个典型的例子，还比如Tensorflow对RMSprop的实现就应用了Plain Momentum。
 
 2. 从实际应用上来看，AdaDelta在训练初期和中期，具有非常不错的加速效果。但是到训练后期，进入局部最小值雷区之后，AdaDelta就会反复在局部最小值附近抖动，而手动调整学习的动量SGD在这种情况下效果更好。这是因为人工对学习率进行调整时通常在量级上降低，给训练造成一个巨大的抖动，从一个局部最小值抖动到了另一个局部最小值，而AdaDelta的二阶近似计算，或者说所有二阶方法，则不会产生这么大的抖动，所以很难从局部最小值中抖出来。这给追求state of art的结果带来灾难，因为只要你一直用AdaDelta，肯定是与state of art无缘的。基本上state of art的结果，最后都是SGD垂死挣扎抖出来的，这也是SGD为什么至今在state of art的论文中没有废除的原因。
 
