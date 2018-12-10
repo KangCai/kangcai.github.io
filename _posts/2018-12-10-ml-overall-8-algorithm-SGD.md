@@ -170,7 +170,7 @@ http://www.docin.com/p-611887237.html
 
 即adaptive gradient，自适应梯度法。它通过记录每次迭代过程中的前进方向和距离，从而使得针对不同问题，有一套自适应调整学习率的方法
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\alpha=\frac{1}{\sqrt{\sum_{i=1}^{n-1}g_{i}&plus;\epsilon}}\alpha_0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{1}{\sqrt{\sum_{i=1}^{n-1}g_{i}&plus;\epsilon}}\alpha_0" title="\alpha=\frac{1}{\sqrt{\sum_{i=1}^{n-1}g_{i}+\epsilon}}\alpha_0" /></a>
+<img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{1}{\sqrt{\sum_{i=1}^{n-1}g_{i}&plus;\epsilon}}\alpha_0" />
 
 优点：解决了SGD中学习率不能自适应调整的问题 
 缺点：学习率单调递减，在迭代后期可能导致学习率变得特别小而导致收敛及其缓慢。同样的，我们还需要手动设置初始α
@@ -228,11 +228,13 @@ Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
 
 **Adamax**
 
+<center>
+<img src="https://latex.codecogs.com/gif.latex?E[g^2]_n=\max(\vert&space;g_n\vert,\rho&space;E[g^2]_{n-1})"  />
+</center>
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=E[g^2]_n=\max(\vert&space;g_n\vert,\rho&space;E[g^2]_{n-1})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?E[g^2]_n=\max(\vert&space;g_n\vert,\rho&space;E[g^2]_{n-1})" title="E[g^2]_n=\max(\vert g_n\vert,\rho E[g^2]_{n-1})" /></a>
-
-<a href="https://www.codecogs.com/eqnedit.php?latex=\alpha=\frac{\bar{E[g]_n}}{{E[g^2]_n}&plus;\epsilon}\alpha_0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{\bar{E[g]_n}}{{E[g^2]_n}&plus;\epsilon}\alpha_0" title="\alpha=\frac{\bar{E[g]_n}}{{E[g^2]_n}+\epsilon}\alpha_0" /></a>
-
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{\bar{E[g]_n}}{{E[g^2]_n}&plus;\epsilon }\alpha_0" />
+</center>
 
 
 
