@@ -104,13 +104,13 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?\theta_n=\theta_{n-1}-\alpha&space;L'(\theta_{n-1})"  />
 </center>
 
-，需要注意的是，梯度下降法一次迭代是针对一个维度方向进行下降。目标函数关于模型参数的一阶导L′(θn)在不同的方法中都会使用到，为了方便起见，后文用gn来代替L′(θn)，如下所示，
+，需要注意的是，梯度下降法一次迭代是针对一个维度方向进行下降。目标函数关于模型参数的一阶导L′(θn)在不同的方法中都会使用到，为了方便起见，后文用 gn 来代替 L′(θn) ，如下所示，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\theta_n=\theta_{n-1}-\alpha&space;g_{n-1}"/>
 </center>
 
-梯度下降法根据每次求解损失函数L带入的样本数，可以分为：全量梯度下降（计算所有样本的损失），批量梯度下降（每次计算一个batch样本的损失）和随机梯度下降（每次随机选取一个样本计算损失）。现在所说的SGD（Stochastic Gradient Descent，随机梯度下降）多指Mini-batch Gradient Descent（批量梯度下降）。
+梯度下降法根据每次求解损失函数L带入的样本数，可以分为：全量梯度下降（计算所有样本的损失），批量梯度下降（每次计算一个batch样本的损失）和随机梯度下降（每次随机选取一个样本计算损失）。现在所说的 SGD（Stochastic Gradient Descent，随机梯度下降）多指Mini-batch Gradient Descent（批量梯度下降）。
 
 **优点：求一阶导，操作简单，计算量小**，在损失函数是凸函数的情况下能够保证收敛到一个较好的全局最优解。
 
@@ -118,23 +118,23 @@ tags:
 
 ##### 2.2 GD迭代方向的改进
 
-一类常见的变种是对迭代方向 g 进行改进，即调整GD的迭代公式的梯度部分，
+一类常见的变种是对迭代方向 g 进行改进，即调整 GD 的迭代公式的梯度部分，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\theta_n=\theta_{n-1}-\alpha&space;g_{n-1}"/>
 </center>
 
-最常用的是以下三种改进，
+最常用的是以下4种改进，
 
 **Momentum**
 
-SGD具有收敛不稳定：在SGD中，参数 θ 的迭代变化量都只是与当前梯度正相关，这会导致在迭代过程中，θ在最优解附近以较大幅度震荡无法收敛。Momentum能在一定程度上缓解SGD收敛不稳定的问题，它的思想就是模拟物体运动的惯性：当我们跑步时转弯，我们最终的前进方向是由我们之前的方向和转弯的方向共同决定的。**Momentum在每次更新时，保留一部分上次的更新方向**： 
+SGD具有收敛不稳定：在SGD中，参数 θ 的迭代变化量都只是与当前梯度正相关，这会导致在迭代过程中，θ在最优解附近以较大幅度震荡无法收敛。Momentum能在一定程度上缓解SGD收敛不稳定的问题，它的思想就是模拟物体运动的惯性：当我们跑步时转弯，我们最终的前进方向是由我们之前的方向和转弯的方向共同决定的。**Momentum 在每次更新时，保留一部分上次的更新方向**： 
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\Delta\theta_n&space;=&space;\rho\Delta\theta_{n-1}&plus;&space;g_{n-1}"  />
 </center>
 
-**优点： 1. 由于在迭代时考虑了上一次 θ 的迭代变化量，所以在最优解附近通常具有梯度因方向相反而抵消的效果，从而在一定程度上缓解SGD的收敛不稳定问题；2. 除此之外，Momentum还具有一定的摆脱局部最优的能力**，如果上一次梯度较大，而当前梯度为0时，仍可能按照上次迭代的方向冲出局部最优点。对于第一点直观上的理解是，它可以让每次迭代的“掉头方向不是那么大”，具体如图X所示，图X左子图为SGD，右子图为Momentum。可以看到，Moument一方面能抑制SGD在来回振荡维度的迭代幅度，又能加强在缓慢单调变化维度的迭代幅度，
+**优点： 1. 由于在迭代时考虑了上一次 θ 的迭代变化量，所以在最优解附近通常具有梯度因方向相反而抵消的效果，从而在一定程度上缓解 SGD 的收敛不稳定问题；2. 除此之外，Momentum 还具有一定的摆脱局部最优的能力**，如果上一次梯度较大，而当前梯度为0时，仍可能按照上次迭代的方向冲出局部最优点。对于第一点直观上的理解是，它可以让每次迭代的“掉头方向不是那么大”，具体如图X所示，图X左子图为 SGD ，右子图为 Momentum 。可以看到，Moumentum 一方面能抑制 SGD 在来回振荡维度的迭代幅度，又能加强在缓慢单调变化维度的迭代幅度，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/momentum sgd.png"/>
@@ -145,7 +145,7 @@ SGD具有收敛不稳定：在SGD中，参数 θ 的迭代变化量都只是与�
 
 **Nesterov Momentum**
 
-Nesterov Momentum又叫做Nesterov Accelerated Gradient（NAG），是基于Momentum的加速算法。Momentum（也称之为Plain Momentum）的 θ 迭代向量的计算是把上一次迭代向量作为本次预期迭代向量，在此基础上叠加上本次梯度。而NAG认为这样的迭代不合理，迭代速度也不够快，NAG认为：既然都把上一次迭代向量作为本次预期向量了，就应该预期到底，应该将当前梯度替换成预期梯度，即当前θ加上上一次迭代向量之后的新θ所在点的函数梯度，
+Nesterov Momentum 又叫做 Nesterov Accelerated Gradient（NAG） ，是基于 Momentum 的加速算法。Momentum（也称之为Plain Momentum）的 θ 迭代向量的计算是把上一次迭代向量作为本次预期迭代向量，在此基础上叠加上本次梯度。而 NAG 认为这样的迭代不合理，迭代速度也不够快，NAG认为：既然都把上一次迭代向量作为本次预期向量了，就应该预期到底，应该将当前梯度替换成预期梯度，即当前 θ 加上上一次迭代向量之后的新 θ 所在点的函数梯度，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\Delta\theta_n&space;=\rho\Delta\theta_{n-1}&plus;&space;g(\theta_{n-1}-\alpha&space;\Delta\theta_{n-1})"/>
@@ -155,29 +155,56 @@ Nesterov Momentum又叫做Nesterov Accelerated Gradient（NAG），是基于Mome
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\Delta\theta_n^{NM}-\Delta\theta_n^{PM}&=g(\theta_{n-1}-\alpha\Delta\theta_{n-1})-g(\theta_{n-1})&space;\\&space;&=\alpha&space;\theta_{n-1}g'(\theta_{n-1})&space;\end{aligned}" />
 
-由于g是一阶导（最开始的定义，g(n) = L'(n)），而 Plain Momentum 只用到一阶导，所以可以看到 Nesterov Momentum 实际隐含使用到了二阶导数的信息，二阶导数大于 0 则一阶导单调递增，也即 Nesterov Momentum 比 Plain Momentum 迭代幅度更大，因此可以加快收敛，从这里可以看到这种做法的内在理论：如果这次的梯度比上次大，那么我们有理由认为梯度还会继续变大，所以当前迈的步子可以更大一些。
+由于g是一阶导（最开始的定义，g(n) = L'(n)），而 Plain Momentum 只用到一阶导，所以可以看到 Nesterov Momentum 实际隐含使用到了二阶导数的信息，二阶导数大于 0 则一阶导单调递增，也即 Nesterov Momentum 比 Plain Momentum 迭代幅度更大，因此可以加快收敛，从这里可以看到这种做法的内在理论：如果这次的梯度比上次大，那么我们有理由认为梯度还会继续变大，所以当前迈的步子可以更大一些。直观地比较上述三种梯度方法，GD、Momentum GD、NAG，如下所示，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/momentum sgd.png"/>
+</center>
+<center>图X GD、Momentum GD、NAG迭代示意图</center>
+
+，上图指的是在同一维度方向上的迭代对比情况情况。
 
 **共轭梯度法（Conjugate Gradient）**
 
-梯度下降法一次迭代是针对一个维度方向进行下降，故它每一步都是垂直于上一步。而共轭梯度法本质是把目标函数分成许多方向，然后不同方向分别求出极值再综合起来，具体做法是每一步迭代都把方向限制在前面所有梯度正交的超平面范围内。
+梯度下降法一次迭代是针对一个维度方向进行下降，故它每一步都是垂直于上一步。而共轭梯度法本质是把目标函数分成许多方向，然后不同方向分别求出极值再综合起来。共轭梯度法最重要的问题在于，它分的方向不是原来的各个维度，因为那样没法保证最小值是每个维度的最小值。那么应该如何保证这一条件呢，就要借助共轭向量，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/cg.png"/>
+</center>
+
+通过一个不是很复杂的证明过程（有兴趣可以参考[《An Introduction to the Conjugate Gradient Method Without the Agonizing Pain》](https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf)一文中的第8节），可以证明在各个共轭向量上的最小值就是总最小值，而且可以通过下面的式子来计算共轭向量，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/cg2.png"/>
+</center>
+
+，其中 r 是原本维度，d(i) 是上一次迭代的共轭方向，d(i+1) 就是这一次需要迭代的共轭方向。最终的效果就是将图X中最左子图转换成最右子图的迭代过程，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/cg1_1.png"/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/cg1_2.png"/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/cg1_3.png"/>
+</center>
 
 **优点：在n维的优化问题中，共轭梯度法最多n次迭代就能找到最优解。共轭梯度法其实是介于梯度下降法与牛顿法之间的一个方法，是一个一阶方法，但克服了梯度下降法收敛慢的缺点，又避免了存储和计算牛顿法所需要的二阶导数信息。**
 
-**缺点：需要求解共轭，高维情况计算量过大，故不适用于高维参数向量的情况。**
+**缺点：需要求解共轭，高维向量计算量过大，故不适用于高维参数向量的情况。**
 
-不同于上述算法对迭代方向进行改进，后面这些算法主要研究沿着梯度方向走多远的问题，也即如何选择合适的学习率α。
 
 ##### 2.3 GD学习率的改进
+
+**不同于2.2节算法是对迭代方向进行改进，本节算法主要研究沿着梯度方向走多远的问题，也即如何选择更合适的学习率 α ** 。
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\theta_n=\theta_{n-1}-\alpha&space;g_{n-1}"/>
 </center>
 
-以
+以Tensorflow的tf.Keras.Opitimizers中提供的方法为参考，本节将介绍以下常用的对学习率进行改进的GD，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/keras optimizers.png"/>
 </center>
+<center>图X Tensorflow的tf.Keras.Opitimizers提供的优化方法</center>
 
 **Adagrad** [《Adaptive subgradient methods for online learning and stochastic optimization》 2011](http://www.jmlr.org/papers/volume12/duchi11a/duchi11a.pdf)
 
@@ -187,13 +214,13 @@ Nesterov Momentum又叫做Nesterov Accelerated Gradient（NAG），是基于Mome
 <img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{1}{\sqrt{\sum_{i=1}^{n-1}g_{i}&plus;\epsilon}}\alpha_0" />
 </center>
 
-优点：解决了SGD中学习率不能自适应调整的问题 
-缺点：学习率单调递减，在迭代后期可能导致学习率变得特别小而导致收敛及其缓慢。同样的，我们还需要手动设置初始α
+优点：解决了 SGD 中学习率不能自适应调整的问题 
+缺点：学习率单调递减，在迭代后期可能导致学习率变得特别小而导致收敛及其缓慢。同样的，我们还需要手动设置初始 α。
 
-**Adadelta** [《ADADELTA: An Adaptive Learning Rate Method 》 2012](https://arxiv.org/pdf/1212.5701.pdf)
+**AdaDelta** [《ADADELTA: An Adaptive Learning Rate Method 》 2012](https://arxiv.org/pdf/1212.5701.pdf)
 
 
-它解决了Adagrad面临的问题。
+Adadelta是在Adagrad提出的后一年提出，它解决了Adagrad面临的两个问题，即迭代后期可能导致学习率变得特别小而导致收敛及其缓慢的问题，以及初始学习率需要人为设定的问题，它的迭代公式如下所示，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?RMS[g]_{n}=\sqrt{E[g^2]_n&plus;\epsilon}"  />
@@ -205,17 +232,19 @@ Nesterov Momentum又叫做Nesterov Accelerated Gradient（NAG），是基于Mome
 <img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{RMS[\Delta\theta]_{n-1}}{RMS[g]_n}\alpha_0"  />
 </center>
 
-这里ρ为小于1的正数，随着迭代次数的增加，同一个会因为累乘一个小于1的数而逐渐减小，即使用了一种自适应的方式，让距离当前越远的梯度的缩减学习率的比重越小。分子是为了单位的统一性，其实上述的算法中，左右的单位是不一致的，为了构造一致的单位，我们可以模拟牛顿法（一阶导\二阶导），它的单位是一致的，而分子就是最终推导出的结果，具体参考上面那篇文章。这样，也解决了Adagrad初始学习率需要人为设定的问题。
+，这里 ρ 为小于1的正数，随着迭代次数的增加，同一个会因为累乘一个小于1的数而逐渐减小，即使用了一种自适应的方式，让距离当前越远的梯度的缩减学习率的比重越小。
+
+除此之外，分子是为了单位的统一性，其实上述的算法中，左右的单位是不一致的，为了构造一致的单位，我们可以模拟牛顿法（一阶导/二阶导），使单位一致，而上述分子就是通过这种方式最终推导出的结果，具体可以参考原文。这样，也解决了Adagrad初始学习率需要人为设定的问题。
 
 **RMSprop** [《Overview of Mini-batch Gradient Descent》 2012](https://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)
 
-大佬Hinton提出来的，其实它基本是Adadelta，这里的RMS就是Adadelta中定义的RMS。有意思的是Adadelta的提出者Zeiler就是Hinton的弟子，他不知道自己的老师已经给这种方法命了名字。下面是Hinton的演说PPT里的定义，
+大佬Hinton提出来的，其实它基本是Adadelta，这里的RMS就是AdaDelta中定义的RMS。有意思的是Adadelta的提出者Zeiler就是Hinton的弟子，他不知道自己的老师已经给这种方法命了名字。下面是Hinton的演说PPT里的定义，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/RMSprop-lecture-Hinton.png"/>
 </center>
 
-Adadelta与RMSprop核心思想是一样的，不过在提出的时候还是有一点小差别，Adadelta去掉了全局学习率，而RMSprop还是使用了全局学习率作为基准，。
+AdaDelta 与 RMSprop 核心思想是一样的，不过在提出的时候还是有一点小差别，AdaDelta 去掉了全局学习率，而 RMSprop 还是使用了全局学习率作为基准，。
 
 **Adam** [《Adam: A Method for Stochastic Optimization》 2014](https://arxiv.org/pdf/1412.6980.pdf)
 
@@ -237,9 +266,10 @@ Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
 </center>
 
 它利用误差函数的一阶矩估计和二阶矩估计来约束全局学习率。 
-优点：结合Momentum和Adaprop，稳定性好，同时相比于Adagrad，不用存储全局所有的梯度，适合处理大规模数据 
-一说，adam是世界上最好的优化算法，不知道用啥时，用它就对了。
-《Adam: A Method for Stochastic Optimization》
+
+**优点：结合 Momentum 和 Adagrad，稳定性好，收敛速度很快**。同时相比于 Adagrad ，不用存储全局所有的梯度，适合处理大规模数据。有一说是Adam是世界上最好的优化算法，无脑用它就对了。
+
+**缺点：收敛速度虽快，但实际运用时往往没有 SGD 的解更优** ，关于这一点，最后2.4节的小结会具体介绍。
 
 **Adamax** [《Adam: A Method for Stochastic Optimization》 2014 Section.7](https://arxiv.org/pdf/1412.6980.pdf)
 
@@ -261,7 +291,7 @@ Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
 
 1. 本文2.2节中对GD迭代方向的改进和2.3节中对GD学习率的改进并不冲突，意味着两者可以各种组合，比如将Nesterov Momentum应用到Adam的Nadam就是一个典型的例子，还比如Tensorflow对RMSprop的实现就应用了Plain Momentum。
 
-2. 从实际应用上来看，AdaDelta在训练初期和中期，具有非常不错的加速效果。但是到训练后期，进入局部最小值雷区之后，AdaDelta就会反复在局部最小值附近抖动，而手动调整学习的动量SGD在这种情况下效果更好。这是因为人工对学习率进行调整时通常在量级上降低，给训练造成一个巨大的抖动，从一个局部最小值抖动到了另一个局部最小值，而AdaDelta的二阶近似计算，或者说所有二阶方法，则不会产生这么大的抖动，所以很难从局部最小值中抖出来。这给追求state of art的结果带来灾难，因为只要你一直用AdaDelta，肯定是与state of art无缘的。基本上state of art的结果，最后都是SGD垂死挣扎抖出来的，这也是SGD为什么至今在state of art的论文中没有废除的原因。
+2. 从实际应用上来看，AdaDelta 及其后续改进算法到训练后期，进入局部最小值雷区之后会反复在局部最小值附近抖动，而手动调整学习的 Momentum SGD 在这种情况下效果更好。这是因为人工对学习率进行调整时通常在量级上降低，给训练造成一个巨大的抖动，从一个局部最小值抖动到了另一个局部最小值，而AdaDelta 及其后续改进算法所采用的二阶方法，则不会产生这么大的抖动，所以很难从局部最小值中抖出来。这给追求state of art的结果带来灾难，因为只要你一直用 AdaDelta，肯定是与 state of art 无缘的。基本上 state of art 的结果，最后都是 SGD 垂死挣扎抖出来的，这也是 SGD 为什么至今在 state of art 的论文中没有废除的原因。
 
 **参考文献**
 
