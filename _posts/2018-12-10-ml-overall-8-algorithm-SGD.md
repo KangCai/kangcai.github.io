@@ -10,7 +10,7 @@ tags:
   - 机器学习·总览篇
 ---
 
-> 机器学习最后一个要素-算法，准确来说是优化算法，特别是数值优化（Numerical Optimization）或凸优化（Convex Optimization），属于运筹学（最优化理论）的一部分。机器学习中广泛使用的凸优化方法主要分为梯度下降法和拟牛顿法，这两类方法都派生出大量的变种，本文将介绍梯度下降法及其变种。	
+> 机器学习最后一个要素-算法，准确来说是优化算法，特别是数值优化（Numerical Optimization）或凸优化（Convex Optimization），属于运筹学（最优化理论）的一部分。机器学习中广泛使用的凸优化方法主要分为梯度下降法和拟牛顿法，这两类方法都派生出大量的变种，本文将介绍梯度下降法及其变种。
 
 > 文章首发于[我的博客](https://kangcai.github.io/2018/10/25/ml-overall-bayes/)，转载请保留链接 ;)
 
@@ -251,7 +251,8 @@ AdaDelta 与 RMSprop 核心思想是一样的，不过在提出的时候还是�
 
 **2.3.4 Adam** [《Adam: A Method for Stochastic Optimization》 2014](https://arxiv.org/pdf/1412.6980.pdf)
 
-Adam是Momentum和Adaprop的结合体，我们先看它的更新公式
+Adam是Momentum和Adaprop的结合体，我们先看它的更新公式，
+
 <center>
 <img src="https://latex.codecogs.com/gif.latex?E[g^2]_n=\rho&space;E[g^2]_{n-1}&plus;(1-\rho)g_n^2" />
 </center>
@@ -294,9 +295,9 @@ Adamax 与 Adam 唯一区别在于 Adamax 在做二阶矩估计的时候，简�
 
 上文提到的迭代方法是GD一族，它们是机器学习中求目标函数最优解中最常用的方法，还有一些其它方法，但也是在常用方法的基础上做的小调整或者方法组合。除此之外，关于GD在机器学习中的应用还有下面两个值得一提的点，
 
-1. 本文2.2节中对GD迭代方向的改进和2.3节中对GD学习率的改进并不冲突，意味着两者可以各种组合，比如将 Nesterov Momentum 应用到 Adam 的Nadam 就是一个典型的例子，还比如 Tensorflow 对 RMSprop 的实现就应用了 Plain Momentum。
+1. **本文2.2节中对GD迭代方向的改进和2.3节中对GD学习率的改进并不冲突，意味着两者可以各种组合** ，比如将 Nesterov Momentum 应用到 Adam 的 Nadam 就是一个典型的例子，还比如 Tensorflow 对 RMSprop 的实现就应用了 Plain Momentum。
 
-2. 从实际应用上来看，AdaDelta 及其后续改进算法到训练后期，进入局部最小值雷区之后会反复在局部最小值附近抖动，而手动调整学习的 Momentum SGD 在这种情况下效果更好。这是因为人工对学习率进行调整时通常在量级上降低，给训练造成一个巨大的抖动，从一个局部最小值抖动到了另一个局部最小值，而AdaDelta 及其后续改进算法所采用的二阶方法，则不会产生这么大的抖动，所以很难从局部最小值中抖出来。这给追求state of art的结果带来灾难，因为只要你一直用 AdaDelta，肯定是与 state of art 无缘的。基本上 state of art 的结果，最后都是 SGD 垂死挣扎抖出来的，这也是 SGD 为什么至今在 state of art 的论文中没有废除的原因。
+2. 从实际应用上来看，**AdaDelta 及其后续改进算法到训练后期，进入局部最小值之后会反复在局部最小值附近抖动，而手动调整学习率的 Momentum SGD 在这种情况下效果更好**。这是因为手动调整学习率的 Momentum SGD 幅度通常比 AdaDelta 学习率调整幅度大，故更容易从局部最小值附近抖出来。这也是为什么很多 state of art 的论文采用是 SGD 方法。
 
 **参考文献**
 
