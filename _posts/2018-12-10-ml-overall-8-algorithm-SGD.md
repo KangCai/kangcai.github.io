@@ -16,11 +16,11 @@ tags:
 
 ### 一、运筹学和凸优化
 
-本文要介绍的机器学习最后一个要素-算法，其实就是用到了**运筹学**，特别是**凸优化**的相关知识，所以本文首先分别介绍运筹学和凸优化。
+本文要介绍的机器学习最后一个要素-算法，其实就是使用了**运筹学**、特别是**凸优化**的相关知识，所以本文首先分别介绍运筹学和凸优化。
 
 ##### 1.1 运筹学
 
-运筹学（最优化理论）的研究范畴就是解决最优化问题。运筹学在机器学习领域应用非常广泛，因为机器的学习过程简单来说，做的主要就是优化问题：先初始化一下权重参数，然后利用优化方法来优化这个权重，直到目标函数不再下降、准确率不再上升，迭代停止。那到底什么是最优化问题？它的一般形式是：
+**运筹学（最优化理论）的研究范畴就是解决最优化问题**。运筹学在机器学习领域应用非常广泛，因为机器的学习过程简单来说，做的主要就是优化问题：先初始化一下权重参数，然后利用优化方法来优化这个权重，直到目标函数不再下降、准确率不再上升，迭代停止。那到底什么是最优化问题？它的一般形式是：
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;min&space;f(x)&space;\\&space;s.t.\text{&space;}x\in&space;X&space;\end{aligned}" />
@@ -68,13 +68,13 @@ tags:
 
 ##### 1.3 机器学习中的凸优化
 
-机器学习中对目标函数的求解（即三要素之算法），主要就是通过上文说的凸优化方法：
+机器学习中对目标函数的求解（即三要素之算法），主要使用的就是上文说的凸优化方法：
 
-1. **“线性规划”与“目标函数与约束函数都是凸函数的非线性规划“，属于凸优化**。这类问题在机器学习中十分常见：比如**线性回归（Linear Regression）** 是线性规划，属于凸优化；比如常见的**支持向量机（SVM）** 和**逻辑回归（Logistic Regression）** 都是目标函数与条件函数都是凸函数的非线性规划，属于凸优化。
-2. **对于非凸优化，通过一定手段，可以等价化归为凸问题**。比如对于变量要求是整数、目标函数与约束函数都是凸函数的整型规划，可以通过凸松弛手段转换成凸优化问题。另外，对于非凸的优化问题，我们可以将其转化为对偶问题，对偶函数一定是凹函数，但是这样求出来的解并不等价于原函数的解，只是原函数的一个确下界，关于这一点可以看前一篇介绍正则化时说到的拉格朗日乘子法，不论原问题是不是一个凸优化问题，只要满足KKT条件，转换成的对偶问题就是一个凸优化问题，可以用凸优化方法求解。
-3. **对于非凸优化，在机器学习中直接用凸优化的手段去求最优解效果也不错**，这跟做Optimization时的结论完全相反，这个现象与机器学习中各种正则化和随机化方法有关，从这里可见机器学习的工程性。比如**深度学习**的目标函数就是高度非凸目标函数，然而我们通常也是直接上凸优化方法。
+1. **“线性规划” 与 “目标函数与约束函数都是凸函数的非线性规划”，都属于凸优化**。这类问题在机器学习中十分常见：比如**线性回归（Linear Regression）** 是线性规划，属于凸优化；比如常见的**支持向量机（SVM）** 和**逻辑回归（Logistic Regression）** 都是目标函数与条件函数都是凸函数的非线性规划，也属于凸优化。
+2. **对于非凸优化，通过一定手段，可以等价化归为凸问题**。比如对于 “变量要求是整数、目标函数与约束函数都是凸函数” 的整型规划，可以通过凸松弛手段转换成凸优化问题。另外，对于非凸的优化问题，我们可以将其转化为对偶问题，对偶函数一定是凹函数，但是这样求出来的解并不等价于原函数的解，只是原函数的一个确下界，关于这一点可以看前一篇介绍正则化时说到的拉格朗日乘子法，不论原问题是不是一个凸优化问题，只要满足KKT条件，转换成的对偶问题就是一个凸优化问题，可以用凸优化方法求解。
+3. **对于非凸优化，在机器学习中直接用凸优化的手段去求最优解效果也不错**，这跟做Optimization时的结论完全相反，这个现象与机器学习中各种正则化和随机化方法有关，从这里可见机器学习的工程性。比如**深度学习（Deep Learning）** 的目标函数就是高度非凸目标函数，然而我们通常也是直接上凸优化方法。
 
-机器学习中常用的凸优化算法分为两大类：梯度下降法（Gradient Descent）和拟牛顿法（Quasi-Newton Methods）。因为两类方法的变种很多，所以拆分成两篇文章分别进行介绍，本文第二节将介绍梯度下降法及其变种，下一篇文章介绍拟牛顿法及其变种，两大类的主要差别也将在下篇文章中介绍。
+**机器学习中常用的凸优化算法分为两大类：梯度下降法（Gradient Descent）和拟牛顿法（Quasi-Newton Methods）**。因为两类方法的变种很多，所以拆分成两篇文章分别进行介绍，本文第二节将介绍梯度下降法及其变种，下一篇文章介绍拟牛顿法及其变种，两大类的主要差别也将在下篇文章中介绍。
 
 ### 二、梯度下降法及其变种
 
@@ -104,13 +104,13 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?\theta_n=\theta_{n-1}-\alpha&space;L'(\theta_{n-1})"  />
 </center>
 
-，需要注意的是，梯度下降法一次迭代是针对一个维度方向进行下降。目标函数关于模型参数的一阶导L′(θn)在不同的方法中都会使用到，为了方便起见，后文用 gn 来代替 L′(θn) ，如下所示，
+，需要注意的是，梯度下降法一次迭代是针对一个维度方向进行下降。目标函数关于模型参数的一阶导 L′(θn) 在不同的方法中都会使用到，为了方便起见，后文用 gn 来代替 L′(θn) ，新的迭代方式如下所示，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\theta_n=\theta_{n-1}-\alpha&space;g_{n-1}"/>
 </center>
 
-梯度下降法根据每次求解损失函数L带入的样本数，可以分为：全量梯度下降（计算所有样本的损失），批量梯度下降（每次计算一个batch样本的损失）和随机梯度下降（每次随机选取一个样本计算损失）。现在所说的 SGD（Stochastic Gradient Descent，随机梯度下降）多指Mini-batch Gradient Descent（批量梯度下降）。
+梯度下降法根据每次求解损失函数 L 带入的样本数，可以分为：全量梯度下降（计算所有样本的损失），批量梯度下降（每次计算一个batch样本的损失）和随机梯度下降（每次随机选取一个样本计算损失）。现在所说的 SGD（Stochastic Gradient Descent，随机梯度下降）多指Mini-batch Gradient Descent（批量梯度下降）。
 
 **优点：求一阶导，操作简单，计算量小**，在损失函数是凸函数的情况下能够保证收敛到一个较好的全局最优解。
 
@@ -128,51 +128,55 @@ tags:
 
 **2.2.1 Momentum**
 
-SGD 具有收敛不稳定：在 SGD 中，参数 θ 的迭代变化量都只是与当前梯度正相关，这会导致在迭代过程中，θ在最优解附近以较大幅度震荡无法收敛。Momentum 能在一定程度上缓解 SGD 收敛不稳定的问题，它的思想就是模拟物体运动的惯性：当我们跑步时转弯，我们最终的前进方向是由我们之前的方向和转弯的方向共同决定的。**Momentum 在每次更新时，保留一部分上次的更新方向**： 
+SGD 具有收敛不稳定性：在 SGD 中，参数 θ 的迭代变化量都只是与当前梯度正相关，这会导致在迭代过程中，θ在最优解附近以较大幅度震荡无法收敛。Momentum 能在一定程度上缓解 SGD 收敛不稳定的问题，它的思想就是模拟物体运动的惯性：当我们跑步时转弯，我们最终的前进方向是由我们之前的方向和转弯的方向共同决定的。**Momentum 在每次更新时，保留一部分上次的更新方向**： 
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\Delta\theta_n&space;=&space;\rho\Delta\theta_{n-1}&plus;&space;g_{n-1}"  />
 </center>
 
-**优点： 1. 由于在迭代时考虑了上一次 θ 的迭代变化量，所以在最优解附近通常具有梯度因方向相反而抵消的效果，从而在一定程度上缓解 SGD 的收敛不稳定问题；2. 除此之外，Momentum 还具有一定的摆脱局部最优的能力**，如果上一次梯度较大，而当前梯度为0时，仍可能按照上次迭代的方向冲出局部最优点。对于第一点直观上的理解是，它可以让每次迭代的“掉头方向不是那么大”，具体如图3所示，图3左子图为 SGD ，右子图为 Momentum 。可以看到，Moumentum 一方面能抑制 SGD 在来回振荡维度的迭代幅度，又能加强在缓慢单调变化维度的迭代幅度，
+**优点： 1. 由于在迭代时考虑了上一次 θ 的迭代变化量，所以在最优解附近通常具有梯度因方向相反而抵消的效果，从而在一定程度上缓解 SGD 的收敛不稳定问题；2. 除此之外，Momentum 还具有一定的摆脱局部最优的能力**，如果上一次梯度较大，而当前梯度为0时，仍可能按照上次迭代的方向冲出局部最优点。对于第一点直观上的理解是，它可以让每次迭代的“掉头方向不是那么大”，具体如图3所示，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/momentum sgd.jpg"/>
 </center>
-<center>图3 SGD 与 Momentum SGD 的对比</center>
+<center>图3 SGD（左） 与 Momentum SGD 的对比（右）</center>
+
+，图3左子图为 SGD ，右子图为 Momentum 。可以看到，Moumentum 一方面能抑制 SGD 在来回振荡维度的迭代幅度，又能加强在缓慢单调变化维度的迭代幅度，
 
 **缺点：这里又多了另外一个超参数 ρ 需要我们设置，它的选取同样会影响到结果** 。
 
 **2.2.2 Nesterov Momentum**
 
-Nesterov Momentum 又叫做 Nesterov Accelerated Gradient（NAG） ，是基于 Momentum 的加速算法。Momentum（也称之为Plain Momentum）的 θ 迭代向量的计算是把上一次迭代向量作为本次预期迭代向量，在此基础上叠加上本次梯度。而 NAG 认为这样的迭代不合理，迭代速度也不够快，NAG认为：既然都把上一次迭代向量作为本次预期向量了，就应该预期到底，应该将当前梯度替换成预期梯度，即当前 θ 加上上一次迭代向量之后的新 θ 所在点的函数梯度，
+**Nesterov Momentum 又叫做 Nesterov Accelerated Gradient（NAG） ，是基于 Momentum 的加速算法**。Momentum（也称之为Plain Momentum）的 θ 迭代向量的计算是把上一次迭代向量作为本次预期迭代向量，在此基础上叠加上本次梯度。而 NAG 认为这样的迭代不合理，迭代速度也不够快，**NAG认为：既然都把上一次迭代向量作为本次预期向量了，就应该预期到底，应该将当前梯度替换成预期梯度，即当前 θ 加上上一次迭代向量之后的新 θ 所在点的函数梯度**，公式表示如下，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\Delta\theta_n&space;=\rho\Delta\theta_{n-1}&plus;&space;g(\theta_{n-1}-\alpha&space;\Delta\theta_{n-1})"/>
 </center>
 
-为了更直观比较 Nesterov Momentum 和 Plain Momentum 的差别，将两者的迭代式子相减比较，再用微分的思想看待，如下所示，
+，为了更直观比较 Nesterov Momentum 和 Plain Momentum 的差别，将两者的迭代式子相减比较，再用微分的思想看待，如下所示，
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\Delta\theta_n^{NM}-\Delta\theta_n^{PM}&=g(\theta_{n-1}-\alpha\Delta\theta_{n-1})-g(\theta_{n-1})&space;\\&space;&=\alpha&space;\theta_{n-1}g'(\theta_{n-1})&space;\end{aligned}" />
 
-由于g是一阶导（最开始的定义，g(n) = L'(n)），而 Plain Momentum 只用到一阶导，所以可以看到 Nesterov Momentum 实际隐含使用到了二阶导数的信息，二阶导数大于 0 则一阶导单调递增，也即 Nesterov Momentum 比 Plain Momentum 迭代幅度更大，因此可以加快收敛，从这里可以看到这种做法的内在理论：如果这次的梯度比上次大，那么我们有理由认为梯度还会继续变大，所以当前迈的步子可以更大一些。直观地比较上述三种梯度方法，GD、Momentum GD、NAG，如下图4所示，
+由于 g 是一阶导（最开始的定义，g(n) = L'(n)），而 Plain Momentum 只用到一阶导，两者相减的式子涉及到了二阶导，所以看出 Nesterov Momentum 实际隐含使用到了二阶导数的信息。二阶导数大于 0 则一阶导单调递增，也即 **Nesterov Momentum 比 Plain Momentum 迭代幅度更大，因此可以加快收敛 ，从这里可以看到这种做法的内在理论：如果这次的梯度比上次大，那么我们有理由认为梯度还会继续变大，所以当前迈的步子可以更大一些**。
+
+直观地比较上述GD、Momentum GD、NAG三种梯度方法的迭代过程，如下图4所示，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/gd compare1.png"/>
 </center>
 <center>图4 GD、Momentum GD、NAG迭代示意图</center>
 
-，上图指的是在同一维度方向上的迭代对比示意图。
+，上图指的是在同一维度方向上的迭代对比示意图，其中，绿色实线箭头表示上一次在某方向的迭代向量，蓝色实线箭头表示本次在该方向的迭代向量，绿色虚线箭头即 Momentum，第二个图中蓝色虚线箭头表示本次梯度向量，第三个图中浅蓝色虚线箭头表示预期梯度向量。
 
 **2.2.3 共轭梯度法（Conjugate Gradient）**
 
-梯度下降法一次迭代是针对一个维度方向进行下降，故它每一步都是垂直于上一步。而共轭梯度法本质是把目标函数分成许多方向，然后不同方向分别求出极值再综合起来。共轭梯度法最重要的问题在于，它分的方向不是原来的各个维度，因为那样没法保证最小值是每个维度的最小值。那么应该如何保证这一条件呢，就要借助共轭向量，共轭向量的定义如下，
+**梯度下降法一次迭代是针对一个维度方向进行下降，故它每一步都是垂直于上一步。而共轭梯度法本质是把目标函数分成许多方向，然后不同方向分别求出极值再综合起来** 。共轭梯度法最重要的问题在于，它分的方向不是原来的各个维度，因为那样没法保证最小值是每个维度的最小值。那么应该如何保证这一条件呢，就要借助共轭向量，共轭向量的定义如下，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/cg.png"/>
 </center>
 
-通过一个不是很复杂的证明过程（有兴趣可以参考[《An Introduction to the Conjugate Gradient Method Without the Agonizing Pain》](https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf)一文中的第8节），可以证明在各个共轭向量上的最小值就是总最小值，而且可以通过下面的式子来计算共轭向量，
+通过一个不是很复杂的证明过程（有兴趣可以参考[《An Introduction to the Conjugate Gradient Method Without the Agonizing Pain》](https://www.cs.cmu.edu/~quake-papers/painless-conjugate-gradient.pdf)一文中的第8节），可以证明在各个共轭向量都是最小值的点就是总最小值点，而且可以通过下面的式子来计算共轭向量，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/cg2.png"/>
@@ -187,7 +191,7 @@ Nesterov Momentum 又叫做 Nesterov Accelerated Gradient（NAG） ，是基于 
 </center>
 <center>图5 共轭梯度法迭代过程示意图</center>
 
-图5中最左子图过程为 SGD 迭代过程，中间子图为将 SGD 迭代过程平移合并在一起的模样，最右子图为共轭梯度法迭代过程，可以看到共轭梯度法的迭代方向与原始维度方向不同。
+图5中第1个子图为 SGD 迭代过程，第2个子图为将 SGD 迭代过程平移合并在一起的模样，第3个子图为共轭梯度法迭代过程，可以看到共轭梯度法的迭代方向与原始维度方向不同。
 
 **优点：在n维的优化问题中，共轭梯度法最多n次迭代就能找到最优解。共轭梯度法其实是介于梯度下降法与牛顿法之间的一个方法，是一个一阶方法，但克服了梯度下降法收敛慢的缺点，又避免了存储和计算牛顿法所需要的二阶导数信息。**
 
@@ -196,7 +200,7 @@ Nesterov Momentum 又叫做 Nesterov Accelerated Gradient（NAG） ，是基于 
 
 ##### 2.3 GD学习率的改进
 
-**不同于2.2节算法是对迭代方向进行改进，本节算法主要研究沿着梯度方向走多远的问题，也即如何选择更合适的学习率 α ** 。
+**不同于2.2节算法是对迭代方向进行改进，本节算法主要研究沿着梯度方向走多远的问题，也即如何选择更合适的学习率 α** 。
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\theta_n=\theta_{n-1}-\alpha&space;g_{n-1}"/>
@@ -222,8 +226,7 @@ Nesterov Momentum 又叫做 Nesterov Accelerated Gradient（NAG） ，是基于 
 
 **2.3.2 AdaDelta** [《ADADELTA: An Adaptive Learning Rate Method 》 2012](https://arxiv.org/pdf/1212.5701.pdf)
 
-
-AdaDelta 是在 Adagrad 提出的后一年提出，它解决了 Adagrad 面临的两个问题，即迭代后期可能导致学习率变得特别小而导致收敛及其缓慢的问题，以及初始学习率需要人为设定的问题，它的迭代公式如下所示，
+**AdaDelta 是在 Adagrad 提出的后一年提出，它解决了 Adagrad 面临的两个问题，即迭代后期可能导致学习率变得特别小而导致收敛及其缓慢的问题，以及初始学习率需要人为设定的问题**，它的迭代公式如下所示，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?RMS[g]_{n}=\sqrt{E[g^2]_n&plus;\epsilon}"  />
@@ -232,7 +235,7 @@ AdaDelta 是在 Adagrad 提出的后一年提出，它解决了 Adagrad 面临�
 <img src="https://latex.codecogs.com/gif.latex?E[g^2]_n=\rho&space;E[g^2]_{n-1}&plus;(1-\rho)g_n^2" />
 </center>
 <center>
-<img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{RMS[\Delta\theta]_{n-1}}{RMS[g]_n}\alpha_0"  />
+<img src="https://latex.codecogs.com/gif.latex?\alpha=\frac{RMS[\Delta\theta]_{n-1}}{RMS[g]_n}"  />
 </center>
 
 ，这里 ρ 为小于1的正数，随着迭代次数的增加，同一个会因为累乘一个小于1的数而逐渐减小，即使用了一种自适应的方式，让距离当前越远的梯度的缩减学习率的比重越小。
@@ -241,7 +244,7 @@ AdaDelta 是在 Adagrad 提出的后一年提出，它解决了 Adagrad 面临�
 
 **2.3.3 RMSprop** [《Overview of Mini-batch Gradient Descent》 2012](https://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)
 
-大佬 Hinton 提出来的，其实它基本是 AdaDelta，这里的 RMS 就是AdaDelta中定义的 RMS。有意思的是, AdaDelta 的提出者 Zeiler 就是 Hinton 的弟子，他不知道自己的老师已经给这种方法命了名字。下面是 Hinton 的演说PPT里的定义，
+RMSprop 是大佬 Hinton 提出来的，其实它**其实就是 AdaDelta**，这里的 RMS 就是AdaDelta中定义的 RMS。有意思的是, AdaDelta 的提出者 Zeiler 就是 Hinton 的弟子，他不知道自己的老师已经给这种方法命了名字。下面是 Hinton 的演说PPT里的定义，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/RMSprop-lecture-Hinton.png"/>
@@ -251,7 +254,7 @@ AdaDelta 与 RMSprop 核心思想是一样的，不过在提出的时候还是�
 
 **2.3.4 Adam** [《Adam: A Method for Stochastic Optimization》 2014](https://arxiv.org/pdf/1412.6980.pdf)
 
-Adam是Momentum和Adaprop的结合体，我们先看它的更新公式，
+**Adam 是 Momentum 和 AdaDelta 的结合体**，我们先看它的更新公式，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?E[g^2]_n=\rho&space;E[g^2]_{n-1}&plus;(1-\rho)g_n^2" />
