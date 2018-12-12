@@ -87,7 +87,7 @@ In addition to the above reward signals, our agent receives a special reward to 
 
 主要是防止两边找到双赢的方式玩游戏，实际上是 reward 设置的不完美，但这个问题暂时无解，所以通过这种方式来增加训练的容错率。
 
-**16.6 奖励随时间的缩放**
+**16.5 奖励随时间的缩放**
 
 为了突出前期的重要性，故通过下面的公式来扩大前期 reward，减少后期 reward:
 
