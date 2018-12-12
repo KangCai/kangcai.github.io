@@ -15,7 +15,7 @@ tags:
 
 [传送门：OpenAI-Five Blog](https://blog.openai.com/openai-five/)
 
-### 收获
+### 一、收获
 
 其实也是一些重要的细节信息，
 
@@ -34,9 +34,13 @@ tags:
 13. **没有通过分层强化学习来做，而是直接有5分钟的半衰期的 reward 衰减系数来实现长时间预期**；
 14. **技能加点和物品购买是脚本写的**；
 15. 根据公布的信息推测1天大约跑23万场比赛，共6天，故**总训练场次约140万场**。
-16. 具体 reward 信息是 DOTA2 专家给出的，微调了几版，如下所示，
 
-**16.1 属性reward**
+
+### 二、Dota2 Reward细节
+
+具体 reward 信息是 DOTA2 专家给出的，微调了几版，如下所示，
+
+##### 2.1 个体属性reward
 
 | 属性 | 权重 | 描述                |
 | ---------- | ------ | -------------------------- |
@@ -51,7 +55,7 @@ tags:
 
 击杀一个英雄的 reward 之所以是负值，是因为
 
-**16.2 建筑reward**
+##### 2.2 建筑reward
 
 是随着血量百分比的线性函数: 
 
@@ -67,19 +71,18 @@ tags:
 | 兵营   | 2.0    |
 | 基地 | 2.5    |
 
-The agent receives extra reward upon killing several special buildings near the end of the game:
+然后是一些特殊的额外reward:
 
 | Extra Team | Weight | 描述                 |
 | ---------- | ------ | ----------------------------- |
 | 超级兵      | 4.0    | 打掉最后一个兵营 |
 | 胜利       | 2.5 | 获胜 |
 
-**16.3 分路reward**
+##### 2.3 分路reward
 
 游戏开始时给各个英雄预先分配一条 “线”（分路），如果离开这条路就会收到 0.02 的惩罚，以此来对 AI 训练出 “线” 的概念。
-In addition to the above reward signals, our agent receives a special reward to encourage exploration called "lane assignments." During training, we assign each hero a subset of the three lanes in the game. The model observes this assignment, and receives a negative reward (-0.02) if it leaves the designated lanes early in the game. This forces the model to see a variety of different lane assignments. During evaluation, we set all heroes' lane assignments to allow them to be in all lanes.
 
-**16.4 reward零和**
+##### 2.4 reward零和
 
 每个英雄的 reward 都要减去敌方队伍 reward 的均值:
 
@@ -87,7 +90,7 @@ In addition to the above reward signals, our agent receives a special reward to 
 
 主要是防止两边找到双赢的方式玩游戏，实际上是 reward 设置的不完美，但这个问题暂时无解，所以通过这种方式来增加训练的容错率。
 
-**16.5 奖励随时间的缩放**
+##### 2.5 奖励随时间的缩放
 
 为了突出前期的重要性，故通过下面的公式来扩大前期 reward，减少后期 reward:
 
@@ -95,14 +98,14 @@ In addition to the above reward signals, our agent receives a special reward to 
 
 ### 总结
 
-总的来说，OpenAI-Five的方法还是比较朴素的。一般来说，对于复杂的强化学习应用场景，通常有如下问题以及相应的解决方案：
+总的来说，**OpenAI-Five的方法还是比较朴素的**。一般来说，对于复杂的强化学习应用场景，通常有如下问题以及相应的解决方案：
 
 1. 状态空间大：解决方法如先用World Models抽象，再进行决策。
 2. 局面不完全可见：一般认为需要进行一定的搜索，如AlphaGo的MCTS（蒙特卡洛树搜索）。
 3. 动作空间大：可以使用模仿学习(Imitation Learning)，或者与层次强化学习结合的方法。
 4. 时间尺度大：一般认为需要时间维度上的层次强化学习(Hierarchical Reinforcement Leanring)来解决这个问题。
 
-神奇的是，OpenAI 没有使用上述任一方法，而仅仅使用高 γ 值的PPO基础算法，就解决了这些问题，这说明凭借非常大量的计算，强化学习的基础算法也能突破这些挑战。换个角度看，WorldModels、MCTS、IL、HRL等方法是学术界研究的重点方向，而 OpenAI-Five 却没有使用，也是 OpenAI-Five 潜在的提升空间。这些更高效的方法若被合理应用，可以加快模型的学习速度，增强模型的迁移能力，并帮助模型突破当前的限制。
+神奇的是，OpenAI 没有使用上述任一方法，而仅仅使用高 γ 值的PPO基础算法，就解决了这些问题，这说明凭借非常大量的计算，强化学习的基础算法也能突破这些挑战。换个角度看，WorldModels、MCTS、IL、HRL等方法是学术界研究的重点方向，而 OpenAI-Five 却没有使用，也可能是 OpenAI-Five 潜在的提升空间。这些更高效的方法若被合理应用，可以加快模型的学习速度，增强模型的迁移能力，并帮助模型突破当前的限制。
 
 [传送门：OpenAI Five Actor 网络模型](https://kangcai.github.io/img/in-post/post-ml/OpenAI_Five_Model.jpg)
 
