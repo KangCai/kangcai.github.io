@@ -15,11 +15,9 @@ tags:
 
 > 文章首发于[我的博客](https://kangcai.github.io/)，转载请保留链接 ;)
 
-[传送门：OpenAI-Five Blog](https://blog.openai.com/openai-five/)
-
 ### 一、收获
 
-其实也是一些重要的细节信息，
+本节的参考链接为[传送门：OpenAI-Five Blog](https://blog.openai.com/openai-five/)，原文夹杂了一些私货，剔除之后，剩下一些重要的、可供参考的细节信息，
 
 1. OpenAI-Five 从随机权重开始训练，为了避免 “策略崩溃”，**80%的游戏与自己战斗，20%的游戏与过去的自己战斗，来进行强化学习迭代**；
 2. Delay Reward 的问题是通过**最大化未来 reward 的指数 γ 衰减总和**来解决的；
@@ -40,7 +38,7 @@ tags:
 其中 7~9 点具体可参考 
 [传送门：OpenAI Five Actor 网络模型](https://kangcai.github.io/img/in-post/post-ml/OpenAI_Five_Model.jpg)
 
-### 二、Dota2 Reward细节
+### 二、OpenAI-Five Dota2 Reward细节
 
 具体 reward 信息是 DOTA2 专家给出的，微调了几版，如下所示，
 
