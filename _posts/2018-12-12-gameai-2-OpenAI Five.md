@@ -31,9 +31,4 @@ tags:
 14. **技能加点和物品购买是脚本写的**；
 15. 我推测1天大约跑23万场比赛，共6天，故**总训练场次约140万场**。
 
-Actor 网络模型如下图1所示，
-
-<center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/OpenAI Five Model.jpg"/>
-</center>
-<center>图1 OpenAI Five 网络模型</center>
+[OpenAI Five Actor 网络模型](https://kangcai.github.io/img/in-post/post-ml/OpenAI_Five_Model.jpg)
