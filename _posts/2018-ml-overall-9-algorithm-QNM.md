@@ -17,10 +17,6 @@ tags:
 牛顿法与拟牛顿法，DFP法，BFGS法，L-BFGS法
 高斯-牛顿法（GD）、通常是针对非线性最小二乘问题，我们将在《机器学习·有监督学习篇》中的某一篇对解决最小二乘问题的各种算法进行详细的介绍。
 
-！！！https://www.zhihu.com/question/46441403
-https://www.cnblogs.com/8335IT/p/5809495.html 牛顿法和梯度下降法对比
-http://blog.sina.com.cn/s/blog_1442877660102wru5.html
-
 ### 一、牛顿法
 
 ##### 1.1 原始的牛顿法（Newton's method）
@@ -75,14 +71,20 @@ g
 
 拟牛顿法的本质思想是改善牛顿法每次需要求解复杂的Hessian矩阵的逆矩阵的缺陷，它使用正定矩阵来近似Hessian矩阵的逆，从而简化了运算的复杂度。
 
-##### 1.1 DFP法
+##### 1.1 DFP算法（Davidon-Fletcher-Powell algorithm）
 
-##### 1.2 BFGS法
+##### 1.2 BFGS算法（Broyden–Fletcher–Goldfarb–Shanno algorithm）
 
-##### 1.3 L-BFGS法
+##### 1.3 L-BFGS法（Limited-memory Broyden–Fletcher–Goldfarb–Shanno algorithm）
 
 
 ### 三、拟牛顿法和梯度下降法的比较
+
+
+！！！https://www.zhihu.com/question/46441403
+https://www.cnblogs.com/8335IT/p/5809495.html 牛顿法和梯度下降法对比
+http://blog.sina.com.cn/s/blog_1442877660102wru5.html
+
 
 [csdn: 最全的机器学习中的优化算法介绍](https://blog.csdn.net/qsczse943062710/article/details/76763739)
 [cnblog: 常见的几种最优化方法](http://www.cnblogs.com/maybe2030/p/4751804.html)
