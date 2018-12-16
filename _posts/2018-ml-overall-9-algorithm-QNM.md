@@ -29,9 +29,11 @@ tags:
 
 当牛顿法用于机器学习的最优化问题时，目标是求解 <img src="http://latex.codecogs.com/gif.latex?L'(\theta)=0"/> 由于公式为 <img src="http://latex.codecogs.com/gif.latex?\theta^{t+1}\leftarrow \theta^t - \frac{L'(\theta)}{L''(\theta)} "/> 。
 
-海森矩阵是函数 <img src="http://latex.codecogs.com/gif.latex?f"/> 的二阶偏导，表示如下，
+海森矩阵是函数 <img src="http://latex.codecogs.com/gif.latex?f"/> 的二阶偏导，
 
+<center>
 <img src="http://latex.codecogs.com/gif.latex?H_f=\begin{bmatrix}\frac{\partial^2f}{\partial&space;x_0^2}&\frac{\partial^2f}{\partial&space;x_0&space;\partial&space;x_1}&...&\frac{\partial^2f}{\partial&space;x_0&space;\partial&space;x_n}\\&space;\frac{\partial^2f}{\partial&space;x_1&space;\partial&space;x_0}&\frac{\partial^2f}{\partial&space;x_1^2}&...&\frac{\partial^2f}{\partial&space;x_1&space;\partial&space;x_n}\\\vdots&\vdots&\ddots&\vdots\\&space;\frac{\partial^2f}{\partial&space;x_n&space;\partial&space;x_0}&\frac{\partial^2f}{\partial&space;x_n&space;\partial&space;x_1}&...&\frac{\partial^2f}{\partial&space;x_n^2}&space;\end{bmatrix}"/>
+</center>
 
 **优点：二阶收敛，收敛速度快**
 
@@ -41,19 +43,23 @@ tags:
 
 牛顿法是一种迭代算法，每一步都需要求解目标函数的Hessian矩阵的逆矩阵，计算比较复杂甚至是无法计算，所以在机器学习中一般不会直接使用牛顿法。
 
-##### 1.2 高斯-牛顿法
+##### 1.2 高斯-牛顿法（Gauss-Newton algorithm，GN）
 
 是求解最小二乘问题的一个特例，
 
 https://www.cnblogs.com/monoSLAM/p/5246665.html
 
-GN是对牛顿法的改进，解决高维牛顿法难解决的计算问题。它用到两个矩阵，雅可比矩阵（Jacobian matrix）。其中雅可比矩阵是函数 <img src="http://latex.codecogs.com/gif.latex?f"/> 的一阶偏导矩阵，表示如下，
+GN 是对牛顿法的改进，解决高维牛顿法难解决的计算问题。它用到两个矩阵，雅可比矩阵（Jacobian matrix）。其中雅可比矩阵是函数 <img src="http://latex.codecogs.com/gif.latex?f"/> 的一阶偏导矩阵，
 
+<center>
 <img src="http://latex.codecogs.com/gif.latex?J_f=\begin{bmatrix}&space;\frac{\partial&space;f}{\partial&space;x_0}&\cdots&\frac{\partial&space;f}{\partial&space;x_n}\\&space;\vdots&\ddots&\vdots\\&space;\frac{\partial&space;f}{\partial&space;x_0}&\cdots&\frac{\partial&space;f}{\partial&space;x_n}&space;\end{bmatrix}" />
+</center>
 
 牛顿法公式可转换成，
 
+<center>
 <img src="http://latex.codecogs.com/gif.latex?X_{n&plus;1}=X_n-H_f(x_n)^{-1}\nabla&space;f(x_n)" />
+</center>
 
 由于 _x_ 是多维的，梯度向量在 _x_ 的第 _i_ 维上分量为
 
@@ -61,7 +67,7 @@ g
 
 这样有两个好处，第一是线性，第二是只需要一阶微分。缺点是GN之反矩阵不存在时，而且在接近极值点时，Hessian矩阵变得非常小，可以类比成缩小了梯度下降法的学习率，。
 
-##### 1.3 莱文贝格-马夸特方法（LM）
+##### 1.3 莱文贝格-马夸特算法（Levenberg–Marquardt algorithm，LM）
 
 其实就只是在GN基础上修改了一点，GN中，迭代公式为，而在LM方法中，。从LM的公式中可以看到，<img src="http://latex.codecogs.com/gif.latex?\lambda" /> 大的时候这种算法会接近GD，小的时候会接近GN。在LM的实际应用中，为了保证能快速稳定下降，通常会动态调整<img src="http://latex.codecogs.com/gif.latex?\lambda" />：先使用较小的<img src="http://latex.codecogs.com/gif.latex?\lambda" />，使之更接近GN，可以快速下降；
 
