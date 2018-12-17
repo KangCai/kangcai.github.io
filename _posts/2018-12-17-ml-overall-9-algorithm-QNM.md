@@ -53,7 +53,7 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?f'(x)=f'(x_0)&plus;f''(x_0)(x-x_0)" />
 </center>
 
-根据微积分的性质，f(x) 取最小值时，有 f′(x)=0 ，代入上面的式子有：
+根据微积分的性质，f(x) 取最小值时，有 f′(x)=0 ，代入上面的式子有
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?x=x_0-\frac{f'(x_0)}{f''(x_0)}" />
@@ -79,7 +79,7 @@ tags:
 <img src="http://latex.codecogs.com/gif.latex?H_L=\begin{bmatrix}\frac{\partial^2L}{\partial&space;x_0^2}&\frac{\partial^2L}{\partial&space;x_0&space;\partial&space;x_1}&...&\frac{\partial^2L}{\partial&space;x_0&space;\partial&space;x_n}\\&space;\frac{\partial^2L}{\partial&space;x_1&space;\partial&space;x_0}&\frac{\partial^2L}{\partial&space;x_1^2}&...&\frac{\partial^2L}{\partial&space;x_1&space;\partial&space;x_n}\\\vdots&\vdots&\ddots&\vdots\\&space;\frac{\partial^2L}{\partial&space;x_n&space;\partial&space;x_0}&\frac{\partial^2L}{\partial&space;x_n&space;\partial&space;x_1}&...&\frac{\partial^2Lf}{\partial&space;x_n^2}&space;\end{bmatrix}"/>
 </center>
 
-，将雅可比矩阵 J 和海森矩阵 H 带入原迭代公式，由于在迭代公式的迭代量中，海森矩阵是除数，所以实际上是乘以海森矩阵的逆，迭代公式可表示为，
+，将雅可比矩阵 J 和海森矩阵 H 带入原迭代公式，由于在迭代公式的迭代量中，海森矩阵是除数，所以实际上是乘以海森矩阵的逆，迭代公式可表示为
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\theta^{t&plus;1}\leftarrow\theta^t-H_L^{-1}(\theta^t)J(\theta^t)"/>
@@ -107,7 +107,7 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?L(\theta)=\frac{1}{2}r(\theta)^Tr(\theta)=\frac{1}{2}\sum_{i=1}^{m}[r_i(\theta)]^2,&space;\quad&space;m\geq&space;n"/>
 </center>
 
-其中 r 为最小二乘问题的残差，即 L 函数值与 groudtruth 的插值。L 关于 θ 的雅可比矩阵 J 和海森矩阵 H 可用 r 表示为，
+其中 r 为最小二乘问题的残差，即 L 函数值与 groudtruth 的插值。L 关于 θ 的雅可比矩阵 J 和海森矩阵 H 可用 r 表示为
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?J_j=2\sum_{i=1}^{m}r_i&space;\frac{\partial&space;r_i}{\partial&space;x_j}=2J_r^Tr,&space;\quad&space;H_{jk}=2\sum_{i=1}^{m}(\frac{\partial&space;r_i}{\partial&space;x_j}\frac{\partial&space;r_i}{\partial&space;x_k}&plus;r_i\frac{\partial&space;^2r_i}{\partial&space;x_j\partial&space;x_k})" />
@@ -119,7 +119,7 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?H_{jk}\approx&space;2\sum_{i=1}^m&space;J_{ij}J_{ik}=2J_r^TJ_r"/>
 </center>
 
-带入到牛顿法的迭代公式，则 GN 的迭代公式表示为，
+带入到牛顿法的迭代公式，则 GN 的迭代公式表示为
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\theta^{t&plus;1}\leftarrow\theta^t-(J_r^TJ_r)^{-1}J_r^Tr"/>
@@ -135,13 +135,13 @@ tags:
 
 ##### 1.3 莱文贝格-马夸特方法（Levenberg–Marquardt algorithm，LM）
 
-**LM 同时结合了梯度下降法（GD）稳定下降的优点和高斯牛顿法（GN）在极值点附近快速收敛的优点，同时避免了 GD 和 GN 相应的缺点**。GN 的迭代公式为，
+**LM 同时结合了梯度下降法（GD）稳定下降的优点和高斯牛顿法（GN）在极值点附近快速收敛的优点，同时避免了 GD 和 GN 相应的缺点**。GN 的迭代公式为
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\theta^{t&plus;1}\leftarrow\theta^t-(J_r^TJ_r)^{-1}J_r^Tr"/>
 </center>
 
-而在 LM 方法的迭代公式为，
+。而在 LM 方法的迭代公式为
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\theta^{t&plus;1}\leftarrow\theta^t-(J_r^TJ_r+\lambda I)^{-1}J_r^Tr"/>
@@ -159,19 +159,19 @@ tags:
 
 拟牛顿法于20世纪50年代由美国 Argonne 国家实验室的物理学家 W.C.Davidon 所提出来，这种算法在当时看来是非线性优化领域最具创造性的发明之，而且随后该算法被证明远比其他方法快速和可靠，使得非线性优化这门学科在一夜之间突飞猛进。机器学习中常见的拟牛顿法有 DFP 法、BFGS 法、 L-BFGS法。
 
-那么拟牛顿法一族，包括DFP 法、BFGS 法、 L-BFGS法，是如何构造 Hessian 矩阵的逆矩阵的迭代公式呢？回到1.1节中牛顿法迭代公式的推导过程，二阶泰勒展开式对 x 进行求导得，
+那么拟牛顿法一族，包括DFP 法、BFGS 法、 L-BFGS法，是如何构造 Hessian 矩阵的逆矩阵的迭代公式呢？回到1.1节中牛顿法迭代公式的推导过程，二阶泰勒展开式对 x 进行求导得
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?f'(x)=f'(x_{k+1})&plus;f''(x_{k+1})(x-x_{k+1})" />
 </center>
 
-将 <img src="https://latex.codecogs.com/gif.latex?x=x_k"/> 带入公式有，
+将 <img src="https://latex.codecogs.com/gif.latex?x=x_k"/> 带入公式得
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?f''(x_{k&plus;1})^{-1}(f'(x_{k&plus;1})-f'(x_k))=x_{k&plus;1}-x_k" />
 </center>
 
-令 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}^{-1}=f''(x_{k&plus;1})^{-1},&space;\&space;y_k=f'(x_{k&plus;1})-f'(x_k),\&space;s_k=x_{k&plus;1}-x_k"/>，则公式可以简单表示为，
+令 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}^{-1}=f''(x_{k&plus;1})^{-1},&space;\&space;y_k=f'(x_{k&plus;1})-f'(x_k),\&space;s_k=x_{k&plus;1}-x_k"/>，则迭代公式可以简单表示为
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}^{-1}y_k=s_k" />
@@ -179,13 +179,13 @@ tags:
 
 ##### 1.1 DFP法（Davidon-Fletcher-Powell algorithm）
 
-**DFP法的核心思想是直接构造 Hessian 矩阵的逆矩阵的迭代公式**。继续上文公式的推导，先假海森矩阵的逆矩阵的迭代公式为 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}^{-1}=H_k^{-1}&plus;E_k" />，DFP 法的目标就是求这个 <img src="https://latex.codecogs.com/gif.latex?E_k" />，将 <img src="https://latex.codecogs.com/gif.latex?E_k=\alpha&space;u_ku_k^T&plus;\beta&space;v_kv_k^T" /> 代入上式有，
+**DFP法的核心思想是直接构造 Hessian 矩阵的逆矩阵的迭代公式**。继续上文公式的推导，先假海森矩阵的逆矩阵的迭代公式为 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}^{-1}=H_k^{-1}&plus;E_k" />，DFP 法的目标就是求这个 <img src="https://latex.codecogs.com/gif.latex?E_k" />，将 <img src="https://latex.codecogs.com/gif.latex?E_k=\alpha&space;u_ku_k^T&plus;\beta&space;v_kv_k^T" /> 代入上式得
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&\(H_k^{-1}&plus;\alpha&space;u_ku_k^T&plus;\beta&space;v_kv_k^T)y_k=s_k&space;\\&space;\Rightarrow&space;\&space;&\alpha(u_k^Ty_k)u_k&plus;\beta(v_k^Ty_k)v_k=s_k-H_k^{-1}y_k&space;\end{aligned}"  />
 </center>
 
-然后假设<img src="https://latex.codecogs.com/gif.latex?u_k=rH_k^{-1}y_k,v_k=\theta&space;s_k"/>，代入上式，
+然后假设<img src="https://latex.codecogs.com/gif.latex?u_k=rH_k^{-1}y_k,v_k=\theta&space;s_k"/>，代入上式得
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&&space;\Rightarrow&space;\&space;\alpha[((rH_k^{-1}y_k)^Ty_k)(rH_k^{-1}y_k)&plus;\beta((\theta&space;s_k)^Ty_k)(\theta&space;s_k)=s_k-H_k^{-1}y_k&space;\\&space;&&space;\Rightarrow&space;\&space;[\alpha&space;r^2(y_k^TH_k^{-1}y_k)&plus;1](H_k^{-1}y_k)&plus;[\beta\theta^2(s_k^Ty_k)-1]s_k=0&space;\end{aligned}"/>
@@ -197,7 +197,7 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\alpha&space;r^2&=-\frac{1}{y_k^T&space;H_k^{-1}&space;y_k}\\&space;\beta&space;\theta^2&=&space;\frac{1}{s_k^T&space;y_k}&space;\end{aligned}"/>
 </center>
 
-整合上述 u, v, α, β 相关的表达式，带入最终 DFP 法得到的 Hessian 矩阵的逆矩阵的迭代公式，
+整合上述 u, v, α, β 相关的表达式，带入最终 DFP 法得到的 Hessian 矩阵的逆矩阵的迭代公式
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}^{-1}=H_k^{-1}-\frac{H_k^{-1}&space;y_k&space;y_k^T&space;H_k^{-1}}{y_k^T&space;H_k^{-1}&space;y_k}&plus;\frac{s_k&space;s_k^T}{s_k^Ty_k}"/>
@@ -207,7 +207,7 @@ tags:
 
 **BFGS 算法与 DFP 算法的区别在于，迭代公式结果不一样，对 Hessian 矩阵的逆矩阵的构造方法也不一样：其中，DFP算法是直接构造，而BFGS是分两步走：先求 Hessian 矩阵的迭代公式，然后根据Sherman-Morrison公式转换成Hessian 矩阵的逆矩阵的迭代公式**。
 
-首先求 Hessian 矩阵的迭代公式，虽然 DFP 法求得是 Hessian 逆矩阵的迭代公式，但其实可以用同样的推导过程求 Hessian 矩阵的迭代公式，如下表示，
+首先求 Hessian 矩阵的迭代公式，虽然 DFP 法求得是 Hessian 逆矩阵的迭代公式，但其实可以用同样的推导过程求 Hessian 矩阵的迭代公式，得到
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}=H_k-\frac{H_k&space;y_k&space;y_k^T&space;H_k}{y_k^T&space;H_k&space;y_k}&plus;\frac{s_k&space;s_k^T}{s_k^Ty_k}"/>
@@ -219,7 +219,7 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?(A&plus;uv^T)^{-1}&space;=&space;A^{-1}-\frac{(A^{-1}u)(v^TA^{-1})}{1&plus;v^TA^{-1}u}" />
 </center>
 
-该公式描述了在矩阵 A 发生某种变化时，如何利用之前求好的逆，求新的逆，而这个性质正是我们需要的，接下来通过该式子将 Hessian 矩阵的迭代公式改造一下，得到 Hessian 矩阵的逆矩阵的迭代公式可表示为，
+该公式描述了在矩阵 A 发生某种变化时，如何利用之前求好的逆，求新的逆，而这个性质正是我们需要的，接下来通过该式子将 Hessian 矩阵的迭代公式改造一下，得到 Hessian 矩阵的逆矩阵的迭代公式
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&H^{-1}_{n&plus;1}=(I&space;-&space;\rho_n&space;y_n&space;s_n^T)&space;H^{-1}_n&space;(I&space;-&space;\rho_n&space;s_n&space;y_n^T)&space;&plus;&space;\rho_n&space;s_n&space;s_n^T&space;\\&space;&&space;where&space;\&space;\rho_n&space;=&space;(y_n^T&space;s_n)^{-1}&space;\end{aligned}" />
