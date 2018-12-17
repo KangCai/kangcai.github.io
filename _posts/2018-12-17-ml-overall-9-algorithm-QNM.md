@@ -10,11 +10,11 @@ tags:
   - 机器学习·总览篇
 ---
 
-> 在机器学习中，牛顿法与拟牛顿法在解决目标函数的最优化问题方面也起着重要的作用。本篇是机器学习三要素之算法的第二篇，也是三要素介绍的最后一篇。最近的5篇文章完整地介绍了机器学习的三要素，对三要素的掌握对于机器学习的学习至关重要，所有机器学习方法的想法和实现都离不开这三个要素。
+> 在机器学习中，与梯度下降法一样，牛顿法与拟牛顿法在解决目标函数的最优化问题方面也起着重要的作用。本篇是机器学习三要素之算法的第二篇，也是三要素介绍的最后一篇。最近的5篇文章完整地介绍了机器学习的三要素，对三要素的掌握对于机器学习的学习至关重要，所有机器学习方法的想法和实现都离不开这三个要素。
 
 > 算法。文章首发于[我的博客](https://kangcai.github.io/)，转载请保留链接 ;)
 
-与梯度下降法一样，在解决机器学习目标函数的最优化问题时，牛顿法与拟牛顿法也起着重要的作用。本文将分三节分别介绍 牛顿法一族、拟牛顿法一族 以及 两者与梯度下降法的比较。
+与梯度下降法一样，在解决机器学习目标函数的最优化问题时，牛顿法与拟牛顿法也起着重要的作用。本文将分三节分别介绍 牛顿法一族、拟牛顿法一族 以及 两者与梯度下降法的比较。另外，本文涉及到的迭代公式比较抽象，难以用几何表示，所以更多的是公式推导。
 
 ### 一、牛顿法
 
@@ -61,13 +61,13 @@ tags:
 
 **用于最优化问题**
 
-当牛顿法用于机器学习的最优化问题时，目标是求解 <img src="http://latex.codecogs.com/gif.latex?L'(\theta)=0"/>。可以类比于求方程解，迭代公式为 
+当牛顿法用于机器学习的最优化问题时，目标是求解 <img src="http://latex.codecogs.com/gif.latex?L'(\theta)=0"/>，可以类比于求方程解，迭代公式为 
 
 <center>
 <img src="http://latex.codecogs.com/gif.latex?\theta^{t+1}\leftarrow \theta^t - \frac{L'(\theta)}{L''(\theta)} "/> 。
 </center>
 
-当函数输出为1维时，L'(θ)为 L 关于 θ 的梯度向量，而当函数输出为 m 维时，即<img src="https://latex.codecogs.com/gif.latex?L(\theta)=(L_1(\theta),L_2(\theta),\&space;...\&space;,L_m(\theta))"/>，则 L'(θ) 是 L 关于 θ 的一阶偏导构成的矩阵，该矩阵在19世纪初由德国数学家雅可比提出且被命名为雅可比矩阵，θ 表示成向量形式 <img src="https://latex.codecogs.com/gif.latex?(x_0,x_1,\&space;...\&space;,x_n)"/>，则雅可比矩阵表示为
+当函数输出为1维时，L'(θ)为 L 关于 θ 的梯度向量，而当函数输出为 m 维时，即<img src="https://latex.codecogs.com/gif.latex?L(\theta)=(L_1(\theta),L_2(\theta),\&space;...\&space;,L_m(\theta))"/>，则 L'(θ) 是 L 关于 θ 的一阶偏导构成的矩阵，该矩阵在19世纪初由德国数学家雅可比提出且被命名为**雅可比矩阵** ，θ 表示成向量形式 <img src="https://latex.codecogs.com/gif.latex?(x_0,x_1,\&space;...\&space;,x_n)"/>，则雅可比矩阵表示为
 
 <center>
 <img src="http://latex.codecogs.com/gif.latex?J_L=\begin{bmatrix}&space;\frac{\partial&space;L_1}{\partial&space;x_0}&\cdots&\frac{\partial&space;L_1}{\partial&space;x_n}\\&space;\vdots&\ddots&\vdots\\&space;\frac{\partial&space;L_m}{\partial&space;x_0}&\cdots&\frac{\partial&space;L_m}{\partial&space;x_n}&space;\end{bmatrix}" />
@@ -91,7 +91,7 @@ tags:
 
 **缺点：难以计算**
 
-牛顿法的迭代过程中，每一步都需要求解目标函数的Hessian矩阵的逆矩阵，计算比较复杂甚至是无法计算，这个问题很严重，所以在机器学习中甚至都不会直接使用牛顿法。
+牛顿法的迭代过程中，每一步都需要求解目标函数的 Hessian 矩阵的逆矩阵，计算比较复杂甚至是无法计算，这个问题很严重，所以在机器学习中甚至都不会直接使用牛顿法。
 
 ##### 1.2 高斯-牛顿法（Gauss-Newton algorithm，GN）
 
@@ -127,7 +127,7 @@ tags:
 
 **优点：计算量小**
 
-主要问题是因为牛顿法中Hessian矩阵 H 中的二阶信息项通常难以计算或者花费的工作量很大，又因为在计算梯度时已经得到一阶偏导 J，这样 H 中的一阶信息项几乎是现成的。鉴于此，为了简化计算，获得有效算法，我们可用一阶导数信息逼近二阶信息项。注意这么干的前提是，残差 r 接近于零或者接近线性函数从而接近与零时，二阶信息项才可以忽略，通常称为“小残量问题”，最典型的就是最小二乘问题，否则高斯牛顿法不收敛。
+主要问题是因为牛顿法中 Hessian 矩阵 H 中的二阶信息项通常难以计算或者花费的工作量很大，又因为在计算梯度时已经得到一阶偏导 J，这样 H 中的一阶信息项几乎是现成的。鉴于此，为了简化计算，获得有效算法，我们可用一阶导数信息逼近二阶信息项。注意这么干的前提是，残差 r 接近于零或者接近线性函数从而接近与零时，二阶信息项才可以忽略，通常称为“小残量问题”，最典型的就是最小二乘问题，否则高斯牛顿法不收敛。
 
 **缺点：收敛要求较为严格**
 
@@ -179,7 +179,7 @@ tags:
 
 ##### 1.1 DFP法（Davidon-Fletcher-Powell algorithm）
 
-**DFP法的核心思想是直接构造 Hessian 矩阵的逆矩阵的迭代公式**。继续上文公式的推导，先假海森矩阵的逆矩阵的迭代公式为 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}^{-1}=H_k^{-1}&plus;E_k" />，DFP 法的目标就是求这个 <img src="https://latex.codecogs.com/gif.latex?E_k" />，将 <img src="https://latex.codecogs.com/gif.latex?E_k=\alpha&space;u_ku_k^T&plus;\beta&space;v_kv_k^T" /> 代入上式得
+**DFP 法的核心思想是直接构造 Hessian 矩阵的逆矩阵的迭代公式**。继续上文公式的推导，先假海森矩阵的逆矩阵的迭代公式为 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}^{-1}=H_k^{-1}&plus;E_k" />，DFP 法的目标就是求这个 <img src="https://latex.codecogs.com/gif.latex?E_k" />，将 <img src="https://latex.codecogs.com/gif.latex?E_k=\alpha&space;u_ku_k^T&plus;\beta&space;v_kv_k^T" /> 代入上式得
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&\(H_k^{-1}&plus;\alpha&space;u_ku_k^T&plus;\beta&space;v_kv_k^T)y_k=s_k&space;\\&space;\Rightarrow&space;\&space;&\alpha(u_k^Ty_k)u_k&plus;\beta(v_k^Ty_k)v_k=s_k-H_k^{-1}y_k&space;\end{aligned}"  />
@@ -231,11 +231,11 @@ BFGS 法相比于 DFP 法，对Hessian 矩阵的逆矩阵近似误差更小，�
 
 **缺点**
 
-拟牛顿法都共同具有的缺点，即对 Hessian 矩阵的逆矩阵的近似存在误差。
+拟牛顿法都共同具有的缺点，即对 Hessian 矩阵的逆矩阵的近似存在误差；吃内存，因为需要存储 Hessian 矩阵的逆矩阵。
 
 ##### 1.3 L-BFGS法（Limited-memory Broyden–Fletcher–Goldfarb–Shanno algorithm）
 
-**L-BFGS 法是 BFGS 算法的一个小改进，本质是用准确度下降的少量代价来换取大量空间的节省，它对 BFGS 算法进行了近似，不存储完整的逆矩阵**。回顾一下 BFGS 的迭代公式，
+**L-BFGS 法是针对 BFGS 算法吃内存问题的一个小改进，本质是用准确度下降的少量代价来换取大量空间的节省，它对 BFGS 算法进行了近似，不存储完整的逆矩阵**。回顾一下 BFGS 的迭代公式，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&H^{-1}_{n&plus;1}=(I&space;-&space;\rho_n&space;y_n&space;s_n^T)&space;H^{-1}_n&space;(I&space;-&space;\rho_n&space;s_n&space;y_n^T)&space;&plus;&space;\rho_n&space;s_n&space;s_n^T&space;\\&space;&&space;where&space;\&space;\rho_n&space;=&space;(y_n^T&space;s_n)^{-1}&space;\end{aligned}" />
@@ -253,9 +253,11 @@ L-BFGS 不存储逆矩阵，而是存储最新 m 个上面公式中的 s 和 y �
 | 牛顿法 | <img src="https://latex.codecogs.com/gif.latex?\theta_{k+1}\leftarrow\theta_k-H_k^{-1} \bigtriangledown L_k"/> | 局部收敛、二阶收敛 | 非线性最小二乘问题 | LM 法 | 
 | 拟牛顿法 | <img src="https://latex.codecogs.com/gif.latex?\theta_{k&plus;1}\leftarrow\theta_k-H_k^{-1}&space;\bigtriangledown&space;L_k&space;\\&space;where,\&space;H_k^{-1}=H_{k-1}^{-1}&plus;E_{k-1}"/>| 局部收敛、二阶收敛 | 逻辑回归 | L-BFGS |
 
-事实上，在机器学习实际应用中，还是梯度下降法（比如SGD），特别是自适应学习率的梯度下降法（比如RMSprop、Adam）更实用也更常用，应用局限性也最低，在更多的情况下能稳定收敛。
+事实上，在机器学习实际应用中，梯度下降法（比如SGD），特别是自适应学习率的梯度下降法（比如RMSprop、Adam）更实用也更常用，应用局限性也最低，在更多的情况下能稳定收敛。
 
 至此，最近的5篇文章完整地介绍了机器学习的三要素，对三要素的掌握对于机器学习的学习至关重要，所有机器学习方法的想法和实现都离不开这三个要素。
+
+**参考文献**
 
 1. [wiki: 牛顿法](https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95)
 2. [wiki: Levenberg-Marquardt方法](https://zh.wikipedia.org/wiki/%E8%8E%B1%E6%96%87%E8%B4%9D%E6%A0%BC%EF%BC%8D%E9%A9%AC%E5%A4%B8%E7%89%B9%E6%96%B9%E6%B3%95)
@@ -265,11 +267,9 @@ L-BFGS 不存储逆矩阵，而是存储最新 m 个上面公式中的 s 和 y �
 6. [zhihu: DFP与BFGS算法的比较？](https://www.zhihu.com/question/34873977/answer/242695668)
 7. [zhihu: 梯度下降or拟牛顿法？](https://www.zhihu.com/question/46441403)
 8. [csdn: 最全的机器学习中的优化算法介绍](https://blog.csdn.net/qsczse943062710/article/details/76763739)
-9. [csdn：Gauss-Newton算法学习](https://blog.csdn.net/jinshengtao/article/details/51615162 
-)
+9. [csdn：Gauss-Newton算法学习](https://blog.csdn.net/jinshengtao/article/details/51615162 )
 10. [csdn: 优化算法——拟牛顿法之DFP算法](https://blog.csdn.net/google19890102/article/details/45848439)
-11. [csdn: 拟牛顿法（DFP、BFGS、L-BFGS）](https://blog.csdn.net/songbinxu/article/details/79677948
-)
+11. [csdn: 拟牛顿法（DFP、BFGS、L-BFGS）](https://blog.csdn.net/songbinxu/article/details/79677948)
 12. [cnblog: 常见的几种最优化方法](http://www.cnblogs.com/maybe2030/p/4751804.html)
 
 
