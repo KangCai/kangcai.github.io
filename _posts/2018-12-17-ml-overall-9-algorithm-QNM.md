@@ -23,66 +23,187 @@ tags:
 
 **用于求方程解**
 
-牛顿法用于求解<img src="http://latex.codecogs.com/gif.latex?f(x)=0" />问题时，首先则是先设定初始值<img src="http://latex.codecogs.com/gif.latex?x_0" title="x_0" />，将问题转化为求 <img src="http://latex.codecogs.com/gif.latex?f'(x_0)=0" /> 这个方程的根，然后求得的根作为下一次迭代的 _x_ 。
+牛顿法用于求方程解，即<img src="http://latex.codecogs.com/gif.latex?f(x)=0" />问题时，首先是设定初始值<img src="http://latex.codecogs.com/gif.latex?x_0" title="x_0" />，获得此处的导数 <img src="http://latex.codecogs.com/gif.latex?f'(x_0)" />，计算下一 x 值，<img src="https://latex.codecogs.com/gif.latex?x_1=x_0-\frac{f(x_0)}{f'(x_0)}"/>，重复这个迭代过程，得到迭代公式为，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?x_{n&plus;1}=x_n-\frac{f(x_n)}{f'(x_n)}"/>
+</center>
+
+简单地说一下牛顿法迭代公式的推导过程，首先是泰勒展开，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?f(x)=f(x_0)&plus;\frac{f'(x_0)}{1!}(x-x_0)&plus;\frac{f''(x_0)}{2!}(x-x_0)^2&plus;\frac{f'''(x_0)}{3!}(x-x_0)^3&plus;..." />
+</center>
+
+，忽略二次以上的项，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?f(x)=f(x_0)&plus;\frac{f'(x_0)}{1!}(x-x_0)&plus;\frac{f''(x_0)}{2!}(x-x_0)^2" />
+</center>
+
+两边对 x 求导，注意区分 x0 相关的值是常量，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?f'(x)=f'(x_0)&plus;f''(x_0)(x-x_0)" />
+</center>
+
+根据微积分的性质，f(x) 取最小值时，有 f′(x)=0 ，代入上面的式子有：
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?x=x_0-\frac{f'(x_0)}{f''(x_0)}" />
+</center>
+
+wiki 上动图可以形象表示出牛顿法的迭代过程，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/NewtonIteration_Ani.gif"/>
+</center>
 
 **用于最优化问题**
 
-当牛顿法用于机器学习的最优化问题时，目标是求解 <img src="http://latex.codecogs.com/gif.latex?L'(\theta)=0"/> 由于公式为 <img src="http://latex.codecogs.com/gif.latex?\theta^{t+1}\leftarrow \theta^t - \frac{L'(\theta)}{L''(\theta)} "/> 。
-
-海森矩阵是函数 <img src="http://latex.codecogs.com/gif.latex?f"/> 的二阶偏导，
+当牛顿法用于机器学习的最优化问题时，目标是求解 <img src="http://latex.codecogs.com/gif.latex?L'(\theta)=0"/>。可以类比于求方程解，迭代公式为 
 
 <center>
-<img src="http://latex.codecogs.com/gif.latex?H_f=\begin{bmatrix}\frac{\partial^2f}{\partial&space;x_0^2}&\frac{\partial^2f}{\partial&space;x_0&space;\partial&space;x_1}&...&\frac{\partial^2f}{\partial&space;x_0&space;\partial&space;x_n}\\&space;\frac{\partial^2f}{\partial&space;x_1&space;\partial&space;x_0}&\frac{\partial^2f}{\partial&space;x_1^2}&...&\frac{\partial^2f}{\partial&space;x_1&space;\partial&space;x_n}\\\vdots&\vdots&\ddots&\vdots\\&space;\frac{\partial^2f}{\partial&space;x_n&space;\partial&space;x_0}&\frac{\partial^2f}{\partial&space;x_n&space;\partial&space;x_1}&...&\frac{\partial^2f}{\partial&space;x_n^2}&space;\end{bmatrix}"/>
+<img src="http://latex.codecogs.com/gif.latex?\theta^{t+1}\leftarrow \theta^t - \frac{L'(\theta)}{L''(\theta)} "/> 。
+</center>
+
+当函数输出为1维时，L'(θ)为 L 关于 θ 的梯度向量，而当函数输出为 m 维时，即<img src="https://latex.codecogs.com/gif.latex?L(\theta)=(L_1(\theta),L_2(\theta),\&space;...\&space;,L_m(\theta))"/>，则 L'(θ) 是 L 关于 θ 的一阶偏导构成的矩阵，该矩阵在19世纪初由德国数学家雅可比提出且被命名为雅可比矩阵，θ 表示成向量形式 <img src="https://latex.codecogs.com/gif.latex?(x_0,x_1,\&space;...\&space;,x_n)"/>，则雅可比矩阵表示为
+
+<center>
+<img src="http://latex.codecogs.com/gif.latex?J_L=\begin{bmatrix}&space;\frac{\partial&space;L_1}{\partial&space;x_0}&\cdots&\frac{\partial&space;L_1}{\partial&space;x_n}\\&space;\vdots&\ddots&\vdots\\&space;\frac{\partial&space;L_m}{\partial&space;x_0}&\cdots&\frac{\partial&space;L_m}{\partial&space;x_n}&space;\end{bmatrix}" />
+</center>
+
+<img src="http://latex.codecogs.com/gif.latex?L''(\theta)" /> 是函数 L 关于 θ 的二阶偏导构成的矩阵，类似于雅可比矩阵，该矩阵在19世纪由德国数学家海森提出且被命名为海森矩阵，θ 表示成向量形式 <img src="https://latex.codecogs.com/gif.latex?(x_0,x_1,\&space;...\&space;,x_n)"/>，则海森矩阵表示为
+
+<center>
+<img src="http://latex.codecogs.com/gif.latex?H_L=\begin{bmatrix}\frac{\partial^2L}{\partial&space;x_0^2}&\frac{\partial^2L}{\partial&space;x_0&space;\partial&space;x_1}&...&\frac{\partial^2L}{\partial&space;x_0&space;\partial&space;x_n}\\&space;\frac{\partial^2L}{\partial&space;x_1&space;\partial&space;x_0}&\frac{\partial^2L}{\partial&space;x_1^2}&...&\frac{\partial^2L}{\partial&space;x_1&space;\partial&space;x_n}\\\vdots&\vdots&\ddots&\vdots\\&space;\frac{\partial^2L}{\partial&space;x_n&space;\partial&space;x_0}&\frac{\partial^2L}{\partial&space;x_n&space;\partial&space;x_1}&...&\frac{\partial^2Lf}{\partial&space;x_n^2}&space;\end{bmatrix}"/>
+</center>
+
+，将雅可比矩阵和海森矩阵带入迭代公式，由于在迭代公式的迭代量中，海森矩阵是除数，所以实际上是乘以海森矩阵的逆，迭代公式应表示为，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\theta^{t&plus;1}\leftarrow\theta^t-H_L^{-1}(\theta^t)J(\theta^t)"/>
 </center>
 
 **优点：二阶收敛，收敛速度快**
 
-从几何上说，牛顿法就是用一个二次曲面去拟合你当前所处位置的局部曲面，而相比于梯度下降法，梯度下降法是用一个平面去拟合当前的局部曲面，通常情况下，二次曲面的拟合会比平面更好，所以牛顿法选择的下降路径会更符合真实的最优下降路径，路径找对了，下降速度就更快。
+二阶收敛的牛顿法相比于一阶收敛的梯度下降法，收敛速度更快，因为二阶收敛还额外考虑了下降速度变化的趋势。从几何上解释，牛顿法就是用一个二次曲面去拟合你当前所处位置的局部曲面，而梯度下降法是用一个平面去拟合当前的局部曲面，通常情况下，二次曲面的拟合会比平面更好，所以牛顿法选择的下降路径会更符合真实的最优下降路径，路径找对了，下降速度就更快。
 
 **缺点：难以计算**
 
-牛顿法是一种迭代算法，每一步都需要求解目标函数的Hessian矩阵的逆矩阵，计算比较复杂甚至是无法计算，所以在机器学习中一般不会直接使用牛顿法。
+牛顿法的迭代过程中，每一步都需要求解目标函数的Hessian矩阵的逆矩阵，计算比较复杂甚至是无法计算，这个问题很严重，所以在机器学习中甚至都不会直接使用牛顿法。
 
 ##### 1.2 高斯-牛顿法（Gauss-Newton algorithm，GN）
 
-是求解最小二乘问题的一个特例，
-
-https://www.cnblogs.com/monoSLAM/p/5246665.html
-
-GN 是对牛顿法的改进，解决高维牛顿法难解决的计算问题。它用到两个矩阵，雅可比矩阵（Jacobian matrix）。其中雅可比矩阵是函数 <img src="http://latex.codecogs.com/gif.latex?f"/> 的一阶偏导矩阵，
+是牛顿法求解最小二乘问题时的派生出的特殊求解方法，回顾一下牛顿法的迭代公式，
 
 <center>
-<img src="http://latex.codecogs.com/gif.latex?J_f=\begin{bmatrix}&space;\frac{\partial&space;f}{\partial&space;x_0}&\cdots&\frac{\partial&space;f}{\partial&space;x_n}\\&space;\vdots&\ddots&\vdots\\&space;\frac{\partial&space;f}{\partial&space;x_0}&\cdots&\frac{\partial&space;f}{\partial&space;x_n}&space;\end{bmatrix}" />
+<img src="https://latex.codecogs.com/gif.latex?\theta^{t&plus;1}\leftarrow\theta^t-H_L^{-1}(\theta^t)J(\theta^t)"/>
 </center>
 
-牛顿法公式可转换成，
+其中，对于最小二乘问题，L 是如下形式，
 
 <center>
-<img src="http://latex.codecogs.com/gif.latex?X_{n&plus;1}=X_n-H_f(x_n)^{-1}\nabla&space;f(x_n)" />
+<img src="https://latex.codecogs.com/gif.latex?L(\theta)=\frac{1}{2}r(\theta)^Tr(\theta)=\frac{1}{2}\sum_{i=1}^{m}[r_i(\theta)]^2,&space;\quad&space;m\geq&space;n"/>
 </center>
 
-由于 _x_ 是多维的，梯度向量在 _x_ 的第 _i_ 维上分量为
+其中 r 为最小二乘问题的残差，即 L 函数值与 groudtruth 的插值。L 关于 θ 的雅可比矩阵 J 和海森矩阵 H 可用 r 表示为，
 
-g
+<center>
+<img src="https://latex.codecogs.com/gif.latex?J_j=2\sum_{i=1}^{m}r_i&space;\frac{\partial&space;r_i}{\partial&space;x_j}=2J_r^Tr,&space;\quad&space;H_{jk}=2\sum_{i=1}^{m}(\frac{\partial&space;r_i}{\partial&space;x_j}\frac{\partial&space;r_i}{\partial&space;x_k}&plus;r_i\frac{\partial&space;^2r_i}{\partial&space;x_j\partial&space;x_k})" />
+</center>
 
-这样有两个好处，第一是线性，第二是只需要一阶微分。缺点是GN之反矩阵不存在时，而且在接近极值点时，Hessian矩阵变得非常小，可以类比成缩小了梯度下降法的学习率，。
+高斯牛顿法（GN）通过舍弃用海森矩阵的二阶偏导数实现，也就有对海森矩阵的近似计算，
 
-##### 1.3 莱文贝格-马夸特算法（Levenberg–Marquardt algorithm，LM）
+<center>
+<img src="https://latex.codecogs.com/gif.latex?H_{jk}\approx&space;2\sum_{i=1}^m&space;J_{ij}J_{ik}=2J_r^TJ_r"/>
+</center>
 
-其实就只是在GN基础上修改了一点，GN中，迭代公式为，而在LM方法中，。从LM的公式中可以看到，<img src="http://latex.codecogs.com/gif.latex?\lambda" /> 大的时候这种算法会接近GD，小的时候会接近GN。在LM的实际应用中，为了保证能快速稳定下降，通常会动态调整<img src="http://latex.codecogs.com/gif.latex?\lambda" />：先使用较小的<img src="http://latex.codecogs.com/gif.latex?\lambda" />，使之更接近GN，可以快速下降；
+带入到牛顿法的迭代公式，则 GN 的迭代公式表示为，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\theta^{t&plus;1}\leftarrow\theta^t-(J_r^TJ_r)^{-1}J_r^Tr"/>
+</center>
+
+**优点：计算量小**
+
+主要问题是因为牛顿法中Hessian矩阵 H 中的二阶信息项通常难以计算或者花费的工作量很大，又因为在计算梯度时已经得到一阶偏导 J，这样 H 中的一阶信息项几乎是现成的。鉴于此，为了简化计算，获得有效算法，我们可用一阶导数信息逼近二阶信息项。注意这么干的前提是，残差 r 接近于零或者接近线性函数从而接近与零时，二阶信息项才可以忽略，通常称为“小残量问题”，最典型的就是最小二乘问题，否则高斯牛顿法不收敛。
+
+**缺点：收敛要求较为严格**
+
+对于残量较大的问题，收敛速度较慢；对于残量很大的问题，不收敛；不能保证全局收敛（收敛性与初始点无关，则是全局收敛；当初值靠近最优解时才收敛，则是局部收敛；牛顿法和 GN 都是局部收敛）。
+
+##### 1.3 莱文贝格-马夸特方法（Levenberg–Marquardt algorithm，LM）
+
+LM 同时结合了梯度下降法（GD）稳定下降的优点和高斯牛顿法（GN）在极值点附近快速收敛的优点，同时避免了 GD 和 GN 相应的缺点。GN 的迭代公式为，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\theta^{t&plus;1}\leftarrow\theta^t-(J_r^TJ_r)^{-1}J_r^Tr"/>
+</center>
+
+而在 LM 方法的迭代公式为，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\theta^{t&plus;1}\leftarrow\theta^t-(J_r^TJ_r+\lambda I)^{-1}J_r^Tr"/>
+</center>
+
+，从 LM 的公式中可以看到，λ 大的时候这种算法会接近 GD（梯度下降法），小的时候会接近 GN（高斯牛顿法） 。在 LM 的实际应用中，为了保证能快速稳定下降，通常会根据 L 函数值真实减少量与预测减少量 ρ 来动态调整 λ ：
+
+1. 当 0 < ρ < 阈值，则不改变 λ ；
+2. 当 ρ > 阈值，说明近似效果很好，则增大 λ；
+3. 当 L 函数值是增加，即 ρ < 0，说明近似效果很差，则减小 λ。
 
 ### 二、拟牛顿法（Quasi-Newton Methods）
 
-拟牛顿法是求解非线性优化问题最有效的方法之一，于20世纪50年代由美国Argonne国家实验室的物理学家W.C.Davidon所提出来。Davidon设计的这种算法在当时看来是非线性优化领域最具创造性的发明之一。不久R. Fletcher和M. J. D. Powell证实了这种新的算法远比其他方法快速和可靠，使得非线性优化这门学科在一夜之间突飞猛进。
+拟牛顿法的本质思想是使用迭代法来获得 Hessian 矩阵的逆矩阵：这样一来，只需要最开始求一次逆，后面就可以通过迭代的方法来获取每一次需要使用的 Hessian 矩阵的逆矩阵，从而简化了迭代运算的复杂度。
 
-拟牛顿法的本质思想是改善牛顿法每次需要求解复杂的Hessian矩阵的逆矩阵的缺陷，它使用正定矩阵来近似Hessian矩阵的逆，从而简化了运算的复杂度。
+拟牛顿法于20世纪50年代由美国 Argonne 国家实验室的物理学家 W.C.Davidon 所提出来，这种算法在当时看来是非线性优化领域最具创造性的发明之，而且随后该算法被证明远比其他方法快速和可靠，使得非线性优化这门学科在一夜之间突飞猛进。机器学习中常见的拟牛顿法有 DFP 法、BFGS 法、 L-BFGS法。
 
-##### 1.1 DFP算法（Davidon-Fletcher-Powell algorithm）
+那么拟牛顿法一族，包括DFP 法、BFGS 法、 L-BFGS法，是如何构造 Hessian 矩阵的逆矩阵的迭代公式呢？回到牛顿法迭代公式的推导过程，二阶泰勒展开式对 x 进行求导得，
 
-##### 1.2 BFGS算法（Broyden–Fletcher–Goldfarb–Shanno algorithm）
+
+https://blog.csdn.net/google19890102/article/details/45848439
+
+
+##### 1.1 DFP法（Davidon-Fletcher-Powell algorithm）
+
+
+
+https://blog.csdn.net/google19890102/article/details/45848439
+
+最终 DFP 法得到的 Hessian 矩阵的逆矩阵的迭代公式如下，
+
+
+##### 1.2 BFGS法（Broyden–Fletcher–Goldfarb–Shanno algorithm）
+
+BFGS 算法与 DFP 算法的区别在于，迭代公式结果不一样，对 Hessian 矩阵的逆矩阵的构造方法也不一样：其中，DFP算法是直接构造，而BFGS是分两步走：先求Hessian矩阵的迭代公式，然后根据Sherman-Morrison公式转换成Hessian 矩阵的逆矩阵的迭代公式。
+
+https://blog.csdn.net/songbinxu/article/details/79677948
+https://www.aliyun.com/zixun/wenji/1269272.html
+
+https://www.codelast.com/%E5%8E%9F%E5%88%9B%E6%8B%9F%E7%89%9B%E9%A1%BF%E6%B3%95quasi-newton%EF%BC%8Cdfp%E7%AE%97%E6%B3%95davidon-fletcher-powell%EF%BC%8C%E5%8F%8Abfgs%E7%AE%97%E6%B3%95broyden-fletcher-goldfarb-shanno/
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&H^{-1}_{n&plus;1}=(I&space;-&space;\rho_n&space;y_n&space;s_n^T)&space;H^{-1}_n&space;(I&space;-&space;\rho_n&space;s_n&space;y_n^T)&space;&plus;&space;\rho_n&space;s_n&space;s_n^T&space;\\&space;&&space;where&space;\&space;\rho_n&space;=&space;(y_n^T&space;s_n)^{-1}&space;\end{aligned}" />
+</center>
+
+**优点**
+
+BFGS 法相比于 DFP 法，对Hessian 矩阵的逆矩阵近似误差更小，原因是因为 BFGS 具有自校正的性质(self-correcting property)。通俗来说，如果某一步 BFGS 对 Hessian矩阵的逆矩阵估计偏了，导致优化变慢，那么BFGS会在较少的数轮迭代内校正。对证明感兴趣可以参考[《A Tool for the Analysis of Quasi-Newton Methods with Application to Unconstrained Minimization》](https://epubs.siam.org/doi/10.1137/0726042)。
+
+**缺点**
+
+拟牛顿法都共同具有的缺点，即对 Hessian 矩阵的逆矩阵的近似存在误差。
 
 ##### 1.3 L-BFGS法（Limited-memory Broyden–Fletcher–Goldfarb–Shanno algorithm）
 
+本质是用准确度下降的少量代价来换取大量空间的节省，它对BFGS算法进行了近似，不存储完整的逆矩阵。回顾一下 BFGS 的迭代公式，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&H^{-1}_{n&plus;1}=(I&space;-&space;\rho_n&space;y_n&space;s_n^T)&space;H^{-1}_n&space;(I&space;-&space;\rho_n&space;s_n&space;y_n^T)&space;&plus;&space;\rho_n&space;s_n&space;s_n^T&space;\\&space;&&space;where&space;\&space;\rho_n&space;=&space;(y_n^T&space;s_n)^{-1}&space;\end{aligned}" />
+</center>
+
+L-BFGS 不存储逆矩阵，而是存储最新 m 个上面公式中的 s 和 y 向量，即 <img src="https://latex.codecogs.com/gif.latex?\{s_i\}\{y_i\},\&space;i=n-m&plus;1,\&space;...\&space;,n"/>，从而使存储空间复杂度开销从 <img src="https://latex.codecogs.com/gif.latex?O(N^2)"/> 降低到 <img src="https://latex.codecogs.com/gif.latex?O(mN)"/>。
 
 ### 三、拟牛顿法和梯度下降法的比较
 
@@ -92,7 +213,11 @@ https://www.cnblogs.com/8335IT/p/5809495.html 牛顿法和梯度下降法对比
 http://blog.sina.com.cn/s/blog_1442877660102wru5.html
 
 
+[wiki: 牛顿法]()
+[zhihu: DFP与BFGS算法的比较？](https://www.zhihu.com/question/34873977/answer/242695668)
 [csdn: 最全的机器学习中的优化算法介绍](https://blog.csdn.net/qsczse943062710/article/details/76763739)
+[csdn：Gauss-Newton算法学习](https://blog.csdn.net/jinshengtao/article/details/51615162 
+)
 [cnblog: 常见的几种最优化方法](http://www.cnblogs.com/maybe2030/p/4751804.html)
 [wiki: Levenberg-Marquardt方法](https://zh.wikipedia.org/wiki/%E8%8E%B1%E6%96%87%E8%B4%9D%E6%A0%BC%EF%BC%8D%E9%A9%AC%E5%A4%B8%E7%89%B9%E6%96%B9%E6%B3%95)
 [wiki: 海森矩阵](https://zh.wikipedia.org/wiki/%E6%B5%B7%E6%A3%AE%E7%9F%A9%E9%98%B5)
