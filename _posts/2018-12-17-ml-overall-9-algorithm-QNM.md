@@ -10,12 +10,11 @@ tags:
   - 机器学习·总览篇
 ---
 
->
+> 在机器学习中，牛顿法与拟牛顿法在解决目标函数的最优化问题方面也起着重要的作用。本篇是机器学习三要素之算法的第二篇，也是三要素介绍的最后一篇。最近的5篇文章完整地介绍了机器学习的三要素，对三要素的掌握对于机器学习的学习至关重要，所有机器学习方法的想法和实现都离不开这三个要素。
 
-> 算法。文章首发于[我的博客](https://kangcai.github.io/2018/10/25/ml-overall-bayes/)，转载请保留链接 ;)
+> 算法。文章首发于[我的博客](https://kangcai.github.io/)，转载请保留链接 ;)
 
-牛顿法与拟牛顿法，DFP法，BFGS法，L-BFGS法
-高斯-牛顿法（GD）、通常是针对非线性最小二乘问题，我们将在《机器学习·有监督学习篇》中的某一篇对解决最小二乘问题的各种算法进行详细的介绍。
+与梯度下降法一样，在解决机器学习目标函数的最优化问题时，牛顿法与拟牛顿法也起着重要的作用。本文将分三节分别介绍 牛顿法一族、拟牛顿法一族 以及 两者与梯度下降法的比较。
 
 ### 一、牛顿法
 
@@ -23,13 +22,20 @@ tags:
 
 **用于求方程解**
 
-牛顿法用于求方程解，即<img src="http://latex.codecogs.com/gif.latex?f(x)=0" />问题时，首先是设定初始值<img src="http://latex.codecogs.com/gif.latex?x_0" title="x_0" />，获得此处的导数 <img src="http://latex.codecogs.com/gif.latex?f'(x_0)" />，计算下一 x 值，<img src="https://latex.codecogs.com/gif.latex?x_1=x_0-\frac{f(x_0)}{f'(x_0)}"/>，重复这个迭代过程，得到迭代公式为，
+牛顿法用于求方程解，即<img src="http://latex.codecogs.com/gif.latex?f(x)=0" />问题时，首先是设定初始值<img src="http://latex.codecogs.com/gif.latex?x_0" title="x_0" />，获得此处的导数 <img src="http://latex.codecogs.com/gif.latex?f'(x_0)" />，计算下一个 x 值，<img src="https://latex.codecogs.com/gif.latex?x_1=x_0-\frac{f(x_0)}{f'(x_0)}"/>，重复以下迭代过程，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?x_{n&plus;1}=x_n-\frac{f(x_n)}{f'(x_n)}"/>
 </center>
 
-简单地说一下牛顿法迭代公式的推导过程，首先是泰勒展开，
+上述公式就是牛顿法的迭代公式，wiki 动图可以形象表示出牛顿法的迭代过程，如图1所示，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/NewtonIteration_Ani.gif"/>
+</center>
+<center>图1 牛顿迭代法求方程 f(x)=0 的解</center>
+
+简单地介绍一下牛顿法迭代公式的推导过程，首先将方程泰勒展开，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?f(x)=f(x_0)&plus;\frac{f'(x_0)}{1!}(x-x_0)&plus;\frac{f''(x_0)}{2!}(x-x_0)^2&plus;\frac{f'''(x_0)}{3!}(x-x_0)^3&plus;..." />
@@ -41,7 +47,7 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?f(x)=f(x_0)&plus;\frac{f'(x_0)}{1!}(x-x_0)&plus;\frac{f''(x_0)}{2!}(x-x_0)^2" />
 </center>
 
-两边对 x 求导，注意区分 x0 相关的值是常量，
+两边对 x 求导，注意 x0 相关的值当作常量处理，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?f'(x)=f'(x_0)&plus;f''(x_0)(x-x_0)" />
@@ -51,12 +57,6 @@ tags:
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?x=x_0-\frac{f'(x_0)}{f''(x_0)}" />
-</center>
-
-wiki 上动图可以形象表示出牛顿法的迭代过程，
-
-<center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/NewtonIteration_Ani.gif"/>
 </center>
 
 **用于最优化问题**
@@ -73,13 +73,13 @@ wiki 上动图可以形象表示出牛顿法的迭代过程，
 <img src="http://latex.codecogs.com/gif.latex?J_L=\begin{bmatrix}&space;\frac{\partial&space;L_1}{\partial&space;x_0}&\cdots&\frac{\partial&space;L_1}{\partial&space;x_n}\\&space;\vdots&\ddots&\vdots\\&space;\frac{\partial&space;L_m}{\partial&space;x_0}&\cdots&\frac{\partial&space;L_m}{\partial&space;x_n}&space;\end{bmatrix}" />
 </center>
 
-<img src="http://latex.codecogs.com/gif.latex?L''(\theta)" /> 是函数 L 关于 θ 的二阶偏导构成的矩阵，类似于雅可比矩阵，该矩阵在19世纪由德国数学家海森提出且被命名为海森矩阵，θ 表示成向量形式 <img src="https://latex.codecogs.com/gif.latex?(x_0,x_1,\&space;...\&space;,x_n)"/>，则海森矩阵表示为
+<img src="http://latex.codecogs.com/gif.latex?L''(\theta)" /> 是函数 L 关于 θ 的二阶偏导构成的矩阵，类似于雅可比矩阵，该矩阵在19世纪由德国数学家海森提出且被命名为海森矩阵，海森矩阵表示为
 
 <center>
 <img src="http://latex.codecogs.com/gif.latex?H_L=\begin{bmatrix}\frac{\partial^2L}{\partial&space;x_0^2}&\frac{\partial^2L}{\partial&space;x_0&space;\partial&space;x_1}&...&\frac{\partial^2L}{\partial&space;x_0&space;\partial&space;x_n}\\&space;\frac{\partial^2L}{\partial&space;x_1&space;\partial&space;x_0}&\frac{\partial^2L}{\partial&space;x_1^2}&...&\frac{\partial^2L}{\partial&space;x_1&space;\partial&space;x_n}\\\vdots&\vdots&\ddots&\vdots\\&space;\frac{\partial^2L}{\partial&space;x_n&space;\partial&space;x_0}&\frac{\partial^2L}{\partial&space;x_n&space;\partial&space;x_1}&...&\frac{\partial^2Lf}{\partial&space;x_n^2}&space;\end{bmatrix}"/>
 </center>
 
-，将雅可比矩阵和海森矩阵带入迭代公式，由于在迭代公式的迭代量中，海森矩阵是除数，所以实际上是乘以海森矩阵的逆，迭代公式应表示为，
+，将雅可比矩阵 J 和海森矩阵 H 带入原迭代公式，由于在迭代公式的迭代量中，海森矩阵是除数，所以实际上是乘以海森矩阵的逆，迭代公式可表示为，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\theta^{t&plus;1}\leftarrow\theta^t-H_L^{-1}(\theta^t)J(\theta^t)"/>
@@ -95,7 +95,7 @@ wiki 上动图可以形象表示出牛顿法的迭代过程，
 
 ##### 1.2 高斯-牛顿法（Gauss-Newton algorithm，GN）
 
-是牛顿法求解最小二乘问题时的派生出的特殊求解方法，回顾一下牛顿法的迭代公式，
+**GN 是牛顿法求解最小二乘问题时的派生出的特殊求解方法**。回顾一下牛顿法的迭代公式，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\theta^{t&plus;1}\leftarrow\theta^t-H_L^{-1}(\theta^t)J(\theta^t)"/>
@@ -135,7 +135,7 @@ wiki 上动图可以形象表示出牛顿法的迭代过程，
 
 ##### 1.3 莱文贝格-马夸特方法（Levenberg–Marquardt algorithm，LM）
 
-LM 同时结合了梯度下降法（GD）稳定下降的优点和高斯牛顿法（GN）在极值点附近快速收敛的优点，同时避免了 GD 和 GN 相应的缺点。GN 的迭代公式为，
+**LM 同时结合了梯度下降法（GD）稳定下降的优点和高斯牛顿法（GN）在极值点附近快速收敛的优点，同时避免了 GD 和 GN 相应的缺点**。GN 的迭代公式为，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\theta^{t&plus;1}\leftarrow\theta^t-(J_r^TJ_r)^{-1}J_r^Tr"/>
@@ -155,7 +155,7 @@ LM 同时结合了梯度下降法（GD）稳定下降的优点和高斯牛顿法
 
 ### 二、拟牛顿法（Quasi-Newton Methods）
 
-**拟牛顿法的本质思想是使用迭代法来获得 Hessian 矩阵的逆矩阵** ：这样一来，只需要最开始求一次逆，后面就可以通过迭代的方法来获取每一次需要使用的 Hessian 矩阵的逆矩阵，从而简化了迭代运算的复杂度。
+**拟牛顿法的本质思想是在牛顿法的基础上，使用迭代法来获得 Hessian 矩阵的逆矩阵** ：这样一来，只需要最开始求一次逆，后面就可以通过迭代的方法来获取每一次需要使用的 Hessian 矩阵的逆矩阵，从而简化了迭代运算的复杂度。
 
 拟牛顿法于20世纪50年代由美国 Argonne 国家实验室的物理学家 W.C.Davidon 所提出来，这种算法在当时看来是非线性优化领域最具创造性的发明之，而且随后该算法被证明远比其他方法快速和可靠，使得非线性优化这门学科在一夜之间突飞猛进。机器学习中常见的拟牛顿法有 DFP 法、BFGS 法、 L-BFGS法。
 
@@ -179,31 +179,33 @@ LM 同时结合了梯度下降法（GD）稳定下降的优点和高斯牛顿法
 
 ##### 1.1 DFP法（Davidon-Fletcher-Powell algorithm）
 
-继续上述公式推导，先假海森矩阵的逆矩阵的迭代公式为 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}=H_k&plus;E_k" />，DFP 法的目标就是求这个 <img src="https://latex.codecogs.com/gif.latex?E_k" />，将 <img src="https://latex.codecogs.com/gif.latex?E_k=\alpha&space;u_ku_k^T&plus;\beta&space;v_kv_k^T" /> 代入上式有，
+**DFP法的核心思想是直接构造 Hessian 矩阵的逆矩阵的迭代公式**。继续上文公式的推导，先假海森矩阵的逆矩阵的迭代公式为 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}^{-1}=H_k^{-1}&plus;E_k" />，DFP 法的目标就是求这个 <img src="https://latex.codecogs.com/gif.latex?E_k" />，将 <img src="https://latex.codecogs.com/gif.latex?E_k=\alpha&space;u_ku_k^T&plus;\beta&space;v_kv_k^T" /> 代入上式有，
 
 <center>
-<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&\(H_k&plus;\alpha&space;u_ku_k^T&plus;\beta&space;v_kv_k^T)y_k=s_k&space;\\&space;\Rightarrow&space;\&space;&\alpha(u_k^Ty_k)u_k&plus;\beta(v_k^Ty_k)v_k=s_k-H_ky_k&space;\end{aligned}"  />
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&\(H_k^{-1}&plus;\alpha&space;u_ku_k^T&plus;\beta&space;v_kv_k^T)y_k=s_k&space;\\&space;\Rightarrow&space;\&space;&\alpha(u_k^Ty_k)u_k&plus;\beta(v_k^Ty_k)v_k=s_k-H_k^{-1}y_k&space;\end{aligned}"  />
 </center>
 
-然后假设<img src="https://latex.codecogs.com/gif.latex?u_k=rH_ky_k,v_k=\theta&space;s_k"/>，代入上式，
+然后假设<img src="https://latex.codecogs.com/gif.latex?u_k=rH_k^{-1}y_k,v_k=\theta&space;s_k"/>，代入上式，
 
 <center>
-<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&&space;\Rightarrow&space;\&space;\alpha[((rH_ky_k)^Ty_k)(rH_ky_k)&plus;\beta((\theta&space;s_k)^Ty_k)(\theta&space;s_k)=s_k-H_ky_k&space;\\&space;&&space;\Rightarrow&space;\&space;[\alpha&space;r^2(y_k^TH_ky_k)&plus;1](H_ky_k)&plus;[\beta\theta^2(s_k^Ty_k)-1]s_k=0&space;\end{aligned}"/>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&&space;\Rightarrow&space;\&space;\alpha[((rH_k^{-1}y_k)^Ty_k)(rH_k^{-1}y_k)&plus;\beta((\theta&space;s_k)^Ty_k)(\theta&space;s_k)=s_k-H_k^{-1}y_k&space;\\&space;&&space;\Rightarrow&space;\&space;[\alpha&space;r^2(y_k^TH_k^{-1}y_k)&plus;1](H_k^{-1}y_k)&plus;[\beta\theta^2(s_k^Ty_k)-1]s_k=0&space;\end{aligned}"/>
 </center>
 
-令 <img src="https://latex.codecogs.com/gif.latex?\alpha&space;r^2(y_k^TH_ky_k)&plus;1=0,\&space;\beta\theta^2(s_k^Ty_k)-1=0"/> 使上式满足，则有
+令 <img src="https://latex.codecogs.com/gif.latex?\alpha&space;r^2(y_k^TH_k^{-1}y_k)&plus;1=0,\&space;\beta\theta^2(s_k^Ty_k)-1=0"/> 使上式满足，则有
 
-<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\alpha&space;r^2&=-\frac{1}{y_k^T&space;H_k&space;y_k}\\&space;\beta&space;\theta^2&=&space;\frac{1}{s_k^T&space;y_k}&space;\end{aligned}"/>
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\alpha&space;r^2&=-\frac{1}{y_k^T&space;H_k^{-1}&space;y_k}\\&space;\beta&space;\theta^2&=&space;\frac{1}{s_k^T&space;y_k}&space;\end{aligned}"/>
+</center>
 
 整合上述 u, v, α, β 相关的表达式，带入最终 DFP 法得到的 Hessian 矩阵的逆矩阵的迭代公式，
 
 <center>
-<img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}=H_k-\frac{H_k&space;y_k&space;y_k^T&space;H_k}{y_k^T&space;H_k&space;y_k}&plus;\frac{s_k&space;s_k^T}{s_k^Ty_k}"/>
+<img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}^{-1}=H_k^{-1}-\frac{H_k^{-1}&space;y_k&space;y_k^T&space;H_k^{-1}}{y_k^T&space;H_k^{-1}&space;y_k}&plus;\frac{s_k&space;s_k^T}{s_k^Ty_k}"/>
 </center>
 
 ##### 1.2 BFGS法（Broyden–Fletcher–Goldfarb–Shanno algorithm）
 
-BFGS 算法与 DFP 算法的区别在于，迭代公式结果不一样，对 Hessian 矩阵的逆矩阵的构造方法也不一样：其中，DFP算法是直接构造，而BFGS是分两步走：先求 Hessian 矩阵的迭代公式，然后根据Sherman-Morrison公式转换成Hessian 矩阵的逆矩阵的迭代公式。
+**BFGS 算法与 DFP 算法的区别在于，迭代公式结果不一样，对 Hessian 矩阵的逆矩阵的构造方法也不一样：其中，DFP算法是直接构造，而BFGS是分两步走：先求 Hessian 矩阵的迭代公式，然后根据Sherman-Morrison公式转换成Hessian 矩阵的逆矩阵的迭代公式**。
 
 首先求 Hessian 矩阵的迭代公式，虽然 DFP 法求得是 Hessian 逆矩阵的迭代公式，但其实可以用同样的推导过程求 Hessian 矩阵的迭代公式，如下表示，
 
@@ -251,7 +253,9 @@ L-BFGS 不存储逆矩阵，而是存储最新 m 个上面公式中的 s 和 y �
 | 牛顿法 | <img src="https://latex.codecogs.com/gif.latex?\theta_{k+1}\leftarrow\theta_k-H_k^{-1} \bigtriangledown L_k"/> | 局部收敛、二阶收敛 | 非线性最小二乘问题 | LM 法 | 
 | 拟牛顿法 | <img src="https://latex.codecogs.com/gif.latex?\theta_{k&plus;1}\leftarrow\theta_k-H_k^{-1}&space;\bigtriangledown&space;L_k&space;\\&space;where,\&space;H_k^{-1}=H_{k-1}^{-1}&plus;E_{k-1}"/>| 局部收敛、二阶收敛 | 逻辑回归 | L-BFGS |
 
-事实上，在机器学习实际应用中，还是梯度下降法（比如SGD），特别是自适应学习率的梯度下降法（比如RMSprop、Adam）更实用也更常用，应用局限性也最低（在更多的情况下能稳定收敛）。
+事实上，在机器学习实际应用中，还是梯度下降法（比如SGD），特别是自适应学习率的梯度下降法（比如RMSprop、Adam）更实用也更常用，应用局限性也最低，在更多的情况下能稳定收敛。
+
+至此，最近的5篇文章完整地介绍了机器学习的三要素，对三要素的掌握对于机器学习的学习至关重要，所有机器学习方法的想法和实现都离不开这三个要素。
 
 1. [wiki: 牛顿法](https://zh.wikipedia.org/wiki/%E7%89%9B%E9%A1%BF%E6%B3%95)
 2. [wiki: Levenberg-Marquardt方法](https://zh.wikipedia.org/wiki/%E8%8E%B1%E6%96%87%E8%B4%9D%E6%A0%BC%EF%BC%8D%E9%A9%AC%E5%A4%B8%E7%89%B9%E6%96%B9%E6%B3%95)
