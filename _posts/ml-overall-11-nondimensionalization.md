@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "机器学习·总览篇 VIII"
+title: "机器学习 · 总览篇 VIII"
 subtitle: "标准化和归一化"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
@@ -10,7 +10,7 @@ tags:
   - 机器学习·总览篇
 ---
 
-> 算法。文章首发于[我的博客](https://kangcai.github.io/2018/10/25/ml-overall-bayes/)，转载请保留链接 ;)
+> 算法。文章首发于[我的博客](https://kangcai.github.io/)，转载请保留链接 ;)
 
 ### 频
 

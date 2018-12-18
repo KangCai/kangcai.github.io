@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "机器学习·有监督学习篇 IV"
+title: "机器学习 · 有监督学习篇 IV"
 subtitle: "K近邻"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"

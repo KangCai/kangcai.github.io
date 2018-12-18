@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "机器学习·有监督学习篇 IV"
+title: "机器学习 · 有监督学习篇 IV"
 subtitle: "朴素贝叶斯"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"

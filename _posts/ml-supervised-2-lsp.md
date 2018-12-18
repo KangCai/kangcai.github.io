@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "机器学习·有监督学习篇 II"
+title: "机器学习 · 有监督学习篇 II"
 subtitle: "最小二乘问题"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"

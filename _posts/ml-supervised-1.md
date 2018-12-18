@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "机器学习·有监督学习篇 II"
+title: "机器学习 · 有监督学习篇 II"
 subtitle: "有监督学习"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
@@ -10,7 +10,7 @@ tags:
   - 机器学习·有监督学习篇
 ---
 
-> 算法。文章首发于[我的博客](https://kangcai.github.io/2018/10/25/ml-overall-bayes/)，转载请保留链接 ;)
+> 算法。文章首发于[我的博客](https://kangcai.github.io/)，转载请保留链接 ;)
 
 ### 频
 
