@@ -59,6 +59,8 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?x=x_0-\frac{f'(x_0)}{f''(x_0)}" />
 </center>
 
+从推导公式就可以看出，牛顿法不是全局收敛，而是局部收敛的，即需要初始值不要离最优值过远。
+
 **用于最优化问题**
 
 当牛顿法用于机器学习的最优化问题时，目标是求解 <img src="http://latex.codecogs.com/gif.latex?L'(\theta)=0"/>，可以类比于求方程解，迭代公式为 
@@ -107,13 +109,13 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?L(\theta)=\frac{1}{2}r(\theta)^Tr(\theta)=\frac{1}{2}\sum_{i=1}^{m}[r_i(\theta)]^2,&space;\quad&space;m\geq&space;n"/>
 </center>
 
-其中 r 为最小二乘问题的残差，即 L 函数值与 groudtruth 的插值。L 关于 θ 的雅可比矩阵 J 和海森矩阵 H 可用 r 表示为
+其中 r 为最小二乘问题的残差，即 L 函数值与 groudtruth 的差值。L 关于 θ 的雅可比矩阵 J 和海森矩阵 H 可用 r 表示为
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?J_j=2\sum_{i=1}^{m}r_i&space;\frac{\partial&space;r_i}{\partial&space;x_j}=2J_r^Tr,&space;\quad&space;H_{jk}=2\sum_{i=1}^{m}(\frac{\partial&space;r_i}{\partial&space;x_j}\frac{\partial&space;r_i}{\partial&space;x_k}&plus;r_i\frac{\partial&space;^2r_i}{\partial&space;x_j\partial&space;x_k})" />
 </center>
 
-高斯牛顿法（GN）通过舍弃用海森矩阵的二阶偏导数实现，也就有对海森矩阵的近似计算，
+高斯牛顿法（GN）通过舍弃用海森矩阵的二阶偏导数实现，即忽略上式中 H 的第二项，也就有了对海森矩阵的近似计算，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?H_{jk}\approx&space;2\sum_{i=1}^m&space;J_{ij}J_{ik}=2J_r^TJ_r"/>
@@ -127,11 +129,11 @@ tags:
 
 **优点：计算量小**
 
-主要问题是因为牛顿法中 Hessian 矩阵 H 中的二阶信息项通常难以计算或者花费的工作量很大，又因为在计算梯度时已经得到一阶偏导 J，这样 H 中的一阶信息项几乎是现成的。鉴于此，为了简化计算，获得有效算法，我们可用一阶导数信息逼近二阶信息项。注意这么干的前提是，残差 r 接近于零或者接近线性函数从而接近与零时，二阶信息项才可以忽略，通常称为“小残量问题”，最典型的就是最小二乘问题，否则高斯牛顿法不收敛。
+原始的牛顿法主要问题是 Hessian 矩阵 H 中的二阶信息项通常难以计算或者花费的工作量很大，GN 对此做了针对性的改进，利用在计算梯度时已经得到一阶偏导 J，这样 H 中的一阶信息项几乎是现成的，鉴于此，为了简化计算，我们可用一阶导数信息逼近二阶信息项。注意这么干的前提是，残差 r 接近于零或者接近线性函数从而接近与零时，二阶信息项才可以忽略，通常称为“小残量问题”，最典型的就是最小二乘问题，否则高斯牛顿法不收敛。
 
 **缺点：收敛要求较为严格**
 
-对于残量 r 值较大的问题，收敛速度较慢；对于残量很大的问题，不收敛；不能保证全局收敛（收敛性与初始点无关，则是全局收敛；当初值靠近最优解时才收敛，则是局部收敛；牛顿法和 GN 都是局部收敛）。
+对于残量 r 值较大的问题，收敛速度较慢；对于残量很大的问题，不收敛；不能保证全局收敛。这里稍微解释一下全局收敛和局部收敛：收敛性与初始点无关，则是全局收敛；当初值靠近最优解时才收敛，则是局部收敛；牛顿法和 GN 都是局部收敛。
 
 ##### 1.3 莱文贝格-马夸特方法（Levenberg–Marquardt algorithm，LM）
 
@@ -149,7 +151,7 @@ tags:
 
 ，从 LM 的公式中可以看到，λ 大的时候这种算法会接近 GD（梯度下降法），小的时候会接近 GN（高斯牛顿法） 。在 LM 的实际应用中，为了保证能快速稳定下降，通常会根据 L 函数值真实减少量与预测减少量 ρ 来动态调整 λ ：
 
-1. 当 0 < ρ < 阈值，则不改变 λ ；
+1. 当 0 < ρ < 阈值，说明游走在刀刃上，则不改变 λ ；
 2. 当 ρ > 阈值，说明近似效果很好，则增大 λ；
 3. 当 L 函数值是增加，即 ρ < 0，说明近似效果很差，则减小 λ。
 
@@ -165,7 +167,7 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?f'(x)=f'(x_{k+1})&plus;f''(x_{k+1})(x-x_{k+1})" />
 </center>
 
-将 <img src="https://latex.codecogs.com/gif.latex?x=x_k"/> 带入公式得
+将 <img src="https://latex.codecogs.com/gif.latex?x=x_k"/> 带入公式再变换一下得
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?f''(x_{k&plus;1})^{-1}(f'(x_{k&plus;1})-f'(x_k))=x_{k&plus;1}-x_k" />
@@ -177,9 +179,11 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}^{-1}y_k=s_k" />
 </center>
 
+接下来的3种方法就是围绕这个式子来构造 Hessian 矩阵的逆矩阵的迭代公式。
+
 ##### 1.1 DFP法（Davidon-Fletcher-Powell algorithm）
 
-**DFP 法的核心思想是直接构造 Hessian 矩阵的逆矩阵的迭代公式**。继续上文公式的推导，先假海森矩阵的逆矩阵的迭代公式为 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}^{-1}=H_k^{-1}&plus;E_k" />，DFP 法的目标就是求这个 <img src="https://latex.codecogs.com/gif.latex?E_k" />，将 <img src="https://latex.codecogs.com/gif.latex?E_k=\alpha&space;u_ku_k^T&plus;\beta&space;v_kv_k^T" /> 代入上式得
+**DFP 法的核心思想是直接构造 Hessian 矩阵的逆矩阵的迭代公式**。继续上文公式的推导，先假设海森矩阵的逆矩阵的迭代公式为 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}^{-1}=H_k^{-1}&plus;E_k" />，DFP 法的目标就是求这个 <img src="https://latex.codecogs.com/gif.latex?E_k" />，将 <img src="https://latex.codecogs.com/gif.latex?E_k=\alpha&space;u_ku_k^T&plus;\beta&space;v_kv_k^T" /> 代入上式得
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&\(H_k^{-1}&plus;\alpha&space;u_ku_k^T&plus;\beta&space;v_kv_k^T)y_k=s_k&space;\\&space;\Rightarrow&space;\&space;&\alpha(u_k^Ty_k)u_k&plus;\beta(v_k^Ty_k)v_k=s_k-H_k^{-1}y_k&space;\end{aligned}"  />
@@ -188,7 +192,7 @@ tags:
 然后假设<img src="https://latex.codecogs.com/gif.latex?u_k=rH_k^{-1}y_k,v_k=\theta&space;s_k"/>，代入上式得
 
 <center>
-<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&&space;\Rightarrow&space;\&space;\alpha[((rH_k^{-1}y_k)^Ty_k)(rH_k^{-1}y_k)&plus;\beta((\theta&space;s_k)^Ty_k)(\theta&space;s_k)=s_k-H_k^{-1}y_k&space;\\&space;&&space;\Rightarrow&space;\&space;[\alpha&space;r^2(y_k^TH_k^{-1}y_k)&plus;1](H_k^{-1}y_k)&plus;[\beta\theta^2(s_k^Ty_k)-1]s_k=0&space;\end{aligned}"/>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&\Rightarrow&space;\alpha&space;[(rH_k&space;y_k)^T&space;y_k](rH_k&space;y_k)&plus;\beta&space;((\theta&space;s_k)^T&space;y_k](\theta&space;s_k)=s_k-H_k&space;y_k\\&space;&\Rightarrow&space;[\alpha&space;r^2(y_k^T&space;H_k&space;y_k)&plus;1](H_k&space;y_k)&plus;[\beta&space;\theta^2&space;(s_k^T&space;y_k)-1](s_k)=0&space;\end{aligned}"/>
 </center>
 
 令 <img src="https://latex.codecogs.com/gif.latex?\alpha&space;r^2(y_k^TH_k^{-1}y_k)&plus;1=0,\&space;\beta\theta^2(s_k^Ty_k)-1=0"/> 使上式满足，则有
@@ -197,7 +201,7 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\alpha&space;r^2&=-\frac{1}{y_k^T&space;H_k^{-1}&space;y_k}\\&space;\beta&space;\theta^2&=&space;\frac{1}{s_k^T&space;y_k}&space;\end{aligned}"/>
 </center>
 
-整合上述 u, v, α, β 相关的表达式，带入最终 DFP 法得到的 Hessian 矩阵的逆矩阵的迭代公式
+整合上述 u, v, α, β 相关的表达式，带入到 Hessian 矩阵的逆矩阵的迭代公式，得
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?H_{k&plus;1}^{-1}=H_k^{-1}-\frac{H_k^{-1}&space;y_k&space;y_k^T&space;H_k^{-1}}{y_k^T&space;H_k^{-1}&space;y_k}&plus;\frac{s_k&space;s_k^T}{s_k^Ty_k}"/>
@@ -225,13 +229,15 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&H^{-1}_{n&plus;1}=(I&space;-&space;\rho_n&space;y_n&space;s_n^T)&space;H^{-1}_n&space;(I&space;-&space;\rho_n&space;s_n&space;y_n^T)&space;&plus;&space;\rho_n&space;s_n&space;s_n^T&space;\\&space;&&space;where&space;\&space;\rho_n&space;=&space;(y_n^T&space;s_n)^{-1}&space;\end{aligned}" />
 </center>
 
+以上过程看起来是“多此一举”，但事实上这种 BFGS 的近似方法相比于 DFP 会带来额外的优势，如下文所述。
+
 **优点**
 
-BFGS 法相比于 DFP 法，对Hessian 矩阵的逆矩阵近似误差更小，原因是因为 BFGS 具有自校正的性质(self-correcting property)。通俗来说，如果某一步 BFGS 对 Hessian矩阵的逆矩阵估计偏了，导致优化变慢，那么BFGS会在较少的数轮迭代内校正。对证明感兴趣可以参考[《A Tool for the Analysis of Quasi-Newton Methods with Application to Unconstrained Minimization》](https://epubs.siam.org/doi/10.1137/0726042)。
+BFGS 法相比于 DFP 法，对Hessian 矩阵的逆矩阵近似误差更小，这是因为 BFGS 具有自校正的性质(self-correcting property)。通俗来说，如果某一步 BFGS 对 Hessian矩阵的逆矩阵估计偏了，导致优化变慢，那么 BFGS 会在较少的数轮迭代内校正。对证明感兴趣可以参考[《A Tool for the Analysis of Quasi-Newton Methods with Application to Unconstrained Minimization》](https://epubs.siam.org/doi/10.1137/0726042)。
 
 **缺点**
 
-拟牛顿法都共同具有的缺点，即对 Hessian 矩阵的逆矩阵的近似存在误差；吃内存，因为需要存储 Hessian 矩阵的逆矩阵。
+拟牛顿法都共同具有的缺点，即对 Hessian 矩阵的逆矩阵的近似存在误差，但 BFGS 相比与 DFP 好一点；BFGS 和 DFP 都吃内存，因为都需要存储 Hessian 矩阵的逆矩阵。
 
 ##### 1.3 L-BFGS法（Limited-memory Broyden–Fletcher–Goldfarb–Shanno algorithm）
 
@@ -241,7 +247,7 @@ BFGS 法相比于 DFP 法，对Hessian 矩阵的逆矩阵近似误差更小，�
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&H^{-1}_{n&plus;1}=(I&space;-&space;\rho_n&space;y_n&space;s_n^T)&space;H^{-1}_n&space;(I&space;-&space;\rho_n&space;s_n&space;y_n^T)&space;&plus;&space;\rho_n&space;s_n&space;s_n^T&space;\\&space;&&space;where&space;\&space;\rho_n&space;=&space;(y_n^T&space;s_n)^{-1}&space;\end{aligned}" />
 </center>
 
-L-BFGS 不存储逆矩阵，而是存储最新 m 个上面公式中的 s 和 y 向量，即 <img src="https://latex.codecogs.com/gif.latex?\{s_i\}\{y_i\},\&space;i=n-m&plus;1,\&space;...\&space;,n"/>，从而使存储空间复杂度开销从 <img src="https://latex.codecogs.com/gif.latex?O(N^2)"/> 降低到 <img src="https://latex.codecogs.com/gif.latex?O(mN)"/>。
+**L-BFGS 不存储逆矩阵，而是存储最新 m 个上面公式中的 s 和 y 向量**，即 <img src="https://latex.codecogs.com/gif.latex?\{s_i\}\{y_i\},\&space;i=n-m&plus;1,\&space;...\&space;,n"/>，从而使存储空间复杂度开销从 <img src="https://latex.codecogs.com/gif.latex?O(N^2)"/> 降低到 <img src="https://latex.codecogs.com/gif.latex?O(mN)"/>。
 
 ### 三、梯度下降法、牛顿法、拟牛顿法的比较
 
