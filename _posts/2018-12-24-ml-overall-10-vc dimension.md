@@ -12,12 +12,21 @@ tags:
 
 > 算法。文章首发于[我的博客](https://kangcai.github.io/)，转载请保留链接 ;)
 
-Leslie Valiant提出概率近似正确学习（Probably approximately correct learning，PAC learning），是机器学习的数学分析的框架，它将计算复杂度理论引入机器学习，描述了机器学习的有限假设空间的可学习性，无限空间的VC维相关的可学习性等问题。
 
-读懂 https://www.cnblogs.com/gkwang/p/5046188.html，PCA和VC维的概念
 
+机器学习主要研究的是怎么去学习解决一个问题，这里面包含了一个隐含的前提条件：学习解决的问题必须是可学习的问题。那么怎么去判定一个问题的可学习性呢？PCA Learning 就是关于机器学习可学习性的一个完善的解释理论。PAC learning，全称是 Probably approximately correct learning，中文直译名字比较拗口，叫 概率近似正确学习，解释这个名字：
+
+1. 首先，Approximately Correct（近似正确）就是指学出的模型的误差比较小（误差被限制住），因为实现零误差（Absolutely Correct）是非常困难并且通常没有必要的，所以这里考虑的是 Approximately Correct；
+2. 其次，由于随机性的存在，我们只能从概率上保证 Approximately Correct 的可能性是很大的（存在一个概率下界）。
+
+以上这就是 PAC Learning 的名称由来。Leslie Valiant 于1984年提出 PAC Learning，也主要因为该理论获得2010年图灵奖，可见该理论对机器学习的重要性。 PAC Learning 可以看做是机器学习的数学分析框架，它将计算复杂度理论引入机器学习，描述了机器学习的有限假设空间的可学习性，无限空间的VC维相关的可学习性等问题。
+
+下面将从 可学习性 和 VC维 两个部分对 PAC Learning 理论进行介绍。
+
+https://blog.csdn.net/csshuke/article/details/52221873
 
 ### 一、可学习性
+
 
 https://www.cnblogs.com/gkwang/p/5046188.html
 通俗概念
@@ -83,6 +92,8 @@ N维实数空间中线性分类器和线性实函数的VC维是 n+1
 where D is the VC dimension of the classification model, and N is the size of the training set (restriction: this formula is valid when D远远小于N。 When D is larger, the test-error may be much higher than the training-error. This is due to 过拟合)。
 
 研究人员通过分析得出结论：经验风险最小化学习过程一致的必要条件是函数集的VC维有限，且这时的收敛速度是最快的
+
+可学习性是从问题的角度出发，去探讨问题可以被学习解决方案所学习的可能性，注意，这里“问题”是讨论的基本点。
 
 [cnblogs: 解读机器学习基础概念：VC维的来龙去脉](https://www.cnblogs.com/gkwang/p/5046188.html)
 [csdn: 详解机器学习中的VC维](https://blog.csdn.net/baimafujinji/article/details/44856089)

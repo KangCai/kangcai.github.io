@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "机器学习 · 总览篇 VIII"
+title: "机器学习 · 总览篇 XI"
 subtitle: "标准化和归一化"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
