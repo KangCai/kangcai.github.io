@@ -237,6 +237,8 @@ where D is the VC dimension of the classification model, and N is the size of
 
 可学习性是从问题的角度出发，去探讨问题可以被学习解决方案所学习的可能性，注意，这里“问题”是讨论的基本点。
 
+https://www.cnblogs.com/gkwang/p/5046188.html
+
 https://blog.csdn.net/xiong452980729/article/details/52122081
 
 [wiki: Hoeffding不等式](https://zh.wikipedia.org/wiki/Hoeffding%E4%B8%8D%E7%AD%89%E5%BC%8F)
