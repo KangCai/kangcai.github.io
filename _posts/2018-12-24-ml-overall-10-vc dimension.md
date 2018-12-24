@@ -153,7 +153,7 @@ OK，从上式的右边可以看到 N > 0 时，上界（不等式右边）是�
 第二种是 “凸集” 的假设空间，如下图所示，
 
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/positive ray.png"/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/convex growth function.png"/>
 </center>
 
 给定任意一种排列情况，总能找出一个凸集刚好包含了所有+1的点，并将-1的点排斥在外，所以很可惜，这种情况下的 m-H 就是 2^N。
