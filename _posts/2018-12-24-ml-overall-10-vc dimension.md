@@ -27,22 +27,68 @@ https://blog.csdn.net/csshuke/article/details/52221873
 
 ### 一、可学习性
 
+在什么情况下 learning 是可行的？以机器学习实际应用的角度来看，需要具备以下三个条件，
 
-https://www.cnblogs.com/gkwang/p/5046188.html
-通俗概念
+1. 模型不能过于复杂，数据量需要足够大，即模型的复杂程度不能远高于数据量的支撑
+2. 合适的最优化方法，即让 目标函数值接近0 的求参算法
+
+这三个条件看起来属于 “经验主义”，那有没有更加准确的数学程式化定义？
 
 ##### 1.1 Hoeffding不等式 与 机器学习
 
-https://www.cnblogs.com/gkwang/p/5046188.html
+为了解答上面的问题，需要从 Hoeffding不等式 说起，Hoeffding不等式 是关于一组随机变量均值的概率不等式。 如果 X1,X2,⋯,Xn 为一组独立同分布的参数为 p 的伯努利分布随机变量，n为随机变量的个数。定义这组随机变量的均值为：
 
-如果备选函数集的大小|H|=M，M有限，训练数据量N足够大，则对于学习算法A选择的任意备选函数h，都有  E-out(h)≈E-in(h)
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\bar{X}=\frac{X_1&plus;X_2&plus;...&plus;X&plus;n}{n}" />
+</center>
 
-如果A找到了一个备选函数，使得E-in(h)≈0，则有很大概率E-out(h)≈0
+那么对于任意 δ>0, Hoeffding不等式 可以表示为
 
- 我们能否保证E-out(h)与E-in(h)足够接近？
- 我们能否使E-in(h)足够小？
+<center>
+<img src="https://latex.codecogs.com/gif.latex?P(|\bar{X}-E(\bar{X})|\geq&space;\delta)\&space;\leq&space;\&space;2e^{-2\delta^2n^2}" />
+</center>
+
+Hoeffding不等式 可以直接应用到一个 抽球颜色 的统计推断问题上：我们从罐子里抽球，希望估计罐子里红球和绿球的比例，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/bin_sample1.png"/>
+</center>
+
+如果对 总览篇III 一文中涉及的统计推断方法还记得的话，知道这个问题根据 频率学派 和 贝叶斯学派 的差别有两个不同的答案，频率学派给出的答案就是 总体的期望 μ 就等于样本期望 ν，这里对两个学派就不再次进行解释了，只讨论频率学派给出的答案的准确性。直觉上，如果我们有更多的样本，即抽出更多的球，总体的期望 μ 确实越接近样本期望 ν；事实上，这里可以用 Hoeffding不等式 量化地表示接近情况，如果抽球样本数维 N，则如下：
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?P(|v-\mu|>\varepsilon&space;)\&space;\leq&space;\&space;2e^{-2\varepsilon^2N}"/>
+</center>
+
+再进一步到机器学习的问题上，机器学习的过程可以程式化表示为：通过算法 A，在机器学习方法的假设空间 H 中，根据样本集 D，选择最好的假设作为 g，选择标准是使 g 近似与理想的方案 f，其中，H 可以是一个函数（此时是非概率模型），也可以是一个分布（此时是概率模型），g 和 f 属于 H。类似于上面 “抽球” 的例子，可以通过样本集的经验损失（expirical loss ） <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)" title="E_{in}(h)" /> ，即 in-sample error，来推测总体的期望损失（expected loss） <img src="https://latex.codecogs.com/gif.latex?E_{out}(h)"/>。对于假设空间 H 中一个任意的备选函数 h，基于 Hoeffding不等式，我们得到下面的式子：
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)\leq\&space;2e^{-2\varepsilon^2N}" />
+</center>
+
+那么对于整个假设空间 H，假设存在 M 个 h，则可以推导出下面的式子：
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&P(|E_{in}(h_1)-E_{out}(h_1)|>\varepsilon&space;\&space;\cup&space;\&space;...\&space;\cup\&space;|E_{in}(h_m)-E_{out}(h_m)|>\varepsilon)&space;\\&space;\leq&space;\&space;&&space;P(|E_{in}(h_1)-E_{out}(h_1)|>\varepsilon&space;&plus;&space;\&space;...&space;&plus;&space;\&space;P(|E_{in}(h_m)-E_{out}(h_m)|>\varepsilon)&space;\\&space;\leq&space;\&space;&&space;2Me^{-2\varepsilon^2N}&space;\end{aligned}"/>
+</center>
+
+上面这个式子的含义很重要：在假设空间 H 中，设定一个较小的 ϵ 值，任意一个假设 h ，它的样本值和期望值的误差被一个只与 ϵ、样本数 N、假设数 M 相关的值约束住。
+
+到这里，我们可以将最开始看起来 “经验主义” 地对 learning 可行的情况定义用上面的结论改造一下，如下所示：
+
+1. 如果备选函数集的大小 |H|=M ，M 有限，训练数据量 N 足够大，则对于学习算法 A 选择的任意备选函数 h，都有 <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)\approx&space;E_{out}(h)" />
+2. 如果 A 找到了一个备选函数，使得 <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)\approx&space;0" /> ，则有很大概率使 <img src="https://latex.codecogs.com/gif.latex?E_{out}(h)\approx&space;0" />
+
+所以将 learning 可行性的问题用上面两个结论转换一下，问题变成了：
+
+1. 我们能否保证 <img src="https://latex.codecogs.com/gif.latex?E_{out}(h)" /> 与 <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)" />  足够接近？
+2. 我们能否使 <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)" />  足够小？
+
+其中**对于第2点，能否使<img src="https://latex.codecogs.com/gif.latex?E_{in}(h)" />  足够小这个问题通过合适的 “策略+算法” 可以达成**，关于这一点在前面的文章中已经解释地比较详细了（具体可参考《总览篇 VI 策略-损失函数》、《总览篇 VIII 算法-梯度下降法及其变种》、《总览篇 IX 算法-牛顿法和拟牛顿法》这3篇文章）；**对于1点，我们将在1.2节中继续分析**。
  
-##### 1.2 假设函数的上界
+##### 1.2 假设函数 h 在样本集和总体集的误差上界
+
+
 
 **成长函数（Growth Function）**
 
@@ -95,6 +141,7 @@ where D is the VC dimension of the classification model, and N is the size of
 
 可学习性是从问题的角度出发，去探讨问题可以被学习解决方案所学习的可能性，注意，这里“问题”是讨论的基本点。
 
+[wiki: Hoeffding不等式](https://zh.wikipedia.org/wiki/Hoeffding%E4%B8%8D%E7%AD%89%E5%BC%8F)
 [cnblogs: 解读机器学习基础概念：VC维的来龙去脉](https://www.cnblogs.com/gkwang/p/5046188.html)
 [csdn: 详解机器学习中的VC维](https://blog.csdn.net/baimafujinji/article/details/44856089)
 [Machine Learning - VC Dimension and Model
