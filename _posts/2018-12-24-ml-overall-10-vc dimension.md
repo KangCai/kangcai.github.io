@@ -254,7 +254,7 @@ OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操�
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?E_{out}(h)\leqslant&space;E_{in}(g)&plus;\sqrt{\frac{8}{N}ln(\frac{4(2N)^{d_{vc}}}{\delta&space;})}" />
-<\center>
+</center>
 
 上式第3项表示了模型的复杂程度，可以看到是关于 VC维 的递增函数，所以 VC维 越大，两者差别越大。又由于我们知道，VC维 越大，模型表达能力越强，模型的训练误差越小。所以两者有如下关系，
 
@@ -284,7 +284,9 @@ E-out - E-in 和 E-in 的下降速度在每个阶段都是不同的，因此我�
 4. 推导出的 VC界 是最坏情况下的上界，即与学习策略和算法无关，而实际应用时我们会先验地去选择一个合适的策略和算法。
 
 因为 VC界 对数据分布 D、目标函数 L、备选函数集 H、学习算法 A 都没有要求，它牺牲了部分精确性，换来了无所不包的一般性。这使得VC Bound具有哲学意义上的指导性。即便如此，就目前来说，VC维 & VC界 依然是分析机器学习模型的最重要的理论工具。
- 
+
+**参考文献**
+
 1. [wiki: Hoeffding不等式](https://zh.wikipedia.org/wiki/Hoeffding%E4%B8%8D%E7%AD%89%E5%BC%8F)
 2. [Machine Learning - VC Dimension and Model
 Complexity](https://www.cs.cmu.edu/~epxing/Class/10701/slides/lecture16-VC.pdf)
