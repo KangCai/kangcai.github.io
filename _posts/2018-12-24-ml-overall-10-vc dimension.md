@@ -56,7 +56,7 @@ Hoeffding不等式 可以直接应用到一个 抽球颜色 的统计推断问�
 
 ### 二、Hoeffding不等式 应用到机器学习
 
-将 Hoeffding不等式 应用到机器学习的问题上，**机器学习的过程可以程式化表示为：通过算法 A，在机器学习方法的假设空间 H 中，根据样本集 D，选择最好的假设作为 g，选择标准是使 g 近似与理想的方案 f，其中，H 可以是一个函数（此时是非概率模型），也可以是一个分布（此时是概率模型），g 和 f 属于 H**。类似于上面 “抽球” 的例子，可以通过样本集的经验损失（expirical loss ） <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)" title="E_{in}(h)" /> ，即 in-sample error，来推测总体的期望损失（expected loss） <img src="https://latex.codecogs.com/gif.latex?E_{out}(h)"/>。对于假设空间 H 中一个任意的备选函数 h，基于 Hoeffding不等式，我们得到下面的式子：
+将 Hoeffding不等式 应用到机器学习的问题上，**机器学习的过程可以程式化表示为：通过算法 A，在机器学习方法的假设空间 H 中，根据样本集 D，选择最好的假设作为 g，选择标准是使 g 近似与理想的方案 f，其中，H 可以是一个函数（此时是非概率模型），也可以是一个分布（此时是概率模型），g 和 f 属于 H**。类似于上面 “抽球” 的例子，**可以通过样本集的经验损失（expirical loss ） <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)" title="E_{in}(h)" /> ，即 in-sample error，来推测总体的期望损失（expected loss） <img src="https://latex.codecogs.com/gif.latex?E_{out}(h)"/>**。对于假设空间 H 中一个任意的备选函数 h，基于 Hoeffding不等式，我们得到下面的式子：
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)\leq\&space;2e^{-2\varepsilon^2N}" />
@@ -292,7 +292,7 @@ OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操�
 3. 同一个 VC维 的值可以各种各样的假设空间，而实际应用时假设空间是固定的一类函数；
 4. 推导出的 VC界 是最坏情况下的上界，即与学习策略和算法无关，而实际应用时我们会先验地去选择一个合适的策略和算法。
 
-**因为 VC界 对数据分布 D、目标函数 L、备选函数集 H、学习算法 A 都没有要求，它牺牲了部分精确性，换来了无所不包的一般性。这使得VC Bound具有哲学意义上的指导性。即便如此，就目前来说，VC维 & VC界 依然是分析机器学习模型的最重要的理论工具**。
+**因为 VC界 对数据分布 D、目标函数 L、备选函数集 H、学习算法 A 都没有要求，它牺牲了部分精确性，换来了无所不包的一般性，这使得 VC界 具备一定程度上的指导性，毕竟实际应用时还有 ”具体问题具体分析“ 和 ”效果好就是好“ 两板斧。即便如此，就目前来说，VC维 & VC界 依然是分析机器学习模型的最重要的理论工具。**
 
 **参考文献**
 
