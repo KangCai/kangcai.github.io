@@ -154,7 +154,7 @@ OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操�
 
 综合以上两种情况，我们发现，**如果成长函数是指数函数，则随着 N 的增大，概率上界也急剧增加，所以我们希望成长函数是多项式**，比如 “正例射线” 的问题，就是可学习的。那么**是否有更多更普遍的成长函数是多项式的问题呢？幸运的是，答案又是肯定的**。
 
-### 四、打散（Shatter）、断点（Break Point）与 边界函数（Bound Function）**
+### 四、打散（Shatter）、断点（Break Point）与 边界函数（Bound Function）
 
 继续上文分析，为了找到更普遍的成长函数是多项式的问题，需要了解两个概念：打散（Shatter） 与 断点（Break Point）。
 
@@ -208,7 +208,7 @@ OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操�
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&(1)\&space;P(|E_{in}(h)-E_{out}(h)|>\frac{\varepsilon}{2})\leqslant&space;P(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})\\&space;&(2)\&space;P(|E_{in}(h)-E_{out}(h)|>\frac{\varepsilon}{2})&plus;P(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})=1&space;\\&space;&(3)\Rightarrow&space;\&space;P(|E_{in}(h)-E_{out}(h)|>\frac{\varepsilon}{2})&space;\leq&space;\frac{1}{2}\leq&space;P(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})\\&space;&(4)\Rightarrow&space;P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2P(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})&space;\\&space;&(5)\Rightarrow&space;P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2m_H(2N)P^{fixed}(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})&space;\\&space;&(6)\Rightarrow&space;P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2m_H(2N)P^{fixed}(|E_{in}(h)-\frac{E_{in}(h)&plus;E_{in}'(h)}{2}|>\frac{\varepsilon}{4})&space;\\&space;&(7)\Rightarrow&space;P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2m_H(2N)e^{\frac{1}{8}\varepsilon^2N}&space;\\&space;\end{aligned}" />
 </center>
 
-终于将 D 给去掉，得到了我们要的东西。其实推理过程不用太在意，最重要的是最后的不等式，结合 “m-H(N) 最高幂次为 k–1 的多项式上界 B(N,k) 给约束住” 的结论，有：
+终于将 D 给去掉，**得到了我们要的 VC界 表达式，即最后一行公式**。其实推理过程不用太在意，最重要的是最后的不等式，结合 “m-H(N) 最高幂次为 k–1 的多项式上界 B(N,k) 给约束住” 的结论，有：
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2^kN^{k-1}e^{\frac{1}{8}\varepsilon^2N}" />
