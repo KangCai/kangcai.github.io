@@ -54,7 +54,7 @@ Hoeffding不等式 可以直接应用到一个 抽球颜色 的统计推断问�
 <img src="https://latex.codecogs.com/gif.latex?P(|v-\mu|>\varepsilon&space;)\&space;\leq&space;\&space;2e^{-2\varepsilon^2N}"/>
 </center>
 
-### 二、机器学习中的 Hoeffding不等式
+### 二、Hoeffding不等式 应用到机器学习
 
 将 Hoeffding不等式 应用到机器学习的问题上，**机器学习的过程可以程式化表示为：通过算法 A，在机器学习方法的假设空间 H 中，根据样本集 D，选择最好的假设作为 g，选择标准是使 g 近似与理想的方案 f，其中，H 可以是一个函数（此时是非概率模型），也可以是一个分布（此时是概率模型），g 和 f 属于 H**。类似于上面 “抽球” 的例子，可以通过样本集的经验损失（expirical loss ） <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)" title="E_{in}(h)" /> ，即 in-sample error，来推测总体的期望损失（expected loss） <img src="https://latex.codecogs.com/gif.latex?E_{out}(h)"/>。对于假设空间 H 中一个任意的备选函数 h，基于 Hoeffding不等式，我们得到下面的式子：
 
@@ -124,11 +124,12 @@ N 为1、2、3时，对应的有效假设数很好理解，但 N=4 时有效假�
 
 **我们当然不会满足于成长函数是一个指数函数的结论，因为上式并不能保证概率上界（不等式的右边）是一个接近于0的值，所以我们需要进一步分析，尝试找到一个更小的上界**。上面我们具体分析了二维线性假设空间下的情况，**这里暂且不讨论二维假设空间中有效假设数的普遍结论，下文1.2节会详细讨论**，下面我们来看更多其它情况下的案例。
 
-第一种是 “正例射线” 的假设空间，如下图所示，
+第一种是 “正例射线” 的假设空间，如下图1所示，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/positive ray.png"/>
 </center>
+<center>图1 一维数据的 “正例射线” 的假设空间</center>
 
 根据排列组合知识，可知 “正例射线” 的假设空间下的成长函数是
 
@@ -144,11 +145,12 @@ N 为1、2、3时，对应的有效假设数很好理解，但 N=4 时有效假�
 
 OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操作方法，则上界（不等式右边）是一个随 N 递减的函数，当 N 取一个很大的值时，上界接近于0，对于这个问题，大功告成，是可学习的。
 
-第二种是 “凸集” 的假设空间，如下图所示，
+第二种是 “凸集” 的假设空间，如下图2所示，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/convex growth function.png"/>
 </center>
+<center>图2 二维数据的凸集假设空间</center>
 
 给定任意一种排列情况，总能找出一个凸集刚好包含了所有+1的点，并将-1的点排斥在外，所以很可惜，这种情况下的 m-H 就是 2^N，是不可学习的。
 
@@ -166,11 +168,12 @@ OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操�
 
 1. B(N,1)=1，因为 B(N,1) 表示对于 N 个样本，任意一个样本都不允许完全2分类，那么只能只有一种情况，加入任何第二种情况，总会有一个样本出现了两个分类;
 2. B(N,N)=2^N-1，因为对于 N 个样本，如果没有断点，B=2^N，而在 N 处刚好有断点，那么去掉某一种情况，就可以满足了;
-3. B(3,2)是多少，可以看下图，
+3. B(3,2)是多少，可以看下图3所示，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/shattle.png"/>
 </center>
+<center>图3 3 个样本断点为 2 的边界函数值 B(3,2) 的演算</center>
 
 故，B(3,2)=4。以此类推，可以求得所有 B(N,k），但每个都这么算好麻烦，用计算机算比较快，但难道没有一个通用的表达式吗？看了一眼文章的进度条，看来答案是有的。
 
@@ -261,11 +264,12 @@ OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操�
 <img src="https://latex.codecogs.com/gif.latex?E_{out}(h)\leqslant&space;E_{in}(g)&plus;\sqrt{\frac{8}{N}ln(\frac{4(2N)^{d_{vc}}}{\delta&space;})}" />
 </center>
 
-上式第3项表示了模型的复杂程度，可以看到是关于 VC维 的递增函数，所以 VC维 越大，两者差别越大。又由于我们知道，VC维 越大，模型表达能力越强，模型的训练误差越小。所以两者有如下关系，
+上式第3项表示了模型的复杂程度，可以看到是关于 VC维 的递增函数，所以 VC维 越大，两者差别越大。又由于我们知道，VC维 越大，模型表达能力越强，模型的训练误差越小。模型相关性能如图4所示，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/vc_power2.png"/>
 </center>
+<center>图4 模型的泛化误差、训练误差、模型容量 随 VC维 变化示意图</center>
 
 **E-out - E-in 和 E-in 的下降速度在每个阶段都是不同的，因此我们需要寻找一个二者兼顾的 VC维，来保证 E-out 最小**。
 
