@@ -10,9 +10,9 @@ tags:
   - 机器学习·总览篇
 ---
 
-> 算法。文章首发于[我的博客](https://kangcai.github.io/)，转载请保留链接 ;)
+> VC 理论中 VC维 和 VC界 作为机器学习可学习性的最重要的理论基础，对于机器学习方法的研究和使用具有十分重要的指导意义。比如对于一个任务，我准备使用的机器学习方法是否可行、数据量至少需要多少，这些问题如何在进行实验之前就能被解答？答案就在本文中。
 
-
+> 文章首发于[我的博客](https://kangcai.github.io/)，转载请保留链接 ;)
 
 机器学习主要研究的是怎么去学习解决一个问题，这里面包含了一个隐含的前提条件：对于待学习的问题，学习方法必须是可行的。那么怎么去判定一个学习方法对于问题的可学习性呢？PCA Learning 就是关于机器学习可学习性的一个完善的解释理论。PAC learning，全称是 Probably approximately correct learning，中文直译名字比较拗口，叫 概率近似正确学习，解释这个名字：
 
@@ -139,7 +139,7 @@ N 为1、2、3时，对应的有效假设数很好理解，但 N=4 时有效假�
 这个假设空间的有效假设数 m-H 是 N+1，是一个关于 N 的多项式，
 
 <center>
-<img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)\&space;\leq&space;\&space;2(N&plus;1)e^{-2\varepsilon^2N}" />
+<img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)\&space;\leq&space;\&space;2D(N&plus;1)e^{-2\varepsilon^2N}" />
 </center>
 
 OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操作方法，则上界（不等式右边）是一个随 N 递减的函数，当 N 取一个很大的值时，上界接近于0，对于这个问题，大功告成，是可学习的。
@@ -246,6 +246,45 @@ OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操�
 
 但即便这样，深度学习的 VC维 和VC界 依旧很大，其泛化控制方法依然没有强理论支撑。但是实践又一次次证明，深度学习是好用的。所以 **VC维 对深度学习的指导意义，目前不好表述，不好表述就绕过它不表述，大牛 LeCun 就是这么想的**，他对 SVM 和 VC 理论没那么看重，[《KDnuggets Exclusive: Interview with Yann LeCun, Deep Learning Expert, Director of Facebook AI Lab》](https://www.kdnuggets.com/2014/02/exclusive-yann-lecun-deep-learning-facebook-ai-lab.html) 这篇对 LeCun 的访谈里 LeCun 表达出的观点很直接暴力：第一点，承认 SVM 和 VC理论 很不错，但深度神经网络的 VC 维也是有限的，所以也是有 VC 界的，虽然 VC维 和 VC界 确实都有点大；第二点，SVM 只是一个第一层是度量支持向量和输入相似性、第二层是组合这些相似性的双层系统，其中第一层使用最简单的无监督学习方法，即直接使用训练样本来构建类别簇，有点简单了，虽然 SVM 的 VC理论能够以漂亮的数学方法进行容量控制（Capacity Control，指的是一种可学习性吧），容量控制能力虽然也重要，但没有表达能力重要，比如 SVM 不具备对图像的 “偏移、缩放、旋转、光照、背景杂乱” 等不变性，而这对于卷积神经网络来说很容易。
 
+### 八、应用示例
+
+**VC维 与 模型效果（泛化误差）**
+
+将原 VC界 不等式稍作改写，那么在很高的概率下，模型的泛化误差和训练误差满足如下式子，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?E_{out}(h)\leqslant&space;E_{in}(g)&plus;\sqrt{\frac{8}{N}ln(\frac{4(2N)^{d_{vc}}}{\delta&space;})}" />
+<\center>
+
+上式第3项表示了模型的复杂程度，可以看到是关于 VC维 的递增函数，所以 VC维 越大，两者差别越大。又由于我们知道，VC维 越大，模型表达能力越强，模型的训练误差越小。所以两者有如下关系，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/vc_power2.png"/>
+</center>
+
+E-out - E-in 和 E-in 的下降速度在每个阶段都是不同的，因此我们需要寻找一个二者兼顾的 VC维，来保证 E-out 最小。
+
+**VC维 与 数据量**
+
+面对一个这样的问题：针对2维数据，做一个2分类任务，泛化误差和训练误差的最大差距允许是 0.1，对应置信度是 90%，所用的模型是线性分类模型，需要多少数据？
+
+首先，对于2维数据的线性二分类任务，d_vc=3，由于有 ε=0.1，δ=1-90%=0.1，然后经过下面一番估算，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/data esitmation.png"/>
+</center>
+
+于是我们知道了，需要29300条训练数据作为训练集。从上面这个例子，可以看到 VC维 对于数据量的多少具有很强的指导意义。
+
+事实上，对于一般情况，VC维越大，需要更多的训练数据。理论上，数据规模需要满足 N=10000*d_vc；但实际经验是只需要满足 N=10*d_vc。造成理论值与实际值之差如此之大的最大原因是，VC界 为了保证其泛化正确性，推导过程中过于宽松了：
+
+1. 将 Hoeffding不等式 应用在 “任何数据分布、任何假设空间” 上；
+2. 有效假设数 m-H 设定成与 N 相关的函数，与具体数据无关，而事实上训练样本并不是任意 N 个；
+3. 同一个 VC维 的值可以各种各样的假设空间，而实际应用时假设空间是固定的一类函数；
+4. 推导出的 VC界 是最坏情况下的上界，即与学习策略和算法无关，而实际应用时我们会先验地去选择一个合适的策略和算法。
+
+因为 VC界 对数据分布 D、目标函数 L、备选函数集 H、学习算法 A 都没有要求，它牺牲了部分精确性，换来了无所不包的一般性。这使得VC Bound具有哲学意义上的指导性。即便如此，就目前来说，VC维 & VC界 依然是分析机器学习模型的最重要的理论工具。
+ 
 1. [wiki: Hoeffding不等式](https://zh.wikipedia.org/wiki/Hoeffding%E4%B8%8D%E7%AD%89%E5%BC%8F)
 2. [Machine Learning - VC Dimension and Model
 Complexity](https://www.cs.cmu.edu/~epxing/Class/10701/slides/lecture16-VC.pdf)
@@ -253,4 +292,5 @@ Complexity](https://www.cs.cmu.edu/~epxing/Class/10701/slides/lecture16-VC.pdf)
 4. [blog: 机器学习物语(4)：PAC Learnability](http://blog.pluskid.org/?p=821)
 5. [csdn: 机器学习基础(林軒田)笔记之六](https://blog.csdn.net/xiong452980729/article/details/52122081)
 6. [csdn: 详解机器学习中的VC维](https://blog.csdn.net/baimafujinji/article/details/44856089)
-7. [cnblogs: 解读机器学习基础概念：VC维的来龙去脉](https://www.cnblogs.com/gkwang/p/5046188.html)
+7. [csdn: NTU-Coursera机器学习:VC Bound和VC维度](https://blog.csdn.net/songzitea/article/details/43112233)
+8. [cnblogs: 解读机器学习基础概念：VC维的来龙去脉](https://www.cnblogs.com/gkwang/p/5046188.html)
