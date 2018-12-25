@@ -14,7 +14,7 @@ tags:
 
 
 
-机器学习主要研究的是怎么去学习解决一个问题，这里面包含了一个隐含的前提条件：学习解决的问题必须是可学习的问题。那么怎么去判定一个问题的可学习性呢？PCA Learning 就是关于机器学习可学习性的一个完善的解释理论。PAC learning，全称是 Probably approximately correct learning，中文直译名字比较拗口，叫 概率近似正确学习，解释这个名字：
+机器学习主要研究的是怎么去学习解决一个问题，这里面包含了一个隐含的前提条件：对于待学习的问题，学习方法必须是可行的。那么怎么去判定一个学习方法对于问题的可学习性呢？PCA Learning 就是关于机器学习可学习性的一个完善的解释理论。PAC learning，全称是 Probably approximately correct learning，中文直译名字比较拗口，叫 概率近似正确学习，解释这个名字：
 
 1. 首先，Approximately Correct（近似正确）就是指学出的模型的误差比较小（误差被限制住），因为实现零误差（Absolutely Correct）是非常困难并且通常没有必要的，所以这里考虑的是 Approximately Correct；
 2. 其次，由于随机性的存在，我们只能从概率上保证 Approximately Correct 的可能性是很大的（存在一个概率下界）。
@@ -28,7 +28,7 @@ tags:
 
 这三个条件看起来属于 “经验主义”，那有没有更加准确的数学程式化定义？
 
-### 一、Hoeffding不等式 与 机器学习
+### 一、Hoeffding不等式
 
 为了解答上面的问题，需要从 Hoeffding不等式 说起，Hoeffding不等式 是关于一组随机变量均值的概率不等式。 如果 X1,X2,⋯,Xn 为一组独立同分布的参数为 p 的伯努利分布随机变量，n为随机变量的个数。定义这组随机变量的均值为：
 
@@ -54,7 +54,9 @@ Hoeffding不等式 可以直接应用到一个 抽球颜色 的统计推断问�
 <img src="https://latex.codecogs.com/gif.latex?P(|v-\mu|>\varepsilon&space;)\&space;\leq&space;\&space;2e^{-2\varepsilon^2N}"/>
 </center>
 
-再进一步到机器学习的问题上，机器学习的过程可以程式化表示为：通过算法 A，在机器学习方法的假设空间 H 中，根据样本集 D，选择最好的假设作为 g，选择标准是使 g 近似与理想的方案 f，其中，H 可以是一个函数（此时是非概率模型），也可以是一个分布（此时是概率模型），g 和 f 属于 H。类似于上面 “抽球” 的例子，可以通过样本集的经验损失（expirical loss ） <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)" title="E_{in}(h)" /> ，即 in-sample error，来推测总体的期望损失（expected loss） <img src="https://latex.codecogs.com/gif.latex?E_{out}(h)"/>。对于假设空间 H 中一个任意的备选函数 h，基于 Hoeffding不等式，我们得到下面的式子：
+### 二、机器学习中的 Hoeffding不等式
+
+将 Hoeffding不等式 应用到机器学习的问题上，机器学习的过程可以程式化表示为：通过算法 A，在机器学习方法的假设空间 H 中，根据样本集 D，选择最好的假设作为 g，选择标准是使 g 近似与理想的方案 f，其中，H 可以是一个函数（此时是非概率模型），也可以是一个分布（此时是概率模型），g 和 f 属于 H。类似于上面 “抽球” 的例子，可以通过样本集的经验损失（expirical loss ） <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)" title="E_{in}(h)" /> ，即 in-sample error，来推测总体的期望损失（expected loss） <img src="https://latex.codecogs.com/gif.latex?E_{out}(h)"/>。对于假设空间 H 中一个任意的备选函数 h，基于 Hoeffding不等式，我们得到下面的式子：
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)\leq\&space;2e^{-2\varepsilon^2N}" />
@@ -78,9 +80,9 @@ Hoeffding不等式 可以直接应用到一个 抽球颜色 的统计推断问�
 1. 我们能否保证 E-in(h) 与 E-out(h)  足够接近？
 2. 我们能否使 E-in(h)  足够小？
 
-其中**对于第2点，能否使 E-in(h) 足够小这个问题通过合适的 “策略+算法” 可以达成**，关于这一点在前面的文章中已经解释地比较详细了（具体可参考《总览篇 VI 策略-损失函数》、《总览篇 VIII 算法-梯度下降法及其变种》、《总览篇 IX 算法-牛顿法和拟牛顿法》这3篇文章）；**对于1点，我们将在1.2节中继续分析**。
+其中**对于第2点，能否使 E-in(h) 足够小这个问题通过合适的 “策略+算法” 可以达成**，关于这一点在前面的文章中已经解释地比较详细了（具体可参考《总览篇 VI 策略-损失函数》、《总览篇 VIII 算法-梯度下降法及其变种》、《总览篇 IX 算法-牛顿法和拟牛顿法》这3篇文章）；**对于1点，我们将在下文继续分析**。
  
-### 二、成长函数（Growth Function）
+### 三、成长函数（Growth Function）
 
 继续上文进行分析，对于假设函数 h，我们如果能够保证 其在样本集中的损失值 与 其在总体数据集中的损失值 之间高误差的概率存在一个接近 0 的上界，那么当然就能够保证 E-in(h) 与 E-out(h) 足够接近。从上文的最后结论着手继续分析，
 
@@ -88,13 +90,13 @@ Hoeffding不等式 可以直接应用到一个 抽球颜色 的统计推断问�
 <img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)\&space;\leq&space;\&space;2Me^{-2\varepsilon^2N}" />
 </center>
 
-对于假设空间中的备选函数，假设数 M 通常是一个无穷大的数，而ϵ、样本数 N 是一个有限的数，看起来并不存在上界。所以一个直观的思路是，能否找到一个有限的因子来替代掉上面不等式上界（右边式子）中的 M。幸运的是，存在这个因子 m-H 恒满足下面的式子：
+对于假设空间中的备选函数，假设数 M 通常是一个无穷大的数，而ϵ、样本数 N 是一个有限的数，看起来并不存在上界。所以一个直观的思路是，能否找到一个有限的因子来替代掉上面不等式上界（右边式子）中的 M。幸运的是，**存在这个因子 m-H 恒满足下面的式子：**
 
 <center>
-<img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)\&space;\leq&space;\&space;2\&space;m_H&space;\&space;e^{-2\varepsilon^2N}"  />
+<img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)\&space;\leq&space;\&space;2\&space;D(m_H)&space;\&space;e^{-2\varepsilon^2N}"  />
 </center>
 
-，且 m-H 是有限的，我们暂且称之为有效假设数（Effective Number of Hypotheses）。
+**，且 m-H 是有限的，我们暂且称之为有效假设数（Effective Number of Hypotheses），D 是我们将 m-H 加入到上面的不等式替代大 M 的某种操作方法，我们先解决找到 m-H 的问题，再去解决 D 的问题**。
 
 为了找到 m-H 的值，继续进行分析：虽然假设空间中通常存在 M 个（M=无限）假设函数 h，但多个 h 之间并不是完全独立的，他们是有很大的同质性，也就是在 M 个假设中，可能有一些假设可以归为同一类。下面以二维线性假设空间为例，我们的算法要在二维空间挑选一条直线发成作为尽可能好的假设 g，用来划分一个点（N=1）的类别，虽然有无数条直线可供选择，但真正有判别意义的就两类：一类判别成正例，一类判别成反例。如下图所示，
 
@@ -140,7 +142,7 @@ N 为1、2、3时，对应的有效假设数很好理解，但 N=4 时有效假�
 <img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)\&space;\leq&space;\&space;2(N&plus;1)e^{-2\varepsilon^2N}" />
 </center>
 
-OK，从上式的右边可以看到 N > 0 时，上界（不等式右边）是一个随 N 递减的函数，当 N 取一个很大的值时，上界接近于0，对于这个问题，大功告成，是可学习的。
+OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操作方法，则上界（不等式右边）是一个随 N 递减的函数，当 N 取一个很大的值时，上界接近于0，对于这个问题，大功告成，是可学习的。
 
 第二种是 “凸集” 的假设空间，如下图所示，
 
@@ -152,7 +154,7 @@ OK，从上式的右边可以看到 N > 0 时，上界（不等式右边）是�
 
 综合以上两种情况，我们发现，**如果成长函数是指数函数，则随着 N 的增大，概率上界也急剧增加，所以我们希望成长函数是多项式**，比如 “正例射线” 的问题，就是可学习的。那么**是否有更多更普遍的成长函数是多项式的问题呢？幸运的是，答案又是肯定的**。
 
-### 三、打散（Shatter）、断点（Break Point）与 边界函数（Bound Function）**
+### 四、打散（Shatter）、断点（Break Point）与 边界函数（Bound Function）**
 
 继续上文分析，为了找到更普遍的成长函数是多项式的问题，需要了解两个概念：打散（Shatter） 与 断点（Break Point）。
 
@@ -192,36 +194,39 @@ OK，从上式的右边可以看到 N > 0 时，上界（不等式右边）是�
 
 这个式子表示，**如果假设空间存在有限的断点（Break Point），那么成长函数 m_H(N) 会被最高幂次为 k–1 的多项式上界 B(N,k) 给约束住**。
 
-### 四、VC界
+### 五、VC界
 
 为了确保可学习性，是要保证对于假设空间 H 中的任意的 h，都要有 Bad Case（样本损失值和总体期望损失值之间高误差
 
 <center>
-<img src="https://latex.codecogs.com/gif.latex?P(\exists&space;h\in&space;H\&space;s.t.\&space;|E_{in}(h)-E_{out}(h)|>\varepsilon)\&space;\leq&space;\&space;2\&space;m_H(N)\&space;e^{-2\varepsilon^2N}"/>
+<img src="https://latex.codecogs.com/gif.latex?P(\exists&space;h\in&space;H\&space;s.t.\&space;|E_{in}(h)-E_{out}(h)|>\varepsilon)\&space;\leq&space;\&space;2\&space;D(m_H(N))\&space;e^{-2\varepsilon^2N}"/>
 </center>
 
-看起来将 N^(k+1) 替代上式的 m-H 就完成了，然而直接替换是存在问题的，主要问题是：E-in 的可能取值是有限个的，但 E-out 的可能取值是无限的。可以通过将 E-out 替换为验证集 (verification set) 的 E-in' 来解决这个问题。通过如下一系列复杂的证明，
+看起来将 N^(k+1) 替代上式的 m-H 就完成了，现在就来解决这个 D 问题，不能直接去掉 D 用 m-H 直接替代大 M 的主要问题在于：E-in 的可能取值是有限个的，但 E-out 的可能取值是无限的。怎么让不等式是针对有限的函数呢？可以通过将 E-out 替换为验证集 (verification set) 的 E-in' 来解决这个问题。通过如下一系列复杂的证明，
 
 <center>
-<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&(1)\&space;Pr(|E_{in}(h)-E_{out}(h)|>\frac{\varepsilon}{2})\leqslant&space;Pr(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})\\&space;&(2)\&space;Pr(|E_{in}(h)-E_{out}(h)|>\frac{\varepsilon}{2})&plus;Pr(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})=1&space;\\&space;&(3)\Rightarrow&space;\&space;Pr(|E_{in}(h)-E_{out}(h)|>\frac{\varepsilon}{2})&space;\leq&space;\frac{1}{2}\leq&space;Pr(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})\\&space;&(4)\Rightarrow&space;Pr(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2Pr(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})&space;\\&space;&(5)\Rightarrow&space;Pr(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2m_H(2N)P^{fixed}(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})&space;\\&space;&(6)\Rightarrow&space;Pr(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2m_H(2N)P^{fixed}(|E_{in}(h)-\frac{E_{in}(h)&plus;E_{in}'(h)}{2}|>\frac{\varepsilon}{4})&space;\\&space;&(7)\Rightarrow&space;Pr(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2m_H(2N)e^{\frac{1}{8}\varepsilon^2N}&space;\\&space;\end{aligned}" />
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&(1)\&space;P(|E_{in}(h)-E_{out}(h)|>\frac{\varepsilon}{2})\leqslant&space;P(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})\\&space;&(2)\&space;P(|E_{in}(h)-E_{out}(h)|>\frac{\varepsilon}{2})&plus;P(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})=1&space;\\&space;&(3)\Rightarrow&space;\&space;P(|E_{in}(h)-E_{out}(h)|>\frac{\varepsilon}{2})&space;\leq&space;\frac{1}{2}\leq&space;P(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})\\&space;&(4)\Rightarrow&space;P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2P(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})&space;\\&space;&(5)\Rightarrow&space;P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2m_H(2N)P^{fixed}(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})&space;\\&space;&(6)\Rightarrow&space;P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2m_H(2N)P^{fixed}(|E_{in}(h)-\frac{E_{in}(h)&plus;E_{in}'(h)}{2}|>\frac{\varepsilon}{4})&space;\\&space;&(7)\Rightarrow&space;P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2m_H(2N)e^{\frac{1}{8}\varepsilon^2N}&space;\\&space;\end{aligned}" />
 </center>
 
-终于得到了我们要的东西，推理过程不用太在意，最终不等式的意义很重要，结合 m-H(N) 最高幂次为 k–1 的多项式上界 B(N,k) 给约束住 的结论，有：
+终于将 D 给去掉，得到了我们要的东西。其实推理过程不用太在意，最重要的是最后的不等式，结合 m-H(N) 最高幂次为 k–1 的多项式上界 B(N,k) 给约束住 的结论，有：
 
+<center>
+<img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2^kN^{k-1}e^{\frac{1}{8}\varepsilon^2N}" />
+</center>
 
 以上式子意味着，**随着 N 的逐渐增大，指数式的下降会比多项式的增长更快，N 足够大时，对 H 中的任意一个假设 h，E-in(h) 都将接近于E-out(h)，这表示学习可行的第一个条件是有可能成立的。需要强调的是，以上所讲的只适用于二元分类问题，因为我们在推导 断点、成长函数 和 边界函数 时一直都基于二元分类这一前提**。
 
-### 五、VC维
+### 六、VC维
 
-上文对 可行性 分析中，我们发现断点 k 是一个很重要的概念，VC维 就是跟 k 强相关的一个概念，VC维（VC dimension）的定义是 H 最多能够 打散 的点的数量，故如果用 d-vc 来表示 VC维，那么明显有：
+上文的分析中可以看到，断点 k 是一个很重要的概念，而 VC维 就是跟 k 强相关的一个概念，**VC维（VC dimension）的定义是 H 最多能够 打散 的点的数量**，故如果用 d-vc 来表示 VC维，那么明显有：
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?d_{vc}=k-1"/>
 </center>
 
-上面对二维线性假设空间分析，已知二维线性分类器不能打散 4 个及以上的样本，即 k=4，所以对于二维线性分类器，它的 VC维 就是3。一般而言，VC维越大，表达能力就越强，但对数据、学习策略和算法的要求也越高。对于一个给定的分类器或者假设空间，应该如何确定 VC维 呢？一个不好的消息是，**对于非线性分类器，VC维 非常难于计算**，在学术研究领域，这仍然是一个有待回答的开放性问题。一个好消息是，对于线性分类器 VC维 是可以计算的，**N 维实数空间中线性分类器和线性实函数的 VC维 是 N+1**。
+联系上文，可以看到 VC界 是基于 VC维的。上面对二维线性假设空间分析，已知二维线性分类器不能打散 4 个及以上的样本，即 k=4，所以对于二维线性分类器，它的 VC维 就是3。一般而言，VC维 越大，表达能力就越强，但对数据、学习策略和算法的要求也越高。对于一个给定的分类器或者假设空间，应该如何确定 VC维 呢？一个不好的消息是，**对于非线性分类器，VC维 非常难于计算**，在学术研究领域，这仍然是一个有待回答的开放性问题。一个好消息是，对于线性分类器 VC维 是可以计算的，**N 维实数空间中线性分类器和线性实函数的 VC维 是 N+1**。
 
-### 六、深度学习与VC维
+### 七、深度学习与VC维
 
 多层神经网络作为非线性分类器，VC维 同样难以计算，但可以得到一个估计值。比如对于输出只有一维的深度神经网络，VC维 如下所示：
 
@@ -239,7 +244,7 @@ OK，从上式的右边可以看到 N > 0 时，上界（不等式右边）是�
 2. 训练数据变多了。随着互联网的越来越普及，相比于以前，训练数据的获取容易程度以及量和质都大大提升了。训练数据越多，E-in 越容易接近于 E-out。而且目前训练神经网络，还会用到很多 data augmentation 方法，例如在图像上，剪裁，平移，旋转，调亮度，调饱和度，调对比度等都使用上了；
 3. 除此外，pre-training 方法的提出，GPU 的利用，都促进了深度学习。
 
-但即便这样，深度学习的 VC维 和VC界 依旧很大，其泛化控制方法依然没有强理论支撑。但是实践又一次次证明，深度学习是好用的。所以 **VC维 对深度学习的指导意义，目前不好表述，不好表述就绕过它不表述，大牛 LeCun 就是这么想的**，他对 SVM 和 VC 理论没那么看重，[《KDnuggets Exclusive: Interview with Yann LeCun, Deep Learning Expert, Director of Facebook AI Lab》](https://www.kdnuggets.com/2014/02/exclusive-yann-lecun-deep-learning-facebook-ai-lab.html) 这篇对 LeCun 的访谈里 LeCun 表达出的观点很直接暴力：第一点，承认 SVM 和 VC理论 很不错，但深度神经网络的 VC 维也是有限的，所以也是有 VC 界的，虽然有点大；第二点，SVM 只是一个第一层是度量支持向量和输入相似性、第二层是组合这些相似性的双层系统，其中第一层使用最简单的无监督学习方法，即直接使用训练样本来构建类别簇，有点简单了，虽然 SVM 的 VC理论能够以漂亮的数学方法进行容量控制（Capacity Control，指的是一种可学习性吧），容量控制能力虽然也重要，但没有表达能力重要，比如 SVM 不具备对图像的 “偏移、缩放、旋转、光照、背景杂乱” 等不变性，而这对于卷积神经网络来说很容易。
+但即便这样，深度学习的 VC维 和VC界 依旧很大，其泛化控制方法依然没有强理论支撑。但是实践又一次次证明，深度学习是好用的。所以 **VC维 对深度学习的指导意义，目前不好表述，不好表述就绕过它不表述，大牛 LeCun 就是这么想的**，他对 SVM 和 VC 理论没那么看重，[《KDnuggets Exclusive: Interview with Yann LeCun, Deep Learning Expert, Director of Facebook AI Lab》](https://www.kdnuggets.com/2014/02/exclusive-yann-lecun-deep-learning-facebook-ai-lab.html) 这篇对 LeCun 的访谈里 LeCun 表达出的观点很直接暴力：第一点，承认 SVM 和 VC理论 很不错，但深度神经网络的 VC 维也是有限的，所以也是有 VC 界的，虽然 VC维 和 VC界 确实都有点大；第二点，SVM 只是一个第一层是度量支持向量和输入相似性、第二层是组合这些相似性的双层系统，其中第一层使用最简单的无监督学习方法，即直接使用训练样本来构建类别簇，有点简单了，虽然 SVM 的 VC理论能够以漂亮的数学方法进行容量控制（Capacity Control，指的是一种可学习性吧），容量控制能力虽然也重要，但没有表达能力重要，比如 SVM 不具备对图像的 “偏移、缩放、旋转、光照、背景杂乱” 等不变性，而这对于卷积神经网络来说很容易。
 
 1. [wiki: Hoeffding不等式](https://zh.wikipedia.org/wiki/Hoeffding%E4%B8%8D%E7%AD%89%E5%BC%8F)
 2. [Machine Learning - VC Dimension and Model
