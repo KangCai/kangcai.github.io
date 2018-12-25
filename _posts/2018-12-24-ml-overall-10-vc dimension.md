@@ -10,23 +10,23 @@ tags:
   - 机器学习·总览篇
 ---
 
-> VC 理论中 VC维 和 VC界 作为机器学习可学习性的最重要的理论基础，对于机器学习方法的研究和使用具有十分重要的指导意义。比如对于一个任务，我准备使用的机器学习方法是否可行、数据量至少需要多少，这些问题如何在进行实验之前就能被解答？答案就在本文中。
+> VC 理论中 VC维 和 VC界 作为机器学习可学习性的最重要的理论基础，对于机器学习方法的研究和使用具有十分重要的指导意义。比如对于一个任务，我准备使用的机器学习方法是否合理、数据量至少需要多少，这些问题如何在进行实验之前就能被解答？答案就在本文中。
 
 > 文章首发于[我的博客](https://kangcai.github.io/)，转载请保留链接 ;)
 
-机器学习主要研究的是怎么去学习解决一个问题，这里面包含了一个隐含的前提条件：对于待学习的问题，学习方法必须是可行的。那么怎么去判定一个学习方法对于问题的可学习性呢？PCA Learning 就是关于机器学习可学习性的一个完善的解释理论。PAC learning，全称是 Probably approximately correct learning，中文直译名字比较拗口，叫 概率近似正确学习，解释这个名字：
+机器学习主要研究的是怎么去学习解决一个问题，这里面包含了一个隐含的前提条件：对于待学习的问题，学习方法必须是可行的。**那么怎么去判定一个学习方法对于问题的可学习性呢？PCA Learning 就是关于机器学习可学习性的一个完善的解释理论。PAC learning，全称是 Probably approximately correct learning，中文直译叫 概率近似正确学习**，有点拗口，解释下这个名称：
 
 1. 首先，Approximately Correct（近似正确）就是指学出的模型的误差比较小（误差被限制住），因为实现零误差（Absolutely Correct）是非常困难并且通常没有必要的，所以这里考虑的是 Approximately Correct；
 2. 其次，由于随机性的存在，我们只能从概率上保证 Approximately Correct 的可能性是很大的（存在一个概率下界）。
 
-以上这就是 PAC Learning 的名称由来。Leslie Valiant 于1984年提出 PAC Learning，也主要因为该理论获得2010年图灵奖，可见该理论对机器学习的重要性。 PAC Learning 可以看做是机器学习的数学分析框架，它将计算复杂度理论引入机器学习，描述了机器学习的有限假设空间的可学习性，无限空间的VC维相关的可学习性等问题。
+以上这就是 PAC Learning 的名称由来。Leslie Valiant 于1984年提出 PAC Learning，也主要因为该理论获得2010年图灵奖，可见该理论对机器学习的重要性。 **PAC Learning 可以看做是机器学习的数学分析框架，它将计算复杂度理论引入机器学习，描述了机器学习的有限假设空间的可学习性，无限空间的VC维相关的可学习性等问题**。
 
-下面将从 可学习性、VC界、VC维 几个角度对 PAC Learning 理论进行介绍。在什么情况下 learning 是可行的？以机器学习实际应用的角度来看，需要具备以下三个条件，
+下面将从 可学习性、VC界、VC维 几个角度对 PAC Learning 理论进行介绍。在什么情况下 learning 是可行的？以机器学习实际应用的角度来看，需要具备以下两个条件，
 
 1. 模型不能过于复杂，数据量需要足够大，即模型的复杂程度不能远高于数据量的支撑
 2. 合适的最优化方法，即让 目标函数值接近0 的求参算法
 
-这三个条件看起来属于 “经验主义”，那有没有更加准确的数学程式化定义？
+这两个条件看起来是 “经验主义”，那有没有更加准确的数学程式化定义？
 
 ### 一、Hoeffding不等式
 
@@ -56,7 +56,7 @@ Hoeffding不等式 可以直接应用到一个 抽球颜色 的统计推断问�
 
 ### 二、机器学习中的 Hoeffding不等式
 
-将 Hoeffding不等式 应用到机器学习的问题上，机器学习的过程可以程式化表示为：通过算法 A，在机器学习方法的假设空间 H 中，根据样本集 D，选择最好的假设作为 g，选择标准是使 g 近似与理想的方案 f，其中，H 可以是一个函数（此时是非概率模型），也可以是一个分布（此时是概率模型），g 和 f 属于 H。类似于上面 “抽球” 的例子，可以通过样本集的经验损失（expirical loss ） <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)" title="E_{in}(h)" /> ，即 in-sample error，来推测总体的期望损失（expected loss） <img src="https://latex.codecogs.com/gif.latex?E_{out}(h)"/>。对于假设空间 H 中一个任意的备选函数 h，基于 Hoeffding不等式，我们得到下面的式子：
+将 Hoeffding不等式 应用到机器学习的问题上，**机器学习的过程可以程式化表示为：通过算法 A，在机器学习方法的假设空间 H 中，根据样本集 D，选择最好的假设作为 g，选择标准是使 g 近似与理想的方案 f，其中，H 可以是一个函数（此时是非概率模型），也可以是一个分布（此时是概率模型），g 和 f 属于 H**。类似于上面 “抽球” 的例子，可以通过样本集的经验损失（expirical loss ） <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)" title="E_{in}(h)" /> ，即 in-sample error，来推测总体的期望损失（expected loss） <img src="https://latex.codecogs.com/gif.latex?E_{out}(h)"/>。对于假设空间 H 中一个任意的备选函数 h，基于 Hoeffding不等式，我们得到下面的式子：
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)\leq\&space;2e^{-2\varepsilon^2N}" />
@@ -72,25 +72,25 @@ Hoeffding不等式 可以直接应用到一个 抽球颜色 的统计推断问�
 
 到这里，我们可以将最开始看起来 “经验主义” 地对 learning 可行的情况定义用上面的结论改造一下，如下所示：
 
-1. 如果备选函数集的大小 \|H\|=M ，M 有限，训练数据量 N 足够大，则对于学习算法 A 选择的任意备选函数 h，都有 <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)\approx&space;E_{out}(h)" />
-2. 如果 A 找到了一个备选函数，使得 <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)\approx&space;0" /> ，则有很大概率使 <img src="https://latex.codecogs.com/gif.latex?E_{out}(h)\approx&space;0" />
+**1. 如果备选函数集（假设空间 H）的大小 \|H\|=M ，M 有限，训练数据量 N 足够大，则对于学习算法 A 选择的任意备选函数 h，都有** <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)\approx&space;E_{out}(h)" />
+**2. 如果 A 找到了一个备选函数，使得** <img src="https://latex.codecogs.com/gif.latex?E_{in}(h)\approx&space;0" /> **，则有很大概率使** <img src="https://latex.codecogs.com/gif.latex?E_{out}(h)\approx&space;0" />
 
 所以将 learning 可行性的问题用上面两个结论转换一下，问题变成了：
 
-1. 我们能否保证 E-in(h) 与 E-out(h)  足够接近？
-2. 我们能否使 E-in(h)  足够小？
+**1. 我们能否保证 E-in(h) 与 E-out(h)  足够接近？**
+**2. 我们能否使 E-in(h)  足够小？**
 
 其中**对于第2点，能否使 E-in(h) 足够小这个问题通过合适的 “策略+算法” 可以达成**，关于这一点在前面的文章中已经解释地比较详细了（具体可参考《总览篇 VI 策略-损失函数》、《总览篇 VIII 算法-梯度下降法及其变种》、《总览篇 IX 算法-牛顿法和拟牛顿法》这3篇文章）；**对于1点，我们将在下文继续分析**。
  
 ### 三、成长函数（Growth Function）
 
-继续上文进行分析，对于假设函数 h，我们如果能够保证 其在样本集中的损失值 与 其在总体数据集中的损失值 之间高误差的概率存在一个接近 0 的上界，那么当然就能够保证 E-in(h) 与 E-out(h) 足够接近。从上文的最后结论着手继续分析，
+继续上文进行分析，**对于假设函数 h，我们如果能够保证 其在样本集中的损失值 与 其在总体数据集中的损失值 之间高误差的概率存在一个接近 0 的上界，那么当然就能够保证 E-in(h) 与 E-out(h) 足够接近**。从上文的最后结论着手继续分析，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)\&space;\leq&space;\&space;2Me^{-2\varepsilon^2N}" />
 </center>
 
-对于假设空间中的备选函数，假设数 M 通常是一个无穷大的数，而ϵ、样本数 N 是一个有限的数，看起来并不存在上界。所以一个直观的思路是，能否找到一个有限的因子来替代掉上面不等式上界（右边式子）中的 M。幸运的是，**存在这个因子 m-H 恒满足下面的式子：**
+**对于假设空间中的备选函数，假设数 M 通常是一个无穷大的数，而ϵ、样本数 N 是一个有限的数，看起来并不存在上界。所以一个直观的思路是，能否找到一个有限的因子来替代掉上面不等式上界（右边式子）中的 M**。幸运的是，**存在这个因子 m-H 恒满足下面的式子：**
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)\&space;\leq&space;\&space;2\&space;D(m_H)&space;\&space;e^{-2\varepsilon^2N}"  />
@@ -98,7 +98,7 @@ Hoeffding不等式 可以直接应用到一个 抽球颜色 的统计推断问�
 
 **，且 m-H 是有限的，我们暂且称之为有效假设数（Effective Number of Hypotheses），D 是我们将 m-H 加入到上面的不等式替代大 M 的某种操作方法，我们先解决找到 m-H 的问题，再去解决 D 的问题**。
 
-为了找到 m-H 的值，继续进行分析：虽然假设空间中通常存在 M 个（M=无限）假设函数 h，但多个 h 之间并不是完全独立的，他们是有很大的同质性，也就是在 M 个假设中，可能有一些假设可以归为同一类。下面以二维线性假设空间为例，我们的算法要在二维空间挑选一条直线发成作为尽可能好的假设 g，用来划分一个点（N=1）的类别，虽然有无数条直线可供选择，但真正有判别意义的就两类：一类判别成正例，一类判别成反例。如下图所示，
+为了找到 m-H 的值，继续进行分析：虽然假设空间中通常存在 M 个（M=无限）假设函数 h，但多个 h 之间并不是完全独立的，他们是有很大的同质性，也就是在 **M 个假设中，可能有一些假设可以归为同一类**。下面以二维线性假设空间为例，我们的算法要在二维空间挑选一条直线发成作为尽可能好的假设 g，用来划分一个点（N=1）的类别，虽然有无数条直线可供选择，但真正有判别意义的就两类：一类判别成正例，一类判别成反例。如下图所示，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/1point2lines.png"/>
@@ -174,13 +174,13 @@ OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操�
 
 故，B(3,2)=4。以此类推，可以求得所有 B(N,k），但每个都这么算好麻烦，用计算机算比较快，但难道没有一个通用的表达式吗？看了一眼文章的进度条，看来答案是有的。
 
-继续上文分析，根据1有 B(2,1)=1，根据2有 B(2,2)=3，根据3有B(3,2)=4。 B(3,2) 刚好等于 B(2,1)+B(2,2)，即刚好满足 B(N,k) = B(N-1,k) + B(N-1,k-1)，这不是偶然，我们可以大概推导一下： B(N,k) 比 B(N-1,k) 多了一个新样本，但断点没变，假设 B(N,k) 中有一部分（2α 个）是由 B(N-1,k) 的一部分（α 个）复制了一遍，然后分别加上新样本两类的情况；另一种是不能复制，只能加上新样本特定某一类别的那部分（β 个）。由于 B(N,k) 中存在 2α 个复制出的 case 保证了断点是 k，这意味着把新样本去掉后，原始 α 个 case 需要保证 N-1 个样本时断点是 k-1，否则 2α 个 N 样本的 case 的断点必然不是 k。根据以上推导可以得到
+继续上文分析，根据1有 B(2,1)=1，根据2有 B(2,2)=3，根据3有B(3,2)=4。 B(3,2) 刚好等于 B(2,1)+B(2,2)，即刚好满足 B(N,k) = B(N-1,k) + B(N-1,k-1)，这不是偶然，我们可以大概推导一下（**可以跳过，直接看结论**）： B(N,k) 比 B(N-1,k) 多了一个新样本，但断点没变，假设 B(N,k) 中有一部分（2α 个）是由 B(N-1,k) 的一部分（α 个）复制了一遍，然后分别加上新样本两类的情况；另一种是不能复制，只能加上新样本特定某一类别的那部分（β 个）。由于 B(N,k) 中存在 2α 个复制出的 case 保证了断点是 k，这意味着把新样本去掉后，原始 α 个 case 需要保证 N-1 个样本时断点是 k-1，否则 2α 个 N 样本的 case 的断点必然不是 k。根据以上推导可以得到
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&B(N,k)=2\alpha&plus;\beta\\&space;&B(N,k-1)=\alpha&plus;\beta\\&space;&B(N-1,k-1)=\alpha\\&space;\Rightarrow&space;B(N,k)&space;&&space;=&space;B(N-1,k)&space;&plus;&space;B(N-1,k-1)&space;\end{aligned}"/>
 </center>
 
-这个递推公式的结论很重要，根据以上递推公式，可以通过数学归纳法求 B(N,k) 的表达式，熟悉的高考题味道 :) ，推导过程省略，结论就是，
+，根据以上递推公式，可以通过数学归纳法求 B(N,k) 的表达式，熟悉的高考题味道 :) ，推导过程省略，结论就是，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?B(N,k)=\sum_{i=0}^{k-1}\binom{N}{i}"/>
@@ -202,13 +202,13 @@ OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操�
 <img src="https://latex.codecogs.com/gif.latex?P(\exists&space;h\in&space;H\&space;s.t.\&space;|E_{in}(h)-E_{out}(h)|>\varepsilon)\&space;\leq&space;\&space;2\&space;D(m_H(N))\&space;e^{-2\varepsilon^2N}"/>
 </center>
 
-看起来将 N^(k+1) 替代上式的 m-H 就完成了，现在就来解决这个 D 问题，不能直接去掉 D 用 m-H 直接替代大 M 的主要问题在于：E-in 的可能取值是有限个的，但 E-out 的可能取值是无限的。怎么让不等式是针对有限的函数呢？可以通过将 E-out 替换为验证集 (verification set) 的 E-in' 来解决这个问题。通过如下一系列复杂的证明，
+看起来将 N^(k+1) 替代上式的 m-H 就完成了，**现在就来解决这个 D 问题，通过某种方法将 D 去掉**，不能直接去掉 D 用 m-H 直接替代大 M 的主要问题在于：E-in 的可能取值是有限个的，但 E-out 的可能取值是无限的。怎么让不等式是针对有限的函数呢？可以通过将 E-out 替换为验证集 (verification set) 的 E-in' 来解决这个问题。通过如下一系列复杂的证明，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&(1)\&space;P(|E_{in}(h)-E_{out}(h)|>\frac{\varepsilon}{2})\leqslant&space;P(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})\\&space;&(2)\&space;P(|E_{in}(h)-E_{out}(h)|>\frac{\varepsilon}{2})&plus;P(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})=1&space;\\&space;&(3)\Rightarrow&space;\&space;P(|E_{in}(h)-E_{out}(h)|>\frac{\varepsilon}{2})&space;\leq&space;\frac{1}{2}\leq&space;P(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})\\&space;&(4)\Rightarrow&space;P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2P(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})&space;\\&space;&(5)\Rightarrow&space;P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2m_H(2N)P^{fixed}(|E_{in}(h)-E_{in}'(h)|>\frac{\varepsilon}{2})&space;\\&space;&(6)\Rightarrow&space;P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2m_H(2N)P^{fixed}(|E_{in}(h)-\frac{E_{in}(h)&plus;E_{in}'(h)}{2}|>\frac{\varepsilon}{4})&space;\\&space;&(7)\Rightarrow&space;P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2m_H(2N)e^{\frac{1}{8}\varepsilon^2N}&space;\\&space;\end{aligned}" />
 </center>
 
-终于将 D 给去掉，得到了我们要的东西。其实推理过程不用太在意，最重要的是最后的不等式，结合 m-H(N) 最高幂次为 k–1 的多项式上界 B(N,k) 给约束住 的结论，有：
+终于将 D 给去掉，得到了我们要的东西。其实推理过程不用太在意，最重要的是最后的不等式，结合 “m-H(N) 最高幂次为 k–1 的多项式上界 B(N,k) 给约束住” 的结论，有：
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?P(|E_{in}(h)-E_{out}(h)|>\varepsilon)&space;\leq&space;2^kN^{k-1}e^{\frac{1}{8}\varepsilon^2N}" />
@@ -224,7 +224,7 @@ OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操�
 <img src="https://latex.codecogs.com/gif.latex?d_{vc}=k-1"/>
 </center>
 
-联系上文，可以看到 VC界 是基于 VC维的。上面对二维线性假设空间分析，已知二维线性分类器不能打散 4 个及以上的样本，即 k=4，所以对于二维线性分类器，它的 VC维 就是3。一般而言，VC维 越大，表达能力就越强，但对数据、学习策略和算法的要求也越高。对于一个给定的分类器或者假设空间，应该如何确定 VC维 呢？一个不好的消息是，**对于非线性分类器，VC维 非常难于计算**，在学术研究领域，这仍然是一个有待回答的开放性问题。一个好消息是，对于线性分类器 VC维 是可以计算的，**N 维实数空间中线性分类器和线性实函数的 VC维 是 N+1**。
+联系上文，可以看到 VC界 是基于 VC维的。上面对二维线性假设空间分析，已知二维线性分类器不能打散 4 个及以上的样本，即 k=4，所以对于二维线性分类器，它的 VC维 就是3。一般而言，**VC维 越大，表达能力就越强，但对数据、学习策略和算法的要求也越高**。对于一个给定的分类器或者假设空间，应该如何确定 VC维 呢？一个不好的消息是，**对于非线性分类器，VC维 非常难于计算**，在学术研究领域，这仍然是一个有待回答的开放性问题。一个好消息是，对于线性分类器 VC维 是可以计算的，**N 维实数空间中线性分类器和线性实函数的 VC维 是 N+1**。
 
 ### 七、深度学习与VC维
 
@@ -236,19 +236,24 @@ OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操�
 
 其中 l 是层数，d_i-1 是前一层的节点数，可以看到 VC维 与网络层数和节点数个数相关。如果对具体证明过程感兴趣，可以参考论文[《VC Dimension of Multilayer Neural Networks, Range Queries》](http://ttic.uchicago.edu/~tewari/lectures/lecture12.pdf)
 
-举例来说，一个普通的三层全连接神经网络：input layer 是1000维，hidden layer 有1000个 nodes，output layer 为1个 node，则它的 VC维 大约为 O(1000*1000)。可以看到，神经网络的 VC维 相对较高，因而它的表达能力非常强，可以用来处理任何复杂的分类问题。根据上一节的结论，要充分训练该神经网络，所需样本量为10倍的VC维。如此大的训练数据量，是不可能达到的。所以在20世纪，复杂神经网络模型在out of sample的表现不是很好，容易overfit。
-
-但现在为什么深度学习的表现越来越好。原因是多方面的，主要体现在：
+举例来说，一个普通的三层全连接神经网络：input layer 是1000维，hidden layer 有1000个 nodes，output layer 为1个 node，则它的 VC维 大约为 O(1000*1000)。可以看到，**神经网络的 VC维 相对较高，因而它的表达能力非常强，可以用来处理任何复杂的分类问题。根据上一节的结论，要充分训练该神经网络，所需样本量为10倍的 VC维，所以所需数据量是一个巨大的数字**。如此大的训练数据量，在20世纪，训练出的复杂神经网络模型的泛化能力不是很好，容易过拟合。但现在为什么深度学习的表现越来越好。原因是多方面的，主要体现在：
 
 1. 通过修改神经网络模型的结构，以及提出新的 regularization 方法，使得神经网络模型的VC维相对减小了。例如卷积神经网络，通过修改模型结构(局部感受野和权值共享)，减少了参数个数，降低了 VC维。2012年的AlexNet，8层网络，参数个数只有60M；而2014年的GoogLeNet，22层网络，参数个数只有7M。再例如dropout，drop connect，denosing 等 regularization 方法的提出，也一定程度上增加了神经网络的泛化能力；
 2. 训练数据变多了。随着互联网的越来越普及，相比于以前，训练数据的获取容易程度以及量和质都大大提升了。训练数据越多，E-in 越容易接近于 E-out。而且目前训练神经网络，还会用到很多 data augmentation 方法，例如在图像上，剪裁，平移，旋转，调亮度，调饱和度，调对比度等都使用上了；
 3. 除此外，pre-training 方法的提出，GPU 的利用，都促进了深度学习。
 
-但即便这样，深度学习的 VC维 和VC界 依旧很大，其泛化控制方法依然没有强理论支撑。但是实践又一次次证明，深度学习是好用的。所以 **VC维 对深度学习的指导意义，目前不好表述，不好表述就绕过它不表述，大牛 LeCun 就是这么想的**，他对 SVM 和 VC 理论没那么看重，[《KDnuggets Exclusive: Interview with Yann LeCun, Deep Learning Expert, Director of Facebook AI Lab》](https://www.kdnuggets.com/2014/02/exclusive-yann-lecun-deep-learning-facebook-ai-lab.html) 这篇对 LeCun 的访谈里 LeCun 表达出的观点很直接暴力：第一点，承认 SVM 和 VC理论 很不错，但深度神经网络的 VC 维也是有限的，所以也是有 VC 界的，虽然 VC维 和 VC界 确实都有点大；第二点，SVM 只是一个第一层是度量支持向量和输入相似性、第二层是组合这些相似性的双层系统，其中第一层使用最简单的无监督学习方法，即直接使用训练样本来构建类别簇，有点简单了，虽然 SVM 的 VC理论能够以漂亮的数学方法进行容量控制（Capacity Control，指的是一种可学习性吧），容量控制能力虽然也重要，但没有表达能力重要，比如 SVM 不具备对图像的 “偏移、缩放、旋转、光照、背景杂乱” 等不变性，而这对于卷积神经网络来说很容易。
+但即便这样，深度学习的 VC维 和VC界 依旧很大，其泛化控制方法依然没有强理论支撑。但是实践又一次次证明，深度学习是好用的。所以 **VC维 对深度学习的指导意义，目前不好表述，不好表述就绕过它不表述，其中一个这么想的就是大牛 LeCun**，他对 SVM 和 VC 理论没那么看重，[《KDnuggets Exclusive: Interview with Yann LeCun, Deep Learning Expert, Director of Facebook AI Lab》](https://www.kdnuggets.com/2014/02/exclusive-yann-lecun-deep-learning-facebook-ai-lab.html) 这篇对 LeCun 的访谈里 LeCun 表达出的观点很直接暴力：
+
+1. 承认 SVM 和 VC理论 很不错，但深度神经网络的 VC 维也是有限的，所以也是有 VC 界的，虽然 VC维 和 VC界 确实都有点大；
+2. SVM 只是一个第一层是度量支持向量和输入相似性、第二层是组合这些相似性的双层系统，其中第一层使用最简单的无监督学习方法，即直接使用训练样本来构建类别簇，有点简单了，虽然 SVM 的 VC理论能够以漂亮的数学方法进行容量控制（Capacity Control，指的是一种可学习性吧），容量控制能力虽然也重要，但没有表达能力重要，比如 SVM 不具备对图像的 “偏移、缩放、旋转、光照、背景杂乱” 等不变性，而这对于卷积神经网络来说很容易。
+
+虽然有 “位置决定想法” 的嫌疑，但不得不说也有一定道理。但就现状而言，PAC 可行性分析 和 VC理论仍然是机器学习理论分析最重要的理论基础。
 
 ### 八、应用示例
 
-**VC维 与 模型效果（泛化误差）**
+回到最开始的问题，“对于一个任务，我准备使用的机器学习方法是否合理、数据量至少需要多少，这些问题如何在进行实验之前就能被解答？”。下面分别从 VC维 和 数据量 的选择分别说一下。
+
+**VC维的选择**
 
 将原 VC界 不等式稍作改写，那么在很高的概率下，模型的泛化误差和训练误差满足如下式子，
 
@@ -264,7 +269,7 @@ OK，从上式的右边可以看到 N > 0 时，假设 D 是某种多项式操�
 
 E-out - E-in 和 E-in 的下降速度在每个阶段都是不同的，因此我们需要寻找一个二者兼顾的 VC维，来保证 E-out 最小。
 
-**VC维 与 数据量**
+**数据量的选择**
 
 面对一个这样的问题：针对2维数据，做一个2分类任务，泛化误差和训练误差的最大差距允许是 0.1，对应置信度是 90%，所用的模型是线性分类模型，需要多少数据？
 
