@@ -33,13 +33,13 @@ tags:
 为了解答上面的问题，需要从 Hoeffding不等式 说起，Hoeffding不等式 是关于一组随机变量均值的概率不等式。 如果 X1,X2,⋯,Xn 为一组独立同分布的参数为 p 的伯努利分布随机变量，n为随机变量的个数。定义这组随机变量的均值为：
 
 <center>
-<img src="https://latex.codecogs.com/gif.latex?\bar{X}=\frac{X_1&plus;X_2&plus;...&plus;X&plus;n}{n}" />
+<img src="https://latex.codecogs.com/gif.latex?\bar{X}=\frac{X_1&plus;X_2&plus;...&plus;X_n}{n}" />
 </center>
 
 那么对于任意 δ>0, Hoeffding不等式 可以表示为
 
 <center>
-<img src="https://latex.codecogs.com/gif.latex?P(|\bar{X}-E(\bar{X})|\geq&space;\delta)\&space;\leq&space;\&space;2e^{-2\delta^2n^2}" />
+<img src="https://latex.codecogs.com/gif.latex?P(|\bar{X}-E(\bar{X})|\geq&space;\delta)\&space;\leq&space;\&space;2e^{-2\delta^2n}" />
 </center>
 
 Hoeffding不等式 可以直接应用到一个 抽球颜色 的统计推断问题上：我们从罐子里抽球，希望估计罐子里红球和绿球的比例，
