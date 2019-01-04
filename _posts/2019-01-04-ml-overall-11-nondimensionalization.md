@@ -158,31 +158,78 @@ TODO
 
 **LDA**
 
-LDA通常来说是作为一个独立的算法存在，给定了训练数据后，将会得到一系列的判别函数（discriminate function），之后对于新的输入，就可以进行预测了。
+相比于PCA，LDA依赖类别信息，所以LDA没有PCA使用的那么广泛，但在有类别信息的情况下，LDA还可以作为一个独立的判别算法存在，给定了训练数据后，将会得到一系列的判别函数（discriminate function），之后对于新的输入，就可以进行预测了。
 
 ``【场景-LDA】``
 
+**PCA和LDA的比较**
+
+相同点：
+（1）两者的作用是用来降维的
+（2）两者都假设符合高斯分布
+
+不同点
+（1）LDA是有监督的降维方法，PCA是无监督的。
+（2）LDA降维最多降到类别数K-1的维数，PCA没有这个限制。
+（3）LDA更依赖均值，如果样本信息更依赖方差的话，效果将没有PCA好。
+（4）LDA可能会过拟合数据。
+
+同一批数据的比较 TODO
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/lda eg1.png"/>
+</center>
+
 **深度学习**
+
+用深度学习的方法降维的结果表示的物理意义就没那么直观：
+
+1. 无监督深度学习降维方法。让深度学习大热起来的那篇 Hinton 2006的文章，在分层预训练阶段，每一层都被看作一个玻尔兹曼机（Restricted Boltzmann Machine，RBM），并用统计概率上的马尔科夫随机场（Markov Random Fields）来解释，由多层 RBM 堆叠而成的网络被称为深度置信网络（Deep Belief Network，DBN）。RBM组成的DBN是一种无监督的降维方法。另一种同样大热无监督深度学习降维方法是堆叠自编码器（stack auto-encoder，SAE）
+但是 大约从 2010 年开始 以 Hinton 的学生 Martens 为代表的一拨懂一点优化的人 开始放弃分层预训练繁琐的统计概率诠释 转而用全局优化的方法来训练 这种训练获得的每一层表示很难有直观的解释
+
+2. 有监督深度学习降维方法。常见的有监督深度神经网络大类包括 多层感知机（Multiple-Layer Perception，MLP），卷积神经网络（Convolutional Neural Network，CNN），循环神经网络（Recurrent Neural Network，RNN）及其变种，各种深度神经网络的抽出某一层中间表示作为特征，都可以当做是降维后的特征。以CNN为例，每一个节点都是一个卷积过滤器，训练获得的系数就是每个过滤器的参数。
 
 ##### 5.2 特征选择
 
-分为：过滤式（Filter）、封装式（Wrapper）以及 嵌入式（Embedded）。
+分为：过滤法（Filter）、封装法（Wrapper）以及 嵌入法（Embedded）。
 
-**过滤式（Filter）**
+**过滤法（Filter）**
+
+过滤法，按照发散性或者相关性对各个特征进行评分，设定阈值或者待选择阈值的个数，选择特征。
+
+1. 移除低方差的特征 (Removing features with low variance)
+2. 单变量特征选择 (Univariate feature selection)
++ 卡方(Chi2)检验
++ Pearson相关系数 (Pearson Correlation)
++ 互信息和最大信息系数 (Mutual information and maximal information coefficient (MIC)
+2.4 距离相关系数 (Distance Correlation)
 
 **封装式（Wrapper）**
 
+包装法，根据目标函数（通常是预测效果评分），每次选择若干特征，或者排除若干特征。
+
+递归特征消除（Recursive Feature Elimination）。递归消除特征法使用一个基模型来进行多轮训练，每轮训练后，移除若干权值系数的特征，再基于新的特征集进行下一轮训练。
+
 **嵌入式（Embedded）**
+
+嵌入法，先使用某些机器学习的算法和模型进行训练，得到各个特征的权值系数，根据系数从大到小选择特征。类似于Filter方法，但是是通过训练来确定特征的优劣。
 
 1. 正则化
 
-2. 决策树
+通过L1正则项来选择特征
+L1正则方法具有稀疏解的特性，因此天然具备特征选择的特性，
+但是要注意，L1没有选到的特征不代表不重要，原因是连个具有高相关性的特征可能只保留了一个，如果要确定哪个特征重要应再通过L2正则方法交叉检验。
+具体来说，应该分别使用L1和L2拟合，如果两个特征在L2中系数相接近，在L1中一个系数为0一个系数不为0，那么其实这两个特征都应该保留，原因是L1对于强相关特征只会保留一个。
 
-3. 深度学习
+2. 决策树（随机森林）或逻辑回归
+
+训练能够对特征打分的预选模型：RandomForest和Logistic Regression等都能对模型的特征打分，通过打分获得相关性后再训练最终模型
 
 [wiki: Normalization (statistics)](https://en.wikipedia.org/wiki/Normalization_(statistics))
 [zhihu: 标准化和归一化什么区别？](https://www.zhihu.com/question/20467170)
 [cnblogs: 使用sklearn做单机特征工程](http://www.cnblogs.com/jasonfreak/p/5448385.html)
 [csdn: 机器学习算法在什么情况下需要归一化](https://blog.csdn.net/sinat_29508201/article/details/53056843)
 [jianshu: 归一化、标准化和中心化/零均值化](https://www.jianshu.com/p/95a8f035c86c)
-[PCA与LDA比较](https://www.jianshu.com/p/982c8f6760de)
+[jianshu: PCA与LDA比较](https://www.jianshu.com/p/982c8f6760de)
+[csdn: 总结 特征选择（feature selection）算法笔记](https://blog.csdn.net/adore1993/article/details/53980327)
+[cnblogs: 特征选择 (feature_selection)](https://www.cnblogs.com/stevenlk/p/6543628.html)
