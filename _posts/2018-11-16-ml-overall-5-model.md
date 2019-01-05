@@ -17,6 +17,10 @@ tags:
 
 机器学习首要考虑的问题是学习什么样的模型，如在《机器学习·总览篇(4) 机器学习的三要素》中描述的，模型就是所要学习的条件概率分布或决策函数。模型的假设空间（hypothesis space）包含所有可能的条件概率分布和决策函数，一般是无穷多种可能性，而训练（数据经过模型、策略、算法的处理，对模型的参数进行调整）的目的就是获取一个最优参数的模型。
 
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/ml diagram-model.png"/>
+</center>
+
 ### 一、非概率模型、概率判别模型、生成模型
 
 模型通常有两种分类方式：第一种是**按模型形式分类：概率模型（Probabilistic Model）和 非概率模型（Non-probabilistic Model）**；第二种是**按是否对观测变量的分布建模分类：判别模型（Discriminative Model）和 生成模型（Generative Model）**。这两种分类方法事实上把所有模型划分成了三类，可用图1清楚地表示，

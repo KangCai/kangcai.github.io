@@ -18,9 +18,19 @@ tags:
 
 本文为了方便理解，在每种特征工程方法下都举个一个实例进行分析，基本可以表达出各个特征工程方法的思想，但不一定具备很强的代表性，仅起着抛砖引玉、引发思考的作用。
 
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/all diagram.png"/>
+</center>
+<center>图1 特征工程与机器学习</center>
+
 ### 二、特征构建
 
 通常有这么一种认知，认为机器学习会彻底占领人类专家擅长的领域，其实并不然，至少现阶段是错误的。特征构建作为机器学习流程的第一步，也是很重要的一步，是十分依赖专家知识的。
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/diagram-construction.png"/>
+</center>
+<center>图2 特征构建</center>
 
 特征构建是指从原始数据中人工的找出一些具有物理意义的特征。需要花时间去观察原始数据，思考问题的潜在影响因素：
 
@@ -35,6 +45,11 @@ tags:
 可以看到，特征的构建是一个精准权衡的过程，需要做到信息 **“不冗余的完整”**，是个非常麻烦的问题，书里面也很少提到具体的方法，需要对问题有比较深入的理解。
 
 ### 三、特征清洗
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/diagram-clean.png"/>
+</center>
+<center>图3 特征清洗</center>
 
 ##### 4.1 无效值和缺失值的处理
 
@@ -72,9 +87,14 @@ tags:
 
 ``【场景】``
 
-### 四、单特征处理
+### 四、单维特征处理
 
-单特征处理指的不仅仅是对单个特征的处理，也包含对多特征中的某一维特征的处理。
+单维特征处理指的不仅仅是对单个特征的处理，也包含对多特征中的某一维特征的处理。
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/diagram-transform.png"/>
+</center>
+<center>图4 单位特征处理</center>
 
 ##### 4.1 归一化（Normalization）和标准化（Standardization）
 
@@ -131,9 +151,14 @@ tags:
 
 有人会说，特征数量过多，做前面的特征构建阶段砍掉不就行了。而事实上，很多问题的特征就是砍不掉。比如要研究某个罕见病跟什么基因有关，人类已知的基因有几千个，但是每个基因的真正作用目前技术并不能完全了解，能直接排除掉吗？并不能，这个时候就需要借助降维、特征选择的手段。事实上，在实际应用场景中如果特征维度过高，采用多特征处理方法，包括降维、特征选择，很有可能提高学习效果。
 
-##### 5.1 降维
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/diagram-dimdown.png"/>
+</center>
+<center>图5 降维</center>
 
-主成分分析（Principal Component Analysis，PCA）和线性判别分析（Linear Discriminant Analysis，LDA）是最常见和有效的降维方法，随着深度学习的兴起，使用深度学习的手段进行降维也十分有效。
+##### 5.1 特征转换
+
+主成分分析（Principal Component Analysis，PCA）和线性判别分析（Linear Discriminant Analysis，LDA）是最常见和有效的特征转换降维方法，随着深度学习的兴起，使用深度学习的手段进行降维也十分有效。
 
 **PCA**
 

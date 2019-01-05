@@ -16,6 +16,10 @@ tags:
 
 与梯度下降法一样，在解决机器学习目标函数的最优化问题时，牛顿法与拟牛顿法也起着重要的作用。本文将分三节分别介绍 牛顿法一族、拟牛顿法一族 以及 两者与梯度下降法的比较。另外，本文涉及到的迭代公式比较抽象，难以用几何表示，所以更多的是公式推导。
 
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/ml diagram-algorithm.png"/>
+</center>
+
 ### 一、牛顿法
 
 ##### 1.1 原始的牛顿法（Newton's method）
