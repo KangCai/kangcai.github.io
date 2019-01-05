@@ -223,7 +223,7 @@ L1正则方法具有稀疏解的特性，因此天然具备特征选择的特性
 
 2. 决策树（随机森林）或逻辑回归
 
-训练能够对特征打分的预选模型：RandomForest和Logistic Regression等都能对模型的特征打分，通过打分获得相关性后再训练最终模型
+训练能够对特征打分的预选模型：决策树（Decision Tree）、随机森林（Random Forest）和逻辑回归（Logistic Regression）等都能对模型的特征打分，通过打分获得相关性后再训练最终模型
 
 [wiki: Normalization (statistics)](https://en.wikipedia.org/wiki/Normalization_(statistics))
 [zhihu: 标准化和归一化什么区别？](https://www.zhihu.com/question/20467170)
