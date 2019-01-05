@@ -33,8 +33,8 @@ def lda(c1, c2, topNfeat=1):
     # 计算类内离散度矩阵Sw
     Sw = (n1*s1+n2*s2)/(n1+n2)
     # 计算类间离散度矩阵Sb
-    Sb = (n1*(m-m1).T*(m-m1)+n2*(m-m2).T*(m-m2))/(n1+n2)
-    # 求最大特征值对应的特征值和特征向量
+    Sb = (n1*(m-m1).T*(m-m1) + n2*(m-m2).T*(m-m2))/(n1+n2)
+    # 求最大特征值对应的特征值和特征向量（重点）
     eigvalue, eigvector = linalg.eig(mat(Sw).I*Sb)
     # 对eigvalue从大到小排序，返回对应排序后的索引
     indexVec = argsort(-eigvalue)
@@ -42,6 +42,7 @@ def lda(c1, c2, topNfeat=1):
     nLargestIndex = indexVec[:topNfeat]
     # 取出最大的特征值对应的特征向量
     W = eigvector[:,nLargestIndex]
+    # 返回降维后结果
     return W
 
 if __name__ == '__main__':

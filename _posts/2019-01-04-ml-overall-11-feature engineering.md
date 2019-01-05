@@ -98,13 +98,14 @@ tags:
 
 ##### 4.1 归一化（Normalization）和标准化（Standardization）
 
-对于XXX，【TODO】
+归一化和标准化主要是为了应对“特征不同维度的量级可能差别过大而导致的问题”，比如对于一个两个维度量级差别很大的特征，在模型训练阶段对目标函数进行梯度下降时，在未归一化和归一化这两种情形下梯度过程可如图X所示，
 
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/why normalize.png"/>
+</center>
+<center>图X 单位特征处理</center>
 
-所以需要采取归一化的方法，【TODO】
-
-
-这两个概念由于长期的混用，到现在通常指的基本是同一个概念，就是无量纲化。但究其差别的话，**归一化内容稍微广泛一些，通常包含线性归一化**，比如
+从图X中可以看到，相比于未归一化，数据归一化后最优解的寻优过程明显会变得平缓，就更容易正确地收敛到最优解。归一化和标准化这两个概念由于长期的混用，到现在通常指的是同一个概念 —— 无量纲化。但究归一化和标准化差别的话，**归一化内容稍微广泛一些，通常包含线性归一化**，比如
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?x'=\frac{x-min(x)}{max(x)-min(x)}"/>
@@ -117,8 +118,6 @@ tags:
 <center>
 <img src="https://latex.codecogs.com/gif.latex?x'=\frac{x-\mu&space;}{\sigma&space;}"  />
 </center>
-
-应用场景 - 归一化【TODO】
 
 ``【场景】``
 
@@ -171,13 +170,47 @@ tags:
 5. 保留前N大的特征值对应的特征向量作为新空间的基向量
 6. 将数据转换到上面得到的N个特征向量构建的新空间中（实现了特征压缩）
  
-直接上代码
+上 PCA 的 python 代码，需且仅需 numpy支持，
  
-```
+```buildoutcfg
+# coding=utf-8
 
-```
+from numpy import *
 
-效果图
+def pca(dataMat, topNfeat=1):
+    """
+    pca特征维度压缩函数
+    :param dataMat: 数据集矩阵
+    :param topNfeat: 需要保留的特征维度，即要压缩成的维度数
+    :return:
+    """
+    #求数据矩阵每一列的均值
+    meanVals = mean(dataMat, axis=0)
+    #数据矩阵每一列特征减去该列的特征均值
+    meanRemoved = dataMat - meanVals
+    #计算协方差矩阵，除数n-1是为了得到协方差的无偏估计
+    covMat = cov(meanRemoved, rowvar=0)
+    #计算协方差矩阵的特征值eigVals及对应的特征向量eigVects
+    eigVals, eigVects = linalg.eig(mat(covMat))
+    #argsort():对特征值矩阵进行由小到大排序，返回对应排序后的索引
+    eigValInd = argsort(eigVals)
+    #从排序后的矩阵最后一个开始自下而上选取最大的N个特征值，返回其对应的索引
+    eigValInd = eigValInd[:-(topNfeat+1):-1]
+    #将特征值最大的N个特征值对应索引的特征向量提取出来，组成压缩矩阵
+    redEigVects = eigVects[:,eigValInd]
+    #将去除均值后的数据矩阵*压缩矩阵，转换到新的空间，使维度降低为N
+    lowDDataMat = meanRemoved * redEigVects
+    #利用降维后的矩阵反构出原数据矩阵(用作测试，可跟未压缩的原矩阵比对)
+    reconMat = (lowDDataMat * redEigVects.T) + meanVals
+    #返回压缩后的数据矩阵即该矩阵反构出原始数据矩阵
+    return lowDDataMat, reconMat
+
+if __name__ == '__main__':
+    data = [[1,0],[3,2],[2,2],[0,2],[1,3]]
+    lowDData, recon = pca(data)
+    print(lowDData)
+    print(recon)
+```
 
 **LDA**
 
@@ -189,6 +222,63 @@ tags:
 
 其中分子就是两个类别的中心距离，分母两类同类别样本方差（协方差）之和，要让分子尽可能大，分母尽可能小。
 
+上 PCA 的 python 代码，需且仅需 numpy支持，
+
+```buildoutcfg
+# coding=utf-8
+
+from numpy import *
+
+def lda(c1, c2, topNfeat=1):
+    """
+    lda特征维度压缩函数
+    :param c1: 第一类样本矩阵，每行是一个样本
+    :param c2: 第二类样本矩阵，每行是一个样本
+    :param topNfeat: 需要保留的特征维度，即要压缩成的维度数
+    :return:
+    """
+    # 第一类样本均值
+    m1 = mean(c1, axis=0)
+    # 第二类样本均值
+    m2 = mean(c2, axis=0)
+    # 所有样本矩阵
+    c = vstack((c1, c2))
+    # 所有样本的均值
+    m = mean(c, axis=0)
+    # 第一类样本数
+    n1 = c1.shape[0]
+    # 第二类样本数
+    n2 = c2.shape[0]
+    # 求第一类样本的散列矩阵s1
+    s1=0
+    for i in range(0,n1):
+        s1 += (c1[i,:]-m1).T*(c1[i,:]-m1)
+    # 求第二类样本的散列矩阵 s2
+    s2=0
+    for i in range(0,n2):
+        s2 += (c2[i,:]-m2).T*(c2[i,:]-m2)
+    # 计算类内离散度矩阵Sw
+    Sw = (n1*s1+n2*s2)/(n1+n2)
+    # 计算类间离散度矩阵Sb
+    Sb = (n1*(m-m1).T*(m-m1) + n2*(m-m2).T*(m-m2))/(n1+n2)
+    # 求最大特征值对应的特征值和特征向量（重点）
+    eigvalue, eigvector = linalg.eig(mat(Sw).I*Sb)
+    # 对eigvalue从大到小排序，返回对应排序后的索引
+    indexVec = argsort(-eigvalue)
+    # 取出最大的特征值对应的索引
+    nLargestIndex = indexVec[:topNfeat]
+    # 取出最大的特征值对应的特征向量
+    W = eigvector[:,nLargestIndex]
+    # 返回降维后结果
+    return W
+
+if __name__ == '__main__':
+    data1 = [[1, 0], [3, 2]]
+    data2 = [[0, 1], [1, 3]]
+    w = lda(array(data1), array(data2), 2)
+    print(w)
+
+```
 **PCA和LDA的比较**
 
 相同点：
