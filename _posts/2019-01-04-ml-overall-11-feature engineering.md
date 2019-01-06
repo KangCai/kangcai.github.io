@@ -16,8 +16,19 @@ tags:
 
 ### 一、特征工程是什么
 
-本文为了方便理解，在每种特征工程方法下都举个一个实例进行分析，基本可以表达出各个特征工程方法的思想，但不一定具备很强的代表性，仅起着抛砖引玉、引发思考的作用。
+特征工程是一个过程，一个”利用数据相关领域知识来创造让机器学习算法能运作的特征“的过程。特征工程虽然是一个非正式的主题，通常情况下也并没有被列入到机器学习必要的元素中，但在机器学习实际应用中确实是不可缺少的元素，从这个角度看，有点类似于空气之于人。
 
+具体地解释特征工程，首先需要定义特征是什么：**特征是做分析或预测的所有独立样本共享的一种属性，所有对模型有影响的属性都能成为特征，除了属性意义之外，特征的目的是让模型更容易挖掘问题的语义，从而帮助模型解决问题。**
+
+特征工程的过程包括：
+
+1. 特征构建
+2. 特征清洗
+3. 检查特征如何与模型一起使用
+4. 特征改进。常见的包括单维特征处理、特征降维。
+5. 重复1-4步，直到工作完成。
+
+文本重点介绍内容：第二节介绍第1步的特征构建，第三节介绍第2步的特征清洗，第四节介绍第4步中的单维特征处理，第五节介绍第4步中的特征降维。
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/all diagram.png"/>
 </center>
@@ -331,11 +342,14 @@ if __name__ == '__main__':
 
 2. 基于树模型。训练能够对特征打分的预选模型：决策树（Decision Tree）、随机森林（Random Forest）基于树的预测模型。基于树的预测模型的原理就是通过计算特征的重要程序来实现的（《监督学习篇 基于树的模型》一文将会详细介绍），所以天然具备特征选择的功能；
 
-[wiki: Normalization (statistics)](https://en.wikipedia.org/wiki/Normalization_(statistics))
-[zhihu: 标准化和归一化什么区别？](https://www.zhihu.com/question/20467170)
-[cnblogs: 使用sklearn做单机特征工程](http://www.cnblogs.com/jasonfreak/p/5448385.html)
+**参考文献**
+
+1. [wiki: Normalization (statistics)](https://en.wikipedia.org/wiki/Normalization_(statistics))
+2. [zhihu: 标准化和归一化什么区别？](https://www.zhihu.com/question/20467170)
+[csdn: 总结 特征选择（feature selection）算法笔记](https://blog.csdn.net/adore1993/article/details/53980327)
 [csdn: 机器学习算法在什么情况下需要归一化](https://blog.csdn.net/sinat_29508201/article/details/53056843)
+[cnblogs: 使用sklearn做单机特征工程](http://www.cnblogs.com/jasonfreak/p/5448385.html)
+[cnblogs: 特征选择 (feature_selection)](https://www.cnblogs.com/stevenlk/p/6543628.html)
 [jianshu: 归一化、标准化和中心化/零均值化](https://www.jianshu.com/p/95a8f035c86c)
 [jianshu: PCA与LDA比较](https://www.jianshu.com/p/982c8f6760de)
-[csdn: 总结 特征选择（feature selection）算法笔记](https://blog.csdn.net/adore1993/article/details/53980327)
-[cnblogs: 特征选择 (feature_selection)](https://www.cnblogs.com/stevenlk/p/6543628.html)
+
