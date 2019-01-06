@@ -30,8 +30,17 @@ def pca(dataMat, topNfeat=1):
     #返回压缩后的数据矩阵即该矩阵反构出原始数据矩阵
     return lowDDataMat, reconMat
 
+def draw(RawData, lowData):
+    import matplotlib.pyplot as plt
+    color = array(['r', 'g', 'b', 'm', 'c'])
+    plt.scatter(RawData[:,0], RawData[:,1], c=color)
+    plt.scatter(array(lowData)[:, 0], array(lowData)[:, 1], marker='s', c=color)
+    plt.show()
+
 if __name__ == '__main__':
-    data = [[1,0],[3,2],[2,2],[0,2],[1,3]]
+    data = array([[1,0],[3,2],[2,2],[0,2],[1,3]])
+    print(data[:,0])
     lowDData, recon = pca(data)
     print(lowDData)
     print(recon)
+    draw(data, recon)
