@@ -16,7 +16,7 @@ tags:
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/learning classification2.png"/>
 </center>
-<center>图1 数据标注完整度从高到低</center>
+<center>图1 机器学习分类</center>
 
 传统的机器学习分类中通常是：监督学习（Supervised learning）和无监督学习（Unsupervised learning），还有一种结合监督学习和无监督学习的中间类别，称之为半监督学习（Semi-supervised Learning）。传统的机器学习分类没有提到过强化学习，而在连接主义学习中，把强化学习（Reinforcement learning）作为与以上三类方法并列的一类机器学习方法，个人认为可以把强化学习看成是一种通过环境内部产生样本（包括特征和标签）的监督学习。
 
