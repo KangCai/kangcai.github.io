@@ -31,7 +31,16 @@ tags:
 
 ### 一、监督学习发展历程
 
-### 二、常见监督学习方法
+### 二、如何选择合适的监督学习算法
+
+machine learning algorithm cheat sheet
+https://blog.csdn.net/gitchat/article/details/78913235
+https://blogs.sas.com/content/subconsciousmusings/2017/04/12/machine-learning-algorithm-use/
+
+微软 Azure 算法流程图
+来源： https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-algorithm-cheat-sheet
+
+https://blog.csdn.net/tkkzc3E6s4Ou4/article/details/80000439
 
 **参考文献**
 
