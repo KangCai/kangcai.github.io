@@ -29,9 +29,41 @@ tags:
 
 图2中监督学习的数据标注完整度是100%；无监督学习使用没有标签的数据，标注完整度是0%；**半监督学习使用 “有标签数据+无标签数据” 混合成的数据；半监督聚类里数据的标签不是确定性的**，举个例子，标签可能是 “样本 A 的分类不是 C 类”，或者是 “A、B 两类中的一类” 这些形式。
 
-### 一、监督学习发展历程
+### 一、监督学习模型
+
+如《总览篇 V》中所述，模型通常有两种分类方式：第一种是**按模型形式分类：概率模型（Probabilistic Model）和 非概率模型（Non-probabilistic Model）**；第二种是**按是否对观测变量的分布建模分类：判别模型（Discriminative Model）和 生成模型（Generative Model）**。这两种分类方法事实上把所有模型划分成了三类，可用图1清楚地表示，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/Model classification.png"/>
+</center>
+<center>图1 模型分类示意图</center>
+
+其中，每种类别的代表性模型如下：
+
+I. 非概率模型（Non-probabilistic Model），顾名思义，不是根据概率进行分类的，而是直接通过计算判别超平面的方式进行分类。实例：感知机（单层神经网络，Perceptron）、多层感知机（MLP）、支持向量机（SVM）、K近邻（KNN）
+
+II. 概率判别模型（Probalilistic Discriminative Model），与非概率模型相同的是，都是判别模型，必须通过多类数据之间对比才能建模；不同的是，它是根据后验概率来获得判别超平面的。实例：逻辑回归（LR）、最大熵模型（ME）、条件随机场（CRF）
+
+III. 生成模型（Generative Model），对某一类数据自己就可以单独建模。首先是对某类数据的联合概率P(x,y)进行建模，如果是在聚类任务中，到这一步就结束了；但如果在分类任务中，还需要根据贝叶斯公式算出后验概率实现分类。实例：高斯判别分析（GDA）、朴素贝叶斯（NB）、受限玻尔兹曼机（RBM）、隐马尔科夫模型（HMM）
 
 ### 二、如何选择合适的监督学习算法
+
+这个问题的答案取决于许多的因素，其中包括：
+
+数据的维度大小，数据的质量和数据的特征属性；
+
+你可以利用的计算资源；
+
+你所在的项目组对该项目的时间预计；
+
+你手上的数据能应用在哪些项目中；
+
+先验知识，可以指导我们去如何选择算法模型，帮助我们少走一点弯路
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/supervised learning model cheeting sheet.png"/>
+</center>
+<center>图3 监督学习模型选择表</center>
 
 machine learning algorithm cheat sheet
 https://blog.csdn.net/gitchat/article/details/78913235
