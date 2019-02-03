@@ -65,6 +65,23 @@ III. 生成模型（Generative Model），对某一类数据自己就可以单�
 </center>
 <center>图3 监督学习模型选择表</center>
 
+注重效率的分类模型
+
+（表格）朴素贝叶斯、决策树、逻辑回归、线性SVM，
+
+注重准确率的分类模型
+
+（表格）核函数SVM、随机森林、神经网络、GBDT、XGBoost
+
+注重效率的回归模型
+
+（表格）
+
+注重准确率的回归模型
+
+（表格）
+
+
 machine learning algorithm cheat sheet
 https://blog.csdn.net/gitchat/article/details/78913235
 https://blogs.sas.com/content/subconsciousmusings/2017/04/12/machine-learning-algorithm-use/
@@ -73,6 +90,7 @@ https://blogs.sas.com/content/subconsciousmusings/2017/04/12/machine-learning-al
 来源： https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-algorithm-cheat-sheet
 
 https://blog.csdn.net/tkkzc3E6s4Ou4/article/details/80000439
+
 
 **参考文献**
 
