@@ -70,6 +70,7 @@ III. 生成模型（Generative Model），对某一类数据自己就可以单�
 | 朴素贝叶斯 |   |  | |
 | 逻辑回归 | <img src="https://latex.codecogs.com/gif.latex?O(M)" /> | <img src="https://latex.codecogs.com/gif.latex?O(M)" />  |   |   |
 | 支持向量机 | <img src="https://latex.codecogs.com/gif.latex?O(N^2M^2)" /> | <img src="https://latex.codecogs.com/gif.latex?O(NM^2)" /> | 弱 |
+| K近邻 | <img src="https://latex.codecogs.com/gif.latex?O(N^2M^2)" /> | <img src="https://latex.codecogs.com/gif.latex?O(NM^2)" /> | 弱 |
 | 神经网络 |  |   |   |   |
 | 高斯判别模型 |  |  |    |
 | 决策树 |   |   |   |   |
