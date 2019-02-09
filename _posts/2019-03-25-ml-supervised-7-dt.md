@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "机器学习 · 有监督学习篇 IV"
-subtitle: "基于树的方法和集成方法"
+title: "机器学习 · 监督学习篇 VII"
+subtitle: "决策树"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
 tags:
   - 机器学习
-  - 机器学习·有监督学习篇
+  - 机器学习·监督学习篇
 ---
 
 树形模型更加接近人的思维方式，可以产生可视化的分类规则，产生的模型具有可解释性（可以抽取规则）。树模型拟合出来的函数其实是分区间的阶梯函数。
