@@ -19,7 +19,11 @@ h_\theta(x)=\frac{1}{1+e^{\theta^T x}}
 <img src="https://latex.codecogs.com/gif.latex?h_\theta(x)=\frac{1}{1&plus;e^{\theta^T&space;x}}" />
 </center>
 
-该函数也称作 sigmoid 函数，那么为什么逻辑回归会选择使用 sigmoid 函数呢？有很多文章说是因为 sigmoid有很多优秀的性质，这其实是本末倒置了，具备 sigmoid 函数这样性质的函数有很多。之所以使用 sigmoid 函数，其实是与 “逻辑回归模型对数据的先验分布假设” 直接相关，这一点在本文第二节介绍广义线性模型时再说，暂且先看逻辑回归是怎么使用 sigmoid 函数来实现分类的。对于一个二类任务，LR 公式推导如下所示，
+该函数也称作 sigmoid 函数，那么为什么逻辑回归会选择使用 sigmoid 函数呢？有很多文章说是因为 sigmoid有很多优秀的性质，这其实是本末倒置了，具备 sigmoid 函数这样性质的函数有很多。之所以使用 sigmoid 函数，其实是与 “逻辑回归模型对数据的先验分布假设” 直接相关，这一点在本文第二节介绍广义线性模型时再说，暂且先看逻辑回归是怎么使用 sigmoid 函数来实现分类的。
+
+##### 1.1 损失函数公式推导
+
+对于一个二类任务，LR 公式推导如下所示，
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;(1)\&space;&&space;\left\{\begin{matrix}&space;p(y=1|x;\theta)=h_\theta(x)&space;\\&space;\&space;\&space;\&space;\&space;\&space;p(y=0|x;\theta)=1-h_\theta(x)&space;\end{matrix}\right.\\&space;(2)\&space;&&space;\Rightarrow&space;p(y|x;\theta)=(h_\theta(x))^y(1-h_\theta(x))^{1-y}&space;\\&space;(3)\&space;&&space;\Rightarrow&space;M(\theta)=\prod_{i=1}^{m}p(y^{(i)}|x^{(i)};\theta)&space;\\&space;(4)\&space;&&space;\Rightarrow&space;M(\theta)=\prod_{i=1}^{m}(h_\theta(x^{(i)}))^y^{(i)}(1-h_\theta(x^{(i)}))^{1-y^{(i)}}\\&space;(5)\&space;&&space;\Rightarrow&space;log(M(\theta))=\sum_{i=1}^{m}[y^{(i)}log(h_\theta(x^{(i)}))&plus;(1-y^{(i)})log(1-h_\theta(x^{(i)}))]&space;\\&space;(6)\&space;&&space;\Rightarrow&space;L(\theta)=-log(M(\theta))=-\sum_{i=1}^{m}[y^{(i)}log(h_\theta(x^{(i)}))&plus;(1-y^{(i)})log(1-h_\theta(x^{(i)}))]&space;\end{aligned}"/>
 
@@ -32,6 +36,9 @@ h_\theta(x)=\frac{1}{1+e^{\theta^T x}}
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;H(p,q)&=-\sum_{i}^{&space;}p_i\&space;log\&space;q_i&space;\\&space;&=\sum_{i}^{&space;}[-y^{(i)}\&space;log\&space;h_\theta(x^{(i)})-(1-y^{(i)})\&space;log(1-h_\theta(x^{(i)})))]&space;\\&space;&=-\sum_{i}^{&space;}[y^{(i)}\&space;log\&space;h_\theta(x^{(i)})&plus;(1-y^{(i)})\&space;log(1-h_\theta(x^{(i)})))]&space;\end{aligned}" />
 
 ，跟上面逻辑回归损失函数完全一致，也就是说逻辑回归的损失函数就是交叉熵。
+
+##### 1.2 Python 实现
+
 
 ### 二、常见模型及其联接函数
 
