@@ -46,3 +46,4 @@ tags:
 
 如文章开头所述，一个典型的朴素贝叶斯模型应用场景是垃圾文本过滤，本小节就只用 numpy 库手写实现手机短信垃圾（SMS Spam）分类，选用的数据集是经典的 [SMS Spam Collection v. 1](http://www.dt.fee.unicamp.br/~tiago/smsspamcollection/)，共5,574条短信，其中垃圾短信747条，非垃圾短信4827条。
 
+[wiki: 朴素贝叶斯分类器](https://zh.wikipedia.org/wiki/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8)

@@ -38,13 +38,13 @@ tags:
 </center>
 <center>图1 模型分类示意图</center>
 
-其中，每种类别的代表性模型如下：
+模型一共分为图中的三种模型：非概率模型（Non-probabilistic Model）、概率判别模型（Probalilistic Discriminative Model）、生成模型（Generative Model）；三种模型挖掘信息的程度从少到多，对于问题解决的途径从直接到间接。其中，每种类别的代表性模型如下：
 
-I. 非概率模型（Non-probabilistic Model），顾名思义，不是根据概率进行分类的，而是直接通过计算判别超平面的方式进行分类。实例：感知机（单层神经网络，Perceptron）、多层感知机（MLP）、支持向量机（SVM）、K近邻（KNN）
+I. 非概率模型，直接判别：感知机（单层神经网络，Perceptron）、多层感知机（MLP）、支持向量机（SVM）、K近邻（KNN）
 
-II. 概率判别模型（Probalilistic Discriminative Model），与非概率模型相同的是，都是判别模型，必须通过多类数据之间对比才能建模；不同的是，它是计算后验概率来间接获得判别超平面的。实例：逻辑回归（LR）、最大熵模型（ME）、条件随机场（CRF）
+II. 概率判别模型，间接利用条件概率判别：逻辑回归（LR）、决策树（DT）、最大熵模型（ME）、条件随机场（CRF）
 
-III. 生成模型（Generative Model），对某一类数据自己就可以单独建模。首先是对某类数据的联合概率P(x,y)进行建模，如果是在聚类任务中，到这一步就结束了；但如果在分类任务中，还需要根据贝叶斯公式算出后验概率实现分类。实例：高斯判别分析（GDA）、朴素贝叶斯（NB）、受限玻尔兹曼机（RBM）、隐马尔科夫模型（HMM）
+III. 生成模型，更间接地先求联合概率，然后利用贝叶斯定理：高斯判别分析（GDA）、朴素贝叶斯（NB）、受限玻尔兹曼机（RBM）、隐马尔科夫模型（HMM）
 
 ### 二、如何选择合适的监督学习算法
 
@@ -61,52 +61,41 @@ III. 生成模型（Generative Model），对某一类数据自己就可以单�
 </center>
 <center>图3 监督学习模型选择表</center>
 
-首先毫无疑问，我们可以根据数据值的因变量，或者称之为标签，是连续值还是离散值，将监督学习问题分为分类问题和回归问题，其中分类问题的标签是离散值，回归问题的标签是连续值，
+首先毫无疑问，我们可以根据数据值的因变量，或者称之为标签，是连续值还是离散值，将监督学习问题分为分类问题和回归问题，其中分类问题的标签是离散值，回归问题的标签是连续值。但是往后的节点，比如根据 准确率和效率、可解释性、数据量 等指标对算法进行取舍，我个人认为本图不是很合理，或者说是过于宽泛了。本文下面将从更细的粒度对各个算法进行分析。
 
-##### 2.1 分类模型
+|  | 类型 | 训练时间复杂度 | 预测时间复杂度 |
+| :-----------:| :----------: |:----------: | :----------: | 
+| 支持向量机 | 非概率判别模型 | <img src="https://latex.codecogs.com/gif.latex?O(N^2M)~O(N^3M)" /> | <img src="https://latex.codecogs.com/gif.latex?O(N_{sv}M)" /> |
+| K近邻 | 非概率判别模型 | <img src="https://latex.codecogs.com/gif.latex?O(NM\ logN)" />（KD树） | <img src="https://latex.codecogs.com/gif.latex?O((N^{1-\frac{1}{M}}+K)M)" /> （KD树）|
+| 神经网络 | 非概率判别模型 | <img src="https://latex.codecogs.com/gif.latex?O(NP)" /> (多层感知机) |  <img src="https://latex.codecogs.com/gif.latex?O(P)" /> (多层感知机) |   |
+| 逻辑回归 | 概率判别模型 | <img src="https://latex.codecogs.com/gif.latex?O(NM)" /> | <img src="https://latex.codecogs.com/gif.latex?O(M)" />  |   |   |
+| 决策树 |  概率判别模型 | <img src="https://latex.codecogs.com/gif.latex?O(NMD)" /> | <img src="https://latex.codecogs.com/gif.latex?O(D)" /> |   |
+| 朴素贝叶斯 |  生成模型 | <img src="https://latex.codecogs.com/gif.latex?O(NM)" /> | <img src="https://latex.codecogs.com/gif.latex?O(M)" /> |  |
+| 高斯判别模型 | 生成模型 | <img src="https://latex.codecogs.com/gif.latex?O(NM^2)" /> |  <img src="https://latex.codecogs.com/gif.latex?O(M^2)" /> |
 
-|  | 训练复杂度 | 预测复杂度 | 可解释性 | 
-| :-----------:| :----------: | :----------: | :----------: |:----------: |
-| 朴素贝叶斯 |   |  | |
-| 逻辑回归 | <img src="https://latex.codecogs.com/gif.latex?O(M)" /> | <img src="https://latex.codecogs.com/gif.latex?O(M)" />  |   |   |
-| 支持向量机 | <img src="https://latex.codecogs.com/gif.latex?O(N^2M^2)" /> | <img src="https://latex.codecogs.com/gif.latex?O(NM^2)" /> | 弱 |
-| K近邻 | <img src="https://latex.codecogs.com/gif.latex?O(N^2M^2)" /> | <img src="https://latex.codecogs.com/gif.latex?O(NM^2)" /> | 弱 |
-| 神经网络 |  |   |   |   |
-| 高斯判别模型 |  |  |    |
-| 决策树 |   |   |   |   |
-| 随机森林 |   |   |   |   |
-| GBDT |   |   |   |   |
-| XGBoost |   |   |   |   |
+上述表格，对于训练和预测时间复杂度两列中，N 是训练样本数，M 是样本特征维度，其中支持向量机的 <img src="https://latex.codecogs.com/gif.latex?N_{sv}" /> 是支持向量的个数，神经网络的 P 是网络参数总个数，K近邻表格中时间复杂度对应的方法是KD树法，决策树的 D 是决策树的层数；另外需要注意，涉及到迭代法优化问题的模型，比如神经网络、逻辑回归等，它们的训练时间复杂度都是按照每个样本迭代常数次计算的。
 
-##### 2.2 回归模型
+我们结合上述表格，一一分析各个模型的特点：
 
-注重效率的分类模型
+1. 支持向量机，训练时间复杂度太高，这意味着样本数目太高训练效率很低；而且最后起作用的支持向量数目也是有限的，这意味着在特征维度一定的情况下，过多的训练样本数对模型预测准确率的提升也不大。所以综合两点，**支持向量机适合小规模数据集**。
+2. K近邻，没有显式的训练过程，它的特点是完全跟着数据走，没有数学模型可言，也正因为如此具有很强的可解释性。表格中给的是 KD 树实现的时间复杂度，如果是朴素方法，训练时间复杂度更低一点，是 O(N M)，但预测时间复杂度高达 O(N logK)，效率极低。即使使用 KD 树实现，当特征维度稍微大一点，效率也是极低；所以**K近邻法特征维度一般不超过20，实用价值严重受限**。
+3. 神经网络，这里是以多层感知机（MLP）为例，现在深度学习层数和节点数目通常都比较大，所以网络参数个数P一般很大，P越大意味着越强的函数拟合能力，但前提是足够的计算资源和训练数据，所以说**神经网络的表现效果一定程度上取决于计算资源和数据量**。
+4. 逻辑回归，训练和预测效率都很高，**多维输出时的Softmax层通常作为现在深度学习的最后一层，使用广泛，效果也良好**。
+5. 决策树，决策树每个节点有十分具体的物理意义，所以有很强的解释性，训练效率较快，当我们希望能更好地理解手头数据的时候，往往可以使用决策树。但也是受限于其简单性，**决策树更大的用处是作为一些更有用的算法的基石**，比如**随机森林**，还有 BAT、华为等公司大数据比赛 几年前流行的算法 **GBDT**，和最近几年流行的算法 **XGBoost**。
+6. 朴素贝叶斯，跟K近邻类似，也没有显式的训练过程，因此也有较强的可解释性，这一点与图X结论不太一样哈。训练和预测效率效率都很高。**典型的应用场景就是垃圾邮件过滤器，效果一般会很好**。
+7. 高斯判别模型，高斯判别模型是基于伯努利分布的，这一点与逻辑回归一致，事实上高斯判别模型求得的后验概率跟逻辑回归的函数形式也是一致的，差别就在于高斯判别模型多一个对各个类别数据本身的分布假设——高斯分布，这意味着高斯判别模型比逻辑回归需要更加严格的模型假设，在实践中，**逻辑回归比高斯判别模型的泛化性能更强**。除此之外，计算过程需要求 “特征X” 减 “特征期望” 的协方差矩阵，所以**效率会比逻辑回归低一点**。
 
-（表格）朴素贝叶斯、决策树、逻辑回归、线性SVM，
+总的来说，就像机器学习领域中惯用的一句话，没有最好的模型，只有最合适的模型，这句话很zhengzhi正确。但就我个人而言，我认为就实际准确率来看，深度神经网络 > 支持向量机 > 其它，另外有一些像英语老师常说的 “固定搭配、死记住” 的一些适合特殊场景的算法，比如 垃圾邮件过滤器——朴素贝叶斯模型，类别性质的稀疏特征——逻辑回归模型，大数据推荐算法——XGBoost 等经验性质结论，不一定完美，但效果一定不错。
 
-注重准确率的分类模型
-
-（表格）核函数SVM、随机森林、神经网络、GBDT、XGBoost
-
-注重效率的回归模型
-
-（表格）
-
-注重准确率的回归模型
-
-（表格）
-
-
-machine learning algorithm cheat sheet
-https://blog.csdn.net/gitchat/article/details/78913235
-https://blogs.sas.com/content/subconsciousmusings/2017/04/12/machine-learning-algorithm-use/
-
-微软 Azure 算法流程图
-来源： https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-algorithm-cheat-sheet
-
-https://blog.csdn.net/tkkzc3E6s4Ou4/article/details/80000439
-
+本文是《监督学习篇》的第一篇文章，也是概括性地介绍了一下各种广泛使用的监督学习方法的特点和适用场景，在《监督学习篇》后续的文章中会详细地对每一种监督学习方法进行更深入地介绍，包括不使用机器学习相关工具包的算法代码实现示例。
 
 **参考文献**
 
-[zhihu:什么是无监督学习？](https://www.zhihu.com/question/23194489)
+1. [《统计学习方法》 李航](https://book.douban.com/subject/10590856/)
+2. [Stanford CS 229 ― Machine Learning](https://stanford.edu/~shervine/teaching/cs-229.html)
+3. [wiki: 朴素贝叶斯分类器](https://zh.wikipedia.org/wiki/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8)
+4. [wiki: 决策树](https://zh.wikipedia.org/wiki/%E5%86%B3%E7%AD%96%E6%A0%91)
+5. [zhihu:什么是无监督学习？](https://www.zhihu.com/question/23194489)
+6. [cnblogs:支持向量机（五）SMO算法](http://www.cnblogs.com/jerrylead/archive/2011/03/18/1988419.html)
+7. [jianshu:基础-12：15分钟理解KD树](https://www.jianshu.com/p/ffe52db3e12b)
+8. [csdn: 斯坦福大学机器学习——高斯判别分析](https://blog.csdn.net/linkin1005/article/details/39054023)

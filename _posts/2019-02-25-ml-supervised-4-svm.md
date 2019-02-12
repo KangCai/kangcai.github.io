@@ -12,3 +12,6 @@ tags:
 
 核函数映射
 https://www.cnblogs.com/machinelearner/archive/2012/12/31/2841175.html
+
+SMO算法
+http://www.cnblogs.com/jerrylead/archive/2011/03/18/1988419.html
