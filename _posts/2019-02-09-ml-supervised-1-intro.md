@@ -38,12 +38,12 @@ tags:
 
 ### 一、监督学习模型
 
-如《总览篇 V》中所述，模型通常有两种分类方式：第一种是**按模型形式分类：概率模型（Probabilistic Model）和 非概率模型（Non-probabilistic Model）**；第二种是**按是否对观测变量的分布建模分类：判别模型（Discriminative Model）和 生成模型（Generative Model）**。这两种分类方法事实上把所有模型划分成了三类，可用图1清楚地表示，
+如《总览篇 V》中所述，模型通常有两种分类方式：第一种是**按模型形式分类：概率模型（Probabilistic Model）和 非概率模型（Non-probabilistic Model）**；第二种是**按是否对观测变量的分布建模分类：判别模型（Discriminative Model）和 生成模型（Generative Model）**。这两种分类方法事实上把所有模型划分成了三类，可用图3清楚地表示，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/Model classification.png"/>
 </center>
-<center>图1 模型分类示意图</center>
+<center>图3 模型分类示意图</center>
 
 模型一共分为图中的三种模型：非概率模型（Non-probabilistic Model）、概率判别模型（Probalilistic Discriminative Model）、生成模型（Generative Model）；三种模型**挖掘信息的程度从少到多**，**解决问题的途径从直接到间接**。其中，每种类别的代表性模型如下：
 
@@ -64,12 +64,12 @@ tags:
 5. 对**模型准确性和效率**的要求。
 6. 对**模型可解释性**的要求。虽然学习如何权衡输入变量的复杂组合能够带来更准确的预测，但它也使得解释机器学习模型变得更困难。可被解释的预测模型生成的决策，是由原始输入变量带来的，而不是输入变量的任意高阶组合、缩放、加权组合带来的，所以对特征进行操作越直观的模型可解释性越强。
 
-通过对以上因素的分析，我们可以选择一个直观上比较合适的模型进行建模。那么具体如何利用这一先验知识，指导我们去选择合适的算法模型，帮助我们少走一点弯路呢？下面图3是一个比较经典的算法选择流程图，
+通过对以上因素的分析，我们可以选择一个直观上比较合适的模型进行建模。那么具体如何利用这一先验知识，指导我们去选择合适的算法模型，帮助我们少走一点弯路呢？下面图4是一个比较经典的算法选择流程图，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/supervised learning model cheeting sheet.png"/>
 </center>
-<center>图3 监督学习模型选择表</center>
+<center>图4 监督学习模型选择表</center>
 
 这张图我只是起到一个 “翻译+搬运工” 的作用，此图来源于 [Microsoft Azure](https://docs.microsoft.com/en-us/azure/machine-learning/studio/algorithm-cheat-sheet)。首先毫无疑问，我们可以根据数据值的因变量，或者称之为**标签，是连续值还是离散值，将监督学习问题分为分类问题和回归问题，其中分类问题的标签是离散值，回归问题的标签是连续值**。但是往后的节点，比如根据 准确率和效率、可解释性、数据量 等指标对算法进行取舍，我个人认为本图给的后续选择流程图过于宽泛了，只具备有限的参考价值。本文下面将从更细致的角度对各个算法进行分析。
 
