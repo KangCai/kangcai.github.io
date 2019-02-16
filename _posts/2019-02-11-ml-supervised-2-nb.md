@@ -48,7 +48,7 @@ tags:
 
 首先是不使用机器学习库的手写实现，主要包括 特征提取、训练、预测 三个过程。
 
-**1.2.1 特征提取** 
+**2.1.1 特征提取** 
 
 “SMS Spam Collection v. 1” 数据集格式如下所示，
 
@@ -71,7 +71,7 @@ tags:
 
 共有7956种单词出现，图1表明了绝大部分单词出现频次都相当低。后文中，我们分别选取了前200、500、2000、5000、7956这5种截断方式来作为特征，特征维度对应的就是200、500、2000、5000、7956维。
 
-**1.2.2 训练** 
+**2.1.2 训练** 
 
 朴素贝叶斯没有显式的训练过程，所谓的训练过程只是计算：样本类别在样本中出现的先验概率 和 关键字|类别 的条件概率。以上的参数就是模型的全部参数，也是可以直接从训练样本计算得到的，没有最优化过程。下面是相当朴素的 python 实现代码，本质上就是在计算 P(类别) 和 P(关键字|类别)。
 
@@ -118,7 +118,7 @@ class NaiveBayesClassificationModel(object):
             self.label_prior_prob[label] /= len(data) * 1.0
 ```
 
-**1.2.3 预测**
+**2.2.3 预测**
 
 预测过程也相当简单，实现这个式子即可，
 
@@ -148,18 +148,25 @@ class NaiveBayesClassificationModel(object):
         return predicted_label
 ```
 
-#### 2.2 scikit-learn 实现
+完整代码可见 github： [https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/code/nb.py](https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/code/nb.py)。
+
+##### 2.2 scikit-learn 实现
+
+上一小节 2.1 中采用的实现方式是：某个单词在文档中出现过，则其特征值为1，否则为0，所以采用的是 BernoulliNB 伯努利模型。scikit-learn 具体实现如下
 
 ```buildoutcfg
-from sklearn.naive_bayes import GaussianNB
-# 针对本例子，使用Multinomial Naive Bayes；
-gnb = MultinomialNB()
-
+from sklearn.naive_bayes import BernoulliNB
+# 针对本例子，使用 BernoulliNB Naive Bayes；
+bnb = BernoulliNB()
+bnb.fit(X, Y)
+result_predict = bnb.predict(X')
 ```
 
-**1.2.4 交叉验证结果**
+与伯努利模型一样，多项式模型 MultinomialNB 同样是适用于离散特征的情况， 多项式模型，差别在于，计算条件概率时，多项式模型的特征取值不是1或0，还需要考虑样本个数。除此之外，skikit-learn 还有提供解决特征是连续变量的 GaussianNB 高斯模型，高斯模型与多项式模型唯一不同的地方就在于，计算条件概率时，高斯模型假设各维特征服从正态分布，需要计算的是各维特征的均值与方差。
 
-通过上面的数据和代码，做4折-交叉验证，准备率为
+##### 2.3 交叉验证结果
+
+通过2.1中的代码实现，做4折-交叉验证，准备率为
 
 |  | 200 | 500 | 2000 | 5000 | 7956 |
 | :-----------:| :----------: |:----------: | :----------: | :----------: | :----------: | 
@@ -180,4 +187,5 @@ gnb = MultinomialNB()
 综合以上实验，我们发现即使是对于出现频次相当低的单词特征，朴素贝叶斯模型也能有效地利用，提高模型的预测准确率；而且朴素贝叶斯模型的参数没有最优化过程，参数是直接获取的，这使得模型创建过程简单、可解释性强。相比于其它模型，朴素贝叶斯模型在垃圾（也包括政治敏感、赌博、色情、违法犯罪等）本文分类任务上有很大的优势。
 
 1. [wiki: 朴素贝叶斯分类器](https://zh.wikipedia.org/wiki/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%88%86%E7%B1%BB%E5%99%A8)
-2. [csdn: python_sklearn机器学习算法系列之sklearn.naive_bayes朴树贝叶斯算法](https://blog.csdn.net/weixin_42001089/article/details/79952245)
+2. [csdn: 朴素贝叶斯理论推导与三种常见模型](https://blog.csdn.net/u012162613/article/details/48323777)
+3. [csdn: python_sklearn机器学习算法系列之sklearn.naive_bayes朴树贝叶斯算法](https://blog.csdn.net/weixin_42001089/article/details/79952245)
