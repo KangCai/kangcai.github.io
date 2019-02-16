@@ -12,7 +12,7 @@ tags:
 
 文本相关分类，比如过滤恶意留言，或者过滤垃圾邮件等任务，一种十分常用的方法就是朴素贝叶斯分类模型。本文将会从概念、公式推导、代码实现、应用等角度详细介绍朴素贝叶斯模型。
 
-贝叶斯很多人都知道或者有所耳闻，统计学上有一个出名的贝叶斯学派和贝叶斯定理：贝叶斯学派详细介绍可参见《总览篇·III》；而贝叶斯定理是上学时可能会接触到的，对于事件 A、B，其发生概率为 P(A)、P(B)，则有，
+贝叶斯很多人都知道或者有所耳闻，统计学上有一个出名的贝叶斯学派和贝叶斯定理：贝叶斯学派详细介绍可参见《总览篇·III 统计推断: 频率学派和贝叶斯学派》；而贝叶斯定理是上学时可能会接触到的，对于事件 A、B，其发生概率为 P(A)、P(B)，则有，
 
 <img src="https://latex.codecogs.com/gif.latex?P(B|A)=\frac{P(A|B)P(B)}{P(A)}" />
 
@@ -73,7 +73,7 @@ tags:
 
 **2.1.2 训练** 
 
-朴素贝叶斯没有显式的训练过程，所谓的训练过程只是计算：样本类别在样本中出现的先验概率 和 关键字|类别 的条件概率。以上的参数就是模型的全部参数，也是可以直接从训练样本计算得到的，没有最优化过程。下面是相当朴素的 python 实现代码，本质上就是在计算 P(类别) 和 P(关键字|类别)。
+朴素贝叶斯没有显式的训练过程，所谓的训练过程只是计算：样本类别在样本中出现的先验概率 和 “关键字\|类别” 的条件概率。以上的参数就是模型的全部参数，也是可以直接从训练样本计算得到的，没有最优化过程。下面是相当朴素的 python 实现代码，本质上就是在计算 P(类别) 和 P(关键字\|类别)。
 
 ```buildoutcfg
 class NaiveBayesClassificationModel(object):
@@ -148,7 +148,7 @@ class NaiveBayesClassificationModel(object):
         return predicted_label
 ```
 
-完整代码可见 github： [https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/code/nb.py](https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/code/nb.py)。
+完整代码可见 github： [https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/code/nb.py](https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/code/nb.py)
 
 ##### 2.2 scikit-learn 实现
 
