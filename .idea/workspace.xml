@@ -8,14 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d0ab0c2-4b2b-419c-975b-f25f1998238c" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/portfolio/js/board.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/js/controls/color.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/js/controls/control.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/js/controls/download.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/js/controls/drawingmode.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/js/controls/navigation.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/js/controls/size.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/portfolio/js/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portfolio/js/simple-undo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portfolio/js/yepnope.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/portfolio/demosbir/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/demosbir/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -57,10 +51,20 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/portfolio/demosbir/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="57" lean-forward="true" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
+            <state relative-caret-position="516">
+              <caret line="58" column="31" lean-forward="true" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="yepnope.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/portfolio/js/yepnope.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="simple-undo.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/portfolio/js/simple-undo.js">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="size.js" pinned="false" current-in-tab="false">
@@ -81,11 +85,6 @@
               <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="website.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/portfolio/css/website.css">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="keynote.html" pinned="false" current-in-tab="false">
@@ -388,12 +387,12 @@
       <option name="presentableId" value="Default" />
       <updated>1540373693080</updated>
       <workItem from="1554946616397" duration="104000" />
-      <workItem from="1554986091638" duration="1491000" />
+      <workItem from="1554986091638" duration="1767000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1595000" />
+    <option name="totallyTimeSpent" value="1871000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="481" y="17" width="1936" height="1056" extended-state="0" />
@@ -427,8 +426,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/_posts/2019-01-04-ml-overall-11-feature engineering.md" />
-    <entry file="file://$PROJECT_DIR$/_posts/2018-11-04-ml-overall-3.md" />
     <entry file="file://$PROJECT_DIR$/img/in-post/post-ml/vc_power2.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -640,10 +637,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/portfolio/js/simple-undo.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/portfolio/js/yepnope.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/portfolio/demosbir/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="57" lean-forward="true" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
+        <state relative-caret-position="516">
+          <caret line="58" column="31" lean-forward="true" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
         </state>
       </provider>
     </entry>
