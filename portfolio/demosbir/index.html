@@ -28,11 +28,17 @@
     </head>
     <body>
         <span id="forkongithub"><a href="https://github.com/KangCai/Feature-HELO-for-SBIR">Fork me on GitHub!</a></span>
-        <!--<script data-example="4">-->
-			<!--var simpleBoard = new DrawingBoard.Board('simple-board', {-->
-				<!--controls: false,-->
-				<!--webStorage: false-->
-			<!--});-->
-		<!--</script>-->
+        <div id="container">
+            <div class="example" data-example="4">
+                <h1>The simplest one</h1>
+                <div class="board" id="simple-board"></div>
+            </div>
+        </div>
+        <script data-example="4">
+			var simpleBoard = new DrawingBoard.Board('simple-board', {
+				controls: false,
+				webStorage: false
+			});
+		</script>
     </body>
 </html>
