@@ -19,26 +19,25 @@
 		    }
 		</style>
 
-        <style data-example="4">
-			#simple-board {
-				width: 400px;
-				height: 400px;
-			}
-		</style>
+        <style data-example="1">
+            #default-board {
+                width: 700px;
+                height: 400px;
+            }
+        </style>
     </head>
     <body>
         <span id="forkongithub"><a href="https://github.com/KangCai/Feature-HELO-for-SBIR">Fork me on GitHub!</a></span>
         <div id="container">
-            <div class="example" data-example="4">
-                <h1>The simplest one</h1>
-                <div class="board" id="simple-board"></div>
+            <div class="example" data-example="1">
+                <h1>The default DrawingBoard</h1>
+                <div class="board" id="default-board"></div>
             </div>
         </div>
-        <script data-example="4">
-			var simpleBoard = new DrawingBoard.Board('simple-board', {
-				controls: false,
-				webStorage: false
-			});
-		</script>
+        <script src="../js/jquery-3.4.0.min.js"></script>
+        <script data-example="1">
+            //create the drawingboard by passing it the #id of the wanted container
+            var defaultBoard = new DrawingBoard.Board('default-board');
+        </script>
     </body>
 </html>
