@@ -8,6 +8,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d0ab0c2-4b2b-419c-975b-f25f1998238c" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/portfolio/js/board.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portfolio/js/controls/color.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portfolio/js/controls/control.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portfolio/js/controls/download.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portfolio/js/controls/drawingmode.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portfolio/js/controls/navigation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portfolio/js/controls/size.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/portfolio/js/utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/portfolio/demosbir/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/demosbir/index.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,8 +57,19 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/portfolio/demosbir/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="42" column="7" lean-forward="true" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
+            <state relative-caret-position="612">
+              <caret line="36" column="57" lean-forward="true" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="size.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/portfolio/js/controls/size.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="n#style#0;n#span#0;n#li#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -247,6 +266,13 @@
               <item name="portfolio" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="kangcai.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kangcai.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="portfolio" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="controls" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -263,16 +289,16 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio" />
-      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\img\in-post\post-ml" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio\css" />
       <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio\js" />
+      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio\css" />
       <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio\images" />
       <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\test" />
       <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\_posts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio" />
+      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\img\in-post\post-ml" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -362,12 +388,12 @@
       <option name="presentableId" value="Default" />
       <updated>1540373693080</updated>
       <workItem from="1554946616397" duration="104000" />
-      <workItem from="1554986091638" duration="1344000" />
+      <workItem from="1554986091638" duration="1491000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1448000" />
+    <option name="totallyTimeSpent" value="1595000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="481" y="17" width="1936" height="1056" extended-state="0" />
@@ -401,7 +427,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/_posts/2018-11-16-ml-overall-5-model.md" />
     <entry file="file://$PROJECT_DIR$/_posts/2019-01-04-ml-overall-11-feature engineering.md" />
     <entry file="file://$PROJECT_DIR$/_posts/2018-11-04-ml-overall-3.md" />
     <entry file="file://$PROJECT_DIR$/img/in-post/post-ml/vc_power2.png">
@@ -606,10 +631,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/portfolio/js/controls/size.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#style#0;n#span#0;n#li#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/portfolio/demosbir/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="7" lean-forward="true" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
+        <state relative-caret-position="612">
+          <caret line="36" column="57" lean-forward="true" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
         </state>
       </provider>
     </entry>
