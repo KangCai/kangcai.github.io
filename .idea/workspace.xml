@@ -8,7 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d0ab0c2-4b2b-419c-975b-f25f1998238c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/portfolio/demosbir/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/portfolio/demosbir/index.html" afterDir="false" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2019-02-11-ml-supervised-2-nb.md" afterPath="$PROJECT_DIR$/_posts/2019-02-11-ml-supervised-2-nb.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md" afterPath="$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,86 +21,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="page.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_layouts/page.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="901">
-              <caret line="53" column="38" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="default.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_layouts/default.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="3" selection-end-column="23" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="23" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/portfolio/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="59" />
+      <file leaf-file-name="2019-04-14-ml-supervised-3-glm.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="272">
+                <caret line="52" column="20" lean-forward="false" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/portfolio/demosbir/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="yepnope.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/portfolio/js/yepnope.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="simple-undo.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/portfolio/js/simple-undo.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="size.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/portfolio/js/controls/size.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="n#style#0;n#span#0;n#li#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="prism.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/portfolio/css/prism.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="keynote.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/_layouts/keynote.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="43" column="48" lean-forward="true" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="drawingboard.min.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/portfolio/css/drawingboard.min.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+      <file leaf-file-name="2019-02-11-ml-supervised-2-nb.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_posts/2019-02-11-ml-supervised-2-nb.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="582">
+                <caret line="196" column="22" lean-forward="true" selection-start-line="196" selection-start-column="22" selection-end-line="196" selection-end-column="22" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -155,7 +109,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/_posts/ml-rl-1.md" />
         <option value="$PROJECT_DIR$/_posts/ml-rl-2-ql.md" />
         <option value="$PROJECT_DIR$/_posts/ml-rl-5-dpg.md" />
         <option value="$PROJECT_DIR$/_posts/ml-rl-4-pg.md" />
@@ -202,10 +155,11 @@
         <option value="$PROJECT_DIR$/_posts/2019-03-11-ml-supervised-6-gda.md" />
         <option value="$PROJECT_DIR$/_posts/2019-02-25-ml-supervised-4-svm.md" />
         <option value="$PROJECT_DIR$/_posts/2019-02-09-ml-supervised-1-intro.md" />
-        <option value="$PROJECT_DIR$/_posts/2019-02-11-ml-supervised-2-nb.md" />
         <option value="$PROJECT_DIR$/test/index.html" />
         <option value="$PROJECT_DIR$/portfolio/index.html" />
         <option value="$PROJECT_DIR$/portfolio/demosbir/index.html" />
+        <option value="$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md" />
+        <option value="$PROJECT_DIR$/_posts/2019-02-11-ml-supervised-2-nb.md" />
       </list>
     </option>
   </component>
@@ -215,18 +169,28 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="481" />
-    <option name="y" value="17" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
       <autoscrollFromSource ProjectPane="true" />
+      <sortByType />
+      <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -238,37 +202,7 @@
             <path>
               <item name="kangcai.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="kangcai.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="_layouts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kangcai.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kangcai.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="portfolio" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kangcai.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kangcai.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="portfolio" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kangcai.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kangcai.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="portfolio" type="462c0819:PsiDirectoryNode" />
-              <item name="demosbir" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kangcai.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kangcai.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="portfolio" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kangcai.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kangcai.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="portfolio" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="controls" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -310,7 +244,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.index.html (1)">
+  <component name="RunManager">
     <configuration name="index.html (1)" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/kangcai.github.io/portfolio/demosbir/index.html" />
     <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/kangcai.github.io/portfolio/demosbir/index.html" />
     <configuration name="lda" type="PythonConfigurationType" factoryName="Python" temporary="true">
@@ -364,15 +298,21 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <list>
-      <item itemvalue="JavaScript Debug.index.html" />
-      <item itemvalue="JavaScript Debug.index.html (1)" />
+    <list size="3">
+      <item index="0" class="java.lang.String" itemvalue="Python.pca" />
+      <item index="1" class="java.lang.String" itemvalue="Python.lda" />
+      <item index="2" class="java.lang.String" itemvalue="Python.paint" />
     </list>
     <recent_temporary>
-      <list>
-        <item itemvalue="JavaScript Debug.index.html (1)" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python.paint" />
+        <item index="1" class="java.lang.String" itemvalue="Python.lda" />
+        <item index="2" class="java.lang.String" itemvalue="Python.pca" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -385,36 +325,35 @@
       <option name="presentableId" value="Default" />
       <updated>1540373693080</updated>
       <workItem from="1554946616397" duration="104000" />
-      <workItem from="1554986091638" duration="2059000" />
+      <workItem from="1554986091638" duration="2477000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2163000" />
+    <option name="totallyTimeSpent" value="2581000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="481" y="17" width="1936" height="1056" extended-state="0" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.20729166" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50208336" side_tool="true" weight="0.31447226" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49791667" weight="0.22524484" />
-      <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39915073" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" id="Data View" order="3" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,29 +362,80 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/img/in-post/post-ml/vc_power2.png">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/_layouts/default.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/img/in-post/post-ml/why normalize.png">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/portfolio/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="25" column="47" lean-forward="false" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/portfolio/demosbir/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="37" column="7" lean-forward="true" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
+          <folding>
+            <marker date="1554988251562" expanded="true" signature="3471:3483" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/portfolio/css/prism.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_layouts/keynote.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="817">
+          <caret line="43" column="48" lean-forward="true" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/portfolio/css/drawingboard.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="45" lean-forward="false" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2019-02-09-ml-supervised-1-intro.md" />
-    <entry file="file://$PROJECT_DIR$/_posts/2019-02-11-ml-supervised-2-nb.md" />
     <entry file="file://$PROJECT_DIR$/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-636" />
+        <state relative-caret-position="-636">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3078" />
+        <state relative-caret-position="-3078">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="475">
-          <caret line="25" column="36" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
+          <caret line="25" column="36" lean-forward="false" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -456,12 +446,6 @@
           <caret line="247" column="3" lean-forward="true" selection-start-line="247" selection-start-column="3" selection-end-line="247" selection-end-column="3" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pwa/manifest.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/animatescroll.min.js">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/js/archive.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -474,21 +458,21 @@
     <entry file="file://$PROJECT_DIR$/_config.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1786">
-          <caret line="94" selection-start-line="94" selection-end-line="94" />
+          <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/about.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="779">
-          <caret line="41" column="18" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="18" />
+          <caret line="41" column="18" lean-forward="false" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/offline.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -496,14 +480,12 @@
     <entry file="file://$PROJECT_DIR$/_posts/ml-supervised-7-dt.md" />
     <entry file="file://$PROJECT_DIR$/_posts/ml-supervised-6-gda.md" />
     <entry file="file://$PROJECT_DIR$/_posts/learning society-1-human.md" />
-    <entry file="file://$PROJECT_DIR$/_posts/interesting-case-3-random.md" />
     <entry file="file://$PROJECT_DIR$/_posts/ml-supervised-4-svm.md" />
-    <entry file="file://$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md" />
     <entry file="file://$PROJECT_DIR$/_posts/ml-supervised-5-knn.md" />
     <entry file="file://$PROJECT_DIR$/archive.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
-          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -514,15 +496,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_includes/head.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_includes/footer.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/_includes/sns-links.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-684" />
+        <state relative-caret-position="-684">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_includes/short-about.html">
@@ -535,21 +513,9 @@
     <entry file="file://$PROJECT_DIR$/_includes/nav.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
-          <caret line="20" column="39" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="39" />
+          <caret line="20" column="39" lean-forward="false" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="39" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portfolio/images/intern-lxu.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portfolio/images/cover-guhuoniao.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portfolio/images/hux_avatar.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portfolio/images/intern-alitrip.jpg">
-      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/portfolio/css/timeline.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -558,93 +524,109 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/404.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
-          <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
+          <caret line="17" column="38" lean-forward="false" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portfolio/css/website.css">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/page.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
-          <caret line="53" column="38" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="38" />
+          <caret line="53" column="38" lean-forward="false" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/portfolio/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="47" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="59" />
+        <state relative-caret-position="475">
+          <caret line="25" column="47" lean-forward="false" selection-start-line="25" selection-start-column="47" selection-end-line="25" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/portfolio/css/prism.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="18" lean-forward="true" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+        <state relative-caret-position="437">
+          <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/default.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="3" selection-end-column="23" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/portfolio/js/modernizr.custom.js">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/portfolio/js/drawingboard.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
-          <caret line="3" column="5934" selection-start-line="3" selection-start-column="5934" selection-end-line="3" selection-end-column="5934" />
-          <folding>
-            <element signature="e#55#62#1" expanded="true" />
-          </folding>
+          <caret line="3" column="5934" lean-forward="false" selection-start-line="3" selection-start-column="5934" selection-end-line="3" selection-end-column="5934" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/portfolio/css/drawingboard.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="45" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+        <state relative-caret-position="76">
+          <caret line="4" column="45" lean-forward="false" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/keynote.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="43" column="48" lean-forward="true" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
+        <state relative-caret-position="817">
+          <caret line="43" column="48" lean-forward="false" selection-start-line="43" selection-start-column="48" selection-end-line="43" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/portfolio/js/controls/size.js">
+    <entry file="file://$PROJECT_DIR$/portfolio/js/controls/size.js" />
+    <entry file="file://$PROJECT_DIR$/portfolio/demosbir/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="703">
+          <caret line="85" column="7" lean-forward="false" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
           <folding>
-            <element signature="n#style#0;n#span#0;n#li#0;n#!!top" expanded="true" />
+            <marker date="1554988251562" expanded="true" signature="3471:3483" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/portfolio/js/simple-undo.js">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/portfolio/js/board.js" />
+    <entry file="file://$PROJECT_DIR$/_posts/interesting-case-3-random.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/portfolio/js/yepnope.js">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="272">
+            <caret line="52" column="20" lean-forward="false" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/portfolio/demosbir/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+    <entry file="file://$PROJECT_DIR$/_posts/2019-02-11-ml-supervised-2-nb.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="582">
+            <caret line="196" column="22" lean-forward="true" selection-start-line="196" selection-start-column="22" selection-end-line="196" selection-end-column="22" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

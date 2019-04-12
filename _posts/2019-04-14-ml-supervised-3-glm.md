@@ -14,7 +14,6 @@ tags:
 
 逻辑回归，即 Logistic Regression，名字的由来是因为计算过程中使用到了 Logisitic 函数，如下所示，
 
-h_\theta(x)=\frac{1}{1+e^{\theta^T x}}
 <center>
 <img src="https://latex.codecogs.com/gif.latex?h_\theta(x)=\frac{1}{1&plus;e^{\theta^T&space;x}}" />
 </center>
@@ -37,7 +36,199 @@ h_\theta(x)=\frac{1}{1+e^{\theta^T x}}
 
 ，跟上面逻辑回归损失函数完全一致，也就是说逻辑回归的损失函数就是交叉熵。
 
-##### 1.2 Python 实现
+### 二、LR 的 Python 实现
+
+还是使用垃圾信息分类任务为例，选用的数据集是经典的 [SMS Spam Collection v. 1](http://www.dt.fee.unicamp.br/~tiago/smsspamcollection/)，共5,574条短信，其中垃圾短信747条，非垃圾短信4827条。“SMS Spam Collection v. 1” 数据集格式如下所示，
+
+```buildoutcfg
+1. ham   MY NO. IN LUTON 0125698789 RING ME IF UR AROUND! H*
+2. ham   Siva is in hostel aha:-.
+3. spam  FreeMsg: Txt: CALL to No: 86888 & claim your reward of 3 hours talk time to use from your phone now! ubscribe6GBP/ mnth inc 3hrs 16 stop?txtStop
+4. ham   Cos i was out shopping wif darren jus now n i called him 2 ask wat present he wan lor. Then he started guessing who i was wif n he finally guessed darren lor.
+5. spam  Sunshine Quiz! Win a super Sony DVD recorder if you canname the capital of Australia? Text MQUIZ to 82277. B
+```
+
+每个样本一行，上面的示例一共有5个样本。1、2、4属于正样本，即正常消息，标签是"ham"；3、5属于负样本，即广告等垃圾消息，标签是"spam"。标签后面就是具体的消息内容。
+
+##### 2.1 不使用机器学习库的 numpy 实现
+
+本小节就只用 numpy 库手写实现手机短信垃圾（SMS Spam）分类。
+
+**1.2.1 特征提取**
+
+特征提取的第一步是将句子切分成单词，由于是英文，所以这里处理方式比较简单暴力，按照空格和除'之外的符号来切分了，然后全部转小写。用热编码特征，来表示单词是否出现，出现的单词对应特征维度值为1，未出现对应值为0。
+
+```buildoutcfg
+def feature_batch_extraction(d_list, kw_set):
+    """
+    特征批量提取
+    :param d_list: 原始数据集
+    :param kw_set: 关键字列表
+    :return:
+    """
+    kw_2_idx_dict = dict(zip(list(kw_set), range(len(kw_set))))
+    feature_data = np.zeros((len(d_list), len(kw_set)))
+    label_data = np.zeros((len(d_list), 1))
+    for i in range(len(d_list)):
+        label, words = d_list[i]
+        for word in words:
+            if word in kw_2_idx_dict:
+                feature_data[i, kw_2_idx_dict[word]] = 1
+        label_data[i] = 1 if label == 'spam' else 0
+    return feature_data, label_data
+```
+**1.2.2 模型**
+
+```buildoutcfg
+class RegressionModel(object):
+    """
+    逻辑回归模型
+    """
+    def __init__(self):
+        self.W = None
+    
+    def train(self, x_train, y_train, learning_rate=0.1, num_iters=10000):
+        """
+        模型训练
+        :param x_train: shape = num_train, dim_feature
+        :param y_train: shape = num_train, 1
+        :param learning_rate
+        :param num_iters
+        :return: loss_history
+        """
+        
+    def validate(self, x_val, y_val):
+        """
+        验证模型效果
+        :param x_val: shape = num_val, dim_feature
+        :param y_val: shape = num_val, 1
+        :return: accuracy, metric
+        """
+```
+
+**1.2.3 训练**
+
+训练的过程就是将1.1 节的公式用代码实现一遍，
+
+```buildoutcfg
+class RegressionModel(object):
+    """
+    逻辑回归模型
+    """
+    def __init__(self):
+        self.W = None
+        
+    def train(self, x_train, y_train, learning_rate=0.1, num_iters=10000):
+        """
+        模型训练
+        :param x_train: shape = num_train, dim_feature
+        :param y_train: shape = num_train, 1
+        :param learning_rate
+        :param num_iters
+        :return: loss_history
+        """
+        num_train, dim_feature = x_train.shape
+        # w * x + b
+        x_train_ = np.hstack((x_train, np.ones((num_train, 1))))
+        self.W = 0.001 * np.random.randn(dim_feature + 1, 1)
+        loss_history = []
+        for i in range(num_iters+1):
+            # linear transformation: w * x + b
+            g = np.dot(x_train_, self.W)
+            # sigmoid: 1 / (1 + e**-x)
+            h = 1 / (1 + np.exp(-g))
+            # cross entropy: 1/m * sum((y*np.log(h) + (1-y)*np.log((1-h))))
+            loss = -np.sum(y_train * np.log(h) + (1 - y_train) * np.log(1 - h)) / num_train
+            loss_history.append(loss)
+            # dW = cross entropy' = 1/m * sum(h-y) * x
+            dW = x_train_.T.dot(h - y_train) / num_train
+            # W = W - dW
+            self.W -= learning_rate * dW
+            # debug
+            if i % 100 == 0:
+                print('Iters: %r/%r Loss: %r' % (i, num_iters, loss))
+        return loss_history
+```
+
+**1.2.4 验证**
+
+用准确率和混淆矩阵两个指标来进行验证，
+
+```buildoutcfg
+class RegressionModel(object):
+    """
+    逻辑回归模型
+    """
+    def __init__(self):
+        self.W = None
+    
+    def validate(self, x_val, y_val):
+        """
+        验证模型效果
+        :param x_val: shape = num_val, dim_feature
+        :param y_val: shape = num_val, 1
+        :return: accuracy, metric
+        """
+        num_val, dim_feature = x_val.shape
+        x_val_ = np.hstack((x_val, np.ones((num_val, 1))))
+        # linear transformation: w * x + b
+        g = np.dot(x_val_, self.W)
+        # sigmoid: 1 / (1 + e**-x)
+        h = 1 / (1 + np.exp(-g))
+        # predict
+        y_val_ = h
+        y_val_[y_val_ >= 0.5] = 1
+        y_val_[y_val_ < 0.5] = 0
+        true_positive = len(np.where(((y_val_ == 1).astype(int) + (y_val == 1).astype(int) == 2) == True)[0]) * 1.0 / num_val
+        true_negative = len(np.where(((y_val_ == 0).astype(int) + (y_val == 0).astype(int) == 2) == True)[0]) * 1.0 / num_val
+        false_positive = len(np.where(((y_val_ == 1).astype(int) + (y_val == 0).astype(int) == 2) == True)[0]) * 1.0 / num_val
+        false_negative = len(np.where(((y_val_ == 0).astype(int) + (y_val == 1).astype(int) == 2) == True)[0]) * 1.0 / num_val
+        negative_instance = true_negative + false_positive
+        positive_instance = false_negative + true_positive
+        metric = np.array([[true_negative / negative_instance, false_positive / negative_instance],
+                           [false_negative / positive_instance, true_positive / positive_instance]])
+        accuracy = true_positive + true_negative
+        return accuracy, metric
+```
+
+##### 2.2 scikit-learn 实现
+
+
+```buildoutcfg
+from sklearn.linear_model import LogisticRegression
+lr = LogisticRegression()
+lr.fit(X, Y)
+result_predict = lr.predict(X')
+```
+
+##### 2.3 交叉验证结果
+
+通过 2.1 的代码实现，做4折-交叉验证，准确率为
+
+|  | 200 | 500 | 2000 | 5000 | 7956 |
+| :-----------:| :----------: |:----------: | :----------: | :----------: | :----------: | 
+| 准确率 | 97.8%  | 98.3% | 98.5% | 98.5% | 98.4% |
+| 时间(秒) | 8.4  | 23.2 | 95.3 | 241.0 | 316.6 |
+
+从上表可以看到，**特征维度越高，即参考的单词越多，准确率是呈增加趋势的，当然耗时也会随之线性增加**。但需要注意一点，即使本实验采取的是交叉验证方式，这也只能证明高维度特征的朴素贝叶斯模型针对本数据集是有效的，对于新数据不一定有效，即不一定具有很强的泛化能力。**特征维度为7956时的准确率反而低于5000特征维度的准确率，表明去掉一些尾部低频单词能在一定程度上降低噪声数据干扰。**
+
+与朴素贝叶斯模型对比，
+
+|  | 200 | 500 | 2000 | 5000 | 7956 |
+| :-----------:| :----------: |:----------: | :----------: | :----------: | :----------: | 
+| 准确率 | 97.5%  | 97.9% | 97.0% | 95.7% | 95.5% |
+| 时间(秒) | 0.3  | 0.6 | 2.5 | 4.7 | 4.9 |
+
+**相比于朴素贝叶斯模型，逻辑回归模型获得了更高的准确率，但在时间效率方面，远远不及朴素贝叶斯模型。**
+
+另外，为了进一步地研究逻辑回归模型针对垃圾消息分类任务的适用性，下面列出了当特征维度为 5000 时的混淆矩阵，
+
+|  | 判成正常 | 判成垃圾 |
+| :-----------:| :----------: |:----------: |
+| 正常 | 100% | 0% |
+| 垃圾 | 11.3% | 88.7% |
+
+可以看到正常消息判成正常的概率是100%，而垃圾消息会有一小部分会判成正常，这种混淆矩阵情况对于实际应用是相当适合的，因为**正常消息被阻挡的情况是用户不能接受的，而一小部分的垃圾消息没有被阻挡掉在一定程度是可以理解的**。
 
 
 ### 二、常见模型及其联接函数
@@ -50,4 +241,4 @@ h_\theta(x)=\frac{1}{1+e^{\theta^T x}}
 
 ###### 1.4 泊松分布
 
-[csdn: 机器学习分享——逻辑回归推导以及numpy的实现](https://blog.csdn.net/weixin_44015907/article/details/85306108)
+1. 
