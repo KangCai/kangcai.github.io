@@ -23,8 +23,8 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="1303">
-                <caret line="279" column="72" lean-forward="true" selection-start-line="279" selection-start-column="72" selection-end-line="279" selection-end-column="72" />
+              <first_editor relative-caret-position="429">
+                <caret line="277" column="33" lean-forward="false" selection-start-line="277" selection-start-column="33" selection-end-line="277" selection-end-column="33" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -761,8 +761,8 @@
     <entry file="file://$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="1303">
-            <caret line="279" column="72" lean-forward="true" selection-start-line="279" selection-start-column="72" selection-end-line="279" selection-end-column="72" />
+          <first_editor relative-caret-position="429">
+            <caret line="277" column="33" lean-forward="false" selection-start-line="277" selection-start-column="33" selection-end-line="277" selection-end-column="33" />
             <folding />
           </first_editor>
           <second_editor />
