@@ -226,17 +226,55 @@ result_predict = lr.predict(X')
 
 为什么逻辑回归会选择使用 sigmoid 函数，而不使用其它函数呢？有很多其它文章说是因为 sigmoid有很多优秀的性质，这其实是本末倒置了，具备 sigmoid 函数类似性质的函数有很多。之所以逻辑回归使用 sigmoid 函数，其实是与 “逻辑回归模型对数据特定的先验分布假设” 直接相关的。下面将从指数分布族，到广义线性模型，到联结函数
 
-2.1 指数分布族
+2.1 指数分布族（Exponential family of distributions）
 
 概率分布函数是概率论的基本概念之一，常见的离散型随机变量分布模型有“0-1分布”、二项式分布、泊松分布等；连续型随机变量分布模型有均匀分布、正态分布等。
 
-指数分布族（Exponential family of distributions）是统计中最重要的参数分布族，指数分布族在上世纪30年代中期被提出，它为很多重要而常用的概率分布提供了统一框架，该类概率分布函数可表示为如下形式，
+在所有类型的概率分布中，有一类被称为指数分布族的有特定共同表示形式的分布：指数分布族是统计中最重要的参数分布族，指数分布族在上世纪30年代中期被提出，它为很多重要而常用的概率分布提供了统一框架，该类概率分布函数可表示为如下形式，
 
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/efd.svg"/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/efd.png"/>
 </center>
 
-许多常用的分布都符合上述，如正态分布、指数分布、伯努利分布、泊松分布、gamma分布、beta分布等等，。不在指数分布族的概率比如有：均匀分布、学生t-分布（Student's t-distribution）等。
+其中，
 
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/efd_details.png"/>
+</center>
+
+大多数的概率分布都属于指数分布族：
+
+* 伯努利（Bernoulli）分布：对 0、1 问题进行建模；
+* 二项（Multinomial）分布：对 K 个离散结果的事件建模；
+* 泊松（Poisson）分布：对计数过程进行建模，比如网站访问量的计数问题，放射性衰变的数目，商店顾客数量等问题；
+* 高斯（Gaussian）分布：即正态分布；
+* gamma 分布与指数（exponential）分布：对有间隔的正数进行建模，比如公交车的到站时间问题；
+* β 分布：对小数建模；
+* Dirichlet 分布：对概率分布进建模；
+* Wishart 分布：协方差矩阵的分布。
+
+不在指数分布族的概率比如有：均匀分布、学生t-分布（Student's t-distribution）等。
+
+2.2 联结函数
+
+**广义线性模型是线性模型的扩展，完成这一扩展靠的就是联结函数：建立因变量数学期望值与自变量线性组合之间的关系。** 广义线性模型通过采用对应的联系函数针对不同 y 分布的数据，让y的取值范围与预测值范围一致，以及让模型比较好地拟合当下的数据，为了达到这个目的，广义线性模型做了如下 3 个设定，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/glm_setting.png"/>
+</center>
+
+本文不深究这 3 个设定从何而来，只讨论从这 3 个设定能得到怎样的学习算法。假设样本后验概率是 y，逻辑回归模型是 y 服从伯努利分布下的广义线性模型，对应的联结函数是 sigmoid 函数，推导过程如下所示，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/glm_lr_param.png"/>
+</center>
+
+线性模型可以看成是 y 服从高斯分布下的广义线性模型，对应的联结函数是线性函数，推导过程如下所示，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/glm_linear_param.png"/>
+</center>
+
+综上所述，广义线性模型是通过假设一个概率分布并将其化成指数分布族形式，通过不同概率对应的不同的联结函数，来得到不同的模型来拟合不同的数据分布情况。
 
 1. [jianshu: 从广义线性模型(GLM)理解逻辑回归](https://www.jianshu.com/p/9c61629a1e7d)

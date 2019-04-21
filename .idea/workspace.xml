@@ -8,10 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d0ab0c2-4b2b-419c-975b-f25f1998238c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/in-post/post-ml/train loss of lr.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md" afterPath="$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/ml-supervised-4-svm.md" afterPath="$PROJECT_DIR$/_posts/ml-supervised-4-svm.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,8 +23,21 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="753">
-                <caret line="241" column="42" lean-forward="true" selection-start-line="241" selection-start-column="42" selection-end-line="241" selection-end-column="42" />
+              <first_editor relative-caret-position="1303">
+                <caret line="279" column="72" lean-forward="true" selection-start-line="279" selection-start-column="72" selection-end-line="279" selection-end-column="72" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2018-11-16-ml-overall-5-model.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_posts/2018-11-16-ml-overall-5-model.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="419">
+                <caret line="106" column="242" lean-forward="false" selection-start-line="106" selection-start-column="63" selection-end-line="106" selection-end-column="242" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -53,7 +63,7 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="627">
-                <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+                <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -187,10 +197,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="527" />
-    <option name="y" value="272" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="1978" />
+    <option name="y" value="74" />
+    <option name="width" value="1434" />
+    <option name="height" value="822" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -223,6 +233,11 @@
             <path>
               <item name="kangcai.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="kangcai.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="_posts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="kangcai.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kangcai.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -230,13 +245,6 @@
               <item name="kangcai.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="img" type="462c0819:PsiDirectoryNode" />
               <item name="in-post" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="kangcai.github.io" type="b2602c69:ProjectViewProjectNode" />
-              <item name="kangcai.github.io" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
-              <item name="in-post" type="462c0819:PsiDirectoryNode" />
-              <item name="post-ml" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -368,10 +376,10 @@
     <option name="totallyTimeSpent" value="2581000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="527" y="272" width="1936" height="1056" extended-state="0" />
+    <frame x="1978" y="74" width="1434" height="822" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26066098" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19213974" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -402,17 +410,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/_posts/ml-supervised-4-svm.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="3" lean-forward="true" selection-start-line="0" selection-start-column="3" selection-end-line="0" selection-end-column="3" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -721,7 +718,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="627">
-            <caret line="63" column="0" lean-forward="true" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+            <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />
@@ -750,11 +747,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2018-11-16-ml-overall-5-model.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="419">
+            <caret line="106" column="242" lean-forward="false" selection-start-line="106" selection-start-column="63" selection-end-line="106" selection-end-column="242" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="753">
-            <caret line="241" column="42" lean-forward="true" selection-start-line="241" selection-start-column="42" selection-end-line="241" selection-end-column="42" />
+          <first_editor relative-caret-position="1303">
+            <caret line="279" column="72" lean-forward="true" selection-start-line="279" selection-start-column="72" selection-end-line="279" selection-end-column="72" />
             <folding />
           </first_editor>
           <second_editor />
