@@ -28,26 +28,26 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;(1)\&space;&&space;\left\{\begin{matrix}&space;p(y=1|x;\theta)=h_\theta(x)&space;\\&space;\&space;\&space;\&space;\&space;\&space;p(y=0|x;\theta)=1-h_\theta(x)&space;\end{matrix}\right.\\&space;(2)\&space;&&space;\Rightarrow&space;p(y|x;\theta)=(h_\theta(x))^y(1-h_\theta(x))^{1-y}&space;\\&space;(3)\&space;&&space;\Rightarrow&space;M(\theta)=\prod_{i=1}^{m}p(y^{(i)}|x^{(i)};\theta)&space;\\&space;(4)\&space;&&space;\Rightarrow&space;M(\theta)=\prod_{i=1}^{m}(h_\theta(x^{(i)}))^y^{(i)}(1-h_\theta(x^{(i)}))^{1-y^{(i)}}\\&space;(5)\&space;&&space;\Rightarrow&space;log(M(\theta))=\sum_{i=1}^{m}[y^{(i)}log(h_\theta(x^{(i)}))&plus;(1-y^{(i)})log(1-h_\theta(x^{(i)}))]&space;\\&space;(6)\&space;&&space;\Rightarrow&space;L(\theta)=-log(M(\theta))=-\sum_{i=1}^{m}[y^{(i)}log(h_\theta(x^{(i)}))&plus;(1-y^{(i)})log(1-h_\theta(x^{(i)}))]&space;\end{aligned}"/>
 </center>
 
-* 公式(1)中直接将自变量 x，即特征，通过 sigmoid 函数表示，这么表示的原因上文说过了会在第二节说，因变量 y 等于1的概率是 h(x)，为0的概率当然是 1-h(x)；
-* 公式(2)用一个公式涵盖了公式(1)中的两个式子；
-* 再假设每个样本互相独立，有公式(3)，即似然估计函数作为；
-* 将公式(2)代入公式(3)中，得到似然估计函数的表示(4)；
-* 为了将指数运算去掉，等式两边取 log 得到公式(5)；、
-* 目的是使似然估计函数最大，而损失函数的目的是最小，所以在公式(5)上加个负号，得到公式(6)损失函数的表示。
+* **公式(1)中直接将自变量 x，即特征，通过 sigmoid 函数表示，这么表示的原因上文说过了会在第二节说，因变量 y 等于1的概率是 h(x)，为0的概率当然是 1-h(x)；**
+* **公式(2)用一个公式涵盖了公式(1)中的两个式子；**
+* **再假设每个样本互相独立，有公式(3)，即似然估计函数作为；**
+* **将公式(2)代入公式(3)中，得到似然估计函数的表示(4)；**
+* **为了将指数运算去掉，等式两边取 log 得到公式(5)；**
+* **目的是使似然估计函数最大，而损失函数的目的是最小，所以在公式(5)上加个负号，得到公式(6)损失函数的表示。**
 
-其中值得一提的是，-PlogP 是信息熵，值越大表示对当前情况越不确定，其中P是概率，而交叉熵可以用来衡量两个分布的相似度情况，假设 
+其中值得一提的是，交叉熵可以用来衡量两个分布的相似度情况，假设已知 
  
  <center>
 <img src="https://latex.codecogs.com/gif.latex?p\in&space;\{y,1-y\},\&space;q\in&space;\{h_\theta(x),1-h_\theta(x)\}"/>
  </center>
  
-，那么我们衡量 p 和 q 的相似度就可以通过交叉熵公式来计算
+，那么**我们衡量 p 和 q 这两个分布的相似度就可以通过交叉熵公式来计算**，
 
  <center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;H(p,q)&=-\sum_{i}^{&space;}p_i\&space;log\&space;q_i&space;\\&space;&=\sum_{i}^{&space;}[-y^{(i)}\&space;log\&space;h_\theta(x^{(i)})-(1-y^{(i)})\&space;log(1-h_\theta(x^{(i)})))]&space;\\&space;&=-\sum_{i}^{&space;}[y^{(i)}\&space;log\&space;h_\theta(x^{(i)})&plus;(1-y^{(i)})\&space;log(1-h_\theta(x^{(i)})))]&space;\end{aligned}" />
  </center>
  
-我们发现上面交叉熵公式跟之前的逻辑回归损失函数完全一致，也就是说逻辑回归的损失函数其实就是交叉熵。
+我们发现上面交叉熵公式跟之前的逻辑回归损失函数完全一致，也就是说**逻辑回归的损失函数其实就是交叉熵**。
 
 ### 二、LR 的 Python 实现
 
@@ -180,7 +180,7 @@ class RegressionModel(object):
         return accuracy, metric
 ```
 
-其中 accuracy 是模型准确率，metric 是混淆矩阵；如果把垃圾邮件当作正样本，正常邮件当作负样本，那么 true_positive 是将垃圾信息判定成垃圾信息（正样本判定成正样本）的概率；true_negative 是将正常信息判定成正常信息（负样本判定成负样本）的概率；false_positive 是将正常信息判定成垃圾信息（负样本判定成正样本）的概率，又称虚警率（False Alarm）；false_negative是将垃圾信息判定成正常信息（正样本判定成负样本）的概率，又称漏警率（Missing Alarm）。
+其中，**accuracy 是模型准确率，metric 是混淆矩阵**；如果把垃圾邮件当作正样本，正常邮件当作负样本，那么 true_positive 是将垃圾信息判定成垃圾信息（正样本判定成正样本）的概率；true_negative 是将正常信息判定成正常信息（负样本判定成负样本）的概率；false_positive 是将正常信息判定成垃圾信息（负样本判定成正样本）的概率，又称虚警率（False Alarm）；false_negative是将垃圾信息判定成正常信息（正样本判定成负样本）的概率，又称漏警率（Missing Alarm）。
 
 ##### 2.2 scikit-learn 实现
 
@@ -195,7 +195,13 @@ result_predict = lr.predict(X')
 
 ##### 2.3 交叉验证结果
 
-通过 2.1 的代码实现，做4折-交叉验证，准确率为
+通过 2.1 的代码实现，设定关键字的个数为200、500、2000、5000、7956这5种情况，训练过程中收敛情况如下图所示，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/train loss of lr.png"/>
+</center>
+
+可以看到关键字越多，特征维度越高，收敛速度越慢，但最终loss越低，符合理论预期：因为**特征维度越高，参数越多，收敛速度越慢，拟合程度也越高**。为了测试模型的预测准确率，对数据集做4折-交叉验证，准确率为
 
 |  | 200 | 500 | 2000 | 5000 | 7956 |
 | :-----------:| :----------: |:----------: | :----------: | :----------: | :----------: | 
@@ -224,13 +230,13 @@ result_predict = lr.predict(X')
 
 ### 二、广义线性模型（Generalize linear model）
 
-为什么逻辑回归会选择使用 sigmoid 函数，而不使用其它函数呢？有很多其它文章说是因为 sigmoid有很多优秀的性质，这其实是本末倒置了，具备 sigmoid 函数类似性质的函数有很多。之所以逻辑回归使用 sigmoid 函数，其实是与 “逻辑回归模型对数据特定的先验分布假设” 直接相关的。下面将从指数分布族，到广义线性模型，到联结函数
+为什么逻辑回归会选择使用 sigmoid 函数，而不使用其它函数呢？有很多其它文章说是因为 sigmoid有很多优秀的性质，这其实是本末倒置了，具备 sigmoid 函数类似性质的函数有很多。之所以逻辑回归使用 sigmoid 函数，其实是与 “逻辑回归模型对数据特定的先验分布假设” 直接相关的。下面将从指数分布族，到广义线性模型，再到联结函数进行介绍。
 
 ##### 2.1 指数分布族（Exponential family of distributions）
 
 概率分布函数是概率论的基本概念之一，常见的离散型随机变量分布模型有“0-1分布”、二项式分布、泊松分布等；连续型随机变量分布模型有均匀分布、正态分布等。
 
-在所有类型的概率分布中，有一类被称为指数分布族的有特定共同表示形式的分布：指数分布族是统计中最重要的参数分布族，指数分布族在上世纪30年代中期被提出，它为很多重要而常用的概率分布提供了统一框架，该类概率分布函数可表示为如下形式，
+在所有类型的概率分布中，有一类被称为指数分布族的有特定共同表示形式的分布。**指数分布族在上世纪30年代中期被提出，它作为统计中最重要的参数分布族，为很多重要而常用的概率分布提供了统一框架**。该类概率分布函数可表示为如下形式，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/efd.png"/>
@@ -299,13 +305,11 @@ result_predict = lr.predict(X')
 <img src="https://latex.codecogs.com/gif.latex?p(y=1|x;\theta)=\frac{1}{1&plus;e{-\theta^Tx}}"/>
 </center>
 
-这样就将概率和 sigmoid 函数结合起来了。
+得到是sigmoid函数。这样就将概率和 sigmoid 函数结合起来了。
 
 **2.2.2 线性回归和联结函数**
 
-线性回归模型可以看成是 y 服从高斯分布下的广义线性模型，对应的联结函数是线性函数，推导过程如下，
-
-从线性回归样本 y 服从高斯分布出发，可以得到
+**线性回归模型可以看成是 y 服从高斯分布下的广义线性模型，对应的联结函数是线性函数**，推导过程如下，从线性回归样本 y 服从高斯分布出发，可以得到
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?p(y;\mu&space;)=\frac{1}{\sqrt{2\pi&space;}}exp(-\frac{1}{2}y^2)exp(\mu&space;y-\frac{1}{2}\mu&space;^2)" />
@@ -324,7 +328,7 @@ result_predict = lr.predict(X')
 </center>
 
 
-综上所述，广义线性模型是通过假设一个概率分布并将其化成指数分布族形式，通过不同概率对应的不同的联结函数，来得到不同的模型来拟合不同的数据分布情况。
+综上所述，**广义线性模型是通过假设一个概率分布并将其化成指数分布族形式，通过不同概率对应的不同的联结函数，来得到不同的模型来拟合不同的数据分布情况**。
 
 1. [cnblogs: 逻辑回归模型(Logistic Regression, LR)基础](https://www.cnblogs.com/sparkwen/p/3441197.html)
 2. [wiki: 广义线性模型](https://zh.wikipedia.org/wiki/%E5%BB%A3%E7%BE%A9%E7%B7%9A%E6%80%A7%E6%A8%A1%E5%9E%8B)
