@@ -263,18 +263,69 @@ result_predict = lr.predict(X')
 <img src="https://kangcai.github.io/img/in-post/post-ml/glm_setting.png"/>
 </center>
 
-本文不深究这 3 个设定从何而来，只讨论从这 3 个设定能得到怎样的学习算法。假设样本后验概率是 y，逻辑回归模型是 y 服从伯努利分布下的广义线性模型，对应的联结函数是 sigmoid 函数，推导过程如下所示，
+本文不深究这 3 个设定从何而来，只讨论从这 3 个设定能得到怎样的学习算法。下面以逻辑回归模型和线性回归为例。
+
+**2.2.1 逻辑回归和联结函数**
+
+**假设样本后验概率是 y，逻辑回归模型是 y 服从伯努利分布下的广义线性模型，对应的联结函数是 sigmoid 函数**，推导过程如下所示，
+
+逻辑回归用于解决二分类问题，对于二分类问题很自然想到 y 服从伯努利分布，概率符合
 
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/glm_lr_param.png"/>
+<img src="https://latex.codecogs.com/gif.latex?p(y=1|x;\theta&space;)=\phi&space;,\&space;\&space;p(y=0|x;\theta&space;)=1-\phi"/>
 </center>
 
-线性模型可以看成是 y 服从高斯分布下的广义线性模型，对应的联结函数是线性函数，推导过程如下所示，
+，因此有
 
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/glm_linear_param.png"/>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;p(y;\phi&space;)&=\phi^y(1-\phi)^{(1-y)}\\&space;&=exp(log(\phi&space;^y(1-\phi)^{1-y}))\\&space;&exp(ylog\phi&plus;(1-y)log(1-\phi))\\&space;&exp(log(\frac{\phi}{1-\phi})y&plus;log(1-\phi))&space;\end{aligned}"/>
 </center>
+
+，参照如下指数分布族的标准形式
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/efd.png"/>
+</center>
+
+，可以得到
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&b(y)=1&space;\\&space;&T(y)=y&space;\\&space;&\eta&space;=log(\frac{\phi&space;}{1-\phi})\Rightarrow&space;\phi=\frac{1}{1&plus;e^{-\eta}}\\&space;&a(\eta)=-log(1-\phi)=log(1&plus;e^{\eta})&space;\end{aligned}" />
+</center>
+
+又由于广义线性模型的第三个假设 <img src="https://latex.codecogs.com/gif.latex?\eta=\theta^Tx"/>，故
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?p(y=1|x;\theta)=\frac{1}{1&plus;e{-\theta^Tx}}"/>
+</center>
+
+这样就将概率和 sigmoid 函数结合起来了。
+
+**2.2.2 线性回归和联结函数**
+
+线性回归模型可以看成是 y 服从高斯分布下的广义线性模型，对应的联结函数是线性函数，推导过程如下，
+
+从线性回归样本 y 服从高斯分布出发，可以得到
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?p(y;\mu&space;)=\frac{1}{\sqrt{2\pi&space;}}exp(-\frac{1}{2}y^2)exp(\mu&space;y-\frac{1}{2}\mu&space;^2)" />
+</center>
+
+同样地，参照指数分布族的标准形式，可以得到：
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&b(y)=\frac{1}{\sqrt{2\pi}}exp(-\frac{1}{2}y^2)\\&space;&T(y)=y&space;\\&space;&\eta&space;=\mu&space;\\&space;&\alpha&space;(\eta)&space;=\frac{\mu&space;^2}{2}=\frac{\eta&space;^2}{2}&space;\end{aligned}" />
+</center>
+
+再根据广义线性模型的第二、三个假设条件，即可得到线性回归模型的联结函数，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?h_{\theta}(x)=E[y|x;\theta]=\mu=\eta=\theta^Tx" />
+</center>
+
 
 综上所述，广义线性模型是通过假设一个概率分布并将其化成指数分布族形式，通过不同概率对应的不同的联结函数，来得到不同的模型来拟合不同的数据分布情况。
 
-1. [jianshu: 从广义线性模型(GLM)理解逻辑回归](https://www.jianshu.com/p/9c61629a1e7d)
+1. [cnblogs: 逻辑回归模型(Logistic Regression, LR)基础](https://www.cnblogs.com/sparkwen/p/3441197.html)
+2. [wiki: 广义线性模型](https://zh.wikipedia.org/wiki/%E5%BB%A3%E7%BE%A9%E7%B7%9A%E6%80%A7%E6%A8%A1%E5%9E%8B)
+3. [jianshu: 从广义线性模型(GLM)理解逻辑回归](https://www.jianshu.com/p/9c61629a1e7d)
