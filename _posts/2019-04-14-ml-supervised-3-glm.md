@@ -28,12 +28,12 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;(1)\&space;&&space;\left\{\begin{matrix}&space;p(y=1|x;\theta)=h_\theta(x)&space;\\&space;\&space;\&space;\&space;\&space;\&space;p(y=0|x;\theta)=1-h_\theta(x)&space;\end{matrix}\right.\\&space;(2)\&space;&&space;\Rightarrow&space;p(y|x;\theta)=(h_\theta(x))^y(1-h_\theta(x))^{1-y}&space;\\&space;(3)\&space;&&space;\Rightarrow&space;M(\theta)=\prod_{i=1}^{m}p(y^{(i)}|x^{(i)};\theta)&space;\\&space;(4)\&space;&&space;\Rightarrow&space;M(\theta)=\prod_{i=1}^{m}(h_\theta(x^{(i)}))^y^{(i)}(1-h_\theta(x^{(i)}))^{1-y^{(i)}}\\&space;(5)\&space;&&space;\Rightarrow&space;log(M(\theta))=\sum_{i=1}^{m}[y^{(i)}log(h_\theta(x^{(i)}))&plus;(1-y^{(i)})log(1-h_\theta(x^{(i)}))]&space;\\&space;(6)\&space;&&space;\Rightarrow&space;L(\theta)=-log(M(\theta))=-\sum_{i=1}^{m}[y^{(i)}log(h_\theta(x^{(i)}))&plus;(1-y^{(i)})log(1-h_\theta(x^{(i)}))]&space;\end{aligned}"/>
 </center>
 
-* **公式(1)中直接将自变量 x，即特征，通过 sigmoid 函数表示，这么表示的原因上文说过了会在第二节说，因变量 y 等于1的概率是 h(x)，为0的概率当然是 1-h(x)；**
-* **公式(2)用一个公式涵盖了公式(1)中的两个式子；**
-* **再假设每个样本互相独立，有公式(3)，即似然估计函数作为；**
-* **将公式(2)代入公式(3)中，得到似然估计函数的表示(4)；**
-* **为了将指数运算去掉，等式两边取 log 得到公式(5)；**
-* **目的是使似然估计函数最大，而损失函数的目的是最小，所以在公式(5)上加个负号，得到公式(6)损失函数的表示。**
+* **公式 (1) 中直接将自变量 x，即特征，通过 h(x) 这一 sigmoid 函数表示（这么表示的原因在本文第二节说)；因变量 y 等于1的概率是 h(x)，为0的概率当然是 1-h(x)；**
+* **公式 (2) 用一个公式涵盖了公式 (1) 中的两个式子；**
+* **再假设每个样本互相独立，利用极大似然估计已知有公式 (3) 成立；**
+* **将公式 (2) 代入公式 (3) 中，得到似然估计函数的表示 (4) ；**
+* **为了将指数运算去掉，等式两边取 log 得到公式 (5) ；**
+* **目的是使似然估计函数最大，而损失函数的目的是最小，所以在公式 (5) 上加个负号，得到公式 (6) 的损失函数表示。**
 
 其中值得一提的是，交叉熵可以用来衡量两个分布的相似度情况，假设已知 
  
@@ -69,7 +69,7 @@ tags:
 
 **1.2.1 特征提取**
 
-特征提取的第一步是将句子切分成单词，由于是英文，所以这里处理方式比较简单暴力，按照空格和除'之外的符号来切分了，然后全部转小写。用热编码特征，来表示单词是否出现，出现的单词对应特征为1，未出现的单词对应特征为0，特征提取这部分代码如下所示，
+特征提取的第一步是将句子切分成单词，由于是英文，所以这里处理方式比较简单暴力，按照空格和除'之外的符号来切分了，然后全部转小写。**用热编码特征，每个维度值表示对应的单词是否出现**，出现的单词对应特征为1，未出现的单词对应特征为0，特征提取这部分代码如下所示，
 
 ```buildoutcfg
 def feature_batch_extraction(d_list, kw_set):
@@ -95,7 +95,7 @@ def feature_batch_extraction(d_list, kw_set):
 
 **1.2.2 训练**
 
-训练的过程就是将 1.1 节推导出的公式用代码实现一遍，训练目的就是求得模型参数 W 的最优解，
+训练的过程就是将 1.1 节推导出的公式用代码实现一遍，**训练目的就是求得模型参数 W 的最优解，可以使得损失函数值最小**，
 
 ```buildoutcfg
 class RegressionModel(object):
@@ -141,7 +141,7 @@ class RegressionModel(object):
 
 **1.2.3 验证**
 
-最后，用准确率和混淆矩阵两个指标来进行验证，评价训练好的模型的表现效果，
+最后，用**准确率**和**混淆矩阵**两个指标来进行验证，评价训练好的模型的表现效果，
 
 ```buildoutcfg
 class RegressionModel(object):
@@ -259,7 +259,7 @@ result_predict = lr.predict(X')
 * Dirichlet 分布：对概率分布进建模；
 * Wishart 分布：协方差矩阵的分布。
 
-不在指数分布族的概率比如有：均匀分布、学生t-分布（Student's t-distribution）等。
+不属于指数分布族的概率分布有：均匀分布、学生t-分布（Student's t-distribution）等。
 
 ##### 2.2 联结函数
 
