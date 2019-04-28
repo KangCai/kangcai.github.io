@@ -324,7 +324,7 @@ result_predict = lr.predict(X')
 针对线性回归问题，最常用的方法是最小二乘法，它的优化目标是使得偏差的平方和最小，如下图所示，
 
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/lsm_example.png"/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/lsm_example.jpg"/>
 </center>
 
 **使用最小二乘法的线性回归模型可以看成是 y 服从高斯分布下的广义线性模型，对应的联结函数是线性函数**，推导过程如下，从线性回归样本 y 服从高斯分布出发，可以得到
