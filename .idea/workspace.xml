@@ -8,6 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d0ab0c2-4b2b-419c-975b-f25f1998238c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/in-post/post-ml/lsm_example.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md" afterPath="$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,8 +25,8 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="429">
-                <caret line="277" column="33" lean-forward="false" selection-start-line="277" selection-start-column="33" selection-end-line="277" selection-end-column="33" />
+              <first_editor relative-caret-position="456">
+                <caret line="24" column="9" lean-forward="true" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -32,11 +34,45 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="2018-10-26-ml-overall-bayes-2.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/img/in-post/post-ml/2018-10-26-ml-overall-bayes-2.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ml-unsupervised-1-intro.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/_posts/ml-unsupervised-1-intro.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="266">
+                <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loss function regression.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/img/in-post/post-ml/loss function regression.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rl1.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/img/in-post/post-ml/rl1.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="2018-11-16-ml-overall-5-model.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/2018-11-16-ml-overall-5-model.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="419">
+              <first_editor relative-caret-position="2014">
                 <caret line="106" column="242" lean-forward="false" selection-start-line="106" selection-start-column="63" selection-end-line="106" selection-end-column="242" />
                 <folding />
               </first_editor>
@@ -62,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/_posts/ml-supervised-4-svm.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="627">
+              <first_editor relative-caret-position="1197">
                 <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
                 <folding />
               </first_editor>
@@ -75,7 +111,7 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-02-11-ml-supervised-2-nb.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="245">
+              <first_editor relative-caret-position="3344">
                 <caret line="176" column="3" lean-forward="false" selection-start-line="176" selection-start-column="3" selection-end-line="176" selection-end-column="3" />
                 <folding />
               </first_editor>
@@ -196,9 +232,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1978" />
-    <option name="y" value="74" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="703" />
+    <option name="y" value="176" />
     <option name="width" value="1434" />
     <option name="height" value="822" />
   </component>
@@ -217,7 +253,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -246,10 +281,18 @@
               <item name="img" type="462c0819:PsiDirectoryNode" />
               <item name="in-post" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="kangcai.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="kangcai.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+              <item name="in-post" type="462c0819:PsiDirectoryNode" />
+              <item name="post-ml" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -263,16 +306,16 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio" />
-      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\img\in-post\post-ml" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\img\in-post\post-ml" />
       <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio\js" />
       <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio\css" />
       <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio\images" />
       <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\test" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio" />
+      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\img\in-post\post-ml" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -376,10 +419,10 @@
     <option name="totallyTimeSpent" value="2581000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1978" y="74" width="1434" height="822" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19213974" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1988273" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -410,50 +453,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2019-02-11-ml-supervised-2-nb.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="3344">
-            <caret line="176" column="3" lean-forward="false" selection-start-line="176" selection-start-column="3" selection-end-line="176" selection-end-column="3" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/2019-02-11-ml-supervised-2-nb.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="3344">
-            <caret line="176" column="3" lean-forward="true" selection-start-line="176" selection-start-column="3" selection-end-line="176" selection-end-column="3" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_layouts/default.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -717,7 +716,7 @@
     <entry file="file://$PROJECT_DIR$/_posts/ml-supervised-4-svm.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="627">
+          <first_editor relative-caret-position="1197">
             <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
             <folding />
           </first_editor>
@@ -728,7 +727,7 @@
     <entry file="file://$PROJECT_DIR$/_posts/2019-02-11-ml-supervised-2-nb.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="245">
+          <first_editor relative-caret-position="3344">
             <caret line="176" column="3" lean-forward="false" selection-start-line="176" selection-start-column="3" selection-end-line="176" selection-end-column="3" />
             <folding />
           </first_editor>
@@ -750,7 +749,7 @@
     <entry file="file://$PROJECT_DIR$/_posts/2018-11-16-ml-overall-5-model.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="419">
+          <first_editor relative-caret-position="2014">
             <caret line="106" column="242" lean-forward="false" selection-start-line="106" selection-start-column="63" selection-end-line="106" selection-end-column="242" />
             <folding />
           </first_editor>
@@ -758,11 +757,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/img/in-post/post-ml/rl1.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/in-post/post-ml/loss function regression.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/ml-unsupervised-1-intro.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="266">
+            <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/img/in-post/post-ml/2018-10-26-ml-overall-bayes-2.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/_posts/2019-04-14-ml-supervised-3-glm.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="429">
-            <caret line="277" column="33" lean-forward="false" selection-start-line="277" selection-start-column="33" selection-end-line="277" selection-end-column="33" />
+          <first_editor relative-caret-position="456">
+            <caret line="24" column="9" lean-forward="true" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
             <folding />
           </first_editor>
           <second_editor />

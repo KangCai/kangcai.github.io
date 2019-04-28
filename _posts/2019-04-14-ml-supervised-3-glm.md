@@ -18,7 +18,13 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?h_\theta(x)=\frac{1}{1&plus;e^{\theta^T&space;x}}" />
 </center>
 
-该函数也称作 sigmoid 函数，逻辑回归用 sigmoid 函数来计算样本对应的后验概率，本文第一节接下来就是介绍逻辑回归是怎么使用 sigmoid 函数作为后验概率计算式来达到分类这一目的的。
+该函数也称作 sigmoid 函数，逻辑回归用 sigmoid 函数来计算样本对应的后验概率，它的函数曲线如下图所示，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/logistic_curve.png"/>
+</center>
+
+本文第一节接下来就是介绍逻辑回归是怎么使用 sigmoid 函数作为后验概率计算式来达到分类这一目的的。
 
 ##### 1.1 损失函数公式推导
 
@@ -273,6 +279,12 @@ result_predict = lr.predict(X')
 
 **2.2.1 逻辑回归和联结函数**
 
+针对二分类问题，一种常见的方法就是逻辑回归模型，如下图所示，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/lr_example.png"/>
+</center>
+
 **假设样本后验概率是 y，逻辑回归模型是 y 服从伯努利分布下的广义线性模型，对应的联结函数是 sigmoid 函数**，推导过程如下所示，
 
 逻辑回归用于解决二分类问题，对于二分类问题很自然想到 y 服从伯努利分布，概率符合
@@ -309,7 +321,13 @@ result_predict = lr.predict(X')
 
 **2.2.2 线性回归和联结函数**
 
-**线性回归模型可以看成是 y 服从高斯分布下的广义线性模型，对应的联结函数是线性函数**，推导过程如下，从线性回归样本 y 服从高斯分布出发，可以得到
+针对线性回归问题，最常用的方法是最小二乘法，它的优化目标是使得偏差的平方和最小，如下图所示，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/lsm_example.png"/>
+</center>
+
+**使用最小二乘法的线性回归模型可以看成是 y 服从高斯分布下的广义线性模型，对应的联结函数是线性函数**，推导过程如下，从线性回归样本 y 服从高斯分布出发，可以得到
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?p(y;\mu&space;)=\frac{1}{\sqrt{2\pi&space;}}exp(-\frac{1}{2}y^2)exp(\mu&space;y-\frac{1}{2}\mu&space;^2)" />
