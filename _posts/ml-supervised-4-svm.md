@@ -17,7 +17,7 @@ SMO算法
 http://www.cnblogs.com/jerrylead/archive/2011/03/18/1988419.html
 
 
-### 二、LR 的 Python 实现
+### 二、SVM 的 Python 实现
 
 还是使用垃圾信息分类任务为例，选用的数据集是经典的 [SMS Spam Collection v. 1](http://www.dt.fee.unicamp.br/~tiago/smsspamcollection/)，共5,574条短信，其中垃圾短信747条，非垃圾短信4827条。“SMS Spam Collection v. 1” 数据集格式如下所示，
 
@@ -37,27 +37,8 @@ http://www.cnblogs.com/jerrylead/archive/2011/03/18/1988419.html
 
 **1.2.1 特征提取**
 
-特征提取的第一步是将句子切分成单词，由于是英文，所以这里处理方式比较简单暴力，按照空格和除'之外的符号来切分了，然后全部转小写。用热编码特征，来表示单词是否出现，出现的单词对应特征维度值为1，未出现对应值为0。
+特征提取的第一步是将句子切分成单词，由于是英文，所以这里处理方式比较简单暴力，按照空格和除'之外的符号来切分了，然后全部转小写。用热编码特征，来表示单词是否出现，出现的单词对应特征维度值为1，未出现对应值为0。由于该部分跟前面两篇文章的逻辑回归模型中的特征提取部分一样，所以这里从略。
 
-```buildoutcfg
-def feature_batch_extraction(d_list, kw_set):
-    """
-    特征批量提取
-    :param d_list: 原始数据集
-    :param kw_set: 关键字列表
-    :return:
-    """
-    kw_2_idx_dict = dict(zip(list(kw_set), range(len(kw_set))))
-    feature_data = np.zeros((len(d_list), len(kw_set)))
-    label_data = np.zeros((len(d_list), 1))
-    for i in range(len(d_list)):
-        label, words = d_list[i]
-        for word in words:
-            if word in kw_2_idx_dict:
-                feature_data[i, kw_2_idx_dict[word]] = 1
-        label_data[i] = 1 if label == 'spam' else 0
-    return feature_data, label_data
-```
 **1.2.2 模型**
 
 ```buildoutcfg
