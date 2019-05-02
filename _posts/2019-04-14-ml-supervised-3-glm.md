@@ -69,7 +69,7 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}d\theta=\frac{1}{m}\frac{dL}{d\theta}=\frac{1}{m}\sum_{i=1}^{m}x^{(i)}(h_\theta(x^{(i)})-y^{(i)})\end{aligned}" />
  </center>
  
- 我们会发现逻辑回归的参数梯度公式如此简单。
+ 我们会发现逻辑回归的参数梯度公式如此简单。**值得注意的是，这里的参数 theta 是包含 wx+b 中的 w 和 b 的，也就是说 x 的组成为 (x1, x2, ..., xn, 1)：其中  x1 到 xn 是特征维度，对应乘以 w 中的每一维，1 对应乘以 b。**
  
 ### 二、LR 的 Python 实现
 
