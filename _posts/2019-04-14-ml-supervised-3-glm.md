@@ -57,8 +57,20 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;H(p,q)&=-\sum_{i}^{&space;}p_i\&space;log\&space;q_i&space;\\&space;&=\sum_{i}^{&space;}[-y^{(i)}\&space;log\&space;h_\theta(x^{(i)})-(1-y^{(i)})\&space;log(1-h_\theta(x^{(i)})))]&space;\\&space;&=-\sum_{i}^{&space;}[y^{(i)}\&space;log\&space;h_\theta(x^{(i)})&plus;(1-y^{(i)})\&space;log(1-h_\theta(x^{(i)})))]&space;\end{aligned}" />
  </center>
  
-我们发现上面交叉熵公式跟之前的逻辑回归损失函数完全一致，也就是说**逻辑回归的损失函数其实就是交叉熵**。
+我们发现上面交叉熵公式跟之前的逻辑回归损失函数完全一致，也就是说**逻辑回归的损失函数其实就是交叉熵**。求得损失函数后，**接下来的任务就是最小化损失函数，常见的方法就是梯度下降法**，梯度公式推导如下，
 
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;L(\theta)&&space;=-\sum_{i=1}^{m}[y^{(i)}log(h_\theta(x^{(i)}))&plus;(1-y^{(i)})log(1-h_\theta(x^{(i)}))]&space;\\&space;\Rightarrow&space;\frac{dL}{d\theta}&space;&&space;=&space;\frac{dL}{dh}\frac{dh}{d\theta}&space;=&space;-\sum_{i=1}^{m}(\frac{y^{(i)}}{h_\theta(x^{(i)})}-&space;\frac{1-y^{(i)}}{1-h_\theta(x^{(i)})})h_\theta(x^{(i)})(1-h_\theta(x^{(i)}))&space;\\&space;&&space;=&space;\sum_{i=1}^{m}(h_\theta(x^{(i)})&space;-&space;y^{(i)})&space;\end{aligned}"/>
+ </center>
+
+每轮对参数的迭代通常除以样本量，即
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;d\theta&space;=&space;\frac{1}{m}&space;\frac{dL}{d\theta}&space;=&space;\frac{1}{m}\sum_{i=1}^{m}(h_\theta(x^{(i)})&space;-&space;y^{(i)})&space;\end{aligned}"/>
+ </center>
+ 
+ 我们会发现逻辑回归的参数梯度公式如此简单。
+ 
 ### 二、LR 的 Python 实现
 
 还是使用垃圾信息分类任务为例，选用的数据集是经典的 [SMS Spam Collection v. 1](http://www.dt.fee.unicamp.br/~tiago/smsspamcollection/)，共5,574条短信，其中垃圾短信747条，非垃圾短信4827条。“SMS Spam Collection v. 1” 数据集格式如下所示，
