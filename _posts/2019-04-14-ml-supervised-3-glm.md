@@ -60,13 +60,13 @@ tags:
 我们发现上面交叉熵公式跟之前的逻辑回归代价函数完全一致，也就是说**逻辑回归的代价函数其实就是交叉熵**。求得代价函数后，**接下来的任务就是最小化代价函数，常见的方法就是梯度下降法**，梯度公式推导如下，
 
 <center>
-<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;L(\theta)&&space;=-\sum_{i=1}^{m}[y^{(i)}log(h_\theta(x^{(i)}))&plus;(1-y^{(i)})log(1-h_\theta(x^{(i)}))]&space;\\&space;\Rightarrow&space;\frac{dL}{d\theta}&space;&&space;=&space;\frac{dL}{dh}\frac{dh}{d\theta}&space;=&space;-\sum_{i=1}^{m}(\frac{y^{(i)}}{h_\theta(x^{(i)})}-&space;\frac{1-y^{(i)}}{1-h_\theta(x^{(i)})})h_\theta(x^{(i)})(1-h_\theta(x^{(i)}))&space;\\&space;&&space;=&space;\sum_{i=1}^{m}(h_\theta(x^{(i)})&space;-&space;y^{(i)})&space;\end{aligned}"/>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}L(\theta)&=-\sum_{i=1}^{m}[y^{(i)}log(h_\theta(x^{(i)}))&plus;(1-y^{(i)})log(1-h_\theta(x^{(i)}))]\\\Rightarrow\frac{dL}{d\theta}&=\frac{dL}{dh}\frac{dh}{d\theta}=-\sum_{i=1}^{m}(\frac{y^{(i)}}{h_\theta(x^{(i)})}-\frac{1-y^{(i)}}{1-h_\theta(x^{(i)})})[x^{(i)}h_\theta(x^{(i)})(1-h_\theta(x^{(i)}))]\\&=\sum_{i=1}^{m}x^{(i)}(h_\theta(x^{(i)})-y^{(i)})\end{aligned}" />
  </center>
 
 每轮对参数的迭代通常除以样本量，即
 
 <center>
-<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;d\theta&space;=&space;\frac{1}{m}&space;\frac{dL}{d\theta}&space;=&space;\frac{1}{m}\sum_{i=1}^{m}(h_\theta(x^{(i)})&space;-&space;y^{(i)})&space;\end{aligned}"/>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}d\theta=\frac{1}{m}\frac{dL}{d\theta}=\frac{1}{m}\sum_{i=1}^{m}x^{(i)}(h_\theta(x^{(i)})-y^{(i)})\end{aligned}" />
  </center>
  
  我们会发现逻辑回归的参数梯度公式如此简单。
