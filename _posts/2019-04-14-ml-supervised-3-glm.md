@@ -30,7 +30,7 @@ tags:
 
 本文第一节接下来就是介绍逻辑回归是怎么使用 sigmoid 函数作为后验概率计算式来达到分类这一目的的。
 
-##### 1.1 损失函数公式推导
+##### 1.1 代价函数公式推导
 
 对于一个二分类任务，LR 公式推导可表示如下，
 
@@ -43,7 +43,7 @@ tags:
 * **再假设每个样本互相独立，利用极大似然估计已知有公式 (3) 成立；**
 * **将公式 (2) 代入公式 (3) 中，得到似然估计函数的表示 (4) ；**
 * **为了将指数运算去掉，等式两边取 log 得到公式 (5) ；**
-* **目的是使似然估计函数最大，而损失函数的目的是最小，所以在公式 (5) 上加个负号，得到公式 (6) 的损失函数表示。**
+* **目的是使似然估计函数最大，而代价函数的目的是最小，所以在公式 (5) 上加个负号，得到公式 (6) 的代价函数表示。**
 
 其中值得一提的是，交叉熵可以用来衡量两个分布的相似度情况，假设已知 
  
@@ -57,7 +57,7 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;H(p,q)&=-\sum_{i}^{&space;}p_i\&space;log\&space;q_i&space;\\&space;&=\sum_{i}^{&space;}[-y^{(i)}\&space;log\&space;h_\theta(x^{(i)})-(1-y^{(i)})\&space;log(1-h_\theta(x^{(i)})))]&space;\\&space;&=-\sum_{i}^{&space;}[y^{(i)}\&space;log\&space;h_\theta(x^{(i)})&plus;(1-y^{(i)})\&space;log(1-h_\theta(x^{(i)})))]&space;\end{aligned}" />
  </center>
  
-我们发现上面交叉熵公式跟之前的逻辑回归损失函数完全一致，也就是说**逻辑回归的损失函数其实就是交叉熵**。求得损失函数后，**接下来的任务就是最小化损失函数，常见的方法就是梯度下降法**，梯度公式推导如下，
+我们发现上面交叉熵公式跟之前的逻辑回归代价函数完全一致，也就是说**逻辑回归的代价函数其实就是交叉熵**。求得代价函数后，**接下来的任务就是最小化代价函数，常见的方法就是梯度下降法**，梯度公式推导如下，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;L(\theta)&&space;=-\sum_{i=1}^{m}[y^{(i)}log(h_\theta(x^{(i)}))&plus;(1-y^{(i)})log(1-h_\theta(x^{(i)}))]&space;\\&space;\Rightarrow&space;\frac{dL}{d\theta}&space;&&space;=&space;\frac{dL}{dh}\frac{dh}{d\theta}&space;=&space;-\sum_{i=1}^{m}(\frac{y^{(i)}}{h_\theta(x^{(i)})}-&space;\frac{1-y^{(i)}}{1-h_\theta(x^{(i)})})h_\theta(x^{(i)})(1-h_\theta(x^{(i)}))&space;\\&space;&&space;=&space;\sum_{i=1}^{m}(h_\theta(x^{(i)})&space;-&space;y^{(i)})&space;\end{aligned}"/>
@@ -117,7 +117,7 @@ def feature_batch_extraction(d_list, kw_set):
 
 **1.2.2 训练**
 
-训练的过程就是将 1.1 节推导出的公式用代码实现一遍，**训练目的就是求得模型参数 W 的最优解，可以使得损失函数值最小**，
+训练的过程就是将 1.1 节推导出的公式用代码实现一遍，**训练目的就是求得模型参数 W 的最优解，可以使得代价函数值最小**，
 
 ```buildoutcfg
 class RegressionModel(object):
