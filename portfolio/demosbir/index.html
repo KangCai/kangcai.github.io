@@ -46,9 +46,16 @@
         <script src="../js/controls/navigation.js"></script>
         <script src="../js/controls/size.js"></script>
         <script src="../js/controls/download.js"></script>
+        <script src="https://unpkg.com/keras-js"></script>
         <script data-example="1">
-            //create the drawingboard by passing it the #id of the wanted container
-            var defaultBoard = new DrawingBoard.Board('default-board');
+            // Load trained tensorflow model
+
+            // Create the drawingboard by passing it the #id of the wanted container
+            var myBoard = new DrawingBoard.Board('default-board');
+            myBoard.ev.bind('board:stopDrawing', why);
+            function why() {
+                alert('OH GOD WHY');
+            }
         </script>
         <script src="../js/yepnope.js"></script>
         <script>

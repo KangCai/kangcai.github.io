@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Onmyoji Draw</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" href="../css/prism.css">
+    <link rel="stylesheet" href="../css/website.css">
+    <link rel="stylesheet" href="../css/drawingboard.min.css">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .board {
+            margin: 0 auto;
+            width: 280px;
+            height: 280px;
+        }
+    </style>
+
+    <style data-example="1">
+        #simple-board {
+            float: left;
+            margin-top: 110px;
+            width: 430px;
+            height: 500px;
+        }
+    </style>
+
+    <style>
+        .result {
+            margin-top: 30px;
+            margin-left: 80px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<span id="forkongithub"><a href="https://github.com/KangCai/Feature-HELO-for-SBIR">Fork me on GitHub!</a></span>
+<div id="container">
+    <div class="example" data-example="1">
+        <h1>Onmyoji Draw</h1>
+        <div class="board" id="simple-board"></div>
+    </div>
+</div>
+<script src="../js/jquery-3.4.0.min.js"></script>
+<script src="../js/simple-undo.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/board.js"></script>
+<script src="../js/controls/control.js"></script>
+<script src="../js/controls/color.js"></script>
+<script src="../js/controls/drawingmode.js"></script>
+<script src="../js/controls/navigation.js"></script>
+<script src="../js/controls/size.js"></script>
+<script src="../js/controls/download.js"></script>
+<script src="https://unpkg.com/keras-js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script data-example="1">
+    // Load trained tensorflow model
+    var model = new KerasJS.Model({
+        filepath: 'model/mnist_cnn.bin',
+        gpu: true,
+        transferLayerOutputs: true
+    });
+    model.ready().then(() => {
+        // alert('DONE');
+
+    });
+    model.events.on('loadingProgress', handleLoadingProgress);
+    // Create the drawingboard by passing it the #id of the wanted container
+    let myBoard = new DrawingBoard.Board('simple-board', {
+        size: 40,
+        webStorage: false
+    });
+    myBoard.ev.bind('board:stopDrawing', why);
+    function why() {
+        let imageInput = myBoard.ctx.getImageData(0, 0, 420, 420).data;
+        let imageArray = reduceData(imageInput);
+        drawSmallImage(imageArray);
+        let modelInput = processImageArray(imageArray);
+        const inputData = {
+            input: new Float32Array(modelInput)
+        };
+        model.predict(inputData).then(outputData => {
+            let output = outputData.output;
+            for (let j = 0; j < 10; j++) {
+                const value = output[j];
+                $('#output tr').eq(j + 1).find('td').text(value.toFixed(2));
+            }
+            let max = output.reduce((a, b) => Math.max(a, b), 0);
+            let resultIdx = output.indexOf(max);
+            for (let j = 0; j < 10; j++) {
+                if (j === resultIdx) {
+                    $('#output tr').eq(j + 1).find('td').addClass('success');
+                } else {
+                    $('#output tr').eq(j + 1).find('td').removeClass('success');
+                }
+            }
+        });
+    }
+    function processImageArray(imageArray) {
+        let modelInput = [];
+        for (let i = 0; i < imageArray.length; i++) {
+            modelInput.push(1 - imageArray[i] / 255.0);
+        }
+        return modelInput;
+    }
+    function drawSmallImage(originalImage) {
+        let input = document.getElementById("input");
+        let ctx = input.getContext('2d');
+        for (let i = 0; i < 28; i++) {
+            for (let j = 0; j < 28; j++) {
+                const val = originalImage[i * 28 + j];
+                ctx.fillStyle = 'rgb(' + [val, val, val].join(',') + ')';
+                ctx.fillRect(j * 5, i * 5, 5, 5);
+            }
+        }
+    }
+    function handleLoadingProgress(progress) {
+        //alert('????' + progress);
+    }
+
+    function getMean (arguments) {
+        let sum = 0;
+        for (let i = 0; i < arguments.length; i++) {
+            sum += arguments[i] || 0;
+        }
+        return sum / arguments.length;
+    }
+
+    function reduceData (fullData) {
+        let gray = [];
+        const formLength = 28;
+        let originalLength = Math.round(Math.sqrt(fullData.length / 4));
+        let scale = Math.round(originalLength / formLength);
+        for (let i = 0; i < fullData.length; i += 4) {
+            const [R, G, B] = fullData.slice(i, i + 3);
+            gray.push((R * 299 + G * 587 + B * 114) / 1000)
+        }
+
+        let result = [];
+        for (let y = 0; y < formLength; y++) {
+            for (let x = 0; x < formLength; x++) {
+                let grayInArea = [];
+                for (let tmpX = x * scale; tmpX < (x + 1) * scale; tmpX++) {
+                    for (let tmpY = y * scale; tmpY < (y + 1) * scale; tmpY++) {
+                        grayInArea.push(getGray(tmpX, tmpY))
+                    }
+                }
+                result.push(getMean(grayInArea));
+            }
+        }
+        function getGray (x, y) {
+            return gray[x + y * originalLength];
+        }
+        return result
+    }
+</script>
+<div class="result">
+    <p>input:</p>
+    <div align="center"><canvas id="input" style="border:1px solid" width="140" height="140"></canvas></div>
+    <p>output:</p>
+    <table id="output" class="table">
+        <tr>
+            <th class="col-md-1"></th>
+            <th class="col-md-2">probability</th>
+        </tr>
+        <tr>
+            <th>0</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>1</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>2</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>3</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>4</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>5</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>6</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>7</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>8</th>
+            <td></td>
+        </tr>
+        <tr>
+            <th>9</th>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<script src="../js/yepnope.js"></script>
+<script>
+    let iHasRangeInput = function() {
+        let inputElem  = document.createElement('input'),
+            smile = ':)',
+            docElement = document.documentElement,
+            inputElemType = 'range',
+            available;
+        inputElem.setAttribute('type', inputElemType);
+        available = inputElem.type !== 'text';
+        inputElem.value         = smile;
+        inputElem.style.cssText = 'position:absolute;visibility:hidden;';
+        if ( /^range$/.test(inputElemType) && inputElem.style.WebkitAppearance !== undefined ) {
+            docElement.appendChild(inputElem);
+            defaultView = document.defaultView;
+            available = defaultView.getComputedStyle &&
+                defaultView.getComputedStyle(inputElem, null).WebkitAppearance !== 'textfield' &&
+                (inputElem.offsetHeight !== 0);
+            docElement.removeChild(inputElem);
+        }
+        return !!available;
+    };
+    yepnope({
+        test : iHasRangeInput(),
+        nope : ['fd-slider.min.css', 'fd-slider.min.js'],
+        callback: function(id, testResult) {
+            if("fdSlider" in window && typeof (fdSlider.onDomReady) != "undefined") {
+                try { fdSlider.onDomReady(); } catch(err) {}
+            }
+        }
+    });
+</script>
+</body>
+</html>
