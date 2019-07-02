@@ -43,13 +43,13 @@ KNN 是一种 memory-based learning，也叫 instance-based learning，没有显
 
 **2.1 朴素实现**
 
-1. 计算测试数据与各个训练数据之间的距离；复杂度为 O(N)；
+1.计算测试数据与各个训练数据之间的距离；复杂度为 O(N)；
 
 ```buildoutcfg
 dist = np.linalg.norm(X_val[i, :] - self.X_train, axis=1)
 ```
 
-2. 选取距离最小的 K 个点；利用最大K-堆排序，一般认为复杂度为 O(NlogK)，然而实际平均复杂度为 O(N + KlogK)，这个需要推导一下；
+2.选取距离最小的 K 个点；利用最大K-堆排序，一般认为复杂度为 O(NlogK)，然而实际平均复杂度为 O(N + KlogK)，这个需要推导一下；
 
 ```buildoutcfg
 # 1. 直接从小到大排序 O(NlogN)
@@ -65,7 +65,7 @@ for idx, d in enumerate(dist):
 res = [self.Y_train[r[1]] for r in heap]
 ```
 
-3. 确定这 K 个带你所在类别的出现频率，选择频率最高的分类作为测试数据的类别；复杂度为 O(K)；
+3.确定这 K 个带你所在类别的出现频率，选择频率最高的分类作为测试数据的类别；复杂度为 O(K)；
 
 ```buildoutcfg
 label = np.argmax(np.bincount(res))
@@ -75,7 +75,7 @@ label = np.argmax(np.bincount(res))
 
 **2.2 KD树实现**
 
-1. 为训练数据建立 KD 树；复杂度为 O(N(logN)^2)；
+1.为训练数据建立 KD 树；复杂度为 O(N(logN)^2)；
 
 ```buildoutcfg
 // Create KD tree.
@@ -92,7 +92,7 @@ def _create_kd_tree(self, points, dim, i=0):
         return None, None, points[0]
 ```
 
-2. 选取距离最小的 K 个点，这里的 K 与 KD树 的 K 含义不同，KD树 中的 K 表示的是数据维度；利用 KD树 的搜索，平均复杂度为 O(logN)，当然，最坏复杂度会比较高；
+2.选取距离最小的 K 个点，这里的 K 与 KD树 的 K 含义不同，KD树 中的 K 表示的是数据维度；利用 KD树 的搜索，平均复杂度为 O(logN)，当然，最坏复杂度会比较高；
 
 ```buildoutcfg
 // Seach nearest neighbor in KD tree.
@@ -121,7 +121,7 @@ def _search_kd_tree(self, kd_p, p, k, dim, dist_func, i=0, heap=None):
         return [n[1] for n in nn_result]
 ```
 
-3. 最后一步与朴素实现一样，确定这 K 个带你所在类别的出现频率，选择频率最高的分类作为测试数据的类别；复杂度为 O(K)；
+3.最后一步与朴素实现一样，确定这 K 个带你所在类别的出现频率，选择频率最高的分类作为测试数据的类别；复杂度为 O(K)；
 
 ```buildoutcfg
 label = np.argmax(np.bincount(res))
