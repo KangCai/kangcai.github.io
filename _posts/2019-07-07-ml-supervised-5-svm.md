@@ -36,7 +36,7 @@ E_j = predict(x_j) - y_j
 3.计算关于 x_i 和 x_j 的核函数值，留作后用
 
 ```buildoutcfg
-\\ 比如多项式核函数
+// 比如多项式核函数
 def kernel_func(x1, x2):
     return np.dot(x1, x2.T) ** 2
 
