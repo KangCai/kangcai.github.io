@@ -164,4 +164,14 @@ label = np.argmax(np.bincount(res))
 
 综合以上分析，**应用场景如果特征维度 d 较小（<20），KNN 适合用 KDTree 实现；如果训练样本数 n 较小 (<100000)，KNN 适合用朴素方法实现。**
 
+除此之外，如果借助 scikit-learn 实现，老样子，可以几行搞定，
+
+```buildoutcfg
+from sklearn import neighbors
+
+knn = neighbors.KNeighborsClassifier()
+knn.fit(X, Y)
+result_predict = lr.predict(X')
+```
+
 1. [Kmeans算法与KNN算法的区别](https://www.cnblogs.com/peizhe123/p/4619066.html)
