@@ -81,5 +81,6 @@ lr.fit(X, Y)
 result_predict = lr.predict(X')
 ```
 
-1. [支持向量机（SVM）中的 SMO算法](https://www.cnblogs.com/bentuwuying/p/6444516.html)
-2. [SVM（五）线性不可分之核函数](https://blog.csdn.net/The_lastest/article/details/78569217)
+1. [wiki: 支持向量机](https://zh.wikipedia.org/wiki/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA)
+2. [cnblogs: 支持向量机（SVM）中的 SMO算法](https://www.cnblogs.com/bentuwuying/p/6444516.html)
+3. [csdn: SVM（五）线性不可分之核函数](https://blog.csdn.net/The_lastest/article/details/78569217)

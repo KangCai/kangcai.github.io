@@ -174,4 +174,5 @@ knn.fit(X, Y)
 result_predict = lr.predict(X')
 ```
 
-1. [Kmeans算法与KNN算法的区别](https://www.cnblogs.com/peizhe123/p/4619066.html)
+1. [wiki: K-近邻算法](https://zh.wikipedia.org/wiki/%E6%9C%80%E8%BF%91%E9%84%B0%E5%B1%85%E6%B3%95)
+2. [cnblogs: Kmeans算法与KNN算法的区别](https://www.cnblogs.com/peizhe123/p/4619066.html)
