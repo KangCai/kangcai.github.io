@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "机器学习 · 监督学习篇 IV"
-subtitle: "K近邻"
+subtitle: "K近邻算法"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
@@ -9,6 +9,10 @@ tags:
   - 机器学习
   - 机器学习·监督学习篇
 ---
+
+> K近邻(k-Nearest Neighbor，KNN)分类算法，是一种很 “直白” 的算法，由美国学者 Cover 和 Hart 于1968年在 IEEE 发表。该算法算法思路很简单，对于一个样本的类别判定，只需要在特征空间中找与它最相似的 K 个样本，这些样本大多数属于哪一类别，该样本就判定成哪一类别。
+
+> 文章首发于[我的博客](https://kangcai.github.io/)，转载请保留链接 ;)
 
 ### 一、概念
 
@@ -180,5 +184,6 @@ result_predict = lr.predict(X')
 
 **参考资料**
 
-1. [wiki: K-近邻算法](https://zh.wikipedia.org/wiki/%E6%9C%80%E8%BF%91%E9%84%B0%E5%B1%85%E6%B3%95)
-2. [cnblogs: Kmeans算法与KNN算法的区别](https://www.cnblogs.com/peizhe123/p/4619066.html)
+1. [《统计学习方法》 李航](https://book.douban.com/subject/10590856/)
+2. [wiki: K-近邻算法](https://zh.wikipedia.org/wiki/%E6%9C%80%E8%BF%91%E9%84%B0%E5%B1%85%E6%B3%95)
+3. [cnblogs: Kmeans算法与KNN算法的区别](https://www.cnblogs.com/peizhe123/p/4619066.html)
