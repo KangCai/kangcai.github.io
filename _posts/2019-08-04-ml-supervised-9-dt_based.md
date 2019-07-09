@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "机器学习 · 监督学习篇 VIII"
+title: "机器学习 · 监督学习篇 IX"
 subtitle: "基于树的方法和集成方法"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
