@@ -204,6 +204,8 @@ class RegressionModel(object):
 
 其中，**accuracy 是模型准确率，metric 是混淆矩阵**；如果把垃圾邮件当作正样本，正常邮件当作负样本，那么 true_positive 是将垃圾信息判定成垃圾信息（正样本判定成正样本）的概率；true_negative 是将正常信息判定成正常信息（负样本判定成负样本）的概率；false_positive 是将正常信息判定成垃圾信息（负样本判定成正样本）的概率，又称虚警率（False Alarm）；false_negative是将垃圾信息判定成正常信息（正样本判定成负样本）的概率，又称漏警率（Missing Alarm）。
 
+完整代码见 [https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/logistic_regression.py](https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/logistic_regression.py)
+
 ##### 2.2 scikit-learn 实现
 
 scikit-learn 库同样提供了很简单的调用接口，

@@ -162,7 +162,7 @@ class NaiveBayesClassificationModel(object):
         return predicted_label
 ```
 
-完整代码可见 github： [https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/code/nb.py](https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/code/nb.py)
+完整代码可见 github： [https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/naive_bayes.py](https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/naive_bayes.py)
 
 ##### 2.2 scikit-learn 实现
 

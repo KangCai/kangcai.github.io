@@ -137,9 +137,9 @@ label = np.argmax(np.bincount(res))
 
 所以最后，训练复杂度是 O(NlogN)，测试复杂度是 O(KlogN)，可以看到，当 k << N 时，测试性能比朴素实现高很多。
 
-**KNN 完整代码见** [https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/code/knn.py](https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/code/knn.py)
+**KNN 完整代码见** [https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/k_nearest_neighbor.py](https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/k_nearest_neighbor.py)
 
-**KDTree 完整代码见** [https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/code/util_kd_tree.py](https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/code/util_kd_tree.py)
+**KDTree 完整代码见** [https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/util_kd_tree.py](https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/util_kd_tree.py)
 
 ### 三、三种实现的表现效果
 

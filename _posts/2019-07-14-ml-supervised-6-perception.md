@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "机器学习 · 监督学习篇 VI"
-subtitle: "高斯判别分析"
+subtitle: "感知机"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
