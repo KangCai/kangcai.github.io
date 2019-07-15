@@ -12,11 +12,29 @@ tags:
 
 ### 一、概念
 
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\min&space;_{\gamma,&space;w,&space;b}&space;&&space;\frac{1}{2}\|w\|^{2}&space;\\&space;\text&space;{&space;s.t.&space;}&space;&&space;y^{(i)}\left(w^{T}&space;x^{(i)}&plus;b\right)&space;\geq&space;1,&space;\quad&space;i=1,&space;\ldots,&space;m&space;\end{aligned}"/>
+
+![](http://latex.codecogs.com/svg.latex?f(x)=sign(w^T\cdot\,x+b))
+
+<img src="https://latex.codecogs.com/gif.latex?\begin{array}{cl}{\max&space;_{\alpha}}&space;&&space;{W(\alpha)=\sum_{i=1}^{m}&space;\alpha_{i}-\frac{1}{2}&space;\sum_{i,&space;j=1}^{m}&space;y^{(i)}&space;y^{(j)}&space;\alpha_{i}&space;\alpha_{j}\left\langle&space;x^{(i)},&space;x^{(j)}\right\rangle}&space;\\&space;{\text&space;{&space;s.t.&space;}}&space;&&space;{\alpha_{i}&space;\geq&space;0,&space;\quad&space;i=1,&space;\ldots,&space;m}&space;\\&space;{}&space;&&space;{\sum_{i=1}^{m}&space;\alpha_{i}&space;y^{(i)}=0}\end{array}" />
+
+以上是针对硬间隔数据的 SVM 算法公式，所谓硬间隔，就是说，一组数据样本是可以实现线性可分，大白话就是存在分隔超平面完全将正负样本分开。而现实中大多数情况下 SVM 要解决的是软间隔问题，即，数据样本不是实际的线性可分，而是近似线性可分。
+
+线性不可分意味着某些样本点(xi,yi)不能满足函数间隔大于等于1的约束条件，为了解决软间隔问题，SVM 对每个样本点引入一个松弛变量，降低实际的“函数间隔”。也就是松弛变量加上理论函数间隔大于等于1。所以原优化问题可以写成
+
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\min&space;_{\gamma,&space;w,&space;b}&space;&&space;\frac{1}{2}\|w\|^{2}&plus;C&space;\sum_{i=1}^{m}&space;\xi_{i}&space;\\&space;\text&space;{&space;s.t.&space;}&space;&&space;y^{(i)}\left(w^{T}&space;x^{(i)}&plus;b\right)&space;\geq&space;1-\xi_{i},&space;\quad&space;i=1,&space;\ldots,&space;m&space;\\&space;&&space;\xi_{i}&space;\geq&space;0,&space;\quad&space;i=1,&space;\ldots,&space;m&space;\end{aligned}" />
+
+目标函数中的C是惩罚参数，C>0，C 的值由我们决定，C值大对误分类的惩罚增大，C值小对误分类的惩罚小。然后相应的，对偶问题就变成了
+
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\max&space;_{\alpha}&space;&&space;W(\alpha)=\sum_{i=1}^{m}&space;\alpha_{i}-\frac{1}{2}&space;\sum_{i,&space;j=1}^{m}&space;y^{(i)}&space;y^{(j)}&space;\alpha_{i}&space;\alpha_{j}\left\langle&space;x^{(i)},&space;x^{(j)}\right\rangle&space;\\&space;\text&space;{&space;s.t.&space;}&space;&&space;0&space;\leq&space;\alpha_{i}&space;\leq&space;C,&space;\quad&space;i=1,&space;\ldots,&space;m&space;\\&space;&&space;\sum_{i=1}^{m}&space;\alpha_{i}&space;y^{(i)}=0&space;\end{aligned}" />
+
+
+
 ### 二、算法步骤
 
 根据第一节，SVM的优化目标和约束条件如下，
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;max\&space;W(\alpha)&=\sum_{i=1}^{n}\alpha-\frac{1}{2}\sum_{i,j=1}^{n}y_iy_ja_ia_j(K(x_i,x_j))\\&space;s.t.\sum_{i=1}^{n}y_ia_i&=0&space;\\&space;0&space;\leq&space;a_i&space;\leq&space;C&(i=1,2...n)&space;\end{aligned}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;max\&space;W(\alpha)&=\sum_{i=1}^{n}\alpha-\frac{1}{2}\sum_{i,j=1}^{n}y_iy_ja_ia_j(K(x_i,x_j))\\&space;s.t.\sum_{i=1}^{n}y_ia_i&=0&space;\\&space;0&space;\leq&space;a_i&space;\leq&space;C&(i=1,2...n)&space;\end{aligned}" title="\begin{aligned} max\ W(\alpha)&=\sum_{i=1}^{n}\alpha-\frac{1}{2}\sum_{i,j=1}^{n}y_iy_ja_ia_j(K(x_i,x_j))\\ s.t.\sum_{i=1}^{n}y_ia_i&=0 \\ 0 \leq a_i \leq C&(i=1,2...n) \end{aligned}" /></a>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;max\&space;W(\alpha)&=\sum_{i=1}^{n}\alpha-\frac{1}{2}\sum_{i,j=1}^{n}y_iy_ja_ia_j(K(x_i,x_j))\\&space;s.t.\sum_{i=1}^{n}y_ia_i&=0&space;\\&space;0&space;\leq&space;a_i&space;\leq&space;C&(i=1,2...n)&space;\end{aligned}" title="\begin{aligned} max\ W(\alpha)&=\sum_{i=1}^{n}\alpha-\frac{1}{2}\sum_{i,j=1}^{n}y_iy_ja_ia_j(K(x_i,x_j))\\ s.t.\sum_{i=1}^{n}y_ia_i&=0 \\ 0 \leq a_i \leq C&(i=1,2...n) \end{aligned}" />
 
 关于这种二次规划问题求解的方法有很多，这里具体采用的是 SMO （Sequential minimal optimization）优化算法。SMO 算法是一种启发式算法，基本思路是：如果所有变量的解都满足此最优化问题的 KKT 条件，那么这么最优化问题的解就得到了。具体进行计算时，它采用分解的思想，每次只优化两个点 {i, j} 的工作集，算法步骤如下，
 
@@ -100,4 +118,5 @@ SVM 将原始问题转化为对偶问题后，问题就是一个凸二次规划�
 
 1. [wiki: 支持向量机](https://zh.wikipedia.org/wiki/%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA)
 2. [cnblogs: 支持向量机（SVM）中的 SMO算法](https://www.cnblogs.com/bentuwuying/p/6444516.html)
-3. [csdn: SVM（五）线性不可分之核函数](https://blog.csdn.net/The_lastest/article/details/78569217)
+3. [jianshu: SVM 由浅入深的尝试（四） 软间隔最大化的理解](https://www.jianshu.com/p/c4acd8c323ab)
+4. [csdn: SVM（五）线性不可分之核函数](https://blog.csdn.net/The_lastest/article/details/78569217)
