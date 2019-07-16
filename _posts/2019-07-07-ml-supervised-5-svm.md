@@ -14,11 +14,11 @@ tags:
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\min&space;_{\gamma,&space;w,&space;b}&space;&&space;\frac{1}{2}\|w\|^{2}&space;\\&space;\text&space;{&space;s.t.&space;}&space;&&space;y^{(i)}\left(w^{T}&space;x^{(i)}&plus;b\right)&space;\geq&space;1,&space;\quad&space;i=1,&space;\ldots,&space;m&space;\end{aligned}"/>
 
-![](http://latex.codecogs.com/svg.latex?f(x)=sign(w^T\cdot\,x+b))
+
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{array}{cl}{\max&space;_{\alpha}}&space;&&space;{W(\alpha)=\sum_{i=1}^{m}&space;\alpha_{i}-\frac{1}{2}&space;\sum_{i,&space;j=1}^{m}&space;y^{(i)}&space;y^{(j)}&space;\alpha_{i}&space;\alpha_{j}\left\langle&space;x^{(i)},&space;x^{(j)}\right\rangle}&space;\\&space;{\text&space;{&space;s.t.&space;}}&space;&&space;{\alpha_{i}&space;\geq&space;0,&space;\quad&space;i=1,&space;\ldots,&space;m}&space;\\&space;{}&space;&&space;{\sum_{i=1}^{m}&space;\alpha_{i}&space;y^{(i)}=0}\end{array}" />
 
-以上是针对硬间隔数据的 SVM 算法公式，所谓硬间隔，就是说，一组数据样本是可以实现线性可分，大白话就是存在分隔超平面完全将正负样本分开。而现实中大多数情况下 SVM 要解决的是软间隔问题，即，数据样本不是实际的线性可分，而是近似线性可分。
+以上是针对硬间隔数据的 SVM 算法公式，所谓硬间隔，就是说数据样本是可以实现线性可分，即存在分隔超平面完全将正负样本分开。而现实中大多数情况下 SVM 要解决的是软间隔问题，即数据样本不是实际的线性可分，而是近似线性可分。
 
 线性不可分意味着某些样本点(xi,yi)不能满足函数间隔大于等于1的约束条件，为了解决软间隔问题，SVM 对每个样本点引入一个松弛变量，降低实际的“函数间隔”。也就是松弛变量加上理论函数间隔大于等于1。所以原优化问题可以写成
 
@@ -94,6 +94,8 @@ alpha[i] = a_i + y_i * y_j * (a_j - alpha[j])
 <img src="https://kangcai.github.io/img/in-post/post-ml/svm_1.png"/>
 </center>
 
+每个点通过训练后对应两个数字，
+
 除此之外，如果借助 scikit-learn 实现，老样子几行搞定，
 
 ```buildoutcfg
@@ -111,7 +113,7 @@ SVM 将原始问题转化为对偶问题后，问题就是一个凸二次规划�
 
 **2.如何加速计算**
 
-所谓加速计算，就是找到一个使目标函数增大最快的方法，一个重要的优化点在于每次迭代的两个样本的选取方法。对于每个样本都要遍历到，比如说需要遍历的样本是 j，配合该样本进行迭代的样本是 i，j 按顺序遍历即可，而 i 的选择会直接影响算法的收敛速度。每次直接选使目标函数增大最大的样本 i 是不可取的，因为着需要计算所有样本，效率更低；一种可取的方法是选取与样本 j 差别很大的样本，因为直观来说，更新两个差别很大的变量比起相似的变量会带给目标函数更大的变化，具体可以通过 Hinge 函数 E_i = max(y_i * f(x_i) - 1, 0) 来找到使 |E_i - E_j| 最大的样本 i。
+所谓加速计算，就是找到一个使目标函数增大最快的方法，一个重要的优化点在于每次迭代的两个样本的选取方法。对于每个样本都要遍历到，比如说需要遍历的样本是 j，配合该样本进行迭代的样本是 i，j 按顺序遍历即可，而 i 的选择会直接影响算法的收敛速度。每次直接选使目标函数增大最大的样本 i 是不可取的，因为着需要计算所有样本，效率更低；一种可取的方法是选取与样本 j 差别很大的样本，因为直观来说，更新两个差别很大的变量比起相似的变量会带给目标函数更大的变化，具体可以通过 Hinge 函数 E_i = max(y_i * f(x_i) - 1, 0) 来找到使 \|E_i - E_j\| 最大的样本 i。
 
 
 **参考文献**

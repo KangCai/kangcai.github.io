@@ -41,3 +41,4 @@ xxxx
 
 1. [wiki: 决策树学习](https://zh.wikipedia.org/wiki/%E5%86%B3%E7%AD%96%E6%A0%91%E5%AD%A6%E4%B9%A0)
 2. [csdn: 决策树（ID3、C4.5、CART、随机森林）](https://blog.csdn.net/gumpeng/article/details/51397737)
+3. [机器学习算法总结(四)——GBDT与XGBOOST](https://www.cnblogs.com/jiangxinyang/p/9248154.html)
