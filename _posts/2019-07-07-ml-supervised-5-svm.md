@@ -12,9 +12,33 @@ tags:
 
 ### 一、概念
 
+支持向量机是一种经典的二分类判别模型，基本定义是在特征空间上的间隔最大的线性分类器，它具有以下几个特性：具备独有的优化目标，即判别超平面与特征的间隔最大化；可以利用核技巧，成为非线性分类器；通过将优化问题转化为其对偶问题，支持向量机的学习算法等价于求解凸二次规划的最优化算法。
+
+间隔最大及相应的约束最优化问题将在后文叙述，这里先从间隔的基本概念说起。高中我们学过点到直线的距离，比如对于直线函数式
+
+<img src="https://latex.codecogs.com/gif.latex?2x&plus;y&plus;1=0" />
+
+点 (x, y) 到该直线的距离为
+
+<img src="https://latex.codecogs.com/gif.latex?\frac{2x&plus;y&plus;1}{\sqrt{2^2&plus;1^2}}" />
+
+，以上是二维平面的情况，类似的，对于多维空间下点到超平面的问题，有如下公式，假设超平面函数表达式为
+
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&wx&plus;b=0&space;\\&space;\Rightarrow\&space;&\theta_1x_1&plus;\theta_2x_2&plus;...&plus;\theta_Mx_M&plus;b=0&space;\end{aligned}"/>
+
+，则点
+
+<img src="https://latex.codecogs.com/gif.latex?x^'=(x_1,&space;x_2,...x_M)"/>
+
+到超平面的距离可表示为
+
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&\frac{wx&plus;b}{\left&space;\|&space;w&space;\right&space;\|}&space;\\&space;\Rightarrow\&space;&\frac{\theta_1x_1&plus;\theta_2x_2&plus;...&plus;\theta_Mx_M&plus;b}{\sqrt{\theta_1^2&plus;\theta_2^2&plus;...&plus;\theta_M^2}}&space;\end{aligned}"/>
+
+于是就得到了下面的线性可分支持向量机学习的最优化问题
+
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\min&space;_{\gamma,&space;w,&space;b}&space;&&space;\frac{1}{2}\|w\|^{2}&space;\\&space;\text&space;{&space;s.t.&space;}&space;&&space;y^{(i)}\left(w^{T}&space;x^{(i)}&plus;b\right)&space;\geq&space;1,&space;\quad&space;i=1,&space;\ldots,&space;m&space;\end{aligned}"/>
 
-
+为了求解原始最优化问题，应用拉格朗日对偶性，通过求解对偶问题（dual problem）得到原始问题（primal problem）的最优解。这样做有两个优点，一是对偶问题往往更容易求解；二是能自然引入核函数，进而将线性可分支持向量机推广到非线性分类问题。对偶问题为
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{array}{cl}{\max&space;_{\alpha}}&space;&&space;{W(\alpha)=\sum_{i=1}^{m}&space;\alpha_{i}-\frac{1}{2}&space;\sum_{i,&space;j=1}^{m}&space;y^{(i)}&space;y^{(j)}&space;\alpha_{i}&space;\alpha_{j}\left\langle&space;x^{(i)},&space;x^{(j)}\right\rangle}&space;\\&space;{\text&space;{&space;s.t.&space;}}&space;&&space;{\alpha_{i}&space;\geq&space;0,&space;\quad&space;i=1,&space;\ldots,&space;m}&space;\\&space;{}&space;&&space;{\sum_{i=1}^{m}&space;\alpha_{i}&space;y^{(i)}=0}\end{array}" />
 
@@ -27,7 +51,6 @@ tags:
 目标函数中的C是惩罚参数，C>0，C 的值由我们决定，C值大对误分类的惩罚增大，C值小对误分类的惩罚小。然后相应的，对偶问题就变成了
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\max&space;_{\alpha}&space;&&space;W(\alpha)=\sum_{i=1}^{m}&space;\alpha_{i}-\frac{1}{2}&space;\sum_{i,&space;j=1}^{m}&space;y^{(i)}&space;y^{(j)}&space;\alpha_{i}&space;\alpha_{j}\left\langle&space;x^{(i)},&space;x^{(j)}\right\rangle&space;\\&space;\text&space;{&space;s.t.&space;}&space;&&space;0&space;\leq&space;\alpha_{i}&space;\leq&space;C,&space;\quad&space;i=1,&space;\ldots,&space;m&space;\\&space;&&space;\sum_{i=1}^{m}&space;\alpha_{i}&space;y^{(i)}=0&space;\end{aligned}" />
-
 
 
 ### 二、算法步骤
@@ -90,11 +113,13 @@ alpha[i] = a_i + y_i * y_j * (a_j - alpha[j])
 
 ### 三、表现效果
 
+下图是用上一节算法代码运行一个示例的结果，
+
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/svm_1.png"/>
 </center>
 
-每个点通过训练后对应两个数字，
+图中每个点通过训练后对应两个数字，用逗号隔开，前一个数字表示该样本对应的 alpha 值，表示对分类超平面的贡献度；后一个数字表示点到分类超平面的几何间隔。
 
 除此之外，如果借助 scikit-learn 实现，老样子几行搞定，
 
