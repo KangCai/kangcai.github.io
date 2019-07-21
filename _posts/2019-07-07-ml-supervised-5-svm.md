@@ -73,6 +73,7 @@ SVM 的优化目标是使样本到超平面的间隔最大，可以拆解为两�
 
 <center><img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\max&space;_{\alpha}&space;&&space;W(\alpha)=\sum_{i=1}^{m}&space;\alpha_{i}-\frac{1}{2}&space;\sum_{i，&space;j=1}^{m}&space;y^{(i)}&space;y^{(j)}&space;\alpha_{i}&space;\alpha_{j}\left\langle&space;x^{(i)}，&space;x^{(j)}\right\rangle&space;\\&space;\text&space;{&space;s.t.&space;}&space;&&space;0&space;\leq&space;\alpha_{i}&space;\leq&space;C，&space;\quad&space;i=1，&space;\ldots，&space;m&space;\\&space;&&space;\sum_{i=1}^{m}&space;\alpha_{i}&space;y^{(i)}=0&space;\end{aligned}" /></center>
 
+这样，SVM 的算法求解问题就变成了一个凸二次规划问题。
 
 ### 二、算法步骤
 
