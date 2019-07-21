@@ -12,17 +12,23 @@ tags:
 
 ### 一、概念
 
-支持向量机是一种经典的二分类判别模型，基本定义是在特征空间上的间隔最大的线性分类器，它具有以下几个特性：具备独有的优化目标，即判别超平面与特征的间隔最大化；可以利用核技巧，成为非线性分类器；通过将优化问题转化为其对偶问题，支持向量机的学习算法等价于求解凸二次规划的最优化算法。
+支持向量机是一种经典的二分类判别模型，基本定义是在特征空间上的**间隔最大的线性分类器**，它具有以下几个特性：具备独有的优化目标，即判别超平面与特征的**间隔最大化**；可以**利用核技巧，成为非线性分类器**；通过**将优化问题转化为其对偶问题**，支持向量机的学习算法等价于求解凸二次规划的最优化算法。
 
 间隔最大及相应的约束最优化问题将在后文叙述，这里先从间隔的基本概念说起。高中我们学过点到直线的距离，比如对于直线函数式
 
-<img src="https://latex.codecogs.com/gif.latex?2x&plus;y&plus;1=0" />
+<img src="https://latex.codecogs.com/gif.latex?2x&plus;y-1=0" />
 
 点 (x, y) 到该直线的距离为
 
-<img src="https://latex.codecogs.com/gif.latex?\frac{2x&plus;y&plus;1}{\sqrt{2^2&plus;1^2}}" />
+<img src="https://latex.codecogs.com/gif.latex?d=\frac{2x&plus;y-1}{\sqrt{2^2&plus;1^2}}" />
 
-，以上是二维平面的情况，类似的，对于多维空间下点到超平面的问题，有如下公式，假设超平面函数表达式为
+,如下图所示
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/svm_dist.png"/>
+</center>
+
+以上是二维平面的情况，类似的，对于多维空间下点到超平面的问题，有如下公式，假设超平面函数表达式为
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&wx&plus;b=0&space;\\&space;\Rightarrow\&space;&\theta_1x_1&plus;\theta_2x_2&plus;...&plus;\theta_Mx_M&plus;b=0&space;\end{aligned}"/>
 
@@ -32,23 +38,29 @@ tags:
 
 到超平面的距离可表示为
 
-<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&\frac{wx&plus;b}{\left&space;\|&space;w&space;\right&space;\|}&space;\\&space;\Rightarrow\&space;&\frac{\theta_1x_1&plus;\theta_2x_2&plus;...&plus;\theta_Mx_M&plus;b}{\sqrt{\theta_1^2&plus;\theta_2^2&plus;...&plus;\theta_M^2}}&space;\end{aligned}"/>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&d=\frac{wx&plus;b}{\left&space;\|&space;w&space;\right&space;\|}&space;\\&space;&=\frac{\theta_1x_1&plus;\theta_2x_2&plus;...&plus;\theta_Mx_M&plus;b}{\sqrt{\theta_1^2&plus;\theta_2^2&plus;...&plus;\theta_M^2}}&space;\end{aligned}"/>
+
+这个距离是正负号分别表示点在超平面的两侧,所以如果要 TODO
+
 
 于是就得到了下面的线性可分支持向量机学习的最优化问题
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\min&space;_{\gamma,&space;w,&space;b}&space;&&space;\frac{1}{2}\|w\|^{2}&space;\\&space;\text&space;{&space;s.t.&space;}&space;&&space;y^{(i)}\left(w^{T}&space;x^{(i)}&plus;b\right)&space;\geq&space;1,&space;\quad&space;i=1,&space;\ldots,&space;m&space;\end{aligned}"/>
 
-为了求解原始最优化问题，应用拉格朗日对偶性，通过求解对偶问题（dual problem）得到原始问题（primal problem）的最优解。这样做有两个优点，一是对偶问题往往更容易求解；二是能自然引入核函数，进而将线性可分支持向量机推广到非线性分类问题。对偶问题为
+为了求解原始最优化问题，**应用拉格朗日对偶性，通过求解对偶问题（dual problem）得到原始问题（primal problem）的最优解**。这样做有两个优点，一是**对偶问题往往更容易求解**；二是能**自然引入核函数，进而将线性可分支持向量机推广到非线性分类问题**。具体操作是 TODO
+
+
+对偶问题为
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{array}{cl}{\max&space;_{\alpha}}&space;&&space;{W(\alpha)=\sum_{i=1}^{m}&space;\alpha_{i}-\frac{1}{2}&space;\sum_{i,&space;j=1}^{m}&space;y^{(i)}&space;y^{(j)}&space;\alpha_{i}&space;\alpha_{j}\left\langle&space;x^{(i)},&space;x^{(j)}\right\rangle}&space;\\&space;{\text&space;{&space;s.t.&space;}}&space;&&space;{\alpha_{i}&space;\geq&space;0,&space;\quad&space;i=1,&space;\ldots,&space;m}&space;\\&space;{}&space;&&space;{\sum_{i=1}^{m}&space;\alpha_{i}&space;y^{(i)}=0}\end{array}" />
 
-以上是针对硬间隔数据的 SVM 算法公式，所谓硬间隔，就是说数据样本是可以实现线性可分，即存在分隔超平面完全将正负样本分开。而现实中大多数情况下 SVM 要解决的是软间隔问题，即数据样本不是实际的线性可分，而是近似线性可分。
+以上是针对硬间隔数据的 SVM 算法公式，所谓**硬间隔，就是说数据样本是可以实现线性可分，即存在分隔超平面完全将正负样本分开。然后,现实中大多数情况下 SVM 要解决的是软间隔问题，即数据样本不是实际的线性可分，而是近似线性可分**。
 
-线性不可分意味着某些样本点(xi,yi)不能满足函数间隔大于等于1的约束条件，为了解决软间隔问题，SVM 对每个样本点引入一个松弛变量，降低实际的“函数间隔”。也就是松弛变量加上理论函数间隔大于等于1。所以原优化问题可以写成
+线性不可分意味着某些样本点(xi,yi)不能满足函数间隔大于等于1的约束条件，**为了解决软间隔问题，SVM 对每个样本点引入一个松弛变量**，降低实际的“函数间隔”。也就是松弛变量加上理论函数间隔大于等于1。所以原优化问题可以写成
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\min&space;_{\gamma,&space;w,&space;b}&space;&&space;\frac{1}{2}\|w\|^{2}&plus;C&space;\sum_{i=1}^{m}&space;\xi_{i}&space;\\&space;\text&space;{&space;s.t.&space;}&space;&&space;y^{(i)}\left(w^{T}&space;x^{(i)}&plus;b\right)&space;\geq&space;1-\xi_{i},&space;\quad&space;i=1,&space;\ldots,&space;m&space;\\&space;&&space;\xi_{i}&space;\geq&space;0,&space;\quad&space;i=1,&space;\ldots,&space;m&space;\end{aligned}" />
 
-目标函数中的C是惩罚参数，C>0，C 的值由我们决定，C值大对误分类的惩罚增大，C值小对误分类的惩罚小。然后相应的，对偶问题就变成了
+**目标函数中的 C 是惩罚参数，C>0，C 的值由我们决定，C 值大对误分类的惩罚增大，C 值小对误分类的惩罚小**。然后相应的，对偶问题就变成了
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\max&space;_{\alpha}&space;&&space;W(\alpha)=\sum_{i=1}^{m}&space;\alpha_{i}-\frac{1}{2}&space;\sum_{i,&space;j=1}^{m}&space;y^{(i)}&space;y^{(j)}&space;\alpha_{i}&space;\alpha_{j}\left\langle&space;x^{(i)},&space;x^{(j)}\right\rangle&space;\\&space;\text&space;{&space;s.t.&space;}&space;&&space;0&space;\leq&space;\alpha_{i}&space;\leq&space;C,&space;\quad&space;i=1,&space;\ldots,&space;m&space;\\&space;&&space;\sum_{i=1}^{m}&space;\alpha_{i}&space;y^{(i)}=0&space;\end{aligned}" />
 
@@ -59,7 +71,7 @@ tags:
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;max\&space;W(\alpha)&=\sum_{i=1}^{n}\alpha-\frac{1}{2}\sum_{i,j=1}^{n}y_iy_ja_ia_j(K(x_i,x_j))\\&space;s.t.\sum_{i=1}^{n}y_ia_i&=0&space;\\&space;0&space;\leq&space;a_i&space;\leq&space;C&(i=1,2...n)&space;\end{aligned}" title="\begin{aligned} max\ W(\alpha)&=\sum_{i=1}^{n}\alpha-\frac{1}{2}\sum_{i,j=1}^{n}y_iy_ja_ia_j(K(x_i,x_j))\\ s.t.\sum_{i=1}^{n}y_ia_i&=0 \\ 0 \leq a_i \leq C&(i=1,2...n) \end{aligned}" />
 
-关于这种二次规划问题求解的方法有很多，这里具体采用的是 SMO （Sequential minimal optimization）优化算法。SMO 算法是一种启发式算法，基本思路是：如果所有变量的解都满足此最优化问题的 KKT 条件，那么这么最优化问题的解就得到了。具体进行计算时，它采用分解的思想，每次只优化两个点 {i, j} 的工作集，算法步骤如下，
+关于这种凸二次规划问题求解的方法有很多，但其它算法的时间复杂度都很高,这里具体采用的是复杂度最低的 SMO （Sequential minimal optimization）优化算法。SMO 算法是一种启发式算法，基本思路是：如果所有变量的解都满足此最优化问题的 KKT 条件，那么这么最优化问题的解就得到了。具体进行计算时，它采用分解的思想，每次只优化两个点 {i, j} 的工作集，算法步骤如下，
 
 1.根据当前参数 alpha 计算当前分割超平面的 w 和 b
 
@@ -107,7 +119,7 @@ alpha[j] = min(H, max(L, alpha[j]))
 alpha[i] = a_i + y_i * y_j * (a_j - alpha[j])
 ```
 
-所以，最后训练复杂度是 XXX。
+整个算法训练过程的时间复杂度平均是 O(n^2),最坏是 O(n^3)。
 
 **完整代码见** [https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/support_vector_machine.py](https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/support_vector_machine.py)
 
