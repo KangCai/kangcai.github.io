@@ -24,9 +24,9 @@ tags:
 
 ，如下图所示
 
-<center><img src="https://kangcai.github.io/img/in-post/post-ml/svm_dist.png"/></center>
+<center><img src="https://kangcai.github.io/img/in-post/post-ml/svm_dist.png" width=50%/></center>
 
-以上是二维平面的情况，类似的，对于多维空间下点到超平面的问题，有如下公式，假设超平面函数表达式为
+以上是二维平面的情况，从**二维空间拓展到多维空间**下，点到超平面的计算也是类似的，假设超平面函数表达式为
 
 <center><img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&wx&plus;b=0&space;\\&space;\Rightarrow\&space;&\theta_1x_1&plus;\theta_2x_2&plus;...&plus;\theta_Mx_M&plus;b=0&space;\end{aligned}"/></center>
 
@@ -43,13 +43,13 @@ tags:
 <center><img src="https://latex.codecogs.com/gif.latex?\gamma=yd=\frac{y(wx&plus;b)}{\left&space;\|&space;w&space;\right&space;\|}"></center>
 
 
-SVM 的优化目标是使样本到超平面的间隔最大，可以拆解为两层意思，一层是所有样本到超平面的距离都大于某个距离，另一层是使该距离最大化，可以用以下公式表示，
+**SVM 的优化目标是使样本到超平面的间隔最大，可以拆解为两层意思，一层是所有样本到超平面的距离都大于某个距离，另一层是使该距离最大化**，可以用以下公式表示，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&\g\max_{w,b}\gamma&space;\\&space;&&space;s.t.\&space;y_i(w\cdot&space;x_i&plus;b)/\left&space;\|&space;w&space;\right&space;\|\geq\gamma&space;\end{aligned}&space;\Rightarrow&space;\begin{aligned}&space;&\g\max_{w,b}\hat{\gamma}&space;/&space;\left&space;\|&space;w&space;\right&space;\|\\&space;&&space;s.t.\&space;y_i(w\cdot&space;x_i&plus;b)\geq\hat{\gamma}&space;\end{aligned}&space;\Rightarrow&space;\begin{aligned}&space;&\g\min_{w,b}\left&space;\|&space;w&space;\right&space;\|\\&space;&&space;s.t.\&space;y_i(w\cdot&space;x_i&plus;b)\geq&space;1&space;\end{aligned}"/>
 </center>
 
-最小化一个非负数与最小化其常数倍的平方数等价，于是就得到了下面的线性可分支持向量机学习的最优化问题
+**最小化一个非负数与最小化其常数倍的平方数等价**，于是就得到了下面的线性可分支持向量机学习的最优化问题
 
 <center><img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\min&space;_{\gamma，&space;w，&space;b}&space;&&space;\frac{1}{2}\|w\|^{2}&space;\\&space;\text&space;{&space;s.t.&space;}&space;&&space;y^{(i)}\left(w^{T}&space;x^{(i)}&plus;b\right)&space;\geq&space;1，&space;\quad&space;i=1，&space;\ldots，&space;m&space;\end{aligned}"/></center>
 
@@ -59,7 +59,7 @@ SVM 的优化目标是使样本到超平面的间隔最大，可以拆解为两�
 <img src="https://latex.codecogs.com/gif.latex?L(w,b,\alpha)=\frac{1}{2}\left&space;\|&space;w&space;\right&space;\|^2-\sum_{i=1}^{N}\alpha_iy_i(w\cdot&space;x_i&plus;b)&plus;\sum_{i=1}^{N}\alpha_i" />
 </center>
 
-分别求 L 关于 w 和 b 的偏导数，并令其为0，将得到的两个等式一起带入上述拉格朗日函数（这两步省略），就将原始问题转化为对偶问题，如下所示，
+**分别求 L 关于 w 和 b 的偏导数，并令其为0，将得到的两个等式一起带入上述拉格朗日函数（这两步省略），就将原始问题转化为对偶问题**，如下所示，
 
 <center><img src="https://latex.codecogs.com/gif.latex?\begin{array}{cl}{\max&space;_{\alpha}}&space;&&space;{W(\alpha)=\sum_{i=1}^{m}&space;\alpha_{i}-\frac{1}{2}&space;\sum_{i，&space;j=1}^{m}&space;y^{(i)}&space;y^{(j)}&space;\alpha_{i}&space;\alpha_{j}\left\langle&space;x^{(i)}，&space;x^{(j)}\right\rangle}&space;\\&space;{\text&space;{&space;s.t.&space;}}&space;&&space;{\alpha_{i}&space;\geq&space;0，&space;\quad&space;i=1，&space;\ldots，&space;m}&space;\\&space;{}&space;&&space;{\sum_{i=1}^{m}&space;\alpha_{i}&space;y^{(i)}=0}\end{array}" /></center>
 
@@ -81,7 +81,7 @@ SVM 的优化目标是使样本到超平面的间隔最大，可以拆解为两�
 
 <center><img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;max\&space;W(\alpha)&=\sum_{i=1}^{n}\alpha-\frac{1}{2}\sum_{i，j=1}^{n}y_iy_ja_ia_j(K(x_i，x_j))\\&space;s.t.\sum_{i=1}^{n}y_ia_i&=0&space;\\&space;0&space;\leq&space;a_i&space;\leq&space;C&(i=1，2...n)&space;\end{aligned}" title="\begin{aligned} max\ W(\alpha)&=\sum_{i=1}^{n}\alpha-\frac{1}{2}\sum_{i，j=1}^{n}y_iy_ja_ia_j(K(x_i，x_j))\\ s.t.\sum_{i=1}^{n}y_ia_i&=0 \\ 0 \leq a_i \leq C&(i=1，2...n) \end{aligned}" /></center>
 
-关于这种凸二次规划问题求解的方法有很多，但其它算法的时间复杂度都很高，这里具体采用的是复杂度最低的 SMO （Sequential minimal optimization）优化算法。SMO 算法是一种启发式算法，基本思路是：如果所有变量的解都满足此最优化问题的 KKT 条件，那么这么最优化问题的解就得到了。具体进行计算时，它采用分解的思想，每次只优化两个点 {i， j} 的工作集，算法步骤如下，
+关于这种凸二次规划问题求解的方法有很多，但其它算法的时间复杂度都很高，这里具体采用的是**复杂度最低的 SMO （Sequential minimal optimization）优化算法**。SMO 算法是一种启发式算法，**基本思路是：如果所有变量的解都满足此最优化问题的 KKT 条件，那么这么最优化问题的解就得到了**。具体进行计算时，它采用分解的思想，**每次只优化两个点 {i， j} 的工作集**，算法步骤如下，
 
 1.根据当前参数 alpha 计算当前分割超平面的 w 和 b
 
@@ -137,8 +137,7 @@ alpha[i] = a_i + y_i * y_j * (a_j - alpha[j])
 
 下图是用上一节算法代码运行一个示例的结果，
 
-<center><img src="https://kangcai.github.io/img/in-post/post-ml/svm_1.png"/></center>
-</center>
+<center><img src="https://kangcai.github.io/img/in-post/post-ml/svm_1.png"/ width=60%></center>
 
 图中每个点通过训练后对应两个数字，用逗号隔开，前一个数字表示该样本对应的 alpha 值，表示对分类超平面的贡献度；后一个数字表示点到分类超平面的几何间隔。
 
