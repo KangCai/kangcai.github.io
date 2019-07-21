@@ -36,7 +36,7 @@ tags:
 
 ，则点
 
-<center><img src="https://latex.codecogs.com/gif.latex?x^'=(x_1，&space;x_2，...x_M)"/></center>
+<center><img src="https://latex.codecogs.com/gif.latex?x^{'}=(x_1，&space;x_2，...x_M)"/></center>
 
 到超平面的距离可表示为
 
