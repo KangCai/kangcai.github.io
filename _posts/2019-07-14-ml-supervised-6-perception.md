@@ -18,14 +18,25 @@ tags:
 
 1957 美国心理学家 Rosenblatt 提出了感知机模型，作为一个二类分类的线性判别模型，它具有简单而易于实现的优点。支持向量机 于 1995 年才提出，感知机作为支持向量机的基础，算法思想与线性支持向量机有诸多相似之处：比如算法目标也是找到一个合适的分隔超平面，模型优化问题具有原始形式和对偶形式这两种形式，最初的模型只能解决线性数据分类问题。
 
-与 SVM 类似，距离和算法公式（TODO）
+假设训练数据集是线性可分的，感知机的学习目标是求得一个能够将两类样本完全分开的分隔超平面，换句话说就是不存在误分类样本。对于损失函数的选取，一个直观的选择就是 “误分类样本数”，但是，这样的损失函数不是关于 w, b的连续可导函数，不易优化；另一个选择就是与 SVM 类似，采用距离，然而与 SVM 不同的是，感知机算法只针对误分类样本，所以考虑的是误分类样本离超平面的总距离。
+
+假设超平面 S 的误分类样本集合是 M，那么所有误分类样本到超平面 S 的总距离为，
+
+<center><img src="https://latex.codecogs.com/gif.latex?L=-\frac{1}{\|w\|}&space;\sum_{x_i&space;\in&space;M}&space;y_i(w\cdot&space;x_i&plus;b)" title="L=-\frac{1}{\|w\|} \sum_{x_i \in M} y_i(w\cdot x_i+b)" /></center>
+
+优化目标就是使损失函数 L 的值尽可能小，有以下几点需要注意的，
+
+1. 因为对于误分类样本，y_i 与 距离的符号必然相反，所以加个负号保证损失函数 L 的计算结果是非负数；
+2. 由于 L 的值是非负的，所以使 L 的值最小的最终目标就是使其等于0；
+3. 反正最终要使 L 的值为0，系数 1/\|\|w\|\| 无关，可以直接去掉。
+
+所以最终感知机的损失函数可以定义为，
 
 <center><img src="https://latex.codecogs.com/gif.latex?L(w,&space;b)=-\sum_{i=1}^{F}&space;y_{i}\left(w&space;\cdot&space;x_{i}&plus;b\right)" /></center>
 
-
 ### 二、算法步骤 - 原始形式
 
-（TODO）
+优化目标 L 是一个关于 w 和 b 的凸函数，直接运用梯度下降法，
 
 <center><img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\nabla_{w}&space;L(w,&space;b)&space;&=-\sum_{x_{i}&space;\in&space;M}&space;y_{i}&space;x_{i}&space;\\&space;\nabla_{b}&space;L(w,&space;b)&space;&=-\sum_{x_{i}&space;\in&space;M}&space;y_{i}&space;\end{aligned}&space;\Rightarrow&space;\begin{array}{l}{w&space;\leftarrow&space;w&plus;\eta&space;y_{i}&space;x_{i}}&space;\\&space;{b&space;\leftarrow&space;b&plus;\eta&space;y_{i}}\end{array}" /></center>
 
@@ -45,6 +56,8 @@ for _ in range(n_iter):
     if error_count == 0:
         break
 ```
+
+**完整代码见** [https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/perception.py](https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/perception.py)
 
 ### 三、算法步骤 - 对偶形式
 
@@ -67,7 +80,7 @@ for _ in range(n_iter):
 self.Gram_matrix = np.dot(X_train, X_train.T)
 ```
 
-利用格拉姆矩阵，我们能快速地进行每次地迭代计算，
+利用格拉姆矩阵，每次迭代就能快速读表计算，
 
 ```buildoutcfg
 // Iteration
@@ -83,7 +96,8 @@ while i < n_samples:
     else:
         i += 1
 ```
-w 和 b感知机算法对偶形式为什么在实际运用中比原始形式快
+
+**完整代码见** [https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/perception.py](https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/perception.py)
 
 ### 四、表现效果
 
@@ -91,13 +105,21 @@ w 和 b感知机算法对偶形式为什么在实际运用中比原始形式快
 
 <center><img src="https://kangcai.github.io/img/in-post/post-ml/perception_3.png" width=45%/><img src="https://kangcai.github.io/img/in-post/post-ml/perception_1.png" width=45%/></center>
 
-其中绿色和蓝色的点分别表示两类样本，
+其中左图是原始问题算法分类效果，右图是对偶问题算法分类效果：绿色和蓝色的点分别表示两类样本，蓝色的线是最终的分类分隔线，灰色的线是算法中间过程中的分隔线。
 
+如果输入是线性不可分的样本，那么感知机就无法计算出分隔线，如下所示，
 
+<center><img src="https://kangcai.github.io/img/in-post/post-ml/perception_4.png" width=45%/></center>
 
-线性不可分的过程
+所以**对于线性不可分数据集，感知机要怎么处理呢？** 
 
-<center><img src="https://kangcai.github.io/img/in-post/post-ml/perception_4.png" width=50%/></center>
+有两种解决办法：
+
+1. 既然单层感知机无法完成分类，那么就使用多层感知机进行训练；具体训练过程又可以分成两种：一种是熟知的 BP（back propagation）算法，另一种是每次固定其它参数而只训练某两层之间的参数。两种方法对于线性不可分数据集来说都是可收敛的。
+
+2. 根据本文第三节，我们发现对偶问题的形式也出现了 x_i 与 x_j 的点乘形式，与 SVM 类似，感知机也可以利用核函数来处理线性不可分数据集。
+
+**参考文献**
 
 1. [wiki: 感知器](https://zh.wikipedia.org/wiki/%E6%84%9F%E7%9F%A5%E5%99%A8)
 2. [cnblogs: 感知机原理（Perceptron）](https://www.cnblogs.com/huangyc/p/9706575.html)
