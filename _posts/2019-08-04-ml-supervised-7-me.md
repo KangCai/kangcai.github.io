@@ -63,10 +63,10 @@ XXX
 
 **迭代尺度法（Generalized Iterative Scaling, GIS）**
 
-1. 根据训练集特征 X 的每个维度上的值 x 与 y 组成的 (x, y)对，求经验概率
+1. 统计 (X,y) 的联合概率分布 P(X, y)，X 的经验边缘分布 P(X)
 
 ```buildoutcfg
-// 统计 (x,y) 的联合概率分布，x 的经验边缘分布, x(x,y)
+// 统计 (X,y) 的联合概率分布 P(X, y)，X 的经验边缘分布 P(X)
 self.N, self.M = X_train.shape
 feat_set = set()
 for X,y in zip(X_train, Y_train):
@@ -93,6 +93,8 @@ self.feat_list = list(feat_set)
 
 
 ### 三、表现效果
+
+
 
 ### 四、与逻辑回归模型的联系
 
