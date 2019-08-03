@@ -110,7 +110,16 @@ for X,y in zip(X_train, Y_train):
 self.feat_list = list(feat_set)
 ```
 
-2. 初始化参数 w 的每个维度 w_i 为任意值，一般可以设置为0，即
+```buildoutcfg
+// 计算特征的经验期望值, E_p~(f) = Sum( P~(x,y) * f(x,y) )
+for X,y in zip(X_train, Y_train):
+    X = tuple(X)
+    for idx, val in enumerate(X):
+        key = (idx, val, y)
+        self.e_feat[key] += self.pxy[(X, y)]
+```
+
+3. 初始化参数 w 的每个维度 w_i 为任意值，一般可以设置为0，即
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?w_i^{(0)}&space;=&space;0,&space;i&space;\in&space;\{1,2,3,...,n\}" />
@@ -122,6 +131,38 @@ self.feat_list = list(feat_set)
 <img src="https://latex.codecogs.com/gif.latex?w_i^{(t&plus;1)}&space;=&space;w_i^{(t)}&space;&plus;&space;\frac{1}{C}&space;\log&space;\frac{E_{\hat&space;p}(f_i)}{E_{p^{(n)}}(f_i)},i&space;\in&space;\{1,2,...,n\}"  />
 </center>
 
+```buildoutcfg
+//迭代找到最优参数
+for i in range(self.n_iter):
+    delta = self._GIS(X_train, Y_train)
+    if np.max(np.abs(delta)) < self.epsilon:
+        break
+    self.w += delta
+    
+// GIS算法
+def _GIS(self, X_train, Y_train):
+    n_feat = len(self.feat_list)
+    # 基于当前模型，获取每个特征估计期望, E_p(f) = Sum( P~(x) * P(y|x) * f(x,y) )
+    delta = np.zeros(n_feat)
+    estimate_feat = defaultdict(float)
+    for X,y in zip(X_train, Y_train):
+        X = tuple(X)
+        py_x = self._cal_py_X(X)[y]
+        for idx, val in enumerate(X):
+            key = (idx, val, y)
+            estimate_feat[key] += self.px[X] * py_x
+    # 更新 delta
+    for j in range(n_feat):
+        feat_key = self.feat_list[j]
+        e_feat_exp = self.e_feat[feat_key]
+        e_feat_estimate = estimate_feat[feat_key]
+        if e_feat_estimate == 0 or e_feat_exp / e_feat_estimate <= 0:
+            continue
+        delta[j] = 1.0 / self.M * math.log(e_feat_exp / e_feat_estimate)
+    delta /= np.sum(delta)
+    return delta
+```
+
 
 ### 三、表现效果
 
@@ -129,9 +170,9 @@ self.feat_list = list(feat_set)
 
 ### 四、与逻辑回归模型的联系
 
-逻辑回归模型（Logistic Regression Model）与 最大熵模型（Maximum Entropy Model）两者**同属于广义线性模型（Generalized Linear Models）**，逻辑回归模型假设条件概率分布是二项式分布，最大熵模型假设的条件概率分布是多项式分布，所以要更加精确地描述两者关系，应该说**逻辑回归模型也是最大熵模型的一种特殊情况（多项式的 k=2 的情形）**。
+常见的广义线性模型（Generalized Linear Models）有：probit模型、poisson模型、对数线性模型（Log-linear Model）等等。逻辑回归模型（Logistic Regression Model）与 最大熵模型（Maximum Entropy Model）两者同属于**广义线性模型中的对数线性模型**。
 
-由于逻辑回归模型是最大熵模型的一种特殊情况，所以逻辑回归模型最优化算法都能应用到最大熵模型中。两种模型学习一般都采用极大似然估计，最优化算法有改进的迭代尺度法、梯度下降法、拟牛顿法等。
+两者模型学习一般都采用极大似然估计，优化问题可以形式化为无约束的最优化问题，所以两种模型的最优化算法是通用的，包括：改进的迭代尺度法（IIS）、梯度下降法、拟牛顿法等。
 
 **参考文献**
 
