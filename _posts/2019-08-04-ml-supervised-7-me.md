@@ -44,7 +44,7 @@ tags:
 
 **1.2 最大熵模型是如何运用最大熵原理的**
 
-接下来解释第二个问题，即最大熵模型是如何运用最大熵原理的。最大熵模型的建模思想是，学习概率模型时，**在满足已知约束条件的所有可能的模型中，熵最大的模型是最好的模型**。从上面这句话中，可以看到最大熵模型由两个条件组成：**满足约束条件**、**熵最大**。
+接下来解释第二个问题，即最大熵模型是如何运用最大熵原理的。最大熵模型的建模思想是，学习概率模型时，**在满足已知约束条件的所有可能的模型中，熵最大的模型是最好的模型**。从上面这句话中，可以看到最大熵模型由两个条件组成 —— **满足约束条件**、**熵最大**，最终**学到的是条件概率的表达式**。
 
 首先，满足约束条件指的是什么，还是复用之前的例子，假设随机变量 X 有 5 个取值 { A, B, C, D, E }，要估计 X 取各个值的概率，结果是 P(A)=P(B)=P(C)=P(D)=P(E)=0.2。对于这个问题，再加上一个约束，规定 P(A)+P(B)=0.3，这个就是约束条件，那么模型就需要满足一个约束条件，当然还可以再加一个约束，那么模型就需要满足两个约束条件。
 
@@ -56,13 +56,13 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?f(x,y)=\left\{\begin{matrix}&space;1,&\text{x&space;and&space;y&space;satisfy&space;some&space;fact}\\&space;0,&\text{otherwise}&space;\end{matrix}\right."/>
 </center>
 
-**为了保证已知条件地成立，我们要求条件概率与特征函数满足以下等式**，
+为了保证已知条件成立，我们要求**条件概率P(y|x) 与特征函数f(x,y) 满足以下等式**，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\sum_{x,&space;y}&space;\tilde{P}(x)&space;P(y&space;|&space;x)&space;f(x,&space;y)=\sum_{x,&space;y}&space;\tilde{P}(x,&space;y)&space;f(x,&space;y)" />
 </center>
 
-XXXX，todo，如果有多个约束条件，那么上面的等式就需要列多个。
+这个式子左边是特征函数 f(x,y) 关于 P(y|x) 与经验分布 P~(x)的期望值，右边是特征函数 f(x,y) 关于经验分布 P~(x,y)的期望值，使两边相等就使得条件概率满足约束条件；如果有多个约束条件，那么上面的等式就需要列多个。
 
 总之，通过上述等式，我们过滤出了满足了所有约束条件的候选模型，剩下的就是尽可能地是熵最大化，**每一个x，都对应一个特定的概率分布P(y|x)，每一个概率分布都会有一个熵，最大熵就是让所有的 样本概率分布的熵 之和最大**。如下所示
 
@@ -76,7 +76,27 @@ XXXX，todo，如果有多个约束条件，那么上面的等式就需要列多
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&\&space;\min&space;_{R&space;\in&space;\mathrm{C}}-H(P)=\sum_{x,&space;y}&space;\tilde{P}(x)&space;P(y&space;|&space;x)&space;\log&space;P(y&space;|&space;x)&space;\\&space;&\begin{array}{ll}{\text&space;{&space;s.t.&space;}}&space;&&space;{E_{P}\left(f_{i}\right)-E_{\tilde{p}}\left(f_{i}\right)=0,&space;\quad&space;i=1,2,&space;\cdots,&space;n}&space;\\&space;{}&space;&&space;{\sum_{y}&space;P(y&space;|&space;x)=1}\end{array}&space;\end{aligned}"/>
 </center>
 
+可以看到，s.t.后面的两个等式就是两个约束条件，所以这又是一个典型的带约束的最优化问题，如果对之前介绍的 SVM 算法推导有印象的话，就会意识到可以又通过引入拉格朗日乘子，将问题转化为无约束的最优化问题，具体求解过程 1.3 小节将介绍。
+
 **1.3 求解最大熵模型**
+
+通过引入拉格朗日乘子 w0,w1,...,wn，定义拉格朗日函数 L(P,w)如下，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;L(P,&space;w)&space;&&space;\equiv-H(P)&plus;w_{0}\left(1-\sum_{y}&space;P(y&space;|&space;x)\right)&plus;\sum_{i=1}^{n}&space;w_{i}\left(E_{F}\left(f_{i}\right)-E_{P}\left(f_{i}\right)\right)&space;\\&space;&=\sum_{x,&space;y}&space;\tilde{P}(x)&space;P(y&space;|&space;x)&space;\log&space;P(y&space;|&space;x)&plus;w_{0}\left(1-\sum_{y}&space;P(y&space;|&space;x)\right)&space;\\&space;&&plus;\sum_{i=1}^{n}&space;w_{i}\left(\sum_{x,&space;y}&space;\tilde{P}(x,&space;y)&space;f_{i}(x,&space;y)-\sum_{x,&space;y}&space;\tilde{P}(x)&space;P(y&space;|&space;x)&space;f_{i}(x,&space;y)\right)&space;\end{aligned}"  />
+</center>
+
+求解最大熵模型就转化成了以下问题，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\min&space;_{P&space;\in&space;C}&space;\max&space;_{w}&space;L(P,&space;w)" />
+</center>
+
+其中 C 为模型的集合，这就是最大熵模型的拉格朗日原始问题，可以进一步转化为拉格朗日对偶问题，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\max&space;_{w}&space;\min&space;_{P&space;\in&space;C}&space;L(P,&space;w)" />
+</center>
 
 等到了模型，接下来就是求解模型的参数。XXX，todo，参数是什么。。求得 xxx 偏导数，
 
