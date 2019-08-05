@@ -215,6 +215,10 @@ def _GIS(self, X_train, Y_train):
 4|老年|是|是|一般|是|
 5|青年|否|否|非常好|是|
 
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/mem_1.png"/>
+</center>
+
 ### 四、与逻辑回归模型的联系
 
 常见的广义线性模型（Generalized Linear Models）有：probit模型、poisson模型、对数线性模型（Log-linear Model）等等。逻辑回归模型（Logistic Regression Model）与 最大熵模型（Maximum Entropy Model）两者同属于**广义线性模型中的对数线性模型**。
