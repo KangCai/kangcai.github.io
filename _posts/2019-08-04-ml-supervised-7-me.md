@@ -56,15 +56,15 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?f(x,y)=\left\{\begin{matrix}&space;1,&\text{x&space;and&space;y&space;satisfy&space;some&space;fact}\\&space;0,&\text{otherwise}&space;\end{matrix}\right."/>
 </center>
 
-为了保证已知条件成立，我们要求**条件概率P(y|x) 与特征函数f(x,y) 满足以下等式**，
+为了保证已知条件成立，我们要求**条件概率P(y\|x) 与特征函数f(x,y) 满足以下等式**，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\sum_{x,&space;y}&space;\tilde{P}(x)&space;P(y&space;|&space;x)&space;f(x,&space;y)=\sum_{x,&space;y}&space;\tilde{P}(x,&space;y)&space;f(x,&space;y)" />
 </center>
 
-这个式子左边是特征函数 f(x,y) 关于 P(y|x) 与经验分布 P~(x)的期望值，右边是特征函数 f(x,y) 关于经验分布 P~(x,y)的期望值，使两边相等就使得条件概率满足约束条件；如果有多个约束条件，那么上面的等式就需要列多个。
+这个式子左边是特征函数 f(x,y) 关于 P(y\|x) 与经验分布 P~(x)的期望值，右边是特征函数 f(x,y) 关于经验分布 P~(x,y)的期望值，使两边相等就使得条件概率满足约束条件；如果有多个约束条件，那么上面的等式就需要列多个。
 
-总之，通过上述等式，我们过滤出了满足了所有约束条件的候选模型，剩下的就是尽可能地是熵最大化，**每一个x，都对应一个特定的概率分布P(y|x)，每一个概率分布都会有一个熵，最大熵就是让所有的 样本概率分布的熵 之和最大**。如下所示
+总之，通过上述等式，我们过滤出了满足了所有约束条件的候选模型，剩下的就是尽可能地是熵最大化，**每一个x，都对应一个特定的概率分布P(y\|x)，每一个概率分布都会有一个熵，最大熵就是让所有的 样本概率分布的熵 之和最大**。如下所示
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?H(P)=-\sum_{x,&space;y}&space;\tilde{P}(x)&space;P(y&space;|&space;x)&space;\log&space;P(y&space;|&space;x)"  />
