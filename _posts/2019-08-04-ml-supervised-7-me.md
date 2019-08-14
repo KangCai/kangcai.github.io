@@ -98,7 +98,23 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?\max&space;_{w}&space;\min&space;_{P&space;\in&space;C}&space;L(P,&space;w)" />
 </center>
 
-等到了模型，接下来就是求解模型的参数。XXX，todo，参数是什么。。求得 xxx 偏导数，
+等到了模型，接下来就是求解模型的参数。老样子，由内到外开始求导，所以是求 L(P, w) 关于 P 即 P(y\|x) 的偏导数，求得
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?P_{w}(y&space;|&space;x)=\frac{1}{Z_{w}(x)}&space;\exp&space;\left(\sum_{i=1}^{n}&space;w_{i}&space;f_{i}(x,&space;y)\right)" />
+</center>
+
+其中，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?Z_{w}(x)=\sum_{y}&space;\exp&space;\left(\sum_{i=1}^{n}&space;w_{i}&space;f_{i}(x,&space;y)\right)" title="Z_{w}(x)=\sum_{y} \exp \left(\sum_{i=1}^{n} w_{i} f_{i}(x, y)\right)" />
+</center>
+
+将 P_w 带入 L(P, w)，得
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?L(w)=\sum_{x,&space;y}\tilde{P}(x,y)&space;\sum_{i=1}^{n}w_if_i(x,y)-\sum_{x}&space;\tilde{P}(x)&space;logZ_w(x)" />
+</center>
 
 令偏导数为 0 得到等式
 
