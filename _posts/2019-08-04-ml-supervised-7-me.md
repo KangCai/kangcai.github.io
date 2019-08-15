@@ -116,7 +116,17 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?L(w)=\sum_{x,&space;y}\tilde{P}(x,y)&space;\sum_{i=1}^{n}w_if_i(x,y)-\sum_{x}&space;\tilde{P}(x)&space;logZ_w(x)" />
 </center>
 
-令偏导数为 0 得到等式
+要使上式最大，IIS 得想法是：假设每一步当前参数向量是 w，我们找到一个新的参数向量 w + delta，使得模型的目标函数值增大，直至找到最大函数值。
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;L(w&plus;\delta)-L(w)&=\sum_{x,y}\tilde{P}(x,y)logP_{w&plus;\delta}(y|x)-\sum_{x,y}\tilde{P}(x,y)logP_w(y|x)&space;\\&space;&=\sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^{n}\delta_if_i(x,y)-\sum_{x,y}\tilde{P}log\frac{Z_{w&plus;\delta}(x)}{Z_w(x)}\\&space;&&space;\cdot\cdot\&space;\cdot&space;\\&space;&&space;\geqslant&space;\sum_{x,y}\tilde{P}(x,y)f_i(x,y)-\sum_{x}\tilde{P}(x)\sum_{y}P_w(y|x)f_i(x,y)exp(\delta_if^{\&hash;}(x,y))&space;\end{aligned}" title="\begin{aligned} L(w+\delta)-L(w)&=\sum_{x,y}\tilde{P}(x,y)logP_{w+\delta}(y|x)-\sum_{x,y}\tilde{P}(x,y)logP_w(y|x) \\ &=\sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^{n}\delta_if_i(x,y)-\sum_{x,y}\tilde{P}log\frac{Z_{w+\delta}(x)}{Z_w(x)}\\ & \cdot\cdot\ \cdot \\ & \geqslant \sum_{x,y}\tilde{P}(x,y)f_i(x,y)-\sum_{x}\tilde{P}(x)\sum_{y}P_w(y|x)f_i(x,y)exp(\delta_if^{\#}(x,y)) \end{aligned}" />
+</center>
+
+上式除 delta 外不含任何其它变量，令偏导数为 0 得，
+
+<center>
+<a href="https://www.codecogs.com/eqnedit.php?latex=\sum_{x,y}\tilde{P}(x)P_w(y|x)f_i(x,y)exp(\delta_if^{\&hash;}(x,y))=E_{\tilde{P}}(f_i)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\sum_{x,y}\tilde{P}(x)P_w(y|x)f_i(x,y)exp(\delta_if^{\&hash;}(x,y))=E_{\tilde{P}}(f_i)" title="\sum_{x,y}\tilde{P}(x)P_w(y|x)f_i(x,y)exp(\delta_if^{\#}(x,y))=E_{\tilde{P}}(f_i)" /></a>
+</center>
 
 到此为止，除 x 外不含任何其它变量，通过求解上述等式方程依次求出第 i 个迭代量 x。然后将原始参数 w(t) 加上该迭代量 x 就是一次迭代更新后的新参数 w(t+1)。
 
