@@ -116,6 +116,8 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?L(w)=\sum_{x,&space;y}\tilde{P}(x,y)&space;\sum_{i=1}^{n}w_if_i(x,y)-\sum_{x}&space;\tilde{P}(x)&space;logZ_w(x)" />
 </center>
 
+**1.4 迭代尺度法（Improved Iterative Scaling, GIS）**
+
 要使上式最大，IIS 得想法是：假设每一步当前参数向量是 w，我们找到一个新的参数向量 w + delta，使得模型的目标函数值增大，直至找到最大函数值。
 
 <center>
@@ -128,17 +130,28 @@ tags:
 <a href="https://www.codecogs.com/eqnedit.php?latex=\sum_{x,y}\tilde{P}(x)P_w(y|x)f_i(x,y)exp(\delta_if^{\&hash;}(x,y))=E_{\tilde{P}}(f_i)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\sum_{x,y}\tilde{P}(x)P_w(y|x)f_i(x,y)exp(\delta_if^{\&hash;}(x,y))=E_{\tilde{P}}(f_i)" title="\sum_{x,y}\tilde{P}(x)P_w(y|x)f_i(x,y)exp(\delta_if^{\#}(x,y))=E_{\tilde{P}}(f_i)" /></a>
 </center>
 
-到此为止，除 x 外不含任何其它变量，通过求解上述等式方程依次求出第 i 个迭代量 x。然后将原始参数 w(t) 加上该迭代量 x 就是一次迭代更新后的新参数 w(t+1)。
+到此为止，除 delta_i 外不含任何其它变量，通过求解上述等式方程依次求出第 i 个迭代量 delta_i。然后将原始参数 w(t) 加上该迭代量 delta_i 就是一次迭代更新后的新参数 w(t+1)。如果
 
-最大熵模型为，
+<center>
+<img src="https://latex.codecogs.com/gif.latex?f^{\&hash;}(x,y)" title="f^{\#}(x,y)" />
+</center>
+
+对于任意 x, y 都是一个常数，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?\delta_i=\frac{1}{M}log\frac{E_{\tilde{P}}(f_i)}{E_p(f_i)}" title="\delta_i=\frac{1}{M}log\frac{E_{\tilde{P}}(f_i)}{E_p(f_i)}" />
+</center>
+
+到这里，就完成了算法公式的推导，每轮通过计算出 delta_i 对 w 进行更新，得到最终的 w。有同学可能会有这样的疑问：在实际应用最大熵模型进行分类时，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?f^{\&hash;}(x,y)" title="f^{\#}(x,y)" />
+</center>
+
+到底只得是什么
 
 ### 二、算法实现
 
-目的是求解上述方程，即
-
-XXX
-
-**迭代尺度法（Generalized Iterative Scaling, GIS）**
 
 1. 统计 (X,y) 的联合概率分布 P(X, y)，X 的经验边缘分布 P(X)
 
@@ -231,7 +244,13 @@ def _GIS(self, X_train, Y_train):
 | 15 | 老年  | 否|否|一般|否|
 | 16 | 青年  | 否|否|一般|是|
 
-直到再加入两个与 16 行一模一样的样本，才会拟合。
+将上述数据作为训练集建立最大熵分类模型，在训练集上的表现效果如下所示，
+
+<center>
+<img src="https://kangcai.github.io/img/in-post/post-ml/mem_2.png"/>
+</center>
+
+可以看到，其它样本都分类正确，除了第 16 个样本，我做了个实验，只有再加入两个与 16 行一模一样的样本，模型才会强行拟合第 16 个样本，对它分类正确。
 
 |  | 年龄 | 有工作 | 有房 | 信贷情况 | 类别（标签） |
 | :-----------:| :----------: |:----------: | :----------: | :----------: | :----------: | 
@@ -242,8 +261,10 @@ def _GIS(self, X_train, Y_train):
 5|青年|否|否|非常好|是|
 
 <center>
-<img src="https://kangcai.github.io/img/in-post/post-ml/mem_1.png"/>
+<img src="https://kangcai.github.io/img/in-post/post-ml/mem_3.png"/>
 </center>
+
+在新测试样本上，分类也都准确。
 
 ### 四、与逻辑回归模型的联系
 
