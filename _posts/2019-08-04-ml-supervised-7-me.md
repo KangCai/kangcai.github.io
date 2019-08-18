@@ -50,7 +50,7 @@ tags:
 
 那么，如何用数学公式来表示满足所有约束条件的候选模型呢？
 
-给定一个约束条件，这个约束条件就称之为特征函数（feature function）f(x,y)，它描述了输入 x 和输出 y 之间的某一个事实，表达成数学式是
+给定一个约束条件，**这个约束条件就称之为特征函数（feature function）f(x,y)，它描述了输入 x 和输出 y 之间的某一个事实**（这个定义比较抽象，举个例子，比如，在一般的训练任务中，某个样本的某个维度的特征值与标签成对出现过，这就是一个事实），表达成数学式是
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?f(x,y)=\left\{\begin{matrix}&space;1,&\text{x&space;and&space;y&space;satisfy&space;some&space;fact}\\&space;0,&\text{otherwise}&space;\end{matrix}\right."/>
@@ -76,7 +76,7 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&\&space;\min&space;_{R&space;\in&space;\mathrm{C}}-H(P)=\sum_{x,&space;y}&space;\tilde{P}(x)&space;P(y&space;|&space;x)&space;\log&space;P(y&space;|&space;x)&space;\\&space;&\begin{array}{ll}{\text&space;{&space;s.t.&space;}}&space;&&space;{E_{P}\left(f_{i}\right)-E_{\tilde{p}}\left(f_{i}\right)=0,&space;\quad&space;i=1,2,&space;\cdots,&space;n}&space;\\&space;{}&space;&&space;{\sum_{y}&space;P(y&space;|&space;x)=1}\end{array}&space;\end{aligned}"/>
 </center>
 
-可以看到，s.t.后面的两个等式就是两个约束条件，所以这又是一个典型的带约束的最优化问题，如果对之前介绍的 SVM 算法推导有印象的话，就会意识到可以又通过引入拉格朗日乘子，将问题转化为无约束的最优化问题，具体求解过程 1.3 小节将介绍。
+可以看到，s.t.后面的两个等式就是两个约束条件，所以**这又是一个典型的带约束的最优化问题**，如果对之前介绍的 SVM 算法推导有印象的话，就会意识到可以又**通过引入拉格朗日乘子，将问题转化为无约束的最优化问题**，具体求解过程 1.3 小节将介绍。
 
 **1.3 求解最大熵模型**
 
@@ -92,7 +92,7 @@ tags:
 <img src="https://latex.codecogs.com/gif.latex?\min&space;_{P&space;\in&space;C}&space;\max&space;_{w}&space;L(P,&space;w)" />
 </center>
 
-其中 C 为模型的集合，这就是最大熵模型的拉格朗日原始问题，可以进一步转化为拉格朗日对偶问题，
+其中 C 为模型的集合，**以上就是最大熵模型的拉格朗日原始问题，可以进一步转化为拉格朗日对偶问题**，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\max&space;_{w}&space;\min&space;_{P&space;\in&space;C}&space;L(P,&space;w)" />
@@ -118,7 +118,19 @@ tags:
 
 **1.4 迭代尺度法（Improved Iterative Scaling, GIS）**
 
-要使上式最大，IIS 得想法是：假设每一步当前参数向量是 w，我们找到一个新的参数向量 w + delta，使得模型的目标函数值增大，直至找到最大函数值。
+要使上式最大，**IIS 得想法是：假设每一步当前参数向量是 w，我们找到一个新的参数向量 w + delta，使得模型的目标函数值增大，直至找到最大函数值**。首先 IIS 引入一个量，
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?f^{\&hash;}(x,y)=\sum_{i}f_i(x,y)" title="f^{\#}(x,y)=\sum_{i}f_i(x,y)" />
+</center>
+
+**在一般特征维数固定的训练任务中，f_i(x,y) 通常表示的是 第 i 维度的特征值 与 标签值 组成的集合在 (x,y) 组成的是否出现过，而**
+
+<center>
+<img src="https://latex.codecogs.com/gif.latex?f^{\&hash;}(x,y)" title="f^{\#}(x,y)" />
+</center>
+
+**这个量就是表示所有 某个维度的特征值 与 标签值 组成的集合，这个值是一个常量，即特征的维度，常量这个特性对最终迭代公式的推导很关键**，后面会再次提到，然后正式的迭代推导如下所示，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;L(w&plus;\delta)-L(w)&=\sum_{x,y}\tilde{P}(x,y)logP_{w&plus;\delta}(y|x)-\sum_{x,y}\tilde{P}(x,y)logP_w(y|x)&space;\\&space;&=\sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^{n}\delta_if_i(x,y)-\sum_{x,y}\tilde{P}log\frac{Z_{w&plus;\delta}(x)}{Z_w(x)}\\&space;&&space;\cdot\cdot\&space;\cdot&space;\\&space;&&space;\geqslant&space;\sum_{x,y}\tilde{P}(x,y)f_i(x,y)-\sum_{x}\tilde{P}(x)\sum_{y}P_w(y|x)f_i(x,y)exp(\delta_if^{\&hash;}(x,y))&space;\end{aligned}" title="\begin{aligned} L(w+\delta)-L(w)&=\sum_{x,y}\tilde{P}(x,y)logP_{w+\delta}(y|x)-\sum_{x,y}\tilde{P}(x,y)logP_w(y|x) \\ &=\sum_{x,y}\tilde{P}(x,y)\sum_{i=1}^{n}\delta_if_i(x,y)-\sum_{x,y}\tilde{P}log\frac{Z_{w+\delta}(x)}{Z_w(x)}\\ & \cdot\cdot\ \cdot \\ & \geqslant \sum_{x,y}\tilde{P}(x,y)f_i(x,y)-\sum_{x}\tilde{P}(x)\sum_{y}P_w(y|x)f_i(x,y)exp(\delta_if^{\#}(x,y)) \end{aligned}" />
@@ -130,25 +142,19 @@ tags:
 <a href="https://www.codecogs.com/eqnedit.php?latex=\sum_{x,y}\tilde{P}(x)P_w(y|x)f_i(x,y)exp(\delta_if^{\&hash;}(x,y))=E_{\tilde{P}}(f_i)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\sum_{x,y}\tilde{P}(x)P_w(y|x)f_i(x,y)exp(\delta_if^{\&hash;}(x,y))=E_{\tilde{P}}(f_i)" title="\sum_{x,y}\tilde{P}(x)P_w(y|x)f_i(x,y)exp(\delta_if^{\#}(x,y))=E_{\tilde{P}}(f_i)" /></a>
 </center>
 
-到此为止，除 delta_i 外不含任何其它变量，通过求解上述等式方程依次求出第 i 个迭代量 delta_i。然后将原始参数 w(t) 加上该迭代量 delta_i 就是一次迭代更新后的新参数 w(t+1)。如果
+到此为止，除 delta_i 外不含任何其它变量，通过求解上述等式方程依次求出第 i 个迭代量 delta_i。然后**将原始参数 w(t) 加上该迭代量 delta_i 就是一次迭代更新后的新参数 w(t+1)**。如果
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?f^{\&hash;}(x,y)" title="f^{\#}(x,y)" />
 </center>
 
-对于任意 x, y 都是一个常数，
+对于任意 x, y 都是一个常数（如上所说，在一般固定维度特征的训练任务中，满足是常数的条件，并且这个常数是特征维度），那么 delta_i 可以显式表示成，
 
 <center>
 <img src="https://latex.codecogs.com/gif.latex?\delta_i=\frac{1}{M}log\frac{E_{\tilde{P}}(f_i)}{E_p(f_i)}" title="\delta_i=\frac{1}{M}log\frac{E_{\tilde{P}}(f_i)}{E_p(f_i)}" />
 </center>
 
-到这里，就完成了算法公式的推导，每轮通过计算出 delta_i 对 w 进行更新，得到最终的 w。有同学可能会有这样的疑问：在实际应用最大熵模型进行分类时，
-
-<center>
-<img src="https://latex.codecogs.com/gif.latex?f^{\&hash;}(x,y)" title="f^{\#}(x,y)" />
-</center>
-
-到底只得是什么
+到这里，就完成了算法公式的推导，每轮通过计算出 delta_i 对 w 进行更新，得到最终的 w。
 
 ### 二、算法实现
 
@@ -225,6 +231,8 @@ def _GIS(self, X_train, Y_train):
 
 ### 三、表现效果
 
+从李航的《统计学习方法》决策树章节中选取的贷款申请训练任务作为本文最大熵模型的应用示例，前 4 列属性，包括 “年龄”、是否“有工作”、是否“有房”、“信贷情况”是否良好，是 4 个维度的特征，最后一列是“是否批准贷款”的结果，作为训练标签，
+
 |  | 年龄 | 有工作 | 有房 | 信贷情况 | 类别（标签） |
 | :-----------:| :----------: |:----------: | :----------: | :----------: | :----------: | 
 | 1 | 青年  | 否|否|一般|否|
@@ -244,13 +252,13 @@ def _GIS(self, X_train, Y_train):
 | 15 | 老年  | 否|否|一般|否|
 | 16 | 青年  | 否|否|一般|是|
 
-将上述数据作为训练集建立最大熵分类模型，在训练集上的表现效果如下所示，
+原任务是由 15 个样本组成的训练集，本文多加一个噪声样本（即错误的样本），看是否对模型的训练起到了干扰作用。将上述数据作为训练集建立最大熵分类模型，在训练集上的表现效果如下所示，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/mem_2.png"/>
 </center>
 
-可以看到，其它样本都分类正确，除了第 16 个样本，我做了个实验，只有再加入两个与 16 行一模一样的样本，模型才会强行拟合第 16 个样本，对它分类正确。
+可以看到，其它样本都分类正确，除了第 16 个样本，可以看到，该**噪声样本并没有对最大熵模型的训练起到干扰作用**。继续做了个实验，只有**再加入两个与 16 行一模一样的样本，模型才会强行拟合第 16 个样本从而对它分类正确**。
 
 |  | 年龄 | 有工作 | 有房 | 信贷情况 | 类别（标签） |
 | :-----------:| :----------: |:----------: | :----------: | :----------: | :----------: | 
@@ -260,11 +268,13 @@ def _GIS(self, X_train, Y_train):
 4|老年|是|是|一般|是|
 5|青年|否|否|非常好|是|
 
+在新测试样本上的表现如下，
+
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-ml/mem_3.png"/>
 </center>
 
-在新测试样本上，分类也都准确。
+可以看到分类也都准确。
 
 ### 四、与逻辑回归模型的联系
 
