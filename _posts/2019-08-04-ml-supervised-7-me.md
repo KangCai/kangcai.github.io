@@ -10,7 +10,7 @@ tags:
   - 机器学习·监督学习篇
 ---
 
-> 最大熵模型（Maximum entropy model）
+> 最大熵模型（Maximum entropy model将最大熵原理应用到分类任务得到的模型。熵的概念我们在高中学物理的热力学第二定律的时候多少有一些接触，，热力学的熵概念和信息熵的信息理论基本描述的是相同的事情。在监督学习中，我们将观察到的数据本身认为是可测试的信息，以此为基础来获取最优化模型。
 
 > 文章首发于[我的博客](https://kangcai.github.io/)，转载请保留链接 ;)
 
@@ -240,6 +240,7 @@ def _GIS(self, X_train, Y_train):
     return delta
 ```
 
+其实就是将 1.4 小节的推导结果用代码描述一下，**完整代码见** [https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/maximum_entropy.py](https://github.com/KangCai/Machine-Learning-Algorithm/blob/master/maximum_entropy.py)。不过还是说一下，我感觉在实际应用中，**最大熵模型的最大熵部分是容易理解的，反而是约束条件的表示需要体会，比如在“特征-标签”的分类任务中，约束条件就是样本的每一维 x 与标签 Y 成对出现这一事实**。
 
 ### 三、表现效果
 
