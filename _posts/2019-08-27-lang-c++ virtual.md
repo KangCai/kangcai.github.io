@@ -77,11 +77,11 @@ virtual void Eat() = 0。重要概念是 **抽象类**。
 
 ### Q&A
 
-1.虚函数（virtual）能是static的吗？
+**1.虚函数（virtual）能是static的吗？**
 
 不能，因为静态成员函数可以不通过对象来调用，即没有隐藏的this指针；而virtual函数一定要通过对象来调用，即有隐藏的this指针
 
-2.能调用纯虚函数吗？
+**2.能调用纯虚函数吗？**
 
 能，通过静态调用
 
@@ -89,7 +89,7 @@ virtual void Eat() = 0。重要概念是 **抽象类**。
 <img src="https://kangcai.github.io/img/in-post/post-lang/c8.PNG"/>
 </center>
 
-3.抽象类的继承类不实现纯虚函数会怎样？
+**3.抽象类的继承类不实现纯虚函数会怎样？**
 
 那么继承类本身也是抽象类，不能直接用来实例化对象。
 
