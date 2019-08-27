@@ -29,4 +29,4 @@ tags:
 <img src="https://kangcai.github.io/img/in-post/post-lang/c2.PNG"/>
 </center>
 
-其中基类 A 与普通继承一样，B 和 C一样故省略。
+其中基类 A 与普通继承一样，故省略；B 由于与 C 是一样的，故也省略。
