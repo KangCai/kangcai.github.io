@@ -6,6 +6,7 @@ header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
 tags:
   - 语言基础
+  - C++
 ---
 
 > 算法。文章首发于[我的博客](https://kangcai.github.io/2018/10/25/ml-overall-bayes/)，转载请保留链接 ;)
@@ -95,3 +96,7 @@ virtual void Eat() = 0。重要概念是 **抽象类**。
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-lang/c9.PNG"/>
 </center>
+
+**参考资料**
+
+1.[RTTI、虚函数和虚基类的实现方式、开销分析及使用指导](http://baiy.cn/doc/cpp/inside_rtti.htm)
