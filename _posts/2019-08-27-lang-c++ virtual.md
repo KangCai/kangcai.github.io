@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "C++ 虚继承"
-subtitle: "C++ Virtual Inheritance"
+title: "C++ 虚继承与虚函数"
+subtitle: "C++ Virtual"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
