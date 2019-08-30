@@ -19,7 +19,7 @@ tags:
 
 **解决方案**：
 
-网上给出了通过生成器的参数输入的方式让模型只加载一次，使用后每次 predict 平均耗时 1.5 ms，很稳。主要参考帖子：[https://github.com/tensorflow/tensorflow/issues/4648](https://github.com/tensorflow/tensorflow/issues/4648)
+网上给出了通过生成器的参数输入的方式让模型只加载一次，使用后 GTX 2070 每次 predict 平均耗时 1.5 ms，很稳；然后由于只 predict 一个样本，用 CPU 更快，平均 0.5 ms。主要参考帖子：[https://github.com/tensorflow/tensorflow/issues/4648](https://github.com/tensorflow/tensorflow/issues/4648)
 
 ```buildoutcfg
 class FastPredict:
