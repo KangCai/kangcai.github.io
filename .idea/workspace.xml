@@ -62,8 +62,8 @@
         <entry file="file://$PROJECT_DIR$/_posts/2019-11-17-ml-supervised-8-dt.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="1058">
-                <caret line="246" column="19" lean-forward="true" selection-start-line="246" selection-start-column="19" selection-end-line="246" selection-end-column="19" />
+              <first_editor relative-caret-position="858">
+                <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
               </first_editor>
               <second_editor />
             </state>
@@ -265,8 +265,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1818" />
-    <option name="y" value="141" />
+    <option name="x" value="1663" />
+    <option name="y" value="342" />
     <option name="width" value="3021" />
     <option name="height" value="2186" />
   </component>
@@ -723,8 +723,8 @@
     <entry file="file://$PROJECT_DIR$/_posts/2019-11-17-ml-supervised-8-dt.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="1058">
-            <caret line="246" column="19" lean-forward="true" selection-start-line="246" selection-start-column="19" selection-end-line="246" selection-end-column="19" />
+          <first_editor relative-caret-position="858">
+            <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
           </first_editor>
           <second_editor />
         </state>
