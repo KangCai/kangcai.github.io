@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C++ 指针"
+title: "面试 · C++指针"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4

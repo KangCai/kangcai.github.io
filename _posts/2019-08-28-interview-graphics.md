@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "图形学基础知识"
+title: "面试 · 图形学基础知识"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4

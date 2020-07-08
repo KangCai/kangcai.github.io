@@ -136,6 +136,10 @@ class DTreeID3(DTree):
 
 ##### C45算法
 
+https://blog.csdn.net/gumpeng/article/details/51397737
+
+ID3算法的问题
+
 总体来说，
 
 ```buildoutcfg
@@ -191,55 +195,6 @@ class DTreeCART(DTree):
         return min_gini, g
 ```
 
-##### CART回归树
-
-```buildoutcfg
-class DTreeRegressionCART(object):
-
-    def __init__(self, max_depth=1):
-        self.tree = Node()
-        self.max_depth = max_depth
-
-    def fit(self, X_train, Y_train):
-        A_recorder = np.arange(X_train.shape[1])
-        self._train(X_train, Y_train, self.tree, A_recorder)
-
-    def predict(self, X):
-        n = X.shape[0]
-        Y = np.zeros(n)
-        for i in range(n):
-            Y[i] = self.tree.predict_regression(X[i, :])
-        return Y
-
-    def _train(self, A, D, node, AR, depth=0):
-        # 1. 结束条件：到最后一层 | A 或 D 一样
-        if depth == self.max_depth or np.all(D == D[0]) or np.all(A == A[0]):
-            node.y = np.mean(D)
-            return
-        # 2. 选择第j个变量A_j（切分变量splitting variable）和 切分点s（splitting point）
-        min_f, min_j, min_s, min_idx1, min_idx2 = None, None, None, None, None
-        row, col = A.shape
-        for j in range(col):
-            a_col = A[:, j]
-            # 这里实现比较简化，s 就直接取最值的平均数
-            s = (np.max(a_col) + np.min(a_col)) * 0.5
-            R1_idx, R2_idx = np.argwhere(a_col <= s).T[0], np.argwhere(a_col > s).T[0]
-            if R1_idx.size == 0 or R2_idx.size == 0:
-                continue
-            c1, c2 = np.mean(D[R1_idx]), np.mean(D[R2_idx])
-            f1, f2 = np.sum(np.square(D[R1_idx] - c1)), np.sum(np.square(D[R2_idx] - c2))
-            if min_f is None or min_f > f1 + f2:
-                min_f, min_j, min_s, min_idx1, min_idx2 = f1 + f2, j, s, R1_idx, R2_idx
-        if min_f is None:
-            node.y = np.mean(D)
-            return
-        # 3. 向下一层展开
-        node.label, node.s = AR[min_j], min_s
-        for i, idx_list in enumerate((min_idx1, min_idx2)):
-            child = Node(i)
-            node.append(child)
-            self._train(A[idx_list, :], D[idx_list], child, AR, depth+1)
-```
 ### 三、表现效果
 
 还是贷款的例子

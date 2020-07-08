@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C++ 虚继承与虚函数"
+title: "面试 · C++虚继承与虚函数"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
