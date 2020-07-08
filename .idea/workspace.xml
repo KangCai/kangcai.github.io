@@ -9,10 +9,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d0ab0c2-4b2b-419c-975b-f25f1998238c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/img/in-post/pos-gameai/1.1.PNG" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/_posts/2020-07-01-game-ai-01.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/_posts/2020-07-02-game-ai-02.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/img/in-post/pos-gameai/1.1.PNG" afterPath="$PROJECT_DIR$/img/in-post/post-gameai/1.1.PNG" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -66,8 +63,8 @@
         <entry file="file://$PROJECT_DIR$/_posts/2020-07-02-game-ai-02.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="360">
-                <caret line="22" column="43" lean-forward="true" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
+              <first_editor relative-caret-position="240">
+                <caret line="18" column="63" lean-forward="true" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="63" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -327,7 +324,7 @@
               <item name="kangcai.github.io" type="462c0819:PsiDirectoryNode" />
               <item name="img" type="462c0819:PsiDirectoryNode" />
               <item name="in-post" type="462c0819:PsiDirectoryNode" />
-              <item name="pos-gameai" type="462c0819:PsiDirectoryNode" />
+              <item name="post-gameai" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="kangcai.github.io" type="b2602c69:ProjectViewProjectNode" />
@@ -487,9 +484,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16577825" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16577825" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18565401" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -888,8 +884,8 @@
     <entry file="file://$PROJECT_DIR$/_posts/2020-07-02-game-ai-02.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="360">
-            <caret line="22" column="43" lean-forward="true" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
+          <first_editor relative-caret-position="240">
+            <caret line="18" column="63" lean-forward="true" selection-start-line="18" selection-start-column="63" selection-end-line="18" selection-end-column="63" />
             <folding />
           </first_editor>
           <second_editor />
