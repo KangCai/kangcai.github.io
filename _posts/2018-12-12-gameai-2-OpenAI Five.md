@@ -6,7 +6,7 @@ author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
 tags:
-  - 游戏AI
+  - 游戏 AI
 ---
 
 > 该系列是利用业余时间里观摩一下目前国际上最高水平游戏AI是怎么做的，以此来了解高水平游戏AI开发。
