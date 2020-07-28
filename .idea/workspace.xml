@@ -9,8 +9,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d0ab0c2-4b2b-419c-975b-f25f1998238c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/_posts/2020-07-28-game-ai-08.md" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/_posts/2020-07-31-game-ai-09.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2020-07-28-game-ai-08.md" afterPath="$PROJECT_DIR$/_posts/2020-07-28-game-ai-08.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,7 +26,7 @@
         <entry file="file://$PROJECT_DIR$/_posts/2020-07-03-game-ai-03.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="1272">
+              <first_editor relative-caret-position="0">
                 <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="70" />
                 <folding />
               </first_editor>
@@ -86,12 +87,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2020-07-28-game-ai-08.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="2020-07-28-game-ai-08.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/_posts/2020-07-28-game-ai-08.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="2472">
-                <caret line="59" column="63" lean-forward="true" selection-start-line="59" selection-start-column="63" selection-end-line="59" selection-end-column="63" />
+              <first_editor relative-caret-position="504">
+                <caret line="23" column="86" lean-forward="false" selection-start-line="23" selection-start-column="86" selection-end-line="23" selection-end-column="86" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2020-07-31-game-ai-09.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/_posts/2020-07-31-game-ai-09.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="72">
+                <caret line="3" column="11" lean-forward="false" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -187,8 +201,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/portfolio/index.html" />
-        <option value="$PROJECT_DIR$/portfolio/demohdr/index.html" />
         <option value="$PROJECT_DIR$/portfolio/demosbir/index.html" />
         <option value="$PROJECT_DIR$/_posts/ml-supervised-5-knn.md" />
         <option value="$PROJECT_DIR$/_posts/2019-02-09-ml-supervised-1-intro.md" />
@@ -238,6 +250,8 @@
         <option value="$PROJECT_DIR$/_posts/2020-07-12-game-ai-06.md" />
         <option value="$PROJECT_DIR$/_posts/2020-07-15-game-ai-07.md" />
         <option value="$PROJECT_DIR$/_posts/2020-07-21-game-ai-08.md" />
+        <option value="$PROJECT_DIR$/_posts/2020-07-28-game-ai-08.md" />
+        <option value="$PROJECT_DIR$/_posts/2020-07-31-game-ai-09.md" />
       </list>
     </option>
   </component>
@@ -396,18 +410,18 @@
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\img\in-post\post-gameai" />
-      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\img\in-post\pos-gameai" />
-      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio" />
-      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\img\in-post\post-ml" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\_posts" />
       <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\img\in-post\post-gameai" />
       <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\img\in-post\post-ml" />
       <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio\demohdr\model" />
       <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio\js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\img\in-post\post-gameai" />
+      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\img\in-post\pos-gameai" />
+      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\portfolio" />
+      <recent name="D:\game\G78\AI\GitDoc\kangcai.github.io\img\in-post\post-ml" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -554,7 +568,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/_posts/tf-estimator.py" />
     <entry file="file://$PROJECT_DIR$/_posts/tf-estimator.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -943,7 +956,7 @@
     <entry file="file://$PROJECT_DIR$/_posts/2020-07-03-game-ai-03.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="1272">
+          <first_editor relative-caret-position="0">
             <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="70" />
             <folding />
           </first_editor>
@@ -984,7 +997,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/interesting-case-1-invest.md">
+    <entry file="file://$PROJECT_DIR$/_posts/interesting-case-2-the large number law.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
@@ -995,7 +1008,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_posts/interesting-case-2-the large number law.md">
+    <entry file="file://$PROJECT_DIR$/_posts/interesting-case-1-invest.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="0">
@@ -1009,8 +1022,19 @@
     <entry file="file://$PROJECT_DIR$/_posts/2020-07-28-game-ai-08.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="2472">
-            <caret line="59" column="63" lean-forward="true" selection-start-line="59" selection-start-column="63" selection-end-line="59" selection-end-column="63" />
+          <first_editor relative-caret-position="504">
+            <caret line="23" column="86" lean-forward="false" selection-start-line="23" selection-start-column="86" selection-end-line="23" selection-end-column="86" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_posts/2020-07-31-game-ai-09.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="72">
+            <caret line="3" column="11" lean-forward="false" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
             <folding />
           </first_editor>
           <second_editor />
