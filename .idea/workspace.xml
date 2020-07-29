@@ -9,8 +9,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d0ab0c2-4b2b-419c-975b-f25f1998238c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/_posts/2020-07-31-game-ai-09.md" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_posts/2020-07-29-game-ai-09.md" afterPath="$PROJECT_DIR$/_posts/2020-07-29-game-ai-09.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -103,8 +102,8 @@
         <entry file="file://$PROJECT_DIR$/_posts/2020-07-29-game-ai-09.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="-784">
-                <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+              <first_editor relative-caret-position="72">
+                <caret line="3" column="19" lean-forward="true" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -200,7 +199,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/portfolio/demosbir/index.html" />
         <option value="$PROJECT_DIR$/_posts/ml-supervised-5-knn.md" />
         <option value="$PROJECT_DIR$/_posts/2019-02-09-ml-supervised-1-intro.md" />
         <option value="$PROJECT_DIR$/_posts/2019-06-21-game-development-1-overall.md" />
@@ -251,6 +249,7 @@
         <option value="$PROJECT_DIR$/_posts/2020-07-21-game-ai-08.md" />
         <option value="$PROJECT_DIR$/_posts/2020-07-28-game-ai-08.md" />
         <option value="$PROJECT_DIR$/_posts/2020-07-31-game-ai-09.md" />
+        <option value="$PROJECT_DIR$/_posts/2020-07-29-game-ai-09.md" />
       </list>
     </option>
   </component>
@@ -534,7 +533,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-36" y="13" width="1054" height="1056" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11368209" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1032,8 +1030,8 @@
     <entry file="file://$PROJECT_DIR$/_posts/2020-07-29-game-ai-09.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="-784">
-            <caret line="39" column="10" lean-forward="false" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="10" />
+          <first_editor relative-caret-position="72">
+            <caret line="3" column="19" lean-forward="true" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
             <folding />
           </first_editor>
           <second_editor />
