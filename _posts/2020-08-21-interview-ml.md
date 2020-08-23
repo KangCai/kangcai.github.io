@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "面试 · 实战合集"
+title: "面试 · 机器学习"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
