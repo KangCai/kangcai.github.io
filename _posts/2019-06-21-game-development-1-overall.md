@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "开发札记 I"
+title: "游戏开发札记"
 subtitle: "概述"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
 tags:
-  - 开发
+  - 游戏开发
 ---
 
 ### 游戏测试

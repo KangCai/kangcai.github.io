@@ -13,7 +13,7 @@ future: true
 
 # SNS settings
 RSS: false
-weibo_username:     caikangpku
+#weibo_username:     caikangpku
 zhihu_username:     kang-cai-24
 github_username:    KangCai
 #twitter_username:   huxpro

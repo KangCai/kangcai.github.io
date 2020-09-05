@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "设计札记 I"
+title: "游戏设计札记"
 subtitle: "概述"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
 tags:
-  - 设计
+  - 游戏设计
 ---
 
 * 追求艺术设计
