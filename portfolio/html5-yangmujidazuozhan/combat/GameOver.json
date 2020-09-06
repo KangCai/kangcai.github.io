@@ -1,0 +1,1 @@
+{"type":"Scene","props":{"width":1136,"height":640},"compId":2,"child":[{"type":"Sprite","props":{"y":0,"x":0,"width":1136,"texture":"custom/GameOver_BG.jpg","height":640},"compId":3},{"type":"Sprite","props":{"y":51,"x":192,"texture":"custom/GameOver.png"},"compId":4}],"loadList":["custom/GameOver_BG.jpg","custom/GameOver.png"],"loadList3D":[]}

@@ -1,0 +1,43 @@
+{
+    "frames": {
+        "Egg.png": {
+            "frame": {
+                "h": 32,
+                "idx": 0,
+                "w": 26,
+                "x": 0,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 32,
+                "w": 26
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "Egg_rotten.png": {
+            "frame": {
+                "h": 32,
+                "idx": 0,
+                "w": 26,
+                "x": 27,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 32,
+                "w": 26
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        }
+    },
+    "meta": {
+        "image": "egg.png",
+        "prefix": "egg/",
+        "scale": "0.5"
+    }
+}

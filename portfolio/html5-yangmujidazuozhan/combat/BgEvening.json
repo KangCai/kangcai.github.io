@@ -1,0 +1,1 @@
+{"type":"Scene","props":{"width":1136,"height":640},"compId":2,"child":[{"type":"Sprite","props":{"width":1136,"texture":"bg/evening/BG_Evening.png","height":640},"compId":3}],"loadList":["bg/evening/BG_Evening.png"],"loadList3D":[]}

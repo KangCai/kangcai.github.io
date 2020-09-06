@@ -1,0 +1,26 @@
+{
+    "frames": {
+        "Fox.png": {
+            "frame": {
+                "h": 138,
+                "idx": 0,
+                "w": 137,
+                "x": 0,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 138,
+                "w": 137
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        }
+    },
+    "meta": {
+        "image": "fox.png",
+        "prefix": "fox/",
+        "scale": "0.5"
+    }
+}
