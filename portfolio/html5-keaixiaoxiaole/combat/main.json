@@ -1,0 +1,1 @@
+{"type":"Scene","props":{"width":640,"name":"combatScene","height":1136},"compId":2,"child":[{"type":"Sprite","props":{"y":0,"x":0,"width":640,"texture":"custom/bg.png","name":"background","height":1132},"compId":6}],"loadList":["custom/bg.png"],"loadList3D":[]}

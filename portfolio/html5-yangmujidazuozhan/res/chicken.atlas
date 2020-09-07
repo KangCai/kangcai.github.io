@@ -1,0 +1,349 @@
+{
+    "frames": {
+        "ChickenCoopBack.jpg": {
+            "frame": {
+                "h": 231,
+                "idx": 0,
+                "w": 76,
+                "x": 0,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 231,
+                "w": 76
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "ChickenCoopFront.png": {
+            "frame": {
+                "h": 184,
+                "idx": 0,
+                "w": 55,
+                "x": 313,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 184,
+                "w": 55
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "ChickenCoopMiddleFloor.png": {
+            "frame": {
+                "h": 20,
+                "idx": 0,
+                "w": 116,
+                "x": 354,
+                "y": 313
+            },
+            "sourceSize": {
+                "h": 20,
+                "w": 116
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "ChickenCoopTopFloor.png": {
+            "frame": {
+                "h": 16,
+                "idx": 0,
+                "w": 115,
+                "x": 318,
+                "y": 430
+            },
+            "sourceSize": {
+                "h": 16,
+                "w": 115
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "ChickenCoop_door_open.png": {
+            "frame": {
+                "h": 121,
+                "idx": 0,
+                "w": 81,
+                "x": 236,
+                "y": 339
+            },
+            "sourceSize": {
+                "h": 121,
+                "w": 81
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "ChickenNest.png": {
+            "frame": {
+                "h": 36,
+                "idx": 0,
+                "w": 98,
+                "x": 354,
+                "y": 276
+            },
+            "sourceSize": {
+                "h": 36,
+                "w": 98
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "ChickenNestOL.png": {
+            "frame": {
+                "h": 15,
+                "idx": 0,
+                "w": 53,
+                "x": 318,
+                "y": 447
+            },
+            "sourceSize": {
+                "h": 15,
+                "w": 53
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "Chicken_Idle.png": {
+            "frame": {
+                "h": 90,
+                "idx": 0,
+                "w": 91,
+                "x": 318,
+                "y": 339
+            },
+            "sourceSize": {
+                "h": 90,
+                "w": 91
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "Chicken_hungry_sick.png": {
+            "frame": {
+                "h": 90,
+                "idx": 0,
+                "w": 91,
+                "x": 369,
+                "y": 91
+            },
+            "sourceSize": {
+                "h": 90,
+                "w": 91
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "Chicken_lay00.png": {
+            "frame": {
+                "h": 90,
+                "idx": 0,
+                "w": 91,
+                "x": 369,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 90,
+                "w": 91
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "Chicken_lay01.png": {
+            "frame": {
+                "h": 90,
+                "idx": 0,
+                "w": 91,
+                "x": 354,
+                "y": 185
+            },
+            "sourceSize": {
+                "h": 90,
+                "w": 91
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "Eggs_01.png": {
+            "frame": {
+                "h": 112,
+                "idx": 0,
+                "w": 117,
+                "x": 195,
+                "y": 113
+            },
+            "sourceSize": {
+                "h": 112,
+                "w": 117
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "Eggs_02.png": {
+            "frame": {
+                "h": 112,
+                "idx": 0,
+                "w": 117,
+                "x": 236,
+                "y": 226
+            },
+            "sourceSize": {
+                "h": 112,
+                "w": 117
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "Eggs_03.png": {
+            "frame": {
+                "h": 112,
+                "idx": 0,
+                "w": 117,
+                "x": 195,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 112,
+                "w": 117
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "Eggs_04.png": {
+            "frame": {
+                "h": 112,
+                "idx": 0,
+                "w": 117,
+                "x": 118,
+                "y": 339
+            },
+            "sourceSize": {
+                "h": 112,
+                "w": 117
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "Eggs_07.png": {
+            "frame": {
+                "h": 112,
+                "idx": 0,
+                "w": 117,
+                "x": 118,
+                "y": 226
+            },
+            "sourceSize": {
+                "h": 112,
+                "w": 117
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "Eggs_13.png": {
+            "frame": {
+                "h": 112,
+                "idx": 0,
+                "w": 117,
+                "x": 77,
+                "y": 113
+            },
+            "sourceSize": {
+                "h": 112,
+                "w": 117
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "Eggs_20.png": {
+            "frame": {
+                "h": 112,
+                "idx": 0,
+                "w": 117,
+                "x": 77,
+                "y": 0
+            },
+            "sourceSize": {
+                "h": 112,
+                "w": 117
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "Eggs_30.png": {
+            "frame": {
+                "h": 112,
+                "idx": 0,
+                "w": 117,
+                "x": 0,
+                "y": 345
+            },
+            "sourceSize": {
+                "h": 112,
+                "w": 117
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "Eggs_40.png": {
+            "frame": {
+                "h": 112,
+                "idx": 0,
+                "w": 117,
+                "x": 0,
+                "y": 232
+            },
+            "sourceSize": {
+                "h": 112,
+                "w": 117
+            },
+            "spriteSourceSize": {
+                "x": 0,
+                "y": 0
+            }
+        }
+    },
+    "meta": {
+        "image": "chicken.png",
+        "prefix": "chicken/",
+        "scale": "0.5"
+    }
+}
