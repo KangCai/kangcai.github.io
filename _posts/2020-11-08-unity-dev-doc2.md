@@ -6,6 +6,20 @@ header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
 tags:
   - Unity
+
+---
+
+**NullReferenceException: Object reference not set to an instance of an object**
+
+https://bbs.csdn.net/topics/30043235
+
+https://stackoverflow.com/questions/48407783/c-sharp-propertyinfo-setvalue-and-array
+---
+
+**ScriptableObject 导表后结构体不显示**
+
+变量全由 private 改成 public
+
 ---
 
 **类型’T’不能用作泛型类型或方法中的类型参数’T’**
