@@ -7,6 +7,9 @@ header-mask: 0.4
 tags:
   - Unity
 
+**多在 [https://docs.microsoft.com/en-us/dotnet/](https://docs.microsoft.com/en-us/dotnet/) 里找答案**
+
+---
 
 **请问如何利用反射的PropertyInfo.GetVaule()和SetValue()方法对数组型的属性进行操作？**
 

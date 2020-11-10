@@ -7,13 +7,18 @@ header-mask: 0.4
 tags:
   - Unity
 
+**多在 [https://docs.microsoft.com/en-us/dotnet/](https://docs.microsoft.com/en-us/dotnet/) 里找答案**
+
 ---
 
 **NullReferenceException: Object reference not set to an instance of an object**
 
+https://docs.microsoft.com/en-us/dotnet/api/system.reflection.propertyinfo.setvalue?view=netcore-3.1#System_Reflection_PropertyInfo_SetValue_System_Object_System_Object_
+
 https://bbs.csdn.net/topics/30043235
 
 https://stackoverflow.com/questions/48407783/c-sharp-propertyinfo-setvalue-and-array
+
 ---
 
 **ScriptableObject 导表后结构体不显示**
