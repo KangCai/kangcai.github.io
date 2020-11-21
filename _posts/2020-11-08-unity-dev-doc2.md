@@ -11,6 +11,12 @@ tags:
 
 ---
 
+**CS0417:"T":创建变量类型的实例时无法提供参数**
+
+[《C＃中的泛型 - 如何使用参数创建变量类型的实例？》:https://www.javaroad.cn/questions/122324](https://www.javaroad.cn/questions/122324)
+
+---
+
 **NullReferenceException: Object reference not set to an instance of an object**
 
 https://docs.microsoft.com/en-us/dotnet/api/system.reflection.propertyinfo.setvalue?view=netcore-3.1#System_Reflection_PropertyInfo_SetValue_System_Object_System_Object_
