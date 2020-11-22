@@ -11,6 +11,14 @@ tags:
 
 ---
 
+**CS0052:可访问性不一致:字段类型“EGameMap”的可访问性低于字段“GameLevelSingleton.gameMap”**
+
+`enum EGameMap`**` 改成 `public enum EGameMap`
+
+[https://zhidao.baidu.com/question/214553362.html](https://zhidao.baidu.com/question/214553362.html)
+
+---
+
 **CS0417:"T":创建变量类型的实例时无法提供参数**
 
 [《C＃中的泛型 - 如何使用参数创建变量类型的实例？》:https://www.javaroad.cn/questions/122324](https://www.javaroad.cn/questions/122324)
