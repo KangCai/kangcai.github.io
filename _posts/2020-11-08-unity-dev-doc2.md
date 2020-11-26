@@ -11,6 +11,18 @@ tags:
 
 ---
 
+**CS0266:无法将类型“CompBase”隐式转换为“T”。存在一个显式转换(是否缺少强制转换?)**
+
+[《C# 泛型 无法将类型xx隐式转换为“T”》：https://blog.csdn.net/wulijian/article/details/43084121](https://blog.csdn.net/wulijian/article/details/43084121)
+
+---
+
+**CS1579:“IEnumerator”不包含“GetEnumerator”的公共实例定义，因此 foreach 语句不能作用于“IEnumerator”类型的变量**
+
+[《IEnumerable与IEnumerator学习（一）：在类中添加GetEnumerator()方法使类或类的集合可以被迭代》：https://blog.csdn.net/cyh1992899/article/details/52782818](https://blog.csdn.net/cyh1992899/article/details/52782818)
+
+---
+
 **CS0052:可访问性不一致:字段类型“EGameMap”的可访问性低于字段“GameLevelSingleton.gameMap”**
 
 `enum EGameMap`**` 改成 `public enum EGameMap`
