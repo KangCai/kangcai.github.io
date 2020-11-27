@@ -11,6 +11,48 @@ tags:
 
 ---
 
+**StackOverflowException: The requested operation caused a stack overflow. IterComp`1[T].GetEnumerator () <0x1a82dcafbd0 + 0x00008> in <d553ff918ab24d0aaa944212c35416af>:0**
+
+正确写法：
+
+```buildoutcfg
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
+public class IterComp<T>: IEnumerable<T> where T: CompBase
+{
+    private static readonly Lazy<IterComp<T>> Instancelock = new Lazy<IterComp<T>>(() => new IterComp<T>());
+
+    public static IterComp<T> GetInstance
+    {
+        get
+        {
+            return Instancelock.Value;
+        }
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        string typeName = typeof(T).ToString();
+        if (!EntityAdmin.GetInstance.compDict.ContainsKey(typeName))
+            yield break;
+        foreach (int guid in EntityAdmin.GetInstance.compDict[typeName])
+        {
+            T comp = EntityAdmin.GetInstance.getComp<T>(guid);
+            yield return comp;
+        }
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+}
+```
+
+---
+
 **CS0266:无法将类型“CompBase”隐式转换为“T”。存在一个显式转换(是否缺少强制转换?)**
 
 [《C# 泛型 无法将类型xx隐式转换为“T”》：https://blog.csdn.net/wulijian/article/details/43084121](https://blog.csdn.net/wulijian/article/details/43084121)
