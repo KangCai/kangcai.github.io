@@ -9,6 +9,16 @@ tags:
 
 **多在 [https://docs.microsoft.com/en-us/dotnet/](https://docs.microsoft.com/en-us/dotnet/) 里找答案**
 
+**CS7036: 未提供与“FState<TestState>.FState(TestState)”的必需形参“state”对应的实参**
+
+[https://zhidao.baidu.com/question/1496589616910039099.html](https://zhidao.baidu.com/question/1496589616910039099.html)
+
+---
+
+**CS0019: 运算符“==”无法应用于“T”和“T”类型的操作数**
+
+[C#中泛型类型的比较（运算符==无法用于T和T类型的操作数）:https://blog.csdn.net/birdfly2015/article/details/94609235](https://blog.csdn.net/birdfly2015/article/details/94609235)
+
 ---
 
 **StackOverflowException: The requested operation caused a stack overflow. IterComp`1[T].GetEnumerator () <0x1a82dcafbd0 + 0x00008> in <d553ff918ab24d0aaa944212c35416af>:0**

@@ -23,11 +23,25 @@ tags:
 
 ---
 
+**Unity：PlayMode UnityTest和EditMode UnityTest有什么区别？**
+
+[https://www.it1352.com/1849102.html](https://www.it1352.com/1849102.html)
+
+---
+
+**单元测试调用不到主工程类的问题**
+
+[《How to Set Up a Unity Editor Test Project》: https://dancerscode.com/2018/12/05/how-to-set-up-a-unity-test-project/](https://dancerscode.com/2018/12/05/how-to-set-up-a-unity-test-project/)
+
+---
+
 **Unity 中的单元测试**
 
 [《【Unity游戏开发】浅谈Unity游戏开发中的单元测试》：https://www.cnblogs.com/msxh/p/7354229.html](https://www.cnblogs.com/msxh/p/7354229.html)
 
 Window -> General -> Test Runner
+
+实例：[Unity-TestRunner单元测试：https://blog.csdn.net/game_builder/article/details/100700528](https://blog.csdn.net/game_builder/article/details/100700528)
 
 ---
 
