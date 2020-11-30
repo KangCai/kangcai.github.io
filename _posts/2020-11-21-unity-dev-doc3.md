@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Unity 之 C#"
+title: "【Unity】3-C#"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
@@ -14,6 +14,12 @@ tags:
 [https://www.cnblogs.com/luzhihua55/p/CodingConventions4All.html](https://www.cnblogs.com/luzhihua55/p/CodingConventions4All.html)
 
 不要用注释来粉饰糟糕的代码，写注释常见的动机之一就是试图来使糟糕的代码能让别人看懂。对于这种"拐杖式注释"，我们不需要，我们要做的是把代码改的能够更具有"自我说明性"。记住："好代码>坏代码+好注释"。
+
+---
+
+****
+
+[《测试框架nunit之assertion断言使用详解》:https://www.jb51.net/article/46290.htm](https://www.jb51.net/article/46290.htm)
 
 ---
 
