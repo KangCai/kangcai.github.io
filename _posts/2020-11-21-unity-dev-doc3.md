@@ -9,6 +9,32 @@ tags:
 
 ---
 
+**安全地将数字型字符串转为数字**
+
+[https://www.cnblogs.com/geekworld/articles/9430133.html](https://www.cnblogs.com/geekworld/articles/9430133.html)
+
+---
+
+**字符串转数组，数组转字符串，字符串数组转int数组**
+
+[《C# string数组转int数组》:https://blog.csdn.net/u012143455/article/details/70157233](https://blog.csdn.net/u012143455/article/details/70157233)
+
+[《C#.字符串转数组，数组转字符串》: https://www.cnblogs.com/yanglang/p/6774331.html](https://www.cnblogs.com/yanglang/p/6774331.html)
+
+---
+
+**static**
+
+* 静态类不能实现接口
+
+---
+
+**C# String与StringBuilder**
+
+[https://www.cnblogs.com/cang12138/p/7323709.html](https://www.cnblogs.com/cang12138/p/7323709.html)
+
+---
+
 **C# 注释规范**
 
 [https://www.cnblogs.com/luzhihua55/p/CodingConventions4All.html](https://www.cnblogs.com/luzhihua55/p/CodingConventions4All.html)

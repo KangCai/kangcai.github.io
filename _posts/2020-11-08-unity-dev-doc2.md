@@ -9,6 +9,13 @@ tags:
 
 --
 
+
+**CS0116: 命名空间不能直接包含字段或方法之类的成员**
+
+
+
+---
+
 **多在 [https://docs.microsoft.com/en-us/dotnet/](https://docs.microsoft.com/en-us/dotnet/) 里找答案**
 
 **CS7036: 未提供与“FState<TestState>.FState(TestState)”的必需形参“state”对应的实参**
