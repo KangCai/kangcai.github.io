@@ -9,6 +9,16 @@ tags:
 
 ---
 
+**遍历枚举类型**
+
+```buildoutcfg
+foreach (Suit suit in (Suit[]) Enum.GetValues(typeof(Suit)))
+{
+}
+```
+
+---
+
 **安全地将数字型字符串转为数字**
 
 [https://www.cnblogs.com/geekworld/articles/9430133.html](https://www.cnblogs.com/geekworld/articles/9430133.html)
