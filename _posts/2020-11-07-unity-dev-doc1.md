@@ -9,7 +9,24 @@ tags:
 
 --
 
-**多在 [https://docs.microsoft.com/en-us/dotnet/](https://docs.microsoft.com/en-us/dotnet/) 里找答案**
+**多在以下网站中找答案**
+
+* [https://docs.microsoft.com/en-us/dotnet/](https://docs.microsoft.com/en-us/dotnet/) 
+* [https://docs.unity3d.com/Manual/](https://docs.unity3d.com/Manual/)
+
+---
+
+**UI 框架参考**
+
+[《基于Unity~UGUI的简单UI框架（附UIFramework源码）》](https://blog.csdn.net/qq_34937637/article/details/80374387)
+
+--
+
+**Sprites 的透视规则**
+
+[《unity perspective透视摄像机和orthographic正交摄像机解析》](https://docs.unity3d.com/Manual/Sprites.html)
+
+默认与 camera 的模式一致
 
 ---
 
