@@ -8,7 +8,7 @@ tags:
   - GamePlay
 ---
 
-> 算法。文章首发于[我的博客](https://kangcai.github.io)，转载请保留链接 ;)
+> 文章首发于[我的博客](https://kangcai.github.io)，转载请保留链接 ;)
 
 一、ECS 框架
 

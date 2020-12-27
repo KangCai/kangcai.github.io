@@ -8,7 +8,7 @@ tags:
   - GamePlay
 ---
 
-> 算法。文章首发于[我的博客](https://kangcai.github.io)，转载请保留链接 ;)
+> 文章首发于[我的博客](https://kangcai.github.io)，转载请保留链接 ;)
 
 
 **对于非单例 component，在何时、何处进行创建和绑定**
