@@ -30,6 +30,11 @@ Django 工程相关知识：
 5. 除了上述模板外，最简单的方式就是 `HttpResponse("Hello world ! ")`
 6. 模板中对象除了可以传文本外，链接等都可以传。
 7. `{% include %}` 标签允许在模板中包含其它的模板的内容，比如下面这个例子包含了 `nav.html` 模板：·`{% include "nav.html" %}`
+8. 在开发机本地离线模拟好逻辑，再移植到同步模式更好
+
+**Django css等静态资源在 Debug 模式加载不成功等问题**
+
+[《在Django中加载css实例》](https://blog.csdn.net/Pansc2004/article/details/80553573)
 
 --
 

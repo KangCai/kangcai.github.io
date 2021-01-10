@@ -17,4 +17,4 @@ tags:
 |       |   C#  | python |
 | :---: | :---: | :---:  |
 | 关键字 |  delegate  | 直接 |
-| 示例 | https://www.cnblogs.com/vickylinj/p/10922139.html | 略 |
+| 示例 | https://www.cnblogs. com/vickylinj/p/10922139.html | 略 |
