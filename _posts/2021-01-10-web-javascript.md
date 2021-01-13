@@ -62,3 +62,11 @@ var str = arr.join("");
 ```buildoutcfg
 str = str.concat("a"); 
 ```
+
+结论：三种方法性能差不多
+
+---
+
+**webstorm 编辑器中调用 jquery 语法会出现提醒警告问题**
+
+[Configure JavaScript libraries](https://intellij-support.jetbrains.com/hc/en-us/community/posts/360002260719--jQuery-shortcut-underlined-as-unresolved-function-or-method-)
