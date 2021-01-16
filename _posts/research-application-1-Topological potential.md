@@ -27,12 +27,44 @@ tags:
 1. 节点间距离 D。负相关。
 2. 节点本身强度 P。正相关。
 3. 节点阵营 F。同阵营加成，反阵营削弱。
-4. 角度关系。
+4. 角度关系 A。
 
 势能具体衡量的是个体安全程度，安全程度越高，势能越大。
+
+**节点间距离加成 D**
 
 其中，第一项，节点间距离函数图像如下，
 
 <center>
 <img src="https://kangcai.github.io/img/in-post/post-research-application/1.PNG" />
 </center>
+
+```buildoutcfg
+Yd = e^(-(D/d)^2)
+```
+
+其中 3d / 2^(0.5) 约等于极限范围，d 为 1 时，极限范围是 2.12。
+
+**本身强度 P**
+
+```buildoutcfg
+P' = hp_ratio + max((1 - (spell_cd_left_time / 10)), 1)
+P = Yd * P'
+Yp = p * P
+```
+
+其中 p 是范围在 (0, 1] 之间的常量。
+
+**角度关系加成 A**
+
+```buildoutcfg
+Ya = a * P1 * P2 * abs(sin(A / 2))
+```
+
+其中 a 是范围在 (0, 1] 之间的常量。
+
+最终总势能为
+
+```buildoutcfg
+Y = sum(i)(Yp) + sum(i, j)(Ya)
+```
