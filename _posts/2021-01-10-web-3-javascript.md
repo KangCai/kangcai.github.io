@@ -9,6 +9,36 @@ tags:
 
 ---
 
+**js 修改 html 中 DOM 属性**
+
+
+JQuery 如下
+
+```buildoutcfg
+let tabBtnList = $(".tabBtnList");
+if (scrollTop >= 66 && tabBtnList.css('position') === 'static') {
+    tabBtnList.css('position', 'fixed');
+    tabBtnList.css('box-shadow', '0 1px 3px rgba(18,18,18,.1)');
+} else if (scrollTop < 66 && tabBtnList.css('position') === 'fixed') {
+    tabBtnList.css('position', 'static');
+    tabBtnList.css('box-shadow', 'none');
+}
+```
+
+原生 js 如下
+
+```buildoutcfg
+$(".tabBtnList").each(function(index, domEle) {
+    if (scrollTop >= 66){
+        domEle.setAttribute('style', 'top:0px;position:fixed;box-shadow: 0 1px 3px rgba(18,18,18,.1)');
+    } else{
+        domEle.setAttribute('style', 'position:relative');
+    }
+})
+```
+
+---
+
 **ajax 异步模式**
 
 ```buildoutcfg
