@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "【Web】服务端"
+title: "【Web】javascript"
 author: "Kang Cai"
 header-img: "img/post-bg-dreamer.jpg"
 header-mask: 0.4
@@ -9,8 +9,15 @@ tags:
 
 ---
 
-**js 修改 html 中 DOM 属性**
+**js JSON**
 
+python 的 `json.loads` 是 str 转 json，`json.dumps` 是 json 转 str
+
+而 js 中的操作 `JSON.parse` 是 str 转 json，`JSON.stringify` 是 json 转 str
+
+---
+
+**js 修改 html 中 DOM 属性**
 
 JQuery 如下
 
