@@ -17,6 +17,17 @@ python 的 `json.loads` 是 str 转 json，`json.dumps` 是 json 转 str
 
 ---
 
+**js 常用方法**
+
+```buildoutcfg
+let foo = $(".fooClass");
+foo.on("DOMNodeInserted", function(e){ console.log($(e.target).html().length) });
+foo.innerText = "";
+foo.css('opacity', '1.0');
+```
+
+---
+
 **js 修改 html 中 DOM 属性**
 
 JQuery 如下
@@ -101,6 +112,14 @@ str = str.concat("a");
 ```
 
 结论：三种方法性能差不多
+
+---
+
+**jQuery**
+
+参考手册
+
+[《jQuery 参考手册 - 事件》https://www.w3school.com.cn/jquery/jquery_ref_events.asp](https://www.w3school.com.cn/jquery/jquery_ref_events.asp)
 
 ---
 
